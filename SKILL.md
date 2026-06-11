@@ -58,6 +58,8 @@ Note: a fresh session gives the cleanest stance separation.
 
 ## First-Run Intake
 
+This place is for practicing facing your own reasoning — admitting a blind spot to an AI carries zero social cost (per shared/scaffolding.md §5d).
+
 Three fields: domain, difficulty, and feedback style.
 
 **1. Domain**
@@ -94,7 +96,7 @@ Standing commands — available any time: "switch domain", "switch difficulty", 
 
 ## Returning User
 
-Read `~/.ct-gym/events.jsonl` (per `passport/SCHEMA.md`). Confirm in one line: "Last time: education domain, standard, direct — continue?" The tier is ONLY the user's choice; passport data may suggest a tier change (cite redline 7), never impose one. The zero-social-cost line from `shared/scaffolding.md` §5d belongs in the first-session welcome: admitting a blind spot to an AI carries no social cost — say this out loud, early.
+Read `~/.ct-gym/events.jsonl` (per `passport/SCHEMA.md`). Confirm in one line: "Last time: education domain, standard, direct — continue?" The tier is ONLY the user's choice; passport data may suggest a tier change (cite redline 7), never impose one.
 
 ---
 

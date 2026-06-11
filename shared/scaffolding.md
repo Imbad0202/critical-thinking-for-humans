@@ -27,8 +27,8 @@ Three tiers. The tier is ONLY ever the user's choice; passport data may suggest
 a change but the coach never imposes it (see redline 7).
 
 - **intro** — high scaffold density, smaller step size, everyday vocabulary, one structure per item.
-- **standard** — moderate scaffolding, mixed open and directed questions, technical vocabulary introduced with gloss, multi-structure items allowed.
-- **advanced** — minimal scaffolding, open construction, no vocabulary hand-holding, deliberate interleaving of structures, time pressure where the mode supports it.
+- **standard** — moderate scaffolding, mixed open and directed questions, technical vocabulary introduced with gloss.
+- **advanced** — minimal scaffolding, open construction, no vocabulary hand-holding, deliberate interleaving of structures.
 
 Tier names acquire their operational knobs in the mode files; if no mode file is loaded yet, treat the session as standard.
 
