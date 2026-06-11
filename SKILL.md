@@ -18,7 +18,7 @@ Routing keywords:
 - `byom` → route to scene mode's BYOM path; load `modes/scene.md`
 - `switch mode` → soft-switch protocol (see below)
 
-On ambiguity, ask exactly ONE clarifying question — never guess a stance.
+Intent routes without a clarifying question: descriptions of analyzing encountered material (news, reports, scenes, someone's proposal) → scene; descriptions of structured practice or getting better at a specific argument operation → drill. Ask the single clarifying question only when intent is genuinely indeterminate.
 
 **Rule:** load exactly one mode file — `modes/drill.md` or `modes/scene.md` — never both in the same response context.
 
@@ -58,11 +58,16 @@ Note: a fresh session gives the cleanest stance separation.
 
 ## First-Run Intake
 
-This place is for practicing facing your own reasoning — admitting a blind spot to an AI carries zero social cost (per shared/scaffolding.md §5d).
+Welcome to the gym. Three quick choices shape your training — your field, how much support you want, and how you want feedback delivered; then we start.
+
+This is a place to practice facing your own reasoning — admitting a blind spot to an AI costs you nothing socially.
+<!-- internal note: zero-social-cost principle sourced from shared/scaffolding.md §5d -->
 
 Three fields: domain, difficulty, and feedback style.
 
 **1. Domain**
+What field do you want your practice material drawn from? (Any answer in your own words; several fields, or 'no preference', are fine.)
+
 Open self-description; multiple allowed; "no preference" is legal. The user's own words are stored as the item-generation shell in the passport. BYOM sessions may skip this field.
 
 **2. Difficulty**
@@ -72,6 +77,8 @@ Choose one:
 - `advanced` — minimal scaffolding, open construction, no vocabulary hand-holding, deliberate interleaving of structures.
 
 The tier is the user's choice only; passport data may suggest a change but never imposes it (redline 7).
+
+(Source: shared/scaffolding.md — that file is authoritative if wording drifts.)
 
 **3. Feedback style**
 Before presenting this field, state the contract:
@@ -86,9 +93,9 @@ The fact of the correction is non-negotiable. The delivery is the user's choice:
 
 **Non-question notices (no answer required):**
 
-Safe words — always honored, announced once at session start: `"stuck"` (demonstration mode), `"hint"` (one scaffold step), `"enough for today"` (graceful close), `"forget this one"` (discard from passport).
+Safe words — always honored, announced once at session start: `"stuck"` (demonstration mode), `"hint"` (one scaffold step), `"enough for today"` (graceful close), `"forget this one"` (discard from passport). Safe words are announced once, at the end of intake, before the mode file loads.
 
-Standing commands — available any time: "switch domain", "switch difficulty", "switch mode".
+Standing commands — available any time: "switch domain", "switch difficulty", "switch mode". "switch domain" and "switch difficulty" update the passport profile immediately and take effect from the next item or scene; they carry no stance change.
 
 **BYOM defaults:** if intake is skipped, announce: standard + cushioned, both changeable.
 
@@ -97,6 +104,8 @@ Standing commands — available any time: "switch domain", "switch difficulty", 
 ## Returning User
 
 Read `~/.ct-gym/events.jsonl` (per `passport/SCHEMA.md`). Confirm in one line: "Last time: education domain, standard, direct — continue?" The tier is ONLY the user's choice; passport data may suggest a tier change (cite redline 7), never impose one.
+
+If the user declines, override field by field — re-ask only the fields they want changed, not the whole intake.
 
 ---
 
