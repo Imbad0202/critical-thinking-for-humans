@@ -62,8 +62,7 @@ Fields: `frames_raised` (array of frame IDs), `steelman` (bool), `counter_frame`
 
 ### `miss_log`
 
-Explicit miss record written alongside `drill_result` when `hit` is `false`, to
-support pattern queries without scanning all drill results. A `miss_log` must be
+Explicit miss record written alongside `drill_result` when `hit` is `false`; derivable from drill_result if absent. A `miss_log` must be
 written for every `drill_result` whose `hit` is false; `drill_result` is ground
 truth — if a `miss_log` is missing, regeneration derives it.
 
@@ -99,9 +98,7 @@ Events exist only in session context until a checkpoint is reached; nothing is
 written to disk mid-session. This is what makes 'forget this one' reliable.
 
 "forget this one" (redline 8) discards all pending (not-yet-written) events;
-checkpointed events are immutable — use delete passport for those. Events buffer
-during the session and are appended at natural checkpoints (end of an item, end
-of a scene step) so this discard is possible.
+checkpointed events are immutable — use delete passport for those.
 
 Concurrent writes from two simultaneous sessions are not safe: the later rename
 wins and the other session's events are lost. Known limitation — run one session

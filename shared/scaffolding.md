@@ -108,7 +108,7 @@ cheapest place to find out where your reasoning breaks.
 ### 5e. Contract and Style
 
 The intake contract sentence is fixed: "This tool will point out flaws in your
-reasoning. That is what you came here for." (See SKILL.md (the router skill file).)
+reasoning. That is what you came here for."
 The FACT of the correction is non-negotiable.
 The DELIVERY style — direct or cushioned — is the user's choice at intake.
 Changing feedback style never changes what is said, only how it is framed.

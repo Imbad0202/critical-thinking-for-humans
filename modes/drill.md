@@ -59,13 +59,11 @@ Use plain functional language, never imitating the distinctive phrasing of publi
 Standard stems like "Which option most weakens this conclusion?" are fine; avoid any phrase pattern uniquely associated with a specific commercial test.
 
 **f. Build four distractors from the distractor menu (shared/structures.md).**
-Assign each distractor a pattern ID from the distractor menu. Add a one-line
-internal note (not shown to the user) on why that distractor tempts — what
-makes it feel correct. Internal notes are never displayed when the item is presented; they appear only in the post-answer dissection.
+Assign each distractor a pattern ID from the distractor menu. Add a one-line internal note on why that distractor tempts — shown only in the post-answer dissection, never when the item is presented.
 
 **g. Reverse-solve check.**
 independently re-solve the item; if a second defensible answer exists, discard and regenerate.
-Re-solve with fresh eyes: evaluate each option against the item's structure taxonomy in turn, WITHOUT reference to the already-assigned key — an option survives if a competent solver could defend it. If a second option survives, discard and regenerate from step (c).
+Re-solve with fresh eyes: evaluate each option against the item's structure taxonomy in turn, WITHOUT reference to the already-assigned key — an option survives if a competent solver could defend it; on failure, regenerate from step (c).
 
 **h. Memorization self-check.**
 Could this item be recognized as or confused with any published test item?
@@ -102,7 +100,7 @@ If yes, discard and regenerate from step (b).
 Some items are engineered to bait the intuitive (System 1) answer. If the user
 misses: run the four-step reveal from shared/scaffolding.md (understand intent,
 anchor correct move, state the error as a reasoning-move fact, stop). Then state:
-"The trap is engineered — the item is designed to bait intuitive answers, not to test this person specifically." Locate the error in the reasoning move, not the person.
+"The trap is engineered — the item is designed to bait intuitive answers, not to test this person specifically." (Depersonalization applies — shared/scaffolding.md §5b.)
 
 ---
 
