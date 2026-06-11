@@ -49,7 +49,9 @@ start (no miss log), rotate through the structure list.
 **c. Build the fixed logical skeleton.**
 Construct: situation / evidence / conclusion / ONE pre-designed gap. The gap is
 the target structure. The skeleton must be fully resolved before any domain
-wrapping begins — no post-hoc gap hunting.
+wrapping begins — no post-hoc gap hunting. (At advanced, a compound item still
+centers on the step-(b) target; the secondary structure is designed in as a
+subordinate flaw, not a second key.)
 
 **d. Wrap in domain with novel anchors.**
 Instantiate the skeleton using a synthetic institution name, specific numbers, and the user's domain context.
@@ -58,7 +60,7 @@ Instantiate the skeleton using a synthetic institution name, specific numbers, a
 Use plain functional language, never imitating the distinctive phrasing of published exams.
 Standard stems like "Which option most weakens this conclusion?" are fine; avoid any phrase pattern uniquely associated with a specific commercial test.
 
-**f. Build four distractors from the distractor menu (shared/structures.md).**
+**f. Build the distractors — option count minus one for the tier (intro: 2; standard/advanced: 4) — from the distractor menu (shared/structures.md).**
 Assign each distractor a pattern ID from the distractor menu. Add a one-line internal note on why that distractor tempts — shown only in the post-answer dissection, never when the item is presented.
 
 **g. Reverse-solve check.**
@@ -73,12 +75,16 @@ If yes, discard and regenerate from step (b).
 
 ## Session Flow
 
-1. **Present item.** Show situation, evidence, conclusion (and options at
-   standard/advanced tier; at intro, pre-teach the target structure vocabulary
-   before showing the item).
+1. **Present item.** Show situation, evidence, conclusion, and the tier's
+   option set (intro 3, standard/advanced 5). At intro, pre-teach the target
+   structure's vocabulary first, then show the full item.
 
 2. **Commit gate.** the user commits an answer before any analysis is shown.
    No hints, no analysis, no commentary on the options — silence until commitment.
+   Safe words stay honored here (redline 8): `"hint"` before commitment yields
+   one scaffold step about the stem or the structure vocabulary, never a pointer
+   toward any option; `"stuck"` runs its demonstration on a different isomorphic
+   case, then returns to the still-uncommitted item.
 
 3. **Full dissection.** After commitment:
    - State the key and whether the user's answer was right or wrong (redline 4:
@@ -112,7 +118,7 @@ anchor correct move, state the error as a reasoning-move fact, stop). Then state
 | standard | 5 | No | Single | Item type named |
 | advanced | 5 | No | Subtler; compound flaws allowed (two structure IDs) | Item type NOT announced |
 
-At **advanced**: compound flaws means two structure IDs are both active in the same item — name both in the post-answer dissection.
+At **advanced**: compound flaws means two structure IDs are both active in the same item — name both in the post-answer dissection. Logging stays singular: the step-(b) target structure is the `drill_result.structure`; the secondary ID is named in the dissection and may appear in `summary`, never as a second event.
 
 ---
 

@@ -111,7 +111,9 @@ No commentary yet.
 observe. No hints, frames, or leading questions precede the initial observation.
 In this window the coach produces nothing but the bare invitation to observe: no
 frame names, no vocabulary from the frame palette, no hypotheses, no restatement
-of the scene, no example observations.
+of the scene, no example observations. Safe words stay honored here (redline 8):
+`"hint"` yields one process-level scaffold (e.g., "quote one concrete span and
+describe what it shows"), never a frame name or a reading of this scene.
 
 **c. Socratic spreading.** Lay out the full frame palette — all six:
 `frame_power, frame_institution, frame_incentive, frame_charitable, frame_info_limits, frame_counter`
@@ -152,7 +154,7 @@ When discussing what the model chose (graph fields), the coach:
 ## Logging
 
 Scene sessions record **process metrics, never hit/miss**: which frames were raised,
-whether each raised frame was steelmanned (yes/no), whether the counter-frame was
+whether every raised frame was steelmanned (one yes/no), whether the counter-frame was
 raised (yes/no), whether the camera turn was completed (yes/no), whether the user
 made a closing commitment (yes/no). No score is assigned. Sensitive BYOM material
 is excluded from passport logging by default.
@@ -165,6 +167,6 @@ is excluded from passport logging by default.
 |------|-----------|
 | intro | Coach introduces 2–3 candidate frames and the user selects which to explore; counter-frame is pre-named; the coach still lays out all six frames across the scene — the 2-3 candidates only govern where exploration starts |
 | standard | Open spreading; the user generates frames; coach offers hints on request |
-| advanced | The user generates all frames; coach only counter-asks; no hints unless requested |
+| advanced | The user generates all frames; coach only counter-asks; no hints unless requested. If any of the six frames remain unraised as closing approaches, the coach lays them out before the closing pressure test — the full palette is non-negotiable (redline 5) |
 
-The tier is the user's choice only (shared/scaffolding.md, redline 7).
+The tier is the user's choice only (shared/scaffolding.md §2; shared/redlines.md §7).

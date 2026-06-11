@@ -1,6 +1,8 @@
 # Passport
 
 > This file is a view; events.jsonl is the record. Safe to delete — it will be rebuilt.
+> Every value below is sample data illustrating the format — regenerate all
+> values from `events.jsonl`, never copy them.
 
 ---
 

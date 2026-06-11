@@ -41,8 +41,10 @@ Fields: `domain` (array of strings — user's own words), `difficulty`
 
 One record per drill item completed.
 
-Fields: `structure` (canonical ID from `shared/structures.md`), `item_type`
-(`assumption|weaken|sufficiency`), `hit` (bool), `summary` (structure-level).
+Fields: `structure` (canonical ID from `shared/structures.md`; for advanced
+compound items, the primary target — secondary IDs appear only in `summary`),
+`item_type` (`assumption|weaken|sufficiency`), `hit` (bool), `summary`
+(structure-level).
 
 ```
 {"schema_version":1,"ts":"2026-06-11T08:41:00Z","type":"drill_result","structure":"sample_selection","item_type":"weaken","hit":false,"summary":"missed survivorship in a retention claim"}
@@ -52,9 +54,10 @@ Fields: `structure` (canonical ID from `shared/structures.md`), `item_type`
 
 One record per completed scene session. Process metrics only — no hit/miss grade.
 
-Fields: `frames_raised` (array of frame IDs), `steelman` (bool), `counter_frame`
-(bool), `camera_turn` (bool), `commitment` (bool), `summary` (short context label
-— no raw user text, no proper names).
+Fields: `frames_raised` (array of frame IDs), `steelman` (bool — true only if
+every raised frame was steelmanned), `counter_frame` (bool), `camera_turn`
+(bool), `commitment` (bool), `summary` (short context label — no raw user text,
+no proper names).
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"summary":"staff-meeting scene, budget dispute"}
@@ -92,7 +95,8 @@ Exception: `commitment.position` is the user's own authored position statement,
 recorded deliberately at the closing pressure test; it may contain first-person
 language. Everything else stays summary-level.
 
-Sensitive BYOM sessions are not logged by default.
+Sensitive BYOM sessions are not logged by default — no events of any type,
+including `commitment`, unless the user explicitly opts in.
 
 Events exist only in session context until a checkpoint is reached; nothing is
 written to disk mid-session. This is what makes 'forget this one' reliable.

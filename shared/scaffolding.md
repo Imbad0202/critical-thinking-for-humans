@@ -38,7 +38,7 @@ Tier names acquire their operational knobs in the mode files; if no mode file is
 
 Announced at session start. All four are always honored (redline 8).
 
-- `"stuck"` — switch to demonstration mode: full walkthrough of a DIFFERENT isomorphic case, then return to the original item. The user watches the process on neutral material before re-engaging.
+- `"stuck"` — switch to demonstration mode: full walkthrough of a DIFFERENT isomorphic case, then return to the original item. The user watches the process on neutral material before re-engaging. In scene mode the demonstration is a short parallel scene on neutral material: the coach walks one frame reading end-to-end on it, then returns to the live scene.
 - `"hint"` — one scaffold step only, never the answer. The step is the smallest move that keeps progress going.
 - `"enough for today"` — graceful close: summarize what was gained this session, leave a clear re-entry point, no pressure to continue. (The summary states only what the record shows; if no correct moves occurred, name where the session reached and the re-entry point — that is sufficient. Do not manufacture gains.)
 - `"forget this one"` — discards all PENDING events — everything buffered since the last checkpoint write. Events from already-completed items are on disk and stay; remove them with "delete passport".
@@ -75,7 +75,7 @@ Every correction follows the same sequence:
 understand the intent, anchor what was done right, state the fact, leave space.
 
 1. **Name aloud** what the user was trying to do.
-2. **State** the specific correct move they actually made (this is the anchor; the anchor comes BEFORE the reveal — Steele & Cohen show that affirmation lowers defensiveness only when it precedes the threatening information, not when it follows it as consolation).
+2. **State** the specific correct move they actually made (this is the anchor; the anchor comes BEFORE the reveal — Steele & Cohen show that affirmation lowers defensiveness only when it precedes the threatening information, not when it follows it as consolation). If the record holds no correct move, skip the anchor rather than invent one (redline 4): name the intent, state the fact, stop.
 3. **State** the error as a fact about the reasoning move.
 4. **Stop.** No follow-up question, no softening addition — silence is the space.
 

@@ -11,16 +11,30 @@ Canonical IDs are snake_case English and never localized; the display layer tran
 
 ## Reasoning Structures
 
+The seven loggable structure IDs — every `drill_result.structure` value comes
+from this table.
+
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
 | `necessary_assumption` | The unstated condition the argument depends on; if it is false, the evidence no longer supports the conclusion. | "What must be true for this evidence to carry that conclusion?" | Riverdale College raised tuition 15% and enrollment held steady, so demand for its programs is inelastic — assumes no offsetting scholarships were introduced. |
-| `negation_test` | The technique for testing necessity: precisely negate the candidate assumption (all→not all, some→none, must→not necessarily), put it back into the argument, and see whether the argument collapses. | "Does negating this candidate sink the argument, or does the argument survive?" | Negate "participants did not already have stronger résumés" → if they did, the placement-rate argument collapses; the assumption was necessary. |
 | `alternative_cause` | A THIRD, independent factor explains the outcome instead of the stated cause; the two stated variables may still be related, but something else is driving both. | "Could something else have produced this result?" | Greenbrook City's crime rate fell the year a new precinct opened — but a concurrent economic upturn may account for the drop. |
 | `reverse_causation` | NO third factor needed — the two stated variables are genuinely related, but the causal arrow runs the other way: the outcome produced the supposed cause. | "Could the outcome have produced the supposed cause?" | Firms with high employee satisfaction also show high profits — but profitable firms may simply have more resources to invest in working conditions. |
 | `coincidence_timing` | NO verified mechanism and direction unresolved — the two events merely co-occur or follow each other; nothing yet shows that either causes the other. | "Does the sequence prove mechanism, or just proximity?" | Northvale Hospital introduced a new triage protocol in March; patient wait times fell in April — but a reduction in emergency admissions began in February. |
 | `sample_selection` | The sample excludes cases most able to refute the claim; survivorship is a common variant. | "Where are the dropouts, the non-participants, the failures?" | A survey of students who completed the Westmoor tutoring program found 90% improved their grades — students who dropped out were not included. |
 | `proxy_mismatch` | The metric measured is not the outcome actually claimed; activity, satisfaction, or paperwork is dressed up as the real result. | "Is this measuring activity, satisfaction, or the thing actually claimed?" | Eastfield Foundation reports 400 mentoring sessions delivered as evidence of career advancement — sessions attended ≠ careers advanced. |
 | `evidence_sufficiency` | Whether the evidence licenses ANY conclusion yet; the discipline of saying "cannot be determined." | "Does this evidence license any conclusion yet, or only that more data is needed?" | Two quarters of rising sales after a rebranding do not yet establish that the rebranding caused growth — no baseline trend, no control group. |
+
+---
+
+## Technique
+
+`negation_test` is a procedure, not a loggable structure — it tests whether a
+`necessary_assumption` candidate is truly necessary, and never appears as a
+`drill_result.structure` value.
+
+| ID | Definition | Counter-question | Example |
+|----|-----------|-----------------|---------|
+| `negation_test` | The technique for testing necessity: precisely negate the candidate assumption (all→not all, some→none, must→not necessarily), put it back into the argument, and see whether the argument collapses. | "Does negating this candidate sink the argument, or does the argument survive?" | Negate "participants did not already have stronger résumés" → if they did, the placement-rate argument collapses; the assumption was necessary. |
 
 ---
 

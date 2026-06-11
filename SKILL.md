@@ -67,7 +67,7 @@ Three fields: domain, difficulty, and feedback style.
 **1. Domain**
 What field do you want your practice material drawn from? (Any answer in your own words; several fields, or 'no preference', are fine.)
 
-Open self-description; multiple allowed; "no preference" is legal. The user's own words are stored as the item-generation shell in the passport. BYOM sessions may skip this field.
+Open self-description; multiple allowed; "no preference" is legal. The user's own words are stored in `profile_set.domain` and serve as the item-generation shell. BYOM sessions may skip this field.
 
 **2. Difficulty**
 Choose one:
@@ -90,9 +90,9 @@ The fact of the correction is non-negotiable. The delivery is the user's choice:
 
 **Non-question notices (no answer required):**
 
-Safe words — always honored, announced once at session start: `"stuck"` (demonstration mode), `"hint"` (one scaffold step), `"enough for today"` (graceful close), `"forget this one"` (discards PENDING events only — buffered since the last checkpoint; checkpointed events stay on disk). Safe words are announced once, at the end of intake, before the mode file loads.
+Safe words — always honored, announced once at session start: `"stuck"` (demonstration mode), `"hint"` (one scaffold step), `"enough for today"` (graceful close), `"forget this one"` (discards PENDING events only — buffered since the last checkpoint; checkpointed events stay on disk). The announcement happens once, in every path — first run: at the end of intake; returning user: alongside the one-line confirm; skipped-intake BYOM: alongside the defaults notice — always before the mode file loads.
 
-Standing commands — available any time: "switch domain", "switch difficulty", "switch mode". "switch domain" and "switch difficulty" update the passport profile immediately and take effect from the next item or scene; they carry no stance change.
+Standing commands — available any time: "switch domain", "switch difficulty", "switch mode". "switch domain" and "switch difficulty" update the passport profile immediately and take effect from the next item or scene; they carry no stance change. A switch writes a complete `profile_set` event, carrying forward the unchanged fields.
 
 **BYOM defaults:** if intake is skipped, announce: standard + cushioned, both changeable.
 
@@ -100,7 +100,7 @@ Standing commands — available any time: "switch domain", "switch difficulty", 
 
 ## Returning User
 
-Read `~/.ct-gym/events.jsonl` (per `passport/SCHEMA.md`). Confirm in one line: "Last time: education domain, standard, direct — continue?" Tier: user's choice only (redline 7).
+Read `~/.ct-gym/events.jsonl` (per `passport/SCHEMA.md`). Confirm in one line built from the latest `profile_set`, e.g.: "Last time: education domain, standard, direct — continue?" Tier: user's choice only (redline 7).
 
 If the user declines, override field by field — re-ask only the fields they want changed, not the whole intake.
 
@@ -108,7 +108,7 @@ If the user declines, override field by field — re-ask only the fields they wa
 
 ## Passport Contract
 
-Files live at `~/.ct-gym/`. Events buffer in session context and are appended at checkpoints (end of an item, end of a scene step). Commands always available: **show passport** / **delete passport** / **pause recording** (redline 12 applies).
+Files live at `~/.ct-gym/`. Events buffer in session context and are appended at checkpoints (end of an item; end of a scene — a scene's commitment and process record flush together at scene end). Commands always available: **show passport** / **delete passport** / **pause recording** (redline 12 applies).
 
 Write protocol, privacy rules, and cold start: see passport/SCHEMA.md.
 
