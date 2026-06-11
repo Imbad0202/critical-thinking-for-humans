@@ -100,7 +100,7 @@ CHECKS = [
     ("modes/scene.md", "byom-first",
      "BYOM path is implemented first"),
     # --- SKILL.md (Task 8) ---
-    ("SKILL.md", "mode-keywords", "drill"),
+    ("SKILL.md", "mode-keywords", "`drill` → load `modes/drill.md` (judge stance)"),
     ("SKILL.md", "single-mode-load",
      "load exactly one mode file"),
     ("SKILL.md", "stance-reset", "STANCE RESET"),
@@ -116,6 +116,10 @@ CHECKS = [
     ("passport/SCHEMA.md", "atomic-write", "atomic"),
     ("passport/SCHEMA.md", "no-raw-text",
      "structure tags and short summaries, never raw user text"),
+    # --- new scope/consumer checks ---
+    ("shared/redlines.md", "rl5-scope", "Every scene lays out"),
+    ("shared/scaffolding.md", "feedback-style-consumer",
+     "the style changes the wrapping, never the verdict"),
     # --- README.md (Task 9) ---
     ("README.md", "stance-charter", "Stance Charter"),
     ("README.md", "gym-line",

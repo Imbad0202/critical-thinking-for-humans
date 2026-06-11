@@ -98,9 +98,10 @@ Sensitive BYOM sessions are not logged by default.
 Events exist only in session context until a checkpoint is reached; nothing is
 written to disk mid-session. This is what makes 'forget this one' reliable.
 
-"forget this one" (redline 8) discards the current session's pending events before
-they are written. Events buffer during the session and are appended at natural
-checkpoints (end of an item, end of a scene step) so this discard is possible.
+"forget this one" (redline 8) discards all pending (not-yet-written) events;
+checkpointed events are immutable — use delete passport for those. Events buffer
+during the session and are appended at natural checkpoints (end of an item, end
+of a scene step) so this discard is possible.
 
 Concurrent writes from two simultaneous sessions are not safe: the later rename
 wins and the other session's events are lost. Known limitation — run one session
@@ -108,6 +109,8 @@ at a time.
 
 User commands always available: **show passport** / **delete passport** /
 **pause recording** (redline 12).
+
+'pause recording' lasts until the user resumes it (state held in session; a new session starts unpaused). 'delete passport' removes both events.jsonl and passport.md.
 
 ---
 

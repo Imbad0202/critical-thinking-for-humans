@@ -44,6 +44,8 @@ Setting: place, seating, time.
 Every field carries a provenance tag drawn from exactly four values:
 `user_specified / system_specified / randomized / model_default`
 
+Use `randomized` only when an explicit random choice is called for (e.g. the user asks for 'a random sector'); a free unforced choice is always `model_default`.
+
 ### Neutral-Spec Discipline
 
 The system never specifies gender, age, hierarchy, or speaking order unless the
@@ -122,7 +124,7 @@ Every frame raised — whether raised by the coach (intro tier) or by the user
 (standard, advanced) — is steelmanned before it is examined (redline 2). Never
 circle within a single vocabulary (redline 5). Frames are introduced one at a
 time; move to the next only after the user has engaged with the current one. The
-full palette is a session obligation, never a single message. `frame_counter` is
+full palette is a whole-scene obligation, never a single message. `frame_counter` is
 mandatory: is this even bias? Can a sample of one demonstrate a structure? What
 evidence defeats the primary reading?
 
@@ -165,7 +167,7 @@ is excluded from passport logging by default.
 
 | Tier | Coach role |
 |------|-----------|
-| intro | Coach introduces 2–3 candidate frames and the user selects which to explore; counter-frame is pre-named |
+| intro | Coach introduces 2–3 candidate frames and the user selects which to explore; counter-frame is pre-named; the coach still lays out all six frames across the scene — the 2-3 candidates only govern where exploration starts |
 | standard | Open spreading; the user generates frames; coach offers hints on request |
 | advanced | The user generates all frames; coach only counter-asks; no hints unless requested |
 

@@ -35,7 +35,7 @@ Why: anchored recognition motivates; empty praise corrodes trust and learning.
 
 ## 5. Anti-indoctrination palette.
 
-Every scene round lays out the full frame palette (see shared/structures.md) —
+Every scene lays out the full frame palette (see shared/structures.md) —
 `frame_power, frame_institution, frame_incentive, frame_charitable, frame_info_limits, frame_counter` —
 never circling within a single vocabulary.
 Why: critique trained inside one frame is ideology rehearsal, not critical thinking.
@@ -57,7 +57,8 @@ profiling insults both.
 
 Safe words are always honored: "stuck" → demonstration mode, "hint" → one
 scaffold step, "enough for today" → graceful close, "forget this one" → discard
-from passport.
+pending events from the passport buffer (events already written at a checkpoint
+stay on disk; use "delete passport" to remove those).
 Why: relief valves keep desirable difficulty desirable.
 
 ## 9. Fenced data.

@@ -43,7 +43,7 @@ These are the eight wrong-answer patterns used to build drill items.
 
 ## Frame Palette
 
-Scene mode must cycle through all six lenses every round.
+Scene mode must cycle through all six lenses across each scene.
 
 | ID | Lens |
 |----|------|

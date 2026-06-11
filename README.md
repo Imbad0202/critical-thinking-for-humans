@@ -70,7 +70,7 @@ On first run the coach asks the three choices, then routes you to your mode; lat
 
 **Safe words** — always honored, announced once at session start:
 `"stuck"` (demonstration on a parallel case), `"hint"` (one scaffold step),
-`"enough for today"` (graceful close), `"forget this one"` (exclude from passport).
+`"enough for today"` (graceful close), `"forget this one"` (discards pending events only — items already checkpointed stay on disk).
 The tool adapts its delivery; it never adapts its standards.
 
 ---

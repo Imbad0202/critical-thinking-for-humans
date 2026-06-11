@@ -93,7 +93,7 @@ The fact of the correction is non-negotiable. The delivery is the user's choice:
 
 **Non-question notices (no answer required):**
 
-Safe words — always honored, announced once at session start: `"stuck"` (demonstration mode), `"hint"` (one scaffold step), `"enough for today"` (graceful close), `"forget this one"` (discard from passport). Safe words are announced once, at the end of intake, before the mode file loads.
+Safe words — always honored, announced once at session start: `"stuck"` (demonstration mode), `"hint"` (one scaffold step), `"enough for today"` (graceful close), `"forget this one"` (discards PENDING events only — buffered since the last checkpoint; checkpointed events stay on disk). Safe words are announced once, at the end of intake, before the mode file loads.
 
 Standing commands — available any time: "switch domain", "switch difficulty", "switch mode". "switch domain" and "switch difficulty" update the passport profile immediately and take effect from the next item or scene; they carry no stance change.
 

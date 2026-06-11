@@ -39,7 +39,7 @@ Canonical structure ID for this type: `evidence_sufficiency` — log hits and mi
 
 Execute in order before presenting any item.
 
-**a. Read domain + difficulty from the passport.**
+**a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
 
 **b. Pick a target structure.**
