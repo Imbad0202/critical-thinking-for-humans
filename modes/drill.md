@@ -31,6 +31,7 @@ causal attacks: `alternative_cause`, `reverse_causation`, `coincidence_timing`,
 Judge whether the evidence licenses the conclusion. Note:
 "cannot be determined" is a legitimate and rewarded answer — never a weak one.
 Choosing it correctly when evidence is genuinely insufficient is the skill being tested, not a fallback.
+Canonical structure ID for this type: `evidence_sufficiency` — log hits and misses under that ID.
 
 ---
 
@@ -60,10 +61,11 @@ Standard stems like "Which option most weakens this conclusion?" are fine; avoid
 **f. Build four distractors from the distractor menu (shared/structures.md).**
 Assign each distractor a pattern ID from the distractor menu. Add a one-line
 internal note (not shown to the user) on why that distractor tempts — what
-makes it feel correct.
+makes it feel correct. Internal notes are never displayed when the item is presented; they appear only in the post-answer dissection.
 
 **g. Reverse-solve check.**
 independently re-solve the item; if a second defensible answer exists, discard and regenerate.
+Re-solve with fresh eyes: evaluate each option against the item's structure taxonomy in turn, WITHOUT reference to the already-assigned key — an option survives if a competent solver could defend it. If a second option survives, discard and regenerate from step (c).
 
 **h. Memorization self-check.**
 Could this item be recognized as or confused with any published test item?
@@ -84,7 +86,7 @@ If yes, discard and regenerate from step (b).
    - State the key and whether the user's answer was right or wrong (redline 4:
      a wrong answer is never called right).
    - Explain why the key holds: map the key option onto the logical skeleton.
-   - For every distractor: explain why it tempts, and name its distractor
+   - For every distractor (all options except the key): explain why it tempts, and name its distractor
      pattern ID (e.g., `out_of_scope`, `premise_restatement`).
 
 4. **Name the skeleton.** name the transferable structure by its canonical ID
@@ -156,9 +158,7 @@ shows the metric does not track the claim.)*
 
 (B) The module's completion rate would have been higher if participation were
 truly voluntary rather than mandatory.
-*(`opposite_180` — argues for lower engagement, not against skill development;
-pushes in an unhelpful direction for the conclusion and does not engage the
-evidential gap.)*
+*(`irrelevant_comparison` — compares completion across participation regimes — a comparison that never touches whether skills improved.)*
 
 (C) Several faculty members who designed the module also administered the
 satisfaction survey.
@@ -172,9 +172,7 @@ bearing on whether the module improved argument evaluation.)*
 
 (E) Students who completed more than the required six peer reviews per semester
 reported higher satisfaction scores.
-*(`premise_restatement` / `weak_proxy_trap` — restates engagement data in a
-different form; again measures activity and satisfaction, not the skill outcome,
-and tempts by sounding like confirmatory evidence.)*
+*(`weak_proxy_trap` — offers more activity and satisfaction data dressed as outcome evidence; tempts by sounding like confirmatory evidence when it only deepens the proxy problem.)*
 
 ---
 
@@ -188,11 +186,10 @@ outcomes. Option (A) directly attacks that gap: an external study using an actua
 skill measure found no effect. Structure: `proxy_mismatch`.
 
 Distractor logic:
-- (B) `opposite_180` — weakens engagement, not skill gain; wrong axis.
+- (B) `irrelevant_comparison` — compares completion across participation regimes; a comparison that never touches whether skills improved.
 - (C) `true_but_irrelevant` — survey integrity concern, not a skill-outcome attack.
 - (D) `out_of_scope` — enrollment numbers never engage the evidential gap.
-- (E) `weak_proxy_trap` — more activity data dressed as confirmation; the same
-  mismatch the key exposes, but in the wrong direction for weakening.
+- (E) `weak_proxy_trap` — more activity and satisfaction data dressed as outcome evidence; reinforces the mismatch rather than exposing it — it adds activity data without attacking the conclusion.
 
 Transferable structure: `proxy_mismatch` — the metric measured is not the outcome
 actually claimed; activity or satisfaction stands in for the real result.
