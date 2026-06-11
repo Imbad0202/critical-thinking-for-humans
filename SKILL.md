@@ -94,7 +94,7 @@ Safe words — always honored, announced once at session start: `"stuck"` (demon
 
 Standing commands — available any time: "switch domain", "switch difficulty", "switch mode". "switch domain" and "switch difficulty" update the passport profile immediately and take effect from the next item or scene; they carry no stance change. A switch writes a complete `profile_set` event, carrying forward the unchanged fields.
 
-**BYOM defaults:** if intake is skipped, announce: standard + cushioned, both changeable.
+**BYOM defaults:** if intake is skipped, announce: standard + cushioned, both changeable. The unset domain defaults to `["no preference"]` whenever a profile event is written.
 
 ---
 

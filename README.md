@@ -102,7 +102,7 @@ The passport lives at `~/.ct-gym/` on your machine. It records:
 
 The passport's relevant content enters the model context when used. You can
 run `show passport`, `delete passport`, or `pause recording` at any time.
-Sensitive material from a BYOM session is not written to the passport unless you explicitly ask.
+A sensitive BYOM session writes no passport events at all — not even your closing commitment — unless you explicitly ask.
 
 ---
 

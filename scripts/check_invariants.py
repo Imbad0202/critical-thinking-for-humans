@@ -147,12 +147,14 @@ CHECKS = [
     ("modes/drill.md", "compound-primary-logging", "never as a second event"),
     ("modes/drill.md", "commit-gate-safe-words",
      "one scaffold step about the stem or the structure vocabulary"),
-    ("modes/drill.md", "tier-option-count", "intro 3, standard/advanced 5"),
+    ("modes/drill.md", "tier-option-count", "per the Difficulty Knobs table"),
     ("modes/drill.md", "tier-distractor-count", "intro: 2; standard/advanced: 4"),
     ("modes/scene.md", "observation-window-safe-words",
      "never a frame name or a reading of this scene"),
     ("modes/scene.md", "advanced-palette-completion",
-     "the full palette is non-negotiable"),
+     "before the closing pressure test (redline 5)"),
+    ("shared/scaffolding.md", "silence-window-safe-words",
+     "cannot leak the key or a reading"),
     ("shared/scaffolding.md", "no-anchor-branch",
      "skip the anchor rather than invent one"),
     ("shared/scaffolding.md", "scene-stuck-equivalent",
@@ -164,23 +166,32 @@ CHECKS = [
      "every raised frame was steelmanned"),
     ("passport/SCHEMA.md", "sensitive-byom-commitment", "including `commitment`"),
     ("passport/TEMPLATE.md", "template-sample-data", "never copy them"),
+    # --- review round 2 ---
+    ("README.md", "byom-no-events", "writes no passport events at all"),
+    ("SKILL.md", "byom-domain-default",
+     "defaults to `[\"no preference\"]`"),
 ]
 
 
 def main() -> int:
     failures = 0
     missing_files = set()
+    texts = {}
     for rel, label, needle in CHECKS:
-        path = ROOT / rel
-        if not path.exists():
-            # One FAIL line per missing file, but every check on it still
-            # counts as a failure (intentional).
-            if rel not in missing_files:
-                print(f"FAIL [{rel}] file missing")
-                missing_files.add(rel)
+        if rel in missing_files:
             failures += 1
             continue
-        text = path.read_text(encoding="utf-8")
+        path = ROOT / rel
+        if rel not in texts:
+            if not path.exists():
+                # One FAIL line per missing file, but every check on it still
+                # counts as a failure (intentional).
+                print(f"FAIL [{rel}] file missing")
+                missing_files.add(rel)
+                failures += 1
+                continue
+            texts[rel] = path.read_text(encoding="utf-8")
+        text = texts[rel]
         if needle.strip() in text:
             print(f"PASS [{label}]")
         else:

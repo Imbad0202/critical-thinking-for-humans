@@ -43,6 +43,11 @@ Announced at session start. All four are always honored (redline 8).
 - `"enough for today"` — graceful close: summarize what was gained this session, leave a clear re-entry point, no pressure to continue. (The summary states only what the record shows; if no correct moves occurred, name where the session reached and the re-entry point — that is sufficient. Do not manufacture gains.)
 - `"forget this one"` — discards all PENDING events — everything buffered since the last checkpoint write. Events from already-completed items are on disk and stay; remove them with "delete passport".
 
+When a safe word fires inside a pre-commitment silence window (drill's commit
+gate; scene's observation window), it is still honored — the scaffold is
+constrained to process-level moves that cannot leak the key or a reading.
+The mode files carry the window-specific scaffold content.
+
 ---
 
 ## 4. Stuck Detection

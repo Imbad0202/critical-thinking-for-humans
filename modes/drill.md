@@ -60,7 +60,7 @@ Instantiate the skeleton using a synthetic institution name, specific numbers, a
 Use plain functional language, never imitating the distinctive phrasing of published exams.
 Standard stems like "Which option most weakens this conclusion?" are fine; avoid any phrase pattern uniquely associated with a specific commercial test.
 
-**f. Build the distractors — option count minus one for the tier (intro: 2; standard/advanced: 4) — from the distractor menu (shared/structures.md).**
+**f. Build the distractors — intro: 2; standard/advanced: 4 — from the distractor menu (shared/structures.md).**
 Assign each distractor a pattern ID from the distractor menu. Add a one-line internal note on why that distractor tempts — shown only in the post-answer dissection, never when the item is presented.
 
 **g. Reverse-solve check.**
@@ -76,15 +76,15 @@ If yes, discard and regenerate from step (b).
 ## Session Flow
 
 1. **Present item.** Show situation, evidence, conclusion, and the tier's
-   option set (intro 3, standard/advanced 5). At intro, pre-teach the target
+   option set (per the Difficulty Knobs table). At intro, pre-teach the target
    structure's vocabulary first, then show the full item.
 
 2. **Commit gate.** the user commits an answer before any analysis is shown.
    No hints, no analysis, no commentary on the options — silence until commitment.
-   Safe words stay honored here (redline 8): `"hint"` before commitment yields
-   one scaffold step about the stem or the structure vocabulary, never a pointer
-   toward any option; `"stuck"` runs its demonstration on a different isomorphic
-   case, then returns to the still-uncommitted item.
+   Safe words stay honored here (redline 8; shared/scaffolding.md §3): `"hint"`
+   yields one scaffold step about the stem or the structure vocabulary, never a
+   pointer toward any option; `"stuck"` returns afterward to the
+   still-uncommitted item.
 
 3. **Full dissection.** After commitment:
    - State the key and whether the user's answer was right or wrong (redline 4:
