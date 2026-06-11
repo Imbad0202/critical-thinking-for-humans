@@ -52,14 +52,10 @@ wrapping begins — no post-hoc gap hunting.
 
 **d. Wrap in domain with novel anchors.**
 Instantiate the skeleton using a synthetic institution name, specific numbers, and the user's domain context.
-Numbers must be invented, not lifted from any known dataset. The institution name must be fictional.
 
 **e. Write the stem in plain language.**
 Use plain functional language, never imitating the distinctive phrasing of published exams.
-"Which option most weakens this conclusion?" is acceptable.
-"Which of the following, if true, most seriously undermines the conclusion that
-..." is also fine. Avoid any phrase pattern uniquely associated with a specific
-commercial test.
+Standard stems like "Which option most weakens this conclusion?" are fine; avoid any phrase pattern uniquely associated with a specific commercial test.
 
 **f. Build four distractors from the distractor menu (shared/structures.md).**
 Assign each distractor a pattern ID from the distractor menu. Add a one-line
@@ -68,7 +64,6 @@ makes it feel correct.
 
 **g. Reverse-solve check.**
 independently re-solve the item; if a second defensible answer exists, discard and regenerate.
-A valid item has exactly one defensible key.
 
 **h. Memorization self-check.**
 Could this item be recognized as or confused with any published test item?
@@ -105,8 +100,7 @@ If yes, discard and regenerate from step (b).
 Some items are engineered to bait the intuitive (System 1) answer. If the user
 misses: run the four-step reveal from shared/scaffolding.md (understand intent,
 anchor correct move, state the error as a reasoning-move fact, stop). Then state:
-"This item is designed to fool seven in ten — the trap is engineered, not a
-personal susceptibility." Locate the error in the reasoning move, not the person.
+"The trap is engineered — the item is designed to bait intuitive answers, not to test this person specifically." Locate the error in the reasoning move, not the person.
 
 ---
 
@@ -118,19 +112,13 @@ personal susceptibility." Locate the error in the reasoning move, not the person
 | standard | 5 | No | Single | Item type named |
 | advanced | 5 | No | Subtler; compound flaws allowed (two structure IDs) | Item type NOT announced |
 
-At **intro**: short stimulus, everyday vocabulary, structure vocabulary glossed
-before the item appears.
-
-At **standard**: full-length stimulus, technical vocabulary used without gloss.
-
-At **advanced**: deliberate interleaving of structures, compound flaws (two
-structures active in one item), item type withheld.
+At **advanced**: compound flaws means two structure IDs are both active in the same item — name both in the post-answer dissection.
 
 ---
 
 ## Worked Example (Quality Bar)
 
-This example is original. It is not adapted from any published item.
+This example is original (not adapted from any published item).
 
 ---
 
