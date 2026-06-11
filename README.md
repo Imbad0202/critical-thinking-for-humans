@@ -1,6 +1,6 @@
 # critical-thinking-gym
 
-A gym for YOUR critical thinking — the AI coaches, you train. Two modes cover
+A gym for your critical thinking — the AI coaches, you train. Two modes cover
 different reasoning demands: one delivers structured argument-analysis items
 with a single defensible answer; the other spreads interpretive frames across
 synthetic or your own material and ends with you committing to a position.
@@ -44,7 +44,7 @@ option is dissected and the transferable structure named — you leave with the
 skeleton, not just the answer.
 
 **scene** — Socratic stance. A synthetic scene or your own material (news,
-reports, a proposal — byom). All six interpretive frames laid out and
+reports, a proposal — byom (bring your own material)). All six interpretive frames laid out and
 steelmanned. The camera turns on your own reading too: your interpretation is
 examined with the same rigor as the others. Ends with you committing to a
 position and defending it against the strongest objection.
@@ -53,9 +53,15 @@ position and defending it against the strongest objection.
 
 ## Quick Start
 
-Install as a Claude Code skill (add this repo to your project's skill path).
-Then open a session and say `drill` or `scene` — or just describe what you
-want to practice and the router decides.
+You need [Claude Code](https://claude.com/claude-code) installed.
+
+```
+git clone https://github.com/Imbad0202/critical-thinking-gym ~/.claude/skills/critical-thinking-gym
+```
+
+Start any Claude Code session and say `drill` or `scene` — or just describe what you want to practice.
+
+On first run the coach asks the three choices, then routes you to your mode; later sessions confirm your profile in one line.
 
 **Intake (three choices):**
 - **Field** — any domain in your own words; multiple fields or "no preference" accepted.
@@ -88,24 +94,28 @@ The passport lives at `~/.ct-gym/` on your machine. It records:
 - **drill:** hit/miss per structure ID, per session and longitudinally.
 - **scene:** process coverage — which frames were raised, steelmanned, whether
   the camera turn was completed, whether you made a closing commitment.
-- **The longitudinal mirror:** after enough sessions the passport can surface
-  patterns no single session shows — "4 of your last 5 misses are
-  sample_selection" — and cite the record so you can read it yourself.
+- **The longitudinal mirror:** after enough sessions the passport summary will
+  show you patterns no single session shows — for example: "4 of your last 5
+  misses are sample_selection" — and cite the record so you can read it
+  yourself. The pattern appears in your passport summary, not as an unprompted
+  coach callout.
 
 The passport's relevant content enters the model context when used. You can
 run `show passport`, `delete passport`, or `pause recording` at any time.
-Sensitive material from a BYOM session is not written to the passport by default.
+Sensitive material from a BYOM session is not written to the passport unless you explicitly ask.
 
 ---
 
 ## Theory Grounding
 
-The design draws on informal logic and argumentation theory (Toulmin, Ennis),
-reflective judgment development (King & Kitchener), transformative learning and
-assumption-hunting (Brookfield, Mezirow), scaffolding and desirable difficulties
-(Vygotsky, Bjork), and far-transfer research via structure labeling. Item
-engineering follows the logic of standardized reasoning assessments, among them
-GMAT Critical Reasoning — as a structural reference, not a content source.
+The argument anatomy comes from informal logic (Toulmin, Ennis). The facilitation
+model treats ill-structured problems as requiring defensible judgment, not right
+answers (King & Kitchener), and hunts assumptions the way adult educators do
+(Brookfield, Mezirow). The difficulty system applies scaffolding and
+desirable-difficulty research (Vygotsky, Bjork), and items always name their
+transferable structure because that labeling is what makes practice transfer.
+Item engineering references standardized reasoning tests — among them GMAT
+Critical Reasoning — as structural reference, not content source.
 
 ---
 
