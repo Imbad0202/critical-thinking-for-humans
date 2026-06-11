@@ -5,8 +5,10 @@
 `~/.ct-gym/events.jsonl` is the source of truth — an append-only event log, one
 JSON object per line. Past lines are never edited.
 
-Writes are atomic: write to a temp file in the same directory, then rename into
-place. Never rewrite the log in place.
+Writes are atomic: copy the current `events.jsonl` to a temp file in the same
+directory, append the new event line to the temp file, then rename the temp file
+over `events.jsonl`. Never write to `events.jsonl` directly, and never rename a
+temp file that does not contain the full prior log.
 
 The markdown summary (`~/.ct-gym/passport.md`) is always regenerable from the
 event log and is safe to delete.
@@ -25,6 +27,8 @@ and `type` (one of the five types below).
 ### `profile_set`
 
 Records the user's preferences. The latest `profile_set` event wins for display.
+If two events share the same `ts`, the one appearing later in the file wins (file
+order is deterministic; wall clocks are not).
 
 Fields: `domain` (array of strings — user's own words), `difficulty`
 (`intro|standard|advanced`), `feedback_style` (`direct|cushioned`).
@@ -49,7 +53,8 @@ Fields: `structure` (canonical ID from `shared/structures.md`), `item_type`
 One record per completed scene session. Process metrics only — no hit/miss grade.
 
 Fields: `frames_raised` (array of frame IDs), `steelman` (bool), `counter_frame`
-(bool), `camera_turn` (bool), `commitment` (bool), `summary`.
+(bool), `camera_turn` (bool), `commitment` (bool), `summary` (short context label
+— no raw user text, no proper names).
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"summary":"staff-meeting scene, budget dispute"}
@@ -58,7 +63,9 @@ Fields: `frames_raised` (array of frame IDs), `steelman` (bool), `counter_frame`
 ### `miss_log`
 
 Explicit miss record written alongside `drill_result` when `hit` is `false`, to
-support pattern queries without scanning all drill results.
+support pattern queries without scanning all drill results. A `miss_log` must be
+written for every `drill_result` whose `hit` is false; `drill_result` is ground
+truth — if a `miss_log` is missing, regeneration derives it.
 
 Fields: `structure` (canonical ID), `summary` (short structure-level description).
 
@@ -82,11 +89,22 @@ Fields: `position` (short statement), `reasons_summary`.
 
 Summaries hold structure tags and short summaries, never raw user text.
 
+Exception: `commitment.position` is the user's own authored position statement,
+recorded deliberately at the closing pressure test; it may contain first-person
+language. Everything else stays summary-level.
+
 Sensitive BYOM sessions are not logged by default.
+
+Events exist only in session context until a checkpoint is reached; nothing is
+written to disk mid-session. This is what makes 'forget this one' reliable.
 
 "forget this one" (redline 8) discards the current session's pending events before
 they are written. Events buffer during the session and are appended at natural
 checkpoints (end of an item, end of a scene step) so this discard is possible.
+
+Concurrent writes from two simultaneous sessions are not safe: the later rename
+wins and the other session's events are lost. Known limitation — run one session
+at a time.
 
 User commands always available: **show passport** / **delete passport** /
 **pause recording** (redline 12).

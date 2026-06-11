@@ -12,7 +12,7 @@
 | Difficulty     | standard     |
 | Feedback style | direct       |
 
-*(Latest `profile_set` event wins.)*
+*(Latest `profile_set` event wins. If two share the same `ts`, file order decides — later line wins.)*
 
 ---
 
