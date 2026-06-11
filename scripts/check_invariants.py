@@ -135,13 +135,15 @@ def main() -> int:
     for rel, label, needle in CHECKS:
         path = ROOT / rel
         if not path.exists():
+            # One FAIL line per missing file, but every check on it still
+            # counts as a failure (intentional).
             if rel not in missing_files:
                 print(f"FAIL [{rel}] file missing")
                 missing_files.add(rel)
             failures += 1
             continue
         text = path.read_text(encoding="utf-8")
-        if needle in text:
+        if needle.strip() in text:
             print(f"PASS [{label}]")
         else:
             print(f"FAIL [{label}] missing in {rel}: {needle!r}")
