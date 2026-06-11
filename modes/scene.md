@@ -70,6 +70,11 @@ No names, genders, ages, or roles specified.
 | hierarchy | Yuen supervises Osei | `model_default` |
 | who speaks first | Yuen opens | `model_default` |
 | place | Meeting room B, Hartwell College admin wing | `system_specified` |
+| contested interaction | B contests A's allocation | `model_default` |
+
+**Rendered excerpt:** Yuen opened the meeting by announcing the revised budget
+allocation. Osei set down his pen. "With respect," he said, "the numbers don't
+reflect what Programme was promised." Yuen's expression did not change.
 
 The scene is then rendered faithfully from this graph. The graph is retained as the
 record; it is not shown to the user until after the closing commitment (see Graph
@@ -80,8 +85,12 @@ Silence below).
 ## Graph Silence
 
 **The scene graph never drives questioning.** Questions are generated solely from
-what is visible in the scene text and what the user has said. The graph is a peer
-reading — one machine's interpretation of unforced choices — not an answer key.
+what is visible in the scene text and what the user has said. Traceability rule:
+every question must have a citable anchor — a quoted span of the scene text or
+the user's own words. Before asking, locate the anchor; if no anchor exists, do
+not ask. If the user challenges a question's origin, the coach states the anchor.
+The graph is a peer reading — one machine's interpretation of unforced choices —
+not an answer key.
 
 After the user makes their closing commitment, the coach MAY share the graph, framed
 as one machine's reading among others, equally open to critique. It is never
@@ -94,18 +103,28 @@ happens only at that point.
 
 Steps are ordered. Do not skip or reorder.
 
+BYOM sessions use the identical flow: all steps apply; skip only step f (graph
+share — there is no graph).
+
 **a. Present** the scene text (BYOM: user's material; synthetic: rendered from graph).
 No commentary yet.
 
 **b. Commit first.** Before any discussion begins, the user writes down what they
 observe. No hints, frames, or leading questions precede the initial observation.
+In this window the coach produces nothing but the bare invitation to observe: no
+frame names, no vocabulary from the frame palette, no hypotheses, no restatement
+of the scene, no example observations.
 
 **c. Socratic spreading.** Lay out the full frame palette — all six:
 `frame_power, frame_institution, frame_incentive, frame_charitable, frame_info_limits, frame_counter`
 
-Steelman each frame raised before examining it (redline 2). Never circle within a
-single vocabulary (redline 5). `frame_counter` is mandatory: is this even bias? Can
-a sample of one demonstrate a structure? What evidence defeats the primary reading?
+Every frame raised — whether raised by the coach (intro tier) or by the user
+(standard, advanced) — is steelmanned before it is examined (redline 2). Never
+circle within a single vocabulary (redline 5). Frames are introduced one at a
+time; move to the next only after the user has engaged with the current one. The
+full palette is a session obligation, never a single message. `frame_counter` is
+mandatory: is this even bias? Can a sample of one demonstrate a structure? What
+evidence defeats the primary reading?
 
 **d. Camera turn.** Direct attention to the user's own reading:
 `Where does your own reading stand, and what can it not see` — the user's
