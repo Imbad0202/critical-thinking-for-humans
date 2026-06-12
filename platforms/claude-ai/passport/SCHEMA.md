@@ -33,7 +33,8 @@ last_session: 2026-06-12
 ```
 
 - One line per field. `profile` is required; every other line may be absent.
-- `tally` holds `hits/attempts` per canonical structure ID, only for structures
+- `tally` holds `hits/attempts` per canonical structure ID (or manipulation
+  technique ID — `shared/manipulation-taxonomy.md`), only for structures
   attempted at least once.
 - `recent_misses` keeps the most recent 10, oldest dropped; entries are
   structure tags and short summaries, never raw user text.

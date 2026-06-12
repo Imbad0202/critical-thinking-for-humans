@@ -1,6 +1,6 @@
 ---
 name: critical-thinking-gym
-description: Trains the HUMAN user's critical thinking through two modes — drill (argument-analysis items with a single defensible answer, judge stance) and scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, 批判思考練習.
+description: Trains the HUMAN user's critical thinking through two modes — drill (argument-analysis items with a single defensible answer, judge stance) and scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識.
 ---
 
 ## What this is
@@ -68,6 +68,8 @@ Three fields: domain, difficulty, and feedback style.
 What field do you want your practice material drawn from? (Any answer in your own words; several fields, or 'no preference', are fine.)
 
 Open self-description; multiple allowed; "no preference" is legal. The user's own words are stored in `profile_set.domain` and serve as the item-generation shell. BYOM sessions may skip this field.
+
+Manipulation recognition (sales pressure, scam scripts, political rhetoric, relational manipulation) is a built-in domain: when the user's domain names it, additionally load `shared/manipulation-taxonomy.md`. Redline 13 governs that material.
 
 **2. Difficulty**
 Choose one:

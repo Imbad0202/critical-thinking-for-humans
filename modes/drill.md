@@ -33,6 +33,16 @@ Judge whether the evidence licenses the conclusion. Note:
 Choosing it correctly when evidence is genuinely insufficient is the skill being tested, not a fallback.
 Canonical structure ID for this type: `evidence_sufficiency` — log hits and misses under that ID.
 
+### 4. `manipulation_spot`
+
+Identify the primary manipulation technique operating in a synthetic pitch,
+message, or short transcript. Available only in the manipulation-recognition
+domain (`shared/manipulation-taxonomy.md`); items log technique IDs from that
+file's table instead of the seven structure IDs. The pipeline applies
+unchanged, with step (c) reading: design ONE primary technique in; distractors
+are other technique IDs plausibly suggested by the surface text but not
+primarily operating. Redline 13 governs all material of this type.
+
 ---
 
 ## Item Generation Pipeline

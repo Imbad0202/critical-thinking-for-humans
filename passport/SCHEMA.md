@@ -41,10 +41,11 @@ Fields: `domain` (array of strings — user's own words), `difficulty`
 
 One record per drill item completed.
 
-Fields: `structure` (canonical ID from `shared/structures.md`; for advanced
-compound items, the primary target — secondary IDs appear only in `summary`),
-`item_type` (`assumption|weaken|sufficiency`), `hit` (bool), `summary`
-(structure-level).
+Fields: `structure` (canonical ID from `shared/structures.md`, or — for
+`manipulation_spot` items — a technique ID from `shared/manipulation-taxonomy.md`;
+for advanced compound items, the primary target — secondary IDs appear only in
+`summary`), `item_type` (`assumption|weaken|sufficiency|manipulation_spot`),
+`hit` (bool), `summary` (structure-level).
 
 ```
 {"schema_version":1,"ts":"2026-06-11T08:41:00Z","type":"drill_result","structure":"sample_selection","item_type":"weaken","hit":false,"summary":"missed survivorship in a retention claim"}

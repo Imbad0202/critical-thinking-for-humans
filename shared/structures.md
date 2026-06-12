@@ -12,7 +12,8 @@ Canonical IDs are snake_case English and never localized; the display layer tran
 ## Reasoning Structures
 
 The seven loggable structure IDs — every `drill_result.structure` value comes
-from this table.
+from this table, with one exception: `manipulation_spot` items log technique
+IDs from `shared/manipulation-taxonomy.md`.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
