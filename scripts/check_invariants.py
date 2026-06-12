@@ -81,7 +81,9 @@ CHECKS = [
     ("modes/drill.md", "cannot-be-determined",
      "\"cannot be determined\" is a legitimate and rewarded answer"),
     ("modes/drill.md", "name-the-skeleton",
-     "name the transferable structure by its canonical ID"),
+     "the canonical ID goes into the passport event, not the display"),
+    ("shared/structures.md", "display-plain-language",
+     "raw snake_case IDs appear only in passport events"),
     # --- modes/scene.md (Task 6) ---
     ("modes/scene.md", "graph-first",
      "generate the scene graph before rendering any scene text"),
@@ -172,6 +174,30 @@ CHECKS = [
      "defaults to `[\"no preference\"]`"),
 ]
 
+# --- claude.ai overlay (platforms/claude-ai/) ---
+# Overlay files replace their canonical counterparts in the claude.ai zip;
+# every redline and SKILL.md invariant must survive the platform rewrite.
+_OVERLAY_MAP = {
+    "shared/redlines.md": "platforms/claude-ai/shared/redlines.md",
+    "shared/scaffolding.md": "platforms/claude-ai/shared/scaffolding.md",
+    "SKILL.md": "platforms/claude-ai/SKILL.md",
+}
+CHECKS += [
+    (_OVERLAY_MAP[rel], f"claude-ai-{label}", needle)
+    for rel, label, needle in list(CHECKS)
+    if rel in _OVERLAY_MAP
+]
+
+# (file, label, substring that must be ABSENT)
+FORBIDDEN = [
+    # No local-filesystem passport vocabulary may leak into the claude.ai build.
+    ("platforms/claude-ai/SKILL.md", "claude-ai-no-local-path", "~/.ct-gym"),
+    ("platforms/claude-ai/SKILL.md", "claude-ai-no-jsonl-skill", "events.jsonl"),
+    ("platforms/claude-ai/passport/SCHEMA.md", "claude-ai-no-jsonl-schema", "events.jsonl"),
+    ("platforms/claude-ai/shared/redlines.md", "claude-ai-no-on-disk", "stay on disk"),
+    ("platforms/claude-ai/shared/scaffolding.md", "claude-ai-no-on-disk-scaffolding", "on disk"),
+]
+
 
 def main() -> int:
     failures = 0
@@ -197,7 +223,18 @@ def main() -> int:
         else:
             print(f"FAIL [{label}] missing in {rel}: {needle!r}")
             failures += 1
-    total = len(CHECKS)
+    for rel, label, needle in FORBIDDEN:
+        path = ROOT / rel
+        if not path.exists():
+            print(f"FAIL [{rel}] file missing")
+            failures += 1
+            continue
+        if needle in path.read_text(encoding="utf-8"):
+            print(f"FAIL [{label}] forbidden substring present in {rel}: {needle!r}")
+            failures += 1
+        else:
+            print(f"PASS [{label}]")
+    total = len(CHECKS) + len(FORBIDDEN)
     print(f"\n{total - failures}/{total} checks green")
     return 1 if failures else 0
 

@@ -126,3 +126,26 @@ publisher. It never reproduces, adapts, or imitates published test items.
 It is not a test-preparation product.
 
 The legal notes in this repository are risk-control practice — not legal advice.
+
+---
+
+## claude.ai Build
+
+The repo is the single source of truth; the claude.ai-uploadable zip is generated, never hand-edited:
+
+```
+./scripts/build_claude_ai_zip.sh   # → dist/critical-thinking-gym-claude-ai.zip
+```
+
+The build copies the canonical runtime files and applies whole-file overlays from
+`platforms/claude-ai/` (SKILL.md, shared/redlines.md, shared/scaffolding.md,
+passport/SCHEMA.md). The platform delta is storage only: no local filesystem, so
+the event log becomes a session tally plus a copy-paste passport block the user
+saves and re-imports (see `platforms/claude-ai/passport/SCHEMA.md`); redline 12
+is reworded to stay honest about where conversation data lives. Modes, stances,
+redlines 1–11, and the item pipeline are identical.
+
+Maintenance rule: when you edit a canonical file that has an overlay counterpart,
+review the overlay in the same commit — `scripts/check_invariants.py` re-checks
+every redline and SKILL.md invariant against the overlay copies and fails the
+build on drift or on local-filesystem vocabulary leaking into the zip.
