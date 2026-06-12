@@ -91,11 +91,13 @@ If yes, discard and regenerate from step (b).
      a wrong answer is never called right).
    - Explain why the key holds: map the key option onto the logical skeleton.
    - For every distractor (all options except the key): explain why it tempts, and name its distractor
-     pattern ID (e.g., `out_of_scope`, `premise_restatement`).
+     pattern (from the distractor menu) with its plain-language label in the user's language.
 
-4. **Name the skeleton.** name the transferable structure by its canonical ID
-   and state its domain-general shape in one sentence. Example: "`sample_selection`
-   — the sample excludes the cases most likely to refute the claim."
+4. **Name the skeleton.** name the transferable structure with its stable
+   plain-language label in the user's language and state its domain-general shape
+   in one sentence; the canonical ID goes into the passport event, not the display.
+   Example (English-language session): "sample selection — the sample excludes
+   the cases most likely to refute the claim."
 
 5. **Log to passport.** Record hit or miss for the target structure ID.
 
@@ -187,13 +189,13 @@ Key: **(A)**
 The conclusion claims the module improved a specific cognitive skill. The evidence
 measures satisfaction and completion — activity and attitude proxies, not skill
 outcomes. Option (A) directly attacks that gap: an external study using an actual
-skill measure found no effect. Structure: `proxy_mismatch`.
+skill measure found no effect. Structure: proxy mismatch (logged as `proxy_mismatch`).
 
-Distractor logic:
-- (B) `irrelevant_comparison` — compares completion across participation regimes; a comparison that never touches whether skills improved.
-- (C) `true_but_irrelevant` — survey integrity concern, not a skill-outcome attack.
-- (D) `out_of_scope` — enrollment numbers never engage the evidential gap.
-- (E) `weak_proxy_trap` — more activity and satisfaction data dressed as outcome evidence; reinforces the mismatch rather than exposing it — it adds activity data without attacking the conclusion.
+Distractor logic (plain labels in the session language; IDs shown here for authoring reference):
+- (B) irrelevant comparison — compares completion across participation regimes; a comparison that never touches whether skills improved.
+- (C) true but irrelevant — survey integrity concern, not a skill-outcome attack.
+- (D) out of scope — enrollment numbers never engage the evidential gap.
+- (E) weak proxy trap — more activity and satisfaction data dressed as outcome evidence; reinforces the mismatch rather than exposing it — it adds activity data without attacking the conclusion.
 
-Transferable structure: `proxy_mismatch` — the metric measured is not the outcome
+Transferable structure: proxy mismatch — the metric measured is not the outcome
 actually claimed; activity or satisfaction stands in for the real result.
