@@ -57,8 +57,9 @@ never improvised. You are not expected to solve them; you audit, climb, or
 forecast, and what you train is the human-executable translation of machine
 advantages: decomposition, representation shifts, small-case probes,
 pre-committed kill criteria. Say `expedition` or `impossible`.
-(No packs ship yet — the mode tells you so honestly and routes you to drill
-or scene; the pack authoring spec is in `expeditions/PACK-SCHEMA.md`.)
+(Installed packs live in `expeditions/`. Without a pack the mode says so
+honestly and routes you to drill or scene; the authoring spec is
+`expeditions/PACK-SCHEMA.md`.)
 
 ---
 

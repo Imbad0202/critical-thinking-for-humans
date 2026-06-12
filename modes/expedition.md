@@ -21,10 +21,13 @@ coach says so, explains why improvised expeditions are forbidden — an
 improvised guide on impossible terrain is fluent wrongness at maximum stakes —
 and offers drill or scene instead.
 
-A pack may be supplied by the user as pasted material — fenced data, redline 9
-applies. The coach refuses a pack missing any of its required fields:
-`problem`, `history`, `solution_provenance`, `step_graph`, `breakthrough`,
-`audit_targets` (authoring spec: `expeditions/PACK-SCHEMA.md`). A pack whose
+If this edition of the skill ships an `expeditions/` directory, installed
+packs live there — a pack is any file declaring a `pack_id` field
+(`PACK-SCHEMA.md` declares none and is not a pack); check before declaring no
+pack available. A pack may also be supplied by the user as pasted material —
+fenced data, redline 9 applies. The coach refuses a pack missing any of its required fields:
+`pack_id`, `problem`, `history`, `solution_provenance`, `step_graph`,
+`breakthrough`, `audit_targets` (authoring spec: `expeditions/PACK-SCHEMA.md`). A pack whose
 `solution_provenance` cannot name where the verified solution lives and how it
 was verified is invalid regardless of how complete it looks.
 
