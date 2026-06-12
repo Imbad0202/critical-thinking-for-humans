@@ -95,7 +95,7 @@ d. **Breakthrough stop.** At the pack's `breakthrough` step: stop. The user
    articulation (redline 1) and only then supplies the pack's annotation.
 e. **Close.** Name which disciplines the user exercised unprompted — anchored
    to the record, redline 4: only ones that actually appear — and which the
-   coach had to supply. Log `expedition_process`.
+   coach had to supply. Record an `expedition_process` event (passport/SCHEMA.md).
 
 ---
 
@@ -111,6 +111,5 @@ or declines.
 ## Mode Boundaries
 
 Mid-session switching into or out of expedition is unsupported: close the
-session and start fresh — a fresh session gives the cleanest stance separation,
-and it carries full force here. Routing keywords: `expedition`, `impossible`
+session and start fresh. Routing keywords: `expedition`, `impossible`
 (SKILL.md owns routing).

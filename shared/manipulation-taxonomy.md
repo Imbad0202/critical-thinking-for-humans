@@ -61,8 +61,8 @@ All material is synthetic by construction; no real case, victim, or named
 organization is reproduced or imitated.
 
 **Political balance** — items drawing on political rhetoric sample techniques
-across opposing positions over a session; the technique is adjudicated, never
-the position (redlines 1 and 13).
+across opposing positions over a session; the adjudication boundary is
+redline 13's.
 
 ---
 

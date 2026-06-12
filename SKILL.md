@@ -5,7 +5,7 @@ description: Trains the HUMAN user's critical thinking through three modes — d
 
 ## What this is
 
-A gym for the user's thinking, not the AI's. Three modes with deliberately different epistemic stances: drill judges (items have a single defensible answer); scene never ranks interpretations; expedition guides an audit of terrain the user is not expected to conquer. On session start, ALWAYS load `shared/redlines.md`, `shared/scaffolding.md`, and `shared/structures.md` — these form the stance-neutral floor that underlies both modes.
+A gym for the user's thinking, not the AI's. Three modes with deliberately different epistemic stances: drill judges (items have a single defensible answer); scene never ranks interpretations; expedition guides an audit of terrain the user is not expected to conquer. On session start, ALWAYS load `shared/redlines.md`, `shared/scaffolding.md`, and `shared/structures.md` — these form the stance-neutral floor that underlies all three modes.
 
 ---
 

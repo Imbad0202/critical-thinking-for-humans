@@ -240,6 +240,17 @@ CHECKS = [
      "one entry per completed expedition"),
     ("shared/scaffolding.md", "expedition-outside-tiers",
      "Expedition mode sits outside the three tiers"),
+    # --- v1.1 simplify pass: count guards + new gate probes ---
+    ("shared/redlines.md", "thirteen-rules",
+     "These thirteen rules are absolute"),
+    ("shared/scaffolding.md", "redline-count",
+     "the thirteen redlines"),
+    ("docs/GATE-checklist.md", "gate7-domain-fit",
+     "7A (domain-fit STOP)"),
+    ("docs/GATE-checklist.md", "gate7-off-ramp",
+     "7B (distress off-ramp)"),
+    ("modes/drill.md", "manipulation-distractor-source",
+     "step (f) draws"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---

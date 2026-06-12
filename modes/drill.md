@@ -38,10 +38,12 @@ Canonical structure ID for this type: `evidence_sufficiency` — log hits and mi
 Identify the primary manipulation technique operating in a synthetic pitch,
 message, or short transcript. Available only in the manipulation-recognition
 domain (`shared/manipulation-taxonomy.md`); items log technique IDs from that
-file's table instead of the seven structure IDs. The pipeline applies
-unchanged, with step (c) reading: design ONE primary technique in; distractors
-are other technique IDs plausibly suggested by the surface text but not
-primarily operating. Redline 13 governs all material of this type.
+file's table instead of the seven structure IDs. The pipeline applies with
+two substitutions: step (c) designs ONE primary technique in; step (f) draws
+distractors from the technique table — other technique IDs plausibly suggested
+by the surface text but not primarily operating — instead of the distractor
+menu (the one-line why-it-tempts note is still required). Redline 13 governs
+all material of this type.
 
 ---
 
@@ -52,7 +54,7 @@ Execute in order before presenting any item.
 **a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
 
-**a2. Domain-fit gate.** Runs at intake and again on every "switch domain", before the first item of the new domain. The seven structures are causal-inductive tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Three domain families do not natively host that shape — deductive formal systems (pure mathematics, formal logic: a proof is valid or invalid, not under-evidenced), pure value disputes (ethics, aesthetics, taste: redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). When the requested domain falls in one of these families: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — both of these, where applicable: (i) a drill recast that keeps the seven structures (mathematics → statistical and experimental reasoning; ethics → the empirical premises inside moral arguments; definitions → the testable consequences of adopting one), and (ii) a scene-mode path on the domain's own material under the adapted palette (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
+**a2. Domain-fit gate.** Runs at intake and on every "switch domain", before the first item of the new domain. The seven structures are causal-inductive tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Domain families that do not natively host that shape: deductive formal systems (pure mathematics, formal logic), pure value disputes (ethics, aesthetics — redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). For such a domain: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — a drill recast that keeps the seven structures (e.g. mathematics → statistical and experimental reasoning), and a scene-mode path on the domain's own material (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
 
 **b. Pick a target structure.**
 Weight toward the user's miss-log weak spots (highest miss rate first). On cold

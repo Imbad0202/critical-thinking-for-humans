@@ -39,9 +39,8 @@ spec; it ships with the repo, not with runtime builds.
   are regularly wrong about what was solved and by what means.
 - Original prose throughout; cite the source, never reproduce its text
   (redline 6's principle applied to research literature).
-- Every step must survive scene mode's material pre-flight (modes/scene.md):
-  crisply identifiable claims, each step defensible in dissection, coherent
-  as prose.
+- Every step must survive scene mode's material pre-flight (modes/scene.md,
+  Non-Social Material).
 - Dual-use check before publishing a pack: the step graph teaches reasoning
   disciplines, not capabilities. A pack whose content is itself hazardous
   (regardless of pedagogical frame) is not authored.

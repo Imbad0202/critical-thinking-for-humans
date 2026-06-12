@@ -118,6 +118,8 @@ The passport lives at `~/.ct-gym/` on your machine. It records:
 - **drill:** hit/miss per structure ID, per session and longitudinally.
 - **scene:** process coverage — which frames were raised, steelmanned, whether
   the camera turn was completed, whether you made a closing commitment.
+- **expedition:** process record per pack — role taken, which disciplines you
+  fired unprompted, whether you articulated the breakthrough.
 - **The longitudinal mirror:** after enough sessions the passport summary will
   show you patterns no single session shows — for example: "4 of your last 5
   misses are sample_selection" — and cite the record so you can read it
@@ -167,7 +169,7 @@ passport/SCHEMA.md). The platform delta is storage only: no local filesystem, so
 the event log becomes a session tally plus a copy-paste passport block the user
 saves and re-imports (see `platforms/claude-ai/passport/SCHEMA.md`); redline 12
 is reworded to stay honest about where conversation data lives. Modes, stances,
-redlines 1–11, and the item pipeline are identical.
+redlines 1–11 and 13, and the item pipeline are identical.
 
 Maintenance rule: when you edit a canonical file that has an overlay counterpart,
 review the overlay in the same commit — `scripts/check_invariants.py` re-checks

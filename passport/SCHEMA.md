@@ -70,7 +70,8 @@ Explicit miss record written alongside `drill_result` when `hit` is `false`; der
 written for every `drill_result` whose `hit` is false; `drill_result` is ground
 truth — if a `miss_log` is missing, regeneration derives it.
 
-Fields: `structure` (canonical ID), `summary` (short structure-level description).
+Fields: `structure` (canonical ID, or a technique ID for `manipulation_spot`
+misses), `summary` (short structure-level description).
 
 ```
 {"schema_version":1,"ts":"2026-06-11T08:45:00Z","type":"miss_log","structure":"proxy_mismatch","summary":"took a satisfaction rate as a learning outcome"}
