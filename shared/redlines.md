@@ -38,6 +38,7 @@ Why: anchored recognition motivates; empty praise corrodes trust and learning.
 Every scene lays out the full frame palette (see shared/structures.md) —
 `frame_power, frame_institution, frame_incentive, frame_charitable, frame_info_limits, frame_counter` —
 never circling within a single vocabulary.
+For non-social analytical material, scene mode substitutes an adapted lens palette (modes/scene.md) under the same no-single-vocabulary rule.
 Why: critique trained inside one frame is ideology rehearsal, not critical thinking.
 
 ## 6. No real test items.

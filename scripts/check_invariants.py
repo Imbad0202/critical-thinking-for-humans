@@ -172,6 +172,25 @@ CHECKS = [
     ("README.md", "byom-no-events", "writes no passport events at all"),
     ("SKILL.md", "byom-domain-default",
      "defaults to `[\"no preference\"]`"),
+    # --- v1.1 batch 1: fixes from first real-world claude.ai session ---
+    ("shared/scaffolding.md", "language-script-variant",
+     "including script variant"),
+    ("shared/scaffolding.md", "no-third-script",
+     "unrelated third language or script"),
+    ("modes/drill.md", "domain-fit-gate",
+     "Never silently re-skin material"),
+    ("modes/drill.md", "domain-fit-stop",
+     "STOP before generating anything"),
+    ("modes/drill.md", "dissection-no-overstate",
+     "distractor classifications never overstate"),
+    ("modes/scene.md", "adapted-palette-counter",
+     "is the suspected flaw actually a flaw?"),
+    ("modes/scene.md", "material-preflight",
+     "never present material the coach cannot cleanly defend in dissection"),
+    ("shared/redlines.md", "rl5-adapted-palette",
+     "substitutes an adapted lens palette"),
+    ("SKILL.md", "switch-no-reset",
+     "never resets the running record"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---

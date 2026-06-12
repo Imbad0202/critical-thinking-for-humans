@@ -40,9 +40,10 @@ last_session: 2026-06-12
 - All values above are sample data illustrating the format — regenerate from the
   live tally, never copy them.
 
-**Print triggers:** on "show passport", at every graceful close ("enough for
-today"), and whenever the user asks — each time with a one-line reminder to save
-the block and paste it back next session.
+**Print triggers:** on "show passport", at every profile switch ("switch domain"
+/ "switch difficulty"), at every graceful close ("enough for today"), and
+whenever the user asks — each time with a one-line reminder to save the block
+and paste it back next session.
 
 ---
 

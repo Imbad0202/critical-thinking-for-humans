@@ -42,6 +42,8 @@ Execute in order before presenting any item.
 **a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
 
+**a2. Domain-fit gate.** Runs at intake and again on every "switch domain", before the first item of the new domain. The seven structures are causal-inductive tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Three domain families do not natively host that shape — deductive formal systems (pure mathematics, formal logic: a proof is valid or invalid, not under-evidenced), pure value disputes (ethics, aesthetics, taste: redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). When the requested domain falls in one of these families: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — both of these, where applicable: (i) a drill recast that keeps the seven structures (mathematics → statistical and experimental reasoning; ethics → the empirical premises inside moral arguments; definitions → the testable consequences of adopting one), and (ii) a scene-mode path on the domain's own material under the adapted palette (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
+
 **b. Pick a target structure.**
 Weight toward the user's miss-log weak spots (highest miss rate first). On cold
 start (no miss log), rotate through the structure list.
@@ -92,6 +94,7 @@ If yes, discard and regenerate from step (b).
    - Explain why the key holds: map the key option onto the logical skeleton.
    - For every distractor (all options except the key): explain why it tempts, and name its distractor
      pattern (from the distractor menu) with its plain-language label in the user's language.
+   - The dissection is held to the same standard as the user's reasoning: distractor classifications never overstate. If an option has partial merit, the dissection says so plainly instead of flattening it into its assigned pattern.
 
 4. **Name the skeleton.** name the transferable structure with its stable
    plain-language label in the user's language and state its domain-general shape

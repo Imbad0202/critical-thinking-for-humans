@@ -24,6 +24,16 @@ BYOM handling: fenced-data (redline 9) and real-persons (redline 10) rules apply
 
 ---
 
+## Non-Social Material (Adapted Palette)
+
+Scene material is not always social. When the material under dissection is technical-analytical — a proof, a derivation, a statistical analysis, a piece of code — the six social frames do not fit, and forcing them is vocabulary theater. Announce an adapted lens set suited to the material type before facilitation begins. For deductive material the default set is: step validity, hidden premises, reversibility of each operation, edge and degenerate cases, quantifier scope, necessary vs sufficient. The counter lens survives in adapted form and stays mandatory: is the suspected flaw actually a flaw? Is the flaw where it appears to be?
+
+The adapted set substitutes for the social palette under redline 5: the no-single-vocabulary rule binds unchanged — lay out the full adapted set across the scene, never circling within one lens. Stance is untouched: readings are not ranked; factual errors are corrected (redline 1). No scene graph is built for non-social material; the facilitation flow applies with step f skipped.
+
+**Material pre-flight (synthetic analytical material).** Before presenting any coach-generated analytical material, verify three things: the designed flaw is crisply identifiable — the dissection can point to the exact step and defend why it fails; every step before the designed flaw is genuinely valid; the text is coherent as prose. If any check fails, regenerate; never present material the coach cannot cleanly defend in dissection.
+
+---
+
 ## Scene Graph Pipeline (synthetic only)
 
 **generate the scene graph before rendering any scene text.**

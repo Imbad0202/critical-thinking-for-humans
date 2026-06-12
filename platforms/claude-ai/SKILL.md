@@ -94,7 +94,7 @@ The fact of the correction is non-negotiable. The delivery is the user's choice:
 
 Safe words — always honored, announced once at session start: `"stuck"` (demonstration mode), `"hint"` (one scaffold step), `"enough for today"` (graceful close), `"forget this one"` (discards PENDING events only — buffered since the last checkpoint; events already folded into the session tally stay). The announcement happens once, in every path — first run: at the end of intake; returning user: alongside the one-line confirm; skipped-intake BYOM: alongside the defaults notice — always before the mode file loads.
 
-Standing commands — available any time: "switch domain", "switch difficulty", "switch mode". "switch domain" and "switch difficulty" update the passport profile immediately and take effect from the next item or scene; they carry no stance change. A switch rewrites the full profile, carrying forward the unchanged fields.
+Standing commands — available any time: "switch domain", "switch difficulty", "switch mode". "switch domain" and "switch difficulty" update the passport profile immediately and take effect from the next item or scene; they carry no stance change. A switch rewrites the full profile, carrying forward the unchanged fields. A switch never resets the running record: drill tallies and scene process records accumulate across profile changes within the session; the passport block is printed at every profile switch so nothing is lost if the conversation ends abruptly.
 
 **BYOM defaults:** if intake is skipped, announce: standard + cushioned, both changeable. The unset domain defaults to `["no preference"]` whenever a profile is recorded.
 
