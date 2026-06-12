@@ -38,6 +38,9 @@ last_session: 2026-06-12
   attempted at least once.
 - `recent_misses` keeps the most recent 10, oldest dropped; entries are
   structure tags and short summaries, never raw user text.
+- `expeditions` — one entry per completed expedition: `pack_id role
+  disciplines_unprompted` (IDs from modes/expedition.md); absent until one
+  completes.
 - All values above are sample data illustrating the format — regenerate from the
   live tally, never copy them.
 

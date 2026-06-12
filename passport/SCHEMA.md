@@ -18,7 +18,7 @@ event log and is safe to delete.
 ## Event Envelope
 
 Every event carries `schema_version` (integer, starts at 1), `ts` (ISO 8601 UTC),
-and `type` (one of the five types below).
+and `type` (one of the six types below).
 
 ---
 
@@ -84,6 +84,19 @@ Fields: `position` (short statement), `reasons_summary`.
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:03:00Z","type":"commitment","position":"the scene shows role asymmetry worth checking against base rates","reasons_summary":"speaking order + honorifics, but n=1"}
+```
+
+### `expedition_process`
+
+One record per completed expedition session. Process metrics only — no grade.
+
+Fields: `pack_id`, `role` (`auditor|climber|forecaster`), `disciplines_unprompted`
+(array of discipline IDs from modes/expedition.md that the record shows the user
+deployed without prompting), `breakthrough_articulated` (bool), `summary` (short
+context label — no raw user text).
+
+```
+{"schema_version":1,"ts":"2026-06-12T10:00:00Z","type":"expedition_process","pack_id":"example-pack","role":"auditor","disciplines_unprompted":["small_case_probe"],"breakthrough_articulated":true,"summary":"audited step graph, probed two load-bearing steps"}
 ```
 
 ---

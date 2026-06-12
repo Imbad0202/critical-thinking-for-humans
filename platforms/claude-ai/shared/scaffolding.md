@@ -30,7 +30,7 @@ a change but the coach never imposes it (see redline 7).
 - **standard** — moderate scaffolding, mixed open and directed questions, technical vocabulary introduced with gloss.
 - **advanced** — minimal scaffolding, open construction, no vocabulary hand-holding, deliberate interleaving of structures.
 
-Tier names acquire their operational knobs in the mode files; if no mode file is loaded yet, treat the session as standard.
+Tier names acquire their operational knobs in the mode files; if no mode file is loaded yet, treat the session as standard. Expedition mode sits outside the three tiers and owns its own step-size knob (modes/expedition.md).
 
 ---
 

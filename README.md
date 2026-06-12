@@ -1,11 +1,13 @@
 # critical-thinking-gym
 
-A gym for your critical thinking — the AI coaches, you train. Two modes cover
+A gym for your critical thinking — the AI coaches, you train. Three modes cover
 different reasoning demands: one delivers structured argument-analysis items
-with a single defensible answer; the other spreads interpretive frames across
-synthetic or your own material and ends with you committing to a position.
-Both track your patterns over time in a passport on your machine, showing you
-what no single session can: your longitudinal blind spots.
+with a single defensible answer; one spreads interpretive frames across
+synthetic or your own material and ends with you committing to a position; one
+guides you through problems you are not expected to solve, training you to
+audit reasoning you could not have produced. All three track your patterns over
+time in a passport on your machine, showing you what no single session can:
+your longitudinal blind spots.
 
 An AI coach is the cheapest place in the world to lose face — admitting a
 blind spot here costs you nothing.
@@ -34,7 +36,7 @@ absolutely tell you when you stumble.
 
 ---
 
-## The Two Modes
+## The Three Modes
 
 **drill** — judge stance. Original argument-analysis items built in your field
 around one of seven structures (necessary assumption, alternative cause, reverse
@@ -48,6 +50,28 @@ reports, a proposal — byom (bring your own material)). All six interpretive fr
 steelmanned. The camera turns on your own reading too: your interpretation is
 examined with the same rigor as the others. Ends with you committing to a
 position and defending it against the strongest objection.
+
+**expedition** — guide stance. Problems that stayed open for decades and fell
+to AI-class search, run only from curated packs with verified solutions —
+never improvised. You are not expected to solve them; you audit, climb, or
+forecast, and what you train is the human-executable translation of machine
+advantages: decomposition, representation shifts, small-case probes,
+pre-committed kill criteria. Say `expedition` or `impossible`.
+(No packs ship yet — the mode tells you so honestly and routes you to drill
+or scene; the pack authoring spec is in `expeditions/PACK-SCHEMA.md`.)
+
+---
+
+## Built-in Domain: Manipulation Recognition
+
+Name it at intake (sales pressure, scam scripts, political rhetoric,
+relational manipulation — 話術辨識) and the gym trains you to spot the
+technique, not memorize the story: false scarcity, love bombing, gaslighting,
+whataboutism, and ten more, each with a counter-question you keep.
+Recognition only, by hard rule: the coach never writes, improves, or
+personalizes a manipulative script for use on a real target, in any framing.
+Political material samples techniques across the spectrum — the technique is
+adjudicated, never the position.
 
 ---
 

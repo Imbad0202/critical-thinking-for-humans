@@ -1,11 +1,11 @@
 ---
 name: critical-thinking-gym
-description: Trains the HUMAN user's critical thinking through two modes — drill (argument-analysis items with a single defensible answer, judge stance) and scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識.
+description: Trains the HUMAN user's critical thinking through three modes — drill (argument-analysis items with a single defensible answer, judge stance), scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations), and expedition (guided audit of impossible-tier problems from verified packs). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識.
 ---
 
 ## What this is
 
-A gym for the user's thinking, not the AI's. Two modes with deliberately different epistemic stances: drill judges (items have a single defensible answer); scene never ranks interpretations. On session start, ALWAYS load `shared/redlines.md`, `shared/scaffolding.md`, and `shared/structures.md` — these form the stance-neutral floor that underlies both modes.
+A gym for the user's thinking, not the AI's. Three modes with deliberately different epistemic stances: drill judges (items have a single defensible answer); scene never ranks interpretations; expedition guides an audit of terrain the user is not expected to conquer. On session start, ALWAYS load `shared/redlines.md`, `shared/scaffolding.md`, and `shared/structures.md` — these form the stance-neutral floor that underlies both modes.
 
 ---
 
@@ -16,17 +16,18 @@ Routing keywords:
 - `drill` → load `modes/drill.md` (judge stance)
 - `scene` → load `modes/scene.md` (Socratic stance)
 - `byom` → route to scene mode's BYOM path; load `modes/scene.md`
+- `expedition` / `impossible` → load `modes/expedition.md` (guide stance; runs only from a verified expedition pack)
 - `switch mode` → soft-switch protocol (see below)
 
 Intent routes without a clarifying question: descriptions of analyzing encountered material (news, reports, scenes, someone's proposal) → scene; descriptions of structured practice or getting better at a specific argument operation → drill. Ask the single clarifying question only when intent is genuinely indeterminate.
 
-**Rule:** load exactly one mode file — `modes/drill.md` or `modes/scene.md` — never both in the same response context.
+**Rule:** load exactly one mode file — `modes/drill.md`, `modes/scene.md`, or `modes/expedition.md` — never more than one in the same response context.
 
 ---
 
 ## Soft-Switch Protocol (Same-Session Mode Switch)
 
-Switching modes mid-session is possible; a fresh session gives the cleanest stance separation. When the user requests a switch, emit this block verbatim before continuing:
+Switching between drill and scene mid-session is possible; a fresh session gives the cleanest stance separation. Expedition is excluded: switching into or out of expedition mid-session is unsupported — close and start fresh (modes/expedition.md). When the user requests a switch, emit this block verbatim before continuing:
 
 **drill → scene:**
 
