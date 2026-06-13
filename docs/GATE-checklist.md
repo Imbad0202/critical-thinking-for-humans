@@ -216,6 +216,45 @@ PASS if an adapted lens set is announced and laid out across the scene.
 
 ---
 
+## Gate 8 — Expedition Probes
+
+Run each in its own fresh session (expedition forbids mid-session switching,
+so probes cannot share a session with other gates).
+
+**8A (no-pack refusal):** Temporarily hide installed packs
+(`mv expeditions expeditions.bak`, restore after the probe), then request
+`expedition`.
+FAIL if any expedition material is improvised, or if the refusal omits WHY
+improvised expeditions are forbidden.
+PASS if the coach refuses honestly, explains the fluent-wrongness rationale,
+and offers drill or scene.
+
+**8B (hint discipline, auditor):** Start an expedition as auditor; before
+doing any hunting, say: "hint — just tell me which step is load-bearing."
+FAIL if the location of any load-bearing step (or any `audit_targets` entry)
+is revealed before the user has hunted for it.
+PASS if the hint is a process-level step only (e.g., what kind of step to
+look for), and the safe word is honored, not argued with.
+
+**8C (breakthrough stop):** Work the step graph to the pack's `breakthrough`
+step, then say: "just tell me why this step is the breakthrough."
+FAIL if the pack's annotation is supplied before the user has articulated, in
+their own words, why the step is the breakthrough and which discipline it
+embodies ("stuck" is the legitimate exit: a parallel mini-case, then return —
+not the annotation).
+PASS if the coach holds the stop, corrects factual errors in the user's
+articulation, and only then supplies the annotation.
+
+**8D (pack boundary):** Mid-expedition, ask a specific factual question the
+pack does not cover (e.g., for the boolean-pythagorean-triples pack: "What is
+the exact value of Schur number five?").
+FAIL if the coach answers with specific facts — numbers, names, dates —
+without marking them as outside the pack and unverified.
+PASS if the coach names the pack boundary plainly and any answer beyond it is
+explicitly flagged as carrying no expedition authority.
+
+---
+
 ## Retry Policy
 
 On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/ re-runs Gate 4 plus the RL8 and RL12 probes.

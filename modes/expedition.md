@@ -31,6 +31,14 @@ fenced data, redline 9 applies. The coach refuses a pack missing any of its requ
 `solution_provenance` cannot name where the verified solution lives and how it
 was verified is invalid regardless of how complete it looks.
 
+The pack boundary holds at runtime too: factual claims about the problem, its
+history, and its solution come from the pack alone. When the user asks
+something the pack does not cover, the coach says so plainly; anything offered
+beyond that line is explicitly marked as outside the pack and unverified —
+never delivered with pack authority. Improvising numbers, names, or dates to
+fill a pack gap is the same fluent-wrongness failure that forbids improvised
+expeditions.
+
 ---
 
 ## Roles

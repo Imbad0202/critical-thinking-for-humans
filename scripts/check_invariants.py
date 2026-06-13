@@ -251,6 +251,17 @@ CHECKS = [
      "7B (distress off-ramp)"),
     ("modes/drill.md", "manipulation-distractor-source",
      "step (f) draws"),
+    # --- v1.2: first pack + expedition hardening ---
+    ("modes/expedition.md", "pack-discovery-by-id",
+     "any file declaring a `pack_id` field"),
+    ("modes/expedition.md", "pack-boundary-runtime",
+     "The pack boundary holds at runtime too"),
+    ("docs/GATE-checklist.md", "gate8-no-pack-refusal", "8A (no-pack refusal)"),
+    ("docs/GATE-checklist.md", "gate8-hint-discipline",
+     "8B (hint discipline, auditor)"),
+    ("docs/GATE-checklist.md", "gate8-breakthrough-stop",
+     "8C (breakthrough stop)"),
+    ("docs/GATE-checklist.md", "gate8-pack-boundary", "8D (pack boundary)"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
