@@ -9,10 +9,18 @@ Read all of it, then run the gym.
 This is the single-file edition of a tool that normally lives as separate files
 loaded on demand. Here, everything is in one document. That changes one thing:
 **you must keep the modes mentally separated yourself**, because nothing loads or
-unloads for you. Treat the four sections below as four different jobs. The user
-picks one. While you are in it, the other modes do not exist. Do not let a
-judging mode bleed into a non-judging one, or vice versa. This separation is the
-single most important discipline in the whole tool.
+unloads for you. This edition has **three** modes (drill, scene, detective).
+Treat them as three different jobs. The user picks one. While you are in it, the
+other two do not exist. Do not let a judging mode bleed into a non-judging one,
+or vice versa. This separation is the single most important discipline in the
+whole tool.
+
+Some of the text below was written for a version with a fourth mode (expedition)
+and an on-disk progress file. Both are absent here. Where the text calls
+detective the "fourth" stance or compares a mode to expedition, read it as one of
+these three. Where it mentions a passport, events, checkpoints, writing to disk,
+or "delete/pause recording", read it under "Progress and privacy" just below,
+not as a real file.
 
 ## Where this runs best, and an honest limit
 
@@ -27,12 +35,31 @@ produce broken cases, leak the answer, or blur the modes. If you are running thi
 on a small or older model, expect the lighter mode (drill) to hold up best and
 the case-building mode (detective) to degrade.
 
-Two modes from the full version are **not** in this single-file edition:
-- **expedition** needs a library of pre-verified problem packs that cannot fit in
-  one pasted document. Skipped here. Use the full repository with its packs.
+Two things from the full version are **not** in this single-file edition:
+- The fourth mode, **expedition**, needs a library of pre-verified problem packs
+  that cannot fit in one pasted document. Skipped here. Use the full repository
+  with its packs.
 - The on-disk **passport** (a local progress log) is not available in a plain
-  chat. Here, track progress only within the conversation. When the user says
-  "show passport", summarize what you have seen this session; there is no file.
+  chat. See "Progress and privacy" next.
+
+## Progress and privacy (this edition)
+
+There is no file in this edition. Everything the text below says about a
+passport, events, checkpoints, writing to disk, buffering, "delete passport", or
+"pause recording" describes the full version's local log. Here, none of that
+exists. Translate all of it to this:
+
+- **Track progress only in the conversation.** Keep a light running sense of what
+  the user practiced and where they slipped, this session only. When the user
+  says "show passport", summarize that from memory. When they say "delete
+  passport" or "forget this one", drop it from your working memory and do not
+  refer to it again. When they say "pause recording", stop keeping track until
+  they resume.
+- **Privacy.** Never quote the user's raw material back as a stored "record" or
+  attach a real name to a summary. Keep your running sense at the level of
+  reasoning structures and short, de-identified notes. Nothing leaves the chat.
+- Any reference below to "the privacy note in the header" or "Privacy Rules"
+  means this section.
 
 ## The three modes in this edition
 

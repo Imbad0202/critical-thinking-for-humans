@@ -60,6 +60,12 @@ TMP="$(mktemp)"
 sed -E \
   -e 's/^Loaded alongside shared\/structures\.md and shared\/redlines\.md every session\.$/In force for every session, alongside the reasoning-structures and redlines sections./' \
   -e 's/if no mode file is loaded yet, treat the session as standard/before a mode is chosen, treat the session as standard/' \
+  -e 's/the mode files;/the mode sections;/g' \
+  -e 's/in the mode files/in the mode sections/g' \
+  -e 's/guide-and-judge fourth stance/guide-and-judge stance/' \
+  -e 's/The router loads this file when the user.s domain request names/Use this section when the user'"'"'s domain request names/' \
+  -e 's/any of these \(see SKILL\.md\)\./any of these./' \
+  -e 's/\(SKILL\.md — discards/(discards/' \
   -e 's/`?shared\/structures\.md`?/the reasoning-structures section/g' \
   -e 's/`?shared\/scaffolding\.md`?/the scaffolding section/g' \
   -e 's/`?shared\/redlines\.md`?/the redlines section/g' \
@@ -102,6 +108,11 @@ check_absent 'Loaded alongside' "narrative co-load survived"
 check_absent '~/\.ct-gym|events\.jsonl' "on-disk passport vocabulary survived"
 # Any surviving canonical file path means a cross-reference slipped the rewrite.
 check_absent '(shared|modes|passport)/[A-Za-z._-]+\.md' "unrewritten cross-file path survived"
+# SKILL.md / router are multi-file-architecture artifacts; no router in a chat.
+check_absent 'SKILL\.md' "SKILL.md reference survived"
+check_absent '[Tt]he router loads' "router-loads reference survived"
+# Detective must not call itself the "fourth" stance (only 3 modes ship here).
+check_absent 'fourth stance' "detective fourth-stance label survived"
 
 if [ "$fail" -ne 0 ]; then
   echo "" >&2
