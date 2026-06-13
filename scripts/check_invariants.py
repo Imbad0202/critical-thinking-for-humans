@@ -329,6 +329,10 @@ CHECKS = [
      "Detective is soft-switchable like drill and scene"),
     ("SKILL.md", "detective-opus-recommendation",
      "detective mode recommends an opus-class or stronger model"),
+    ("passport/SCHEMA.md", "detective-event", "detective_process"),
+    ("passport/SCHEMA.md", "detective-event-fields", "unregistered_flaws_found"),
+    ("platforms/claude-ai/passport/SCHEMA.md", "claude-ai-detective-line",
+     "one entry per completed detective case"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
