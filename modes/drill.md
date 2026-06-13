@@ -49,7 +49,10 @@ all material of this type.
 
 ## Item Generation Pipeline
 
-Execute in order before presenting any item.
+Execute in order before presenting any item. No item is presented unless it
+passes every gate below; if a gate cannot be satisfied after the fallback
+ladder (g2), refuse the item rather than ship a degraded one — a refused item
+is correct, a muddled item is not.
 
 **a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
@@ -60,12 +63,30 @@ Pull the user's registered domain and current tier (intro / standard / advanced)
 Weight toward the user's miss-log weak spots (highest miss rate first). On cold
 start (no miss log), rotate through the structure list.
 
-**c. Build the fixed logical skeleton.**
+**c. Build the fixed logical skeleton — fill the target structure's slots.**
 Construct: situation / evidence / conclusion / ONE pre-designed gap. The gap is
 the target structure. The skeleton must be fully resolved before any domain
 wrapping begins — no post-hoc gap hunting. (At advanced, a compound item still
 centers on the step-(b) target; the secondary structure is designed in as a
 subordinate flaw, not a second key.)
+
+Do not invent the gap free-form: fill the target structure's slot template, so
+the engineered flaw is exactly the named structure and nothing drifts. The
+structure's definition and counter-question are in shared/structures.md; the
+slot is the one term that counter-question implies must be decided before
+domain wrapping:
+
+- `necessary_assumption` — slot: the one condition the negation test will sink.
+- `alternative_cause` — slot: the named independent third factor.
+- `reverse_causation` — slot: why the outcome could produce the supposed cause.
+- `coincidence_timing` — slot: the missing-mechanism / unresolved-direction fact.
+- `sample_selection` — slot: the named excluded group.
+- `proxy_mismatch` — slot: the gap between the proxy and the claimed outcome.
+- `evidence_sufficiency` — slot: what is missing (baseline, control, more data)
+  that makes "cannot be determined" the key.
+
+If the material will not fit the target structure's template cleanly, pick a
+different structure or domain — never stretch the template to force a fit.
 
 **d. Wrap in domain with novel anchors.**
 Instantiate the skeleton using a synthetic institution name, specific numbers, and the user's domain context.
@@ -77,9 +98,33 @@ Standard stems like "Which option most weakens this conclusion?" are fine; avoid
 **f. Build the distractors — intro: 2; standard/advanced: 4 — from the distractor menu (shared/structures.md).**
 Assign each distractor a pattern ID from the distractor menu. Add a one-line internal note on why that distractor tempts — shown only in the post-answer dissection, never when the item is presented.
 
-**g. Reverse-solve check.**
-independently re-solve the item; if a second defensible answer exists, discard and regenerate.
-Re-solve with fresh eyes: evaluate each option against the item's structure taxonomy in turn, WITHOUT reference to the already-assigned key — an option survives if a competent solver could defend it; on failure, regenerate from step (c).
+**g. Reverse-solve check — audit the distractors.**
+Before presenting, re-solve the item with fresh eyes WITHOUT reference to the
+already-assigned key. For each distractor (not the key — its slot was set in
+step c), write one hidden line: `[id] — engages the evidence→conclusion gap?
+— defensible by a competent solver? — disqualifier`. Release the item ONLY if
+exactly one option is "right" (the key) and every distractor line ends in a
+crisp disqualifier (defensible = no). If any distractor has partial merit —
+any honest "yes, partly" — discard the item and regenerate from step (c). Do
+NOT patch a borderline distractor in place: a repair usually introduces a new
+ambiguity, so regenerate rather than edit. (These lines are internal, like the
+step-f distractor notes; never shown when the item is presented.)
+
+**g2. Weak-model fallback ladder.**
+If steps (c)–(g) fail the audit twice in a row for the same target structure,
+do not keep retrying at the same complexity — degrade by one rung and try
+again, announcing nothing to the user. Each rung resets the two-failure count:
+1. Reduce the gap's subtlety and announce the item type — i.e. move down the
+   Difficulty Knobs table's gap-clarity / announcement columns (at advanced
+   this is the real degrade; option count only shrinks once the tier itself
+   drops to intro).
+2. Drop to a lower tier per the Difficulty Knobs table (its option count and
+   pre-teach come with the tier — do not hard-code the numbers here).
+3. Fall back to the structure's worked example shape (this file's Worked
+   Example) as a template and re-instantiate with fresh anchors.
+4. If the audit still fails, refuse to generate this item (per the pipeline
+   floor above): tell the user this structure isn't producing a clean item
+   right now, and offer a different structure or a switch to scene mode.
 
 **h. Memorization self-check.**
 Could this item be recognized as or confused with any published test item?

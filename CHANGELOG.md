@@ -24,5 +24,9 @@ release has been tagged yet — everything to date sits under Unreleased.
   Phase 2 packs drafted via Workflow fan-out, then every numeric claim
   re-verified against the primary source before commit; see
   expeditions/ROADMAP.md.
+- Drill quality floor for weak models: per-structure slot templates (step c),
+  a mandatory option-audit table before release (step g — discard, never
+  patch, on any partial-merit distractor), and a weak-model fallback ladder
+  (step g2 — degrade then refuse rather than ship a muddled item).
 - Verification harness: invariant lint (section-scoped), pack schema lint,
   verbatim-block sync, version-consistency lint, mutation tests, CI.

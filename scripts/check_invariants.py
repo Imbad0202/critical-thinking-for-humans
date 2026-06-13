@@ -75,7 +75,7 @@ CHECKS = [
     ("modes/drill.md", "commit-then-reveal",
      "the user commits an answer before any analysis is shown"),
     ("modes/drill.md", "reverse-solve",
-     "independently re-solve the item; if a second defensible answer exists, discard and regenerate"),
+     "re-solve the item with fresh eyes WITHOUT reference to the"),
     ("modes/drill.md", "no-gmat-stems",
      "plain functional language, never imitating the distinctive phrasing of published exams"),
     ("modes/drill.md", "novel-anchors",
@@ -266,6 +266,19 @@ CHECKS = [
      "8C (breakthrough stop)", "Gate 8 — Expedition Probes"),
     ("docs/GATE-checklist.md", "gate8-pack-boundary", "8D (pack boundary)",
      "Gate 8 — Expedition Probes"),
+    # --- v1.3: weak-model drill quality floor ---
+    ("modes/drill.md", "slot-template",
+     "fill the target structure's slot template"),
+    ("modes/drill.md", "option-audit-table",
+     "Reverse-solve check — audit the distractors"),
+    ("modes/drill.md", "audit-release-rule",
+     "Release the item ONLY if"),
+    ("modes/drill.md", "regenerate-not-patch",
+     "regenerate rather than edit"),
+    ("modes/drill.md", "fallback-ladder",
+     "Weak-model fallback ladder"),
+    ("modes/drill.md", "fallback-refuse",
+     "refuse to generate this item"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
