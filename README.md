@@ -199,18 +199,27 @@ answers (King & Kitchener), and hunts assumptions the way adult educators do
 (Brookfield, Mezirow). The difficulty system applies scaffolding and
 desirable-difficulty research (Vygotsky, Bjork), and items always name their
 transferable structure because that labeling is what makes practice transfer.
-Item engineering references standardized reasoning tests — among them GMAT
-Critical Reasoning — as structural reference, not content source.
+Item engineering draws on the long-established *form* of critical-reasoning
+assessment — the assumption / strengthen / weaken / inference question types
+common to standardized reasoning tests generally — as a structural reference,
+never as a content source.
 
 ---
 
 ## Disclaimers
 
-This project is not affiliated with or endorsed by GMAC or any other test
-publisher. It never reproduces, adapts, or imitates published test items.
-It is not a test-preparation product.
+This is an independent project, not affiliated with, sponsored by, or endorsed
+by any standardized-test publisher or assessment organization. It is not a
+test-preparation product and makes no claim to improve any examination score.
 
-The legal notes in this repository are risk-control practice — not legal advice.
+All practice items are original and generated at runtime. The project does not
+reproduce, adapt, imitate, or distribute the questions of any published test,
+and references the *types* of reasoning task (assumption, strengthen, weaken,
+inference) only as a generic structural form, not as anyone's proprietary
+content. Any third-party names that appear in this repository are used
+nominatively, for identification and commentary only.
+
+These notes describe the project's own practices; they are not legal advice.
 
 ---
 
