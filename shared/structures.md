@@ -1,6 +1,6 @@
 # Canonical Reasoning Structures
 
-This file is the shared muscle list for critical-thinking-gym. Drill mode teaches
+This file is the shared muscle list for critical-thinking-for-humans. Drill mode teaches
 these IDs; scene mode re-invokes them by name. That vocabulary reunion is the
 transfer mechanism: the same label applied under pressure in a timed drill reappears
 when the user steps back and reads a live scenario.

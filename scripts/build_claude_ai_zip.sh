@@ -6,7 +6,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
-DEST="$STAGE/critical-thinking-gym"
+DEST="$STAGE/critical-thinking-for-humans"
 mkdir -p "$DEST"
 
 # 1. Canonical payload (runtime files only — no README/docs/scripts).
@@ -29,7 +29,7 @@ fi
 
 # 4. Zip.
 mkdir -p "$ROOT/dist"
-OUT="$ROOT/dist/critical-thinking-gym-claude-ai.zip"
+OUT="$ROOT/dist/critical-thinking-for-humans-claude-ai.zip"
 rm -f "$OUT"
-(cd "$STAGE" && zip -rqX "$OUT" critical-thinking-gym -x '*.DS_Store')
+(cd "$STAGE" && zip -rqX "$OUT" critical-thinking-for-humans -x '*.DS_Store')
 unzip -l "$OUT"

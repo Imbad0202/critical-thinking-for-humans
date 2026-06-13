@@ -1,5 +1,5 @@
 ---
-name: critical-thinking-gym
+name: critical-thinking-for-humans
 description: Trains the HUMAN user's critical thinking through three modes — drill (argument-analysis items with a single defensible answer, judge stance), scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations), and expedition (guided audit of impossible-tier problems from verified packs). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識.
 ---
 

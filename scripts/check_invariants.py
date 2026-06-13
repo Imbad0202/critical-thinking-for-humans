@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Invariant lint for critical-thinking-gym.
+"""Invariant lint for critical-thinking-for-humans.
 
 Checks that every load-bearing rule sentence (invariant) is literally present
 in its carrier file. Presence-only: a green run means the text exists, NOT that

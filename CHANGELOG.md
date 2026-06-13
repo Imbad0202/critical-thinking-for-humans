@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to critical-thinking-gym are documented here. Headings
+All notable changes to critical-thinking-for-humans are documented here. Headings
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`). No
 release has been tagged yet — everything to date sits under Unreleased.

@@ -1,4 +1,4 @@
-# critical-thinking-gym
+# critical-thinking-for-humans
 
 A gym for your critical thinking — the AI coaches, you train. Three modes cover
 different reasoning demands: one delivers structured argument-analysis items
@@ -81,7 +81,7 @@ adjudicated, never the position.
 You need [Claude Code](https://claude.com/claude-code) installed.
 
 ```
-git clone https://github.com/Imbad0202/critical-thinking-gym ~/.claude/skills/critical-thinking-gym
+git clone https://github.com/Imbad0202/critical-thinking-for-humans ~/.claude/skills/critical-thinking-for-humans
 ```
 
 Start any Claude Code session and say `drill` or `scene` — or just describe what you want to practice.
@@ -161,7 +161,7 @@ The legal notes in this repository are risk-control practice — not legal advic
 The repo is the single source of truth; the claude.ai-uploadable zip is generated, never hand-edited:
 
 ```
-./scripts/build_claude_ai_zip.sh   # → dist/critical-thinking-gym-claude-ai.zip
+./scripts/build_claude_ai_zip.sh   # → dist/critical-thinking-for-humans-claude-ai.zip
 ```
 
 The build copies the canonical runtime files and applies whole-file overlays from
