@@ -395,6 +395,14 @@ CHECKS = [
      "9D (never-solve line)", "Gate 9 — Detective Probes"),
     ("docs/GATE-checklist.md", "gate9-safe-word",
      "9E (safe-word non-trapping)", "Gate 9 — Detective Probes"),
+    ("docs/GATE-checklist.md", "gate10-mislabel",
+     "10A (mislabel-blocking)", "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-insufficient",
+     "10B (insufficient-context honesty)", "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-isolation",
+     "10C (track isolation)", "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-political",
+     "10D (political spot-check)", "Gate 10 — Fallacy-Track Probes"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
