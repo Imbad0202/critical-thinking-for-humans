@@ -11,8 +11,9 @@ release has been tagged yet — everything to date sits under Unreleased.
   BYOM), expedition (guide stance, verified packs only), detective
   (guide-and-judge stance, runtime-generated multi-layer case).
 - Thirteen redlines, shared scaffolding (four-step reveal, safe words,
-  stuck detection), ten canonical reasoning structures (seven causal-inductive
-  + three statistical: base_rate_neglect, regression_to_mean, simpson_paradox),
+  stuck detection), twelve canonical reasoning structures (seven causal-inductive
+  + three statistical: base_rate_neglect, regression_to_mean, simpson_paradox
+  + two formal: circular_reasoning, hasty_generalization),
   manipulation-recognition domain with taxonomy.
 - Local passport (`~/.ct-gym/events.jsonl`) plus claude.ai platform overlay
   and zip build.
