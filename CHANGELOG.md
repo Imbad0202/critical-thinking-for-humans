@@ -26,11 +26,10 @@ First public release.
   sound argument is never mislabeled a fallacy (redline 4 applied directly).
   Synthetic-first material, charitable reconstruction before any political
   strawman ruling, `scene_process.fallacies_examined` logging, Gate 10 probes.
-  Designed and cross-model reviewed (codex GO-WITH-CHANGES, all findings
-  addressed) before implementation.
+  Independently reviewed before implementation, all findings addressed.
 - Local passport (`~/.ct-gym/events.jsonl`) plus claude.ai platform overlay
   and zip build.
-- Expedition packs (10, cross-domain). Phase 1-2: boolean-pythagorean-triples
+- Expedition packs (16, cross-domain). Phase 1-2: boolean-pythagorean-triples
   (combinatorics/SAT), katago-adversarial (games/ML robustness),
   alphatensor-matmul (algorithms), erdos-discrepancy (number theory;
   machine-vs-human-proof contrast), keller-dimension-7 (geometry, ACL2
@@ -50,15 +49,15 @@ First public release.
   first-party verified against its source — re-verification caught the
   survey's wrong ~1 TB / CRAY figures for Lam's problem and confirmed the
   AlphaEvolve 48 is complex-only. Pack discovery by `pack_id`, runtime pack
-  boundary, Gate 8 behavioral probes. Phases 2-3 drafted via Workflow fan-out,
-  then every numeric claim re-verified before commit; the candidate pool in
+  boundary, Gate 8 behavioral probes. Every numeric claim re-verified against
+  its source before commit; the candidate pool in
   expeditions/ROADMAP.md is now exhausted.
 - Drill quality floor for weak models: per-structure slot templates (step c),
   a mandatory option-audit table before release (step g — discard, never
   patch, on any partial-merit distractor), and a weak-model fallback ladder
   (step g2 — degrade then refuse rather than ship a muddled item).
-- Legal-exposure hardening (cross-model review, codex + independent agent, no
-  HIGH-risk found): disclaimer now disclaims Anthropic affiliation, states
+- Legal-exposure hardening (independently reviewed, no high-risk issue found):
+  disclaimer now disclaims Anthropic affiliation, states
   example names are fictional, adds an efficacy non-guarantee and an
   educational-use / non-advice clause; SKILL.md gains an all-modes Scope
   boundary (no legal/medical/financial/psychological/safety advice) synced to
@@ -77,16 +76,14 @@ First public release.
   pre-flight, and an inspect-before-rule stance so a correct user objection is
   never auto-ruled a false positive (redline 4). New `detective_process`
   passport event (+ claude.ai tally), Gate 9 behavioral probes, and a README
-  note recommending an opus-class or stronger model. Designed and cross-model
-  reviewed (codex GO-WITH-CHANGES, all five findings addressed) before
-  implementation.
+  note recommending an opus-class or stronger model. Independently reviewed
+  before implementation, all findings addressed.
 - **Detective generation silence** — the G0–G6 reverse-design (key chain,
   per-layer answers, ablation, eggs, final truth) is internal-only and never
   reaches the visible chat: the first user-visible message begins directly with
   the case frame, no preamble of any kind — no generation summary, no layer
   count, no pipeline-existence announcement. The four case-frame facts are the
   only G0 content shown; keys/eggs/final truth surface solely through the
-  per-layer loop as each layer resolves. New `Gate 9F` fresh-session leak probe
-  (a static invariant pass is not sufficient — requires the live run). Two rounds
-  of cross-model review (codex gpt-5.5 xhigh) and two live fresh-session runs
-  confirmed the fix.
+  per-layer loop as each layer resolves. New `Gate 9F` leak probe verifies this
+  on a fresh session (a static invariant pass is not sufficient — it requires the
+  live behavioral run).

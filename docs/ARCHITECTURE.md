@@ -123,7 +123,7 @@ makes the practice transfer.
 
 Detective reverse-designs a case before writing any prose — and the entire
 pipeline runs **internally**. The answer key never reaches the visible chat
-(generation silence). This is what `Gate 9F` verifies on a live fresh session.
+(generation silence); `Gate 9F` exists to guard exactly this property.
 
 ```mermaid
 flowchart TD
@@ -153,15 +153,18 @@ flowchart TD
 
 The load-bearing rule: **the user names each main flaw; the coach never catches
 it for them.** A correct objection the answer key missed is inspected and
-honestly confirmed, never auto-ruled a false positive (redline 4).
+honestly confirmed, never auto-ruled a false positive — redline 4's
+correctness-honesty (a right call is never punished, just as a wrong one is never
+praised) applied to the user's side.
 
 ---
 
 ## 5. Passport data flow (local-only)
 
-The passport at `~/.ct-gym/events.jsonl` records process, not grades. One event
-type per mode; structure hits feed a shared per-structure record so coverage is
-unified across modes.
+The passport at `~/.ct-gym/events.jsonl` records process, not grades. Each mode
+writes its own process event (drill also emits a `miss_log`), alongside
+session-level `profile_set` and `commitment` events; structure hits feed a shared
+per-structure record so coverage is unified across modes.
 
 ```mermaid
 flowchart LR

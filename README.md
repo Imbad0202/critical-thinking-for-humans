@@ -19,8 +19,8 @@ Or install it as a plain Claude Code skill with one command:
 git clone https://github.com/Imbad0202/critical-thinking-for-humans ~/.claude/skills/critical-thinking-for-humans
 ```
 
-Then start any session and say `drill`, `scene`, `detective`, or just describe
-what you want to practice. (No Claude Code? A single-file [portable
+Then start any session and say `drill`, `scene`, `expedition`, `detective`, or
+just describe what you want to practice. (No Claude Code? A single-file [portable
 edition](#portable-single-file-edition-any-model) runs in any frontier model's
 chat window.)
 
@@ -201,8 +201,9 @@ adjudicated, never the position.
 ## Getting Started
 
 Install with either method above ([plugin](#critical-thinking-for-humans) or the
-one-line `git clone`), then start any Claude Code session and say `drill` or
-`scene` — or just describe what you want to practice.
+one-line `git clone`), then start any Claude Code session and say `drill`,
+`scene`, `expedition`, or `detective` — or just describe what you want to
+practice.
 
 On first run the coach asks the three choices, then routes you to your mode; later sessions confirm your profile in one line.
 
