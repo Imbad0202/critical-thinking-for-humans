@@ -118,9 +118,9 @@ def main(root: Path = ROOT) -> int:
               "gate in CI)")
 
     if failures:
-        print(f"\n{len(failures)} unreadable manifest(s):")
         for f in failures:
             print(f"  - {f}")
+        print(f"\n{len(failures)} unreadable manifest(s)")
         return 1
     print("\nALL MANIFESTS PARSE")
     return 0

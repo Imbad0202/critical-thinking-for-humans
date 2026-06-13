@@ -35,3 +35,7 @@ jobs:
           python3 -m pytest scripts/ -q
       - name: claude.ai zip build
         run: bash scripts/build_claude_ai_zip.sh
+      - name: Manifest parse lint (post-build zip)
+        # The pre-build run skips the zip-frontmatter check (no artifact yet);
+        # re-run after the build so the SKILL.md that actually ships is parsed.
+        run: python3 scripts/check_manifests.py
