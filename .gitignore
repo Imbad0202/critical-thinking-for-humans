@@ -1,3 +1,5 @@
 .DS_Store
 dist/
 .gstack/
+__pycache__/
+*.pyc
