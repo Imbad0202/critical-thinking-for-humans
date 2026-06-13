@@ -3,3 +3,6 @@ dist/
 .gstack/
 __pycache__/
 *.pyc
+
+# Design specs and implementation plans are kept locally, not shipped.
+docs/superpowers/
