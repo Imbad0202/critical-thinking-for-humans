@@ -68,6 +68,9 @@ sed -E \
   -e 's/^stay on disk; use "delete passport" to remove those\)\./to remove; "delete passport" clears your running sense of the session)./' \
   -e 's/^The passport lives on the user.s machine; its relevant content enters the model context when used\. When a passport section is loaded, all of its content is in scope; the user may flag specific entries for exclusion\. Viewing, deletion, and pause-recording are always available\.$/In this single-file edition there is no saved passport; you keep a light running sense of the session in the conversation only. The user may flag anything for exclusion. Showing it (a summary from memory), clearing it, and pausing it are always available./' \
   -e 's/everything buffered since the last checkpoint write\. Events from already-completed items are on disk and stay; remove them with "delete passport"\./everything you have been tracking this session. There is no saved file in this edition; "delete passport" clears your running sense of the session./' \
+  -e 's/This applies to user-supplied material, BYOM text, passport content read from disk, and any file the user attaches\./This applies to user-supplied material and BYOM text./' \
+  -e 's/in a mode file,/in a mode section,/' \
+  -e 's/ Expedition mode sits outside the three tiers and owns its own step-size knob \(modes\/expedition\.md\)\.//' \
   -e 's/guide-and-judge fourth stance/guide-and-judge stance/' \
   -e 's/The router loads this file when the user.s domain request names/Use this section when the user'"'"'s domain request names/' \
   -e 's/any of these \(see SKILL\.md\)\./any of these./' \
@@ -99,6 +102,20 @@ check_absent () {
   fi
 }
 
+# The header (everything before the first "<!-- ===== ... =====" section banner)
+# deliberately NAMES the absent machinery ("mode files", "read from disk",
+# "expedition", ...) in order to define it away. Scanning the header for those
+# terms would false-positive on those definitions. body-only checks skip it.
+BODY_START="$(grep -nE '^<!-- ===== ' "$OUT" | head -1 | cut -d: -f1)"
+check_absent_body () {
+  # $1 = grep pattern (ERE), $2 = human reason — scans only the manual body.
+  if awk "NR>=$BODY_START" "$OUT" | grep -nE "$1" >/dev/null; then
+    echo "PORTABLE LEAK [$2] (in body):" >&2
+    awk "NR>=$BODY_START" "$OUT" | grep -nE "$1" | sed 's/^/    /' >&2
+    fail=1
+  fi
+}
+
 # "load modes/x.md" / "unload" are filesystem-load mechanics, meaningless in one file.
 check_absent 'load `?modes/[a-z]+\.md' "dynamic mode-file load survived"
 check_absent '[Uu]nload ' "unload instruction survived"
@@ -121,8 +138,13 @@ check_absent '[Tt]he router loads' "router-loads reference survived"
 check_absent 'fourth stance' "detective fourth-stance label survived"
 # On-disk passport vocabulary that contradicts the no-file header (codex P1).
 check_absent 'stay on disk|on disk and stay|lives on the user.?s machine|checkpoint write|from the passport buffer' "on-disk passport state survived"
-# "mode files" implies the multi-file architecture; this edition has sections.
-check_absent '[Mm]ode files' "mode-files wording survived"
+# "mode files" / "mode file" (singular) imply the multi-file architecture.
+# Body-only: the header names the term to define it away.
+check_absent_body '[Mm]ode files?\b' "mode-file(s) wording survived"
+# read-from-disk / file-attach language: no files in a pasted prompt.
+check_absent_body 'read from disk|file the user attaches' "file-attach/read-from-disk survived"
+# expedition must not be described as an active mode with operating knobs.
+check_absent_body 'Expedition mode sits outside' "expedition-as-active-mode survived"
 
 if [ "$fail" -ne 0 ]; then
   echo "" >&2
