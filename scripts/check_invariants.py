@@ -407,6 +407,8 @@ CHECKS = [
      "10D (political spot-check)", "Gate 10 — Fallacy-Track Probes"),
     ("docs/GATE-checklist.md", "gate10-non-relevance",
      "10E (non-relevance lens defect)", "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-appeal",
+     "10F (fallacious-appeal relevance)", "Gate 10 — Fallacy-Track Probes"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---

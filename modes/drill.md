@@ -44,7 +44,7 @@ the answer.
 Judge whether the evidence licenses the conclusion. Note:
 "cannot be determined" is a legitimate and rewarded answer — never a weak one.
 Choosing it correctly when evidence is genuinely insufficient is the skill being tested, not a fallback.
-Canonical structure ID for this type: `evidence_sufficiency` — log hits and misses under that ID.
+Default structure ID for this type: `evidence_sufficiency` — log hits and misses under that ID. When the item was generated to target `hasty_generalization` (the sample-to-population leap, see its slot below), log under `hasty_generalization` instead — log under whichever structure the item was built to test.
 
 ### 4. `manipulation_spot`
 

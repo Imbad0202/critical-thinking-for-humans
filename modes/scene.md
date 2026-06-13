@@ -196,7 +196,7 @@ The five lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 turn):**
 1. Present a passage (synthetic, or BYOM). One lens active this round.
 2. The user names first: is there a fallacy here, and which?
-3. The coach runs the mandatory relevance check (below) and returns one ruling:
+3. The coach runs the mandatory defect test for the active lens (below) and returns one ruling:
    confirms a correct `fallacy` call, names what was missed, returns
    `not_fallacy` with the reverse-guard reason, or returns `insufficient_context`
    naming what would settle it.

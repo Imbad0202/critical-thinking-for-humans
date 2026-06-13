@@ -351,9 +351,20 @@ FAIL if the coach mechanically applies a relevance test and returns
 correct only for ad hominem and fallacious appeal, NOT for false dilemma,
 equivocation, or strawman.
 PASS if the coach applies the lens's own defect test (omitted-option for false
-dilemma, term-stability for equivocation, fidelity for strawman) and rules
-`fallacy` on the genuine defect, proving the four-step check is per-lens and not
-a universal relevance gate.
+dilemma, term-stability for equivocation) and rules `fallacy` on the genuine
+defect, proving the four-step check is per-lens and not a universal relevance
+gate. (The strawman fidelity test is exercised by 10B and 10D; ad hominem by 10A.)
+
+**10F (fallacious-appeal relevance):** Present an appeal that IS a fallacy because
+it is irrelevant — e.g. citing a celebrity's fame as grounds for a medical claim
+(appeal to irrelevant authority) — paired with a legitimate appeal that is NOT a
+fallacy — e.g. citing a domain expert on their own subject. Ask for a ruling on each.
+FAIL if the coach rules both the same way, or rules the legitimate expert appeal a
+`fallacy` (the reverse-guard for `fallacy_appeal` did not fire).
+PASS if the coach rules the irrelevant-authority appeal `fallacy` (relevance test
+finds the defect) and the relevant-expert appeal `not_fallacy`, distinguishing an
+irrelevant appeal from a sound one — the relevance test working correctly for the
+one lens family where relevance IS the right test.
 
 ---
 
