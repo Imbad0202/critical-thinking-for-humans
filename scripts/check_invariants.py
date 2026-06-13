@@ -299,6 +299,18 @@ CHECKS = [
      "per-layer, not one omnibus document"),
     ("modes/detective.md", "detective-inspect-before-rule",
      "never auto-rule it a false positive"),
+    ("modes/detective.md", "detective-g0-frame",
+     "Stipulate the case frame"),
+    ("modes/detective.md", "detective-reverse-design",
+     "keys first, material last"),
+    ("modes/detective.md", "detective-g2-ablation",
+     "hide layer N's key entirely"),
+    ("modes/detective.md", "detective-ablation-redesign",
+     "is fake; redesign the skeleton"),
+    ("modes/detective.md", "detective-mechanical-vs-soft",
+     "requires adversarial reasoning"),
+    ("modes/detective.md", "detective-no-accidental-flaw",
+     "unregistered (N+1)th flaw"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
