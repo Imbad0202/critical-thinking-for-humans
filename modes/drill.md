@@ -22,9 +22,13 @@ silently requires. Use the negation test (`negation_test`):
 
 ### 2. `weaken`
 
-Find what most undermines the argument. The gap is always one of the five
-causal attacks: `alternative_cause`, `reverse_causation`, `coincidence_timing`,
-`sample_selection`, `proxy_mismatch`. Name the attack after giving the answer.
+Find what most undermines the argument. The gap is one of the five causal
+attacks — `alternative_cause`, `reverse_causation`, `coincidence_timing`,
+`sample_selection`, `proxy_mismatch` — or one of the three statistical
+attacks: `base_rate_neglect`, `regression_to_mean`, `simpson_paradox`. The
+statistical three carry their own counter-questions (shared/structures.md) and
+assume basic numeracy; prefer them at standard tier and above. Name the attack
+after giving the answer.
 
 ### 3. `sufficiency`
 
@@ -38,7 +42,7 @@ Canonical structure ID for this type: `evidence_sufficiency` — log hits and mi
 Identify the primary manipulation technique operating in a synthetic pitch,
 message, or short transcript. Available only in the manipulation-recognition
 domain (`shared/manipulation-taxonomy.md`); items log technique IDs from that
-file's table instead of the seven structure IDs. The pipeline applies with
+file's table instead of the ten structure IDs. The pipeline applies with
 two substitutions: step (c) designs ONE primary technique in; step (f) draws
 distractors from the technique table — other technique IDs plausibly suggested
 by the surface text but not primarily operating — instead of the distractor
@@ -57,7 +61,7 @@ is correct, a muddled item is not.
 **a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
 
-**a2. Domain-fit gate.** Runs at intake and on every "switch domain", before the first item of the new domain. The seven structures are causal-inductive tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Domain families that do not natively host that shape: deductive formal systems (pure mathematics, formal logic, theoretical CS), aesthetic and interpretive judgement (music, art, literature, film, design — and ethics/aesthetics generally; redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). Note the split inside the empirical sciences: experimental and statistical reasoning DOES fit (a study's evidence vs its conclusion), while the laws/theorems themselves are deductive and do not — recast to the experimental layer rather than rejecting the field. For such a domain: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — a drill recast that keeps the seven structures (e.g. mathematics → statistical and experimental reasoning), and a scene-mode path on the domain's own material (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
+**a2. Domain-fit gate.** Runs at intake and on every "switch domain", before the first item of the new domain. The reasoning structures are causal-inductive (seven of them) and statistical (three of them) tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Domain families that do not natively host that shape: deductive formal systems (pure mathematics, formal logic, theoretical CS), aesthetic and interpretive judgement (music, art, literature, film, design — and ethics/aesthetics generally; redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). Note the split inside the empirical sciences: experimental and statistical reasoning DOES fit (a study's evidence vs its conclusion), while the laws/theorems themselves are deductive and do not — recast to the experimental layer rather than rejecting the field. For such a domain: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — a drill recast that keeps the structure set (e.g. mathematics → statistical and experimental reasoning), and a scene-mode path on the domain's own material (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
 
 **b. Pick a target structure.**
 Weight toward the user's miss-log weak spots (highest miss rate first). On cold
@@ -84,6 +88,12 @@ domain wrapping:
 - `proxy_mismatch` — slot: the gap between the proxy and the claimed outcome.
 - `evidence_sufficiency` — slot: what is missing (baseline, control, more data)
   that makes "cannot be determined" the key.
+- `base_rate_neglect` — slot: the base rate / prior that the headline figure
+  ignores, and the numbers that make it bite.
+- `regression_to_mean` — slot: the fact that the cases were selected for being
+  extreme, so a move toward average is expected with no cause.
+- `simpson_paradox` — slot: the lurking subgroup variable whose split reverses
+  the aggregate trend.
 
 If the material will not fit the target structure's template cleanly, pick a
 different structure or domain — never stretch the template to force a fit.

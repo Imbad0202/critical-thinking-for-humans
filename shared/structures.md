@@ -11,9 +11,12 @@ Canonical IDs are snake_case English and never localized; the display layer tran
 
 ## Reasoning Structures
 
-The seven loggable structure IDs — every `drill_result.structure` value comes
+The ten loggable structure IDs — every `drill_result.structure` value comes
 from this table, with one exception: `manipulation_spot` items log technique
-IDs from `shared/manipulation-taxonomy.md`.
+IDs from `shared/manipulation-taxonomy.md`. The first seven are causal-inductive;
+the last three (`base_rate_neglect`, `regression_to_mean`, `simpson_paradox`)
+are statistical-reasoning structures and assume the user has basic numeracy —
+prefer them at standard tier and above, not intro.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
@@ -24,6 +27,9 @@ IDs from `shared/manipulation-taxonomy.md`.
 | `sample_selection` | The sample excludes cases most able to refute the claim; survivorship is a common variant. | "Where are the dropouts, the non-participants, the failures?" | A survey of students who completed the Westmoor tutoring program found 90% improved their grades — students who dropped out were not included. |
 | `proxy_mismatch` | The metric measured is not the outcome actually claimed; activity, satisfaction, or paperwork is dressed up as the real result. | "Is this measuring activity, satisfaction, or the thing actually claimed?" | Eastfield Foundation reports 400 mentoring sessions delivered as evidence of career advancement — sessions attended ≠ careers advanced. |
 | `evidence_sufficiency` | Whether the evidence licenses ANY conclusion yet; the discipline of saying "cannot be determined." | "Does this evidence license any conclusion yet, or only that more data is needed?" | Two quarters of rising sales after a rebranding do not yet establish that the rebranding caused growth — no baseline trend, no control group. |
+| `base_rate_neglect` | A conclusion drawn from a conditional or salient figure while ignoring the underlying prior / base rate; the numerator is read without its denominator. | "What is the base rate, and does the headline figure survive once it is included?" | A screening test flags 90% of a rare condition, so a positive result is treated as near-certain — but at a 0.1% base rate most positives are false alarms. |
+| `regression_to_mean` | An extreme measurement is followed by a less extreme one, and the ordinary statistical return toward the average is misattributed to an intervention. | "Were the cases selected for being extreme, so a move toward average is expected with no cause at all?" | The worst-performing branches got a new training program and improved the next quarter — but branches picked for an extreme low tend to rebound regardless. |
+| `simpson_paradox` | A trend that holds in aggregated data reverses (or vanishes) once the data is split by a lurking subgroup variable; the merged numbers mislead. | "Does the aggregate trend survive when the data is broken out by the relevant subgroup?" | A hospital shows higher overall survival than a rival, but once cases are split by severity the rival does better in every severity tier — the mix of cases drove the aggregate. |
 
 ---
 

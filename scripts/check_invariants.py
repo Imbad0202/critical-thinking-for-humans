@@ -149,7 +149,10 @@ CHECKS = [
     # --- review round 1: new rule sentences ---
     ("shared/structures.md", "technique-not-loggable",
      "procedure, not a loggable structure"),
-    ("shared/structures.md", "seven-structures", "seven loggable structure IDs"),
+    ("shared/structures.md", "ten-structures", "ten loggable structure IDs"),
+    ("shared/structures.md", "structure-base-rate-neglect", "base_rate_neglect"),
+    ("shared/structures.md", "structure-regression-to-mean", "regression_to_mean"),
+    ("shared/structures.md", "structure-simpson-paradox", "simpson_paradox"),
     ("modes/drill.md", "compound-primary-logging", "never as a second event"),
     ("modes/drill.md", "commit-gate-safe-words",
      "one scaffold step about the stem or the structure vocabulary"),
