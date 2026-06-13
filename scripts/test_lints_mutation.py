@@ -130,9 +130,21 @@ def test_version_lint_future_reference(tree, capsys):
 
 
 def test_version_lint_release_requires_badge(tree, capsys):
+    # A released CHANGELOG (a versioned entry) with NO matching README badge
+    # must FAIL. Construct the situation outright rather than relying on the
+    # repo's current pre/post-release state: pin the CHANGELOG to one version
+    # and strip every version badge from the README.
     cl = tree / "CHANGELOG.md"
-    cl.write_text(cl.read_text(encoding="utf-8")
-                  .replace("## [Unreleased]", "## [0.1.0] - 2026-06-13"),
-                  encoding="utf-8")
+    cl.write_text(
+        "# Changelog\n\n## [0.1.0] - 2026-06-13\n\n"
+        + ("Body padding to clear the 100-char minimum. " * 4)
+        + "\n",
+        encoding="utf-8",
+    )
+    readme = tree / "README.md"
+    readme.write_text(
+        cvc.BADGE.sub("badge/x", readme.read_text(encoding="utf-8")),
+        encoding="utf-8",
+    )
     assert cvc.main(tree) == 1  # versioned entry but README has no badge
     capsys.readouterr()

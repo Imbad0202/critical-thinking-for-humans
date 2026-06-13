@@ -2,10 +2,11 @@
 
 All notable changes to critical-thinking-for-humans are documented here. Headings
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
-git tag being cut (enforced by `scripts/check_version_consistency.py`). No
-release has been tagged yet — everything to date sits under Unreleased.
+git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
-## [Unreleased]
+## [1.0.0] - 2026-06-14
+
+First public release.
 
 - Four modes: drill (judge stance), scene (Socratic stance, synthetic +
   BYOM), expedition (guide stance, verified packs only), detective
@@ -79,3 +80,13 @@ release has been tagged yet — everything to date sits under Unreleased.
   note recommending an opus-class or stronger model. Designed and cross-model
   reviewed (codex GO-WITH-CHANGES, all five findings addressed) before
   implementation.
+- **Detective generation silence** — the G0–G6 reverse-design (key chain,
+  per-layer answers, ablation, eggs, final truth) is internal-only and never
+  reaches the visible chat: the first user-visible message begins directly with
+  the case frame, no preamble of any kind — no generation summary, no layer
+  count, no pipeline-existence announcement. The four case-frame facts are the
+  only G0 content shown; keys/eggs/final truth surface solely through the
+  per-layer loop as each layer resolves. New `Gate 9F` fresh-session leak probe
+  (a static invariant pass is not sufficient — requires the live run). Two rounds
+  of cross-model review (codex gpt-5.5 xhigh) and two live fresh-session runs
+  confirmed the fix.

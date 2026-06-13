@@ -1,0 +1,17 @@
+{
+  "name": "critical-thinking-for-humans",
+  "owner": {
+    "name": "Cheng-I Wu",
+    "url": "https://github.com/Imbad0202"
+  },
+  "description": "A gym for your critical thinking — the AI coaches, you train. Four modes (drill, scene, expedition, detective) across distinct reasoning stances, with a longitudinal passport on your machine.",
+  "plugins": [
+    {
+      "name": "critical-thinking-for-humans",
+      "source": "./",
+      "description": "Four modes: drill (12 argument structures, judge stance), scene (Socratic frames + fallacy-recognition track), expedition (audit verified impossible-tier packs), detective (runtime-generated multi-layer case). Manipulation-recognition domain, thirteen redlines, local passport.",
+      "version": "1.0.0",
+      "license": "CC-BY-NC-4.0"
+    }
+  ]
+}

@@ -1,17 +1,59 @@
 # critical-thinking-for-humans
 
-A gym for your critical thinking — the AI coaches, you train. Four modes cover
-different reasoning demands: one delivers structured argument-analysis items
-with a single defensible answer; one spreads interpretive frames across
-synthetic or your own material and ends with you committing to a position; one
-guides you through problems you are not expected to solve, training you to
-audit reasoning you could not have produced; one generates a layered case you
-crack flaw by flaw, carrying each discovery as a key into the next layer. All
-four track your patterns over time in a passport on your machine, showing you
-what no single session can: your longitudinal blind spots.
+[![Version](https://img.shields.io/badge/version-v1.0.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.0.0)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
-An AI coach is the cheapest place in the world to lose face — admitting a
-blind spot here costs you nothing.
+A gym for your critical thinking — the AI is the coach, you do the work.
+
+**Install in 30 seconds** (Claude Code CLI / VS Code / JetBrains):
+
+```text
+/plugin marketplace add Imbad0202/critical-thinking-for-humans
+/plugin install critical-thinking-for-humans
+```
+
+Or install it as a plain Claude Code skill with one command:
+
+```bash
+git clone https://github.com/Imbad0202/critical-thinking-for-humans ~/.claude/skills/critical-thinking-for-humans
+```
+
+Then start any session and say `drill`, `scene`, `detective`, or just describe
+what you want to practice. (No Claude Code? A single-file [portable
+edition](#portable-single-file-edition-any-model) runs in any frontier model's
+chat window.)
+
+---
+
+You can be the sharpest reasoner in your own field and still get fooled by the
+exact same logic the moment it shows up somewhere unfamiliar. Rigor does not
+transfer on its own.
+
+A researcher who would never accept a causal claim without a control group, who
+would tear that paper apart in review, gets a security alert saying "unusual
+login detected, verify now" and clicks before asking the one question their own
+discipline trained them to ask: where is the evidence for that premise? The
+structure is identical. The eye just does not carry over.
+
+So this is a gym for that carry-over: the AI is the coach and you do the work.
+You **drill** argument structures, pull apart a real situation in **scene**,
+**audit** reasoning you could not have produced on an **expedition**, or crack a
+layered case flaw by flaw as a **detective**. Every item names the underlying
+structure, because naming is what lets the skill travel from a journal to an
+email to a contract. All four modes track your patterns over time in a passport
+on your machine, showing you what no single session can: your longitudinal blind
+spots.
+
+Why spar with an AI? Because criticizing other people is easy and criticizing
+yourself is not. An AI removes the audience — nobody hears you get it wrong. If
+you think it is too blunt, push back, argue, close the window, go on with your
+day. That zero social cost is what makes it safe enough to look at your own blind
+spots, the one thing this practice needs and real life rarely gives you room
+for. An AI coach is the cheapest place in the world to lose face.
+
+One honest limit: the material is AI-generated at runtime, so it can be wrong.
+Treat it as a sparring partner, not an oracle. It is practice, not advice.
 
 ---
 
@@ -156,15 +198,11 @@ adjudicated, never the position.
 
 ---
 
-## Quick Start
+## Getting Started
 
-You need [Claude Code](https://claude.com/claude-code) installed.
-
-```
-git clone https://github.com/Imbad0202/critical-thinking-for-humans ~/.claude/skills/critical-thinking-for-humans
-```
-
-Start any Claude Code session and say `drill` or `scene` — or just describe what you want to practice.
+Install with either method above ([plugin](#critical-thinking-for-humans) or the
+one-line `git clone`), then start any Claude Code session and say `drill` or
+`scene` — or just describe what you want to practice.
 
 On first run the coach asks the three choices, then routes you to your mode; later sessions confirm your profile in one line.
 
