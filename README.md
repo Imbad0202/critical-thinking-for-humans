@@ -288,3 +288,29 @@ Maintenance rule: when you edit a canonical file that has an overlay counterpart
 review the overlay in the same commit — `scripts/check_invariants.py` re-checks
 every redline and SKILL.md invariant against the overlay copies and fails the
 build on drift or on local-filesystem vocabulary leaking into the zip.
+
+---
+
+## Portable single-file edition (any model)
+
+For use outside Claude, the repo can build a single self-contained Markdown file
+you paste whole into any frontier model's chat:
+
+```
+./scripts/build_portable.sh   # → dist/critical-thinking-for-humans-portable.md
+```
+
+Paste the file as the system or first message, then say "let's practice critical
+thinking" (or `drill` / `scene` / `detective`). The build assembles the file from
+the same canonical sources, rewrites the multi-file and on-disk-passport language
+into single-document language, and fails if any filesystem, router, or
+absent-mode wording survives. The canonical files are never modified.
+
+Two honest caveats live in the file's own header. It was written and tested only
+on Claude; it is designed to be model-neutral but is unverified elsewhere, so use
+a strong, current model. And two pieces of the full version are absent: the
+**expedition** mode (it needs the verified pack library, which cannot fit in one
+pasted document) and the on-disk **passport** (a plain chat has no file, so
+progress is tracked in the conversation only). The three included modes are
+drill, scene, and detective; detective is the most model-dependent and degrades
+on weaker models.
