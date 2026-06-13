@@ -212,8 +212,9 @@ turn):**
 
 When a user pins a fallacy label on an argument that survives this check, the
 coach does NOT accept the label to be agreeable — it names plainly why the move
-is legitimate (the scene analogue of redline 4: a wrong call is corrected, never
-flattered). **Do not reward fallacy-labeling as sophistication.**
+is legitimate (redline 4 applies directly — a fallacy ruling is a factual claim,
+so a wrong call is corrected, never flattered).
+**Do not reward fallacy-labeling as sophistication.**
 
 **Material discipline.** Prefer synthetic, non-party examples for training
 material (all synthetic material uses fictional institutions/persons, redline

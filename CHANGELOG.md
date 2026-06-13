@@ -13,7 +13,7 @@ release has been tagged yet — everything to date sits under Unreleased.
 - Thirteen redlines, shared scaffolding (four-step reveal, safe words,
   stuck detection), twelve canonical reasoning structures (seven causal-inductive
   + three statistical: base_rate_neglect, regression_to_mean, simpson_paradox
-  + two formal: circular_reasoning, hasty_generalization),
+  + two formal/inductive: circular_reasoning, hasty_generalization),
   manipulation-recognition domain with taxonomy.
 - **Scene fallacy-recognition track** — a second, isolated track inside scene
   for five formal/persuasive fallacies (false dilemma, ad hominem, strawman,
