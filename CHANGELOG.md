@@ -20,8 +20,9 @@ release has been tagged yet — everything to date sits under Unreleased.
   fallacious appeal, equivocation) the frame palette cannot key. One submode per round
   (frames stay never-ranked; the fallacy track judges argument *form*, not the
   position). Three rulings — `fallacy` / `not_fallacy` / `insufficient_context` —
-  with a mandatory four-step relevance check and a reverse-guard so a sound
-  argument is never mislabeled a fallacy (the scene analogue of redline 4).
+  with a mandatory per-lens defect test (relevance for ad hominem/appeal,
+  omitted-option/fidelity/term-stability for the others) and a reverse-guard so a
+  sound argument is never mislabeled a fallacy (redline 4 applied directly).
   Synthetic-first material, charitable reconstruction before any political
   strawman ruling, `scene_process.fallacies_examined` logging, Gate 10 probes.
   Designed and cross-model reviewed (codex GO-WITH-CHANGES, all findings
