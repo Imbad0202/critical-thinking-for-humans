@@ -16,10 +16,10 @@ improvising from memory.
 |------|--------|-----------|----------|--------|
 | boolean-pythagorean-triples | combinatorics / SAT | arXiv:1605.00723, SAT 2016, drat-trim + Coq/ACL2 (transformation) | auditor | DONE |
 | katago-adversarial | games / ML robustness | arXiv:2211.00241, ICML 2023, reproducible exploit + human replication | auditor | DONE (template-2, inline) |
-| alphatensor-matmul | algorithms / AI discovery | Nature 2022 + Kauers–Moosbauer follow-up; decompositions directly checkable | auditor | ROADMAP |
-| erdos-discrepancy | number theory | Konev–Lisitsa 2014 (SAT, C=2) + Tao 2015 (human proof) | auditor | ROADMAP |
-| keller-dimension-7 | geometry / SAT | Brakensiek–Heule–Mackey–Narváez 2020, formally verified in Coq | auditor | ROADMAP |
-| alphafold-casp14 | structural biology | CASP14 2020, prediction-vs-experiment | forecaster | ROADMAP (forecaster role) |
+| alphatensor-matmul | algorithms / AI discovery | Nature 2022 (s41586-022-05172-4) + Kauers–Moosbauer arXiv:2210.04045; decompositions directly checkable | auditor | DONE (Phase 2 workflow) |
+| erdos-discrepancy | number theory | Konev–Lisitsa arXiv:1402.2184 (SAT, C=2) + Tao arXiv:1509.05363 (human proof, Discrete Analysis 2016) | auditor | DONE (Phase 2 workflow) |
+| keller-dimension-7 | geometry / SAT | Brakensiek–Heule–Mackey–Narváez arXiv:1910.03740, IJCAR 2020, ACL2check formally-verified checker | auditor | DONE (Phase 2 workflow) |
+| alphafold-casp14 | structural biology | CASP14 2020 + Jumper et al. Nature 2021; prediction-vs-experiment | forecaster | DONE (Phase 2 workflow; first forecaster pack) |
 
 ## Notes per candidate
 

@@ -14,10 +14,15 @@ release has been tagged yet — everything to date sits under Unreleased.
   recognition domain with taxonomy.
 - Local passport (`~/.ct-gym/events.jsonl`) plus claude.ai platform overlay
   and zip build.
-- Expedition packs: boolean-pythagorean-triples (combinatorics/SAT, verified
-  against arXiv:1605.00723) and katago-adversarial (games/ML robustness,
-  verified against arXiv:2211.00241 + arXiv:2406.12843) — first cross-domain
-  pair. Pack discovery by `pack_id`, runtime pack boundary, Gate 8 behavioral
-  probes. Cross-domain candidate roadmap in expeditions/ROADMAP.md.
+- Expedition packs (6, cross-domain): boolean-pythagorean-triples
+  (combinatorics/SAT), katago-adversarial (games/ML robustness),
+  alphatensor-matmul (algorithms), erdos-discrepancy (number theory; the
+  machine-vs-human-proof contrast pack), keller-dimension-7 (geometry, ACL2
+  formally-verified), and alphafold-casp14 (structural biology; first
+  forecaster-role pack). Each first-party verified against its source. Pack
+  discovery by `pack_id`, runtime pack boundary, Gate 8 behavioral probes.
+  Phase 2 packs drafted via Workflow fan-out, then every numeric claim
+  re-verified against the primary source before commit; see
+  expeditions/ROADMAP.md.
 - Verification harness: invariant lint (section-scoped), pack schema lint,
   verbatim-block sync, version-consistency lint, mutation tests, CI.
