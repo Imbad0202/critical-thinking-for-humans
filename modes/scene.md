@@ -256,7 +256,9 @@ is excluded from passport logging by default — including `commitment` events
 A fallacy-recognition round records process metrics too, never hit/miss: which
 lenses were examined (`fallacies_examined`) and the parallel per-lens rulings
 (`fallacy_rulings`, each `fallacy` / `not_fallacy` / `insufficient_context`), no
-score. Sensitive BYOM material is excluded from logging by default, same as frame rounds.
+score. The `summary` stays structure-level — topic genre, never the actual
+proposition or any named party (passport/SCHEMA.md Privacy Rules); BYOM political
+arguments are especially easy to leak a name into here. Sensitive BYOM material is excluded from logging by default, same as frame rounds.
 
 ---
 
