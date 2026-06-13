@@ -62,6 +62,12 @@ sed -E \
   -e 's/if no mode file is loaded yet, treat the session as standard/before a mode is chosen, treat the session as standard/' \
   -e 's/the mode files;/the mode sections;/g' \
   -e 's/in the mode files/in the mode sections/g' \
+  -e 's/^Mode files own the specific knobs\./Mode sections own the specific knobs./' \
+  -e 's/^The mode files carry the window-specific scaffold content\./The mode sections carry the window-specific scaffold content./' \
+  -e 's/pending events from the passport buffer \(events already written at a checkpoint/what you have been tracking this session (there is no saved file in this edition/' \
+  -e 's/^stay on disk; use "delete passport" to remove those\)\./to remove; "delete passport" clears your running sense of the session)./' \
+  -e 's/^The passport lives on the user.s machine; its relevant content enters the model context when used\. When a passport section is loaded, all of its content is in scope; the user may flag specific entries for exclusion\. Viewing, deletion, and pause-recording are always available\.$/In this single-file edition there is no saved passport; you keep a light running sense of the session in the conversation only. The user may flag anything for exclusion. Showing it (a summary from memory), clearing it, and pausing it are always available./' \
+  -e 's/everything buffered since the last checkpoint write\. Events from already-completed items are on disk and stay; remove them with "delete passport"\./everything you have been tracking this session. There is no saved file in this edition; "delete passport" clears your running sense of the session./' \
   -e 's/guide-and-judge fourth stance/guide-and-judge stance/' \
   -e 's/The router loads this file when the user.s domain request names/Use this section when the user'"'"'s domain request names/' \
   -e 's/any of these \(see SKILL\.md\)\./any of these./' \
@@ -113,6 +119,10 @@ check_absent 'SKILL\.md' "SKILL.md reference survived"
 check_absent '[Tt]he router loads' "router-loads reference survived"
 # Detective must not call itself the "fourth" stance (only 3 modes ship here).
 check_absent 'fourth stance' "detective fourth-stance label survived"
+# On-disk passport vocabulary that contradicts the no-file header (codex P1).
+check_absent 'stay on disk|on disk and stay|lives on the user.?s machine|checkpoint write|from the passport buffer' "on-disk passport state survived"
+# "mode files" implies the multi-file architecture; this edition has sections.
+check_absent '[Mm]ode files' "mode-files wording survived"
 
 if [ "$fail" -ne 0 ]; then
   echo "" >&2
