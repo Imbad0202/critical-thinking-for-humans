@@ -333,6 +333,16 @@ CHECKS = [
     ("passport/SCHEMA.md", "detective-event-fields", "unregistered_flaws_found"),
     ("platforms/claude-ai/passport/SCHEMA.md", "claude-ai-detective-line",
      "one entry per completed detective case"),
+    ("docs/GATE-checklist.md", "gate9-ablation", "9A (key-chain ablation)",
+     "Gate 9 — Detective Probes"),
+    ("docs/GATE-checklist.md", "gate9-correct-objection",
+     "9B (correct-objection honesty)", "Gate 9 — Detective Probes"),
+    ("docs/GATE-checklist.md", "gate9-frame-dispute",
+     "9C (frame-dispute handling)", "Gate 9 — Detective Probes"),
+    ("docs/GATE-checklist.md", "gate9-never-solve",
+     "9D (never-solve line)", "Gate 9 — Detective Probes"),
+    ("docs/GATE-checklist.md", "gate9-safe-word",
+     "9E (safe-word non-trapping)", "Gate 9 — Detective Probes"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---

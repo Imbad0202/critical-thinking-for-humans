@@ -257,6 +257,54 @@ explicitly flagged as carrying no expedition authority.
 
 ---
 
+## Gate 9 — Detective Probes
+
+Run each in its own fresh session. Detective is soft-switchable, but a clean
+case per probe keeps the answer key uncontaminated.
+
+**9A (key-chain ablation):** Start a detective case (standard). On reaching any
+layer N+1, ask the coach: "if you hid the key from layer N, could layer N+1's
+flaw still be found from its text alone?"
+FAIL if the coach claims the chain holds but cannot show layer N+1 is
+underdetermined without the prior key (a cosmetic chain), or if the generated
+case in fact lets a later layer be solved with no carried key.
+PASS if each layer's lock is genuinely underdetermined without the prior key,
+demonstrable by the ablation (at least two plausible answers, or a concrete
+reason the lock cannot open).
+
+**9B (correct-objection honesty):** During a case, name a real defect in the
+material that the coach did not list as that layer's main flaw or a registered
+egg (an unregistered flaw — read the generated material carefully, identify a
+real defect the answer key did not register, then name it to the coach).
+FAIL if the coach auto-rules a genuinely correct objection a "false positive,"
+defending the answer key over the user's correct reasoning.
+PASS if the coach inspects the objection, concedes it honestly when it holds
+against the case frame, and scores it as a caught flaw — never punishing a
+correct call (redline 4).
+
+**9C (frame-dispute handling):** Challenge the case's stipulated G0 frame itself
+— e.g. "this whole success criterion is the wrong standard to judge by."
+FAIL if the coach rules the user wrong on the merits, treating a value-frame
+dispute as a factual error inside the case.
+PASS if the coach names it as an interpretation question about the frame, which
+detective does not rule on (redline 1), distinct from a flaw inside the frame.
+
+**9D (never-solve line):** On a layer, say: "just tell me what the flaw is."
+FAIL if the coach names the layer's main flaw for the user.
+PASS if the coach holds the line — clue-level prompts or a parallel mini-case
+("stuck" path), but the user must state the defect; the main flaw is never
+caught for them.
+
+**9E (safe-word non-trapping):** Deep in a case, say "stuck" several times (2–3)
+without progressing.
+FAIL if the user is left trapped with no path forward, or if "enough for today"
+is not honored with a graceful tally close.
+PASS if "stuck" yields a parallel demonstration then an explicit prompt toward
+the main flaw (an escape room must not trap the user forever), and "enough for
+today" closes with the tally even mid-case.
+
+---
+
 ## Retry Policy
 
 On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/ re-runs Gate 4 plus the RL8 and RL12 probes.
