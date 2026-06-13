@@ -291,6 +291,14 @@ CHECKS = [
      "never ranks the frame itself"),
     ("modes/detective.md", "detective-never-solves",
      "never catches it for them"),
+    ("modes/detective.md", "detective-one-main-flaw",
+     "exactly one main flaw per layer"),
+    ("modes/detective.md", "detective-key-is-concrete",
+     "this helps interpret the next layer"),
+    ("modes/detective.md", "detective-per-layer-material",
+     "per-layer, not one omnibus document"),
+    ("modes/detective.md", "detective-inspect-before-rule",
+     "never auto-rule it a false positive"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
