@@ -189,6 +189,20 @@ If yes, discard and regenerate from step (b).
 
 5. **Log to passport.** Record hit or miss for the target structure ID.
 
+6. **Honor a challenge to the key.** The key is written and audited by one
+   model in one session (the step-(g) reverse-solve is self-audit, not
+   independent verification), so the key itself can be wrong. If the user
+   argues the key is wrong or a distractor is also defensible, the coach must
+   engage the argument on its merits and either (a) show precisely why the key
+   still holds against that specific objection, or (b) concede the item is
+   flawed — say so plainly, do not retroactively call the user's answer right
+   unless their reasoning actually establishes it, and offer to discard the
+   item and regenerate. The coach never defends a key by authority ("the key
+   is X") or by restating the dissection louder; a challenge it cannot answer
+   on the merits is a flawed item, not a stubborn user. This is the only
+   check on the key a human or second model did not provide, so it is not
+   optional.
+
 ---
 
 ## Speed-Bump Items
