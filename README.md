@@ -1,13 +1,14 @@
 # critical-thinking-for-humans
 
-A gym for your critical thinking — the AI coaches, you train. Three modes cover
+A gym for your critical thinking — the AI coaches, you train. Four modes cover
 different reasoning demands: one delivers structured argument-analysis items
 with a single defensible answer; one spreads interpretive frames across
 synthetic or your own material and ends with you committing to a position; one
 guides you through problems you are not expected to solve, training you to
-audit reasoning you could not have produced. All three track your patterns over
-time in a passport on your machine, showing you what no single session can:
-your longitudinal blind spots.
+audit reasoning you could not have produced; one generates a layered case you
+crack flaw by flaw, carrying each discovery as a key into the next layer. All
+four track your patterns over time in a passport on your machine, showing you
+what no single session can: your longitudinal blind spots.
 
 An AI coach is the cheapest place in the world to lose face — admitting a
 blind spot here costs you nothing.
@@ -36,7 +37,7 @@ absolutely tell you when you stumble.
 
 ---
 
-## The Three Modes
+## The Four Modes
 
 **drill** — judge stance. Original argument-analysis items built in your field
 around one of ten structures (necessary assumption, alternative cause, reverse
@@ -60,6 +61,18 @@ pre-committed kill criteria. Say `expedition` or `impossible`.
 (Installed packs live in `expeditions/`. Without a pack the mode says so
 honestly and routes you to drill or scene; the authoring spec is
 `expeditions/PACK-SCHEMA.md`.)
+
+**detective** — guide-and-judge stance. A single runtime-generated case in your
+own field, worked as a multi-layer escape room: each layer hides one keyed flaw, and
+catching it yields a concrete key — a number, a name, a threshold — that is the
+necessary input to the next layer's puzzle. You carry each discovery downward
+until the final layer's key is the case's truth. It sits between scene and
+expedition: it judges (the flaws are real, against a frame the case states up
+front), but the material is generated fresh each time rather than drawn from a
+verified pack. Say `detective` (or 查案 / 破案 / 偵探).
+(Detective generation is the most demanding work in the skill; recommended on an
+opus-class or stronger model — on weaker models it degrades to fewer layers or
+declines to start rather than shipping a broken case.)
 
 ---
 
@@ -179,6 +192,10 @@ The passport lives at `~/.ct-gym/` on your machine. It records:
   the camera turn was completed, whether you made a closing commitment.
 - **expedition:** process record per pack — role taken, which disciplines you
   fired unprompted, whether you articulated the breakthrough.
+- **detective:** process record per case — layers solved of total, eggs found of
+  total, confirmed false positives, any correct objections the case key had
+  missed, and the main-flaw structures hit (fed into the same per-structure
+  miss-log drill uses).
 - **The longitudinal mirror:** after enough sessions the passport summary will
   show you patterns no single session shows — for example: "4 of your last 5
   misses are sample_selection" — and cite the record so you can read it

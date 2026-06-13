@@ -1,11 +1,11 @@
 ---
 name: critical-thinking-for-humans
-description: Trains the HUMAN user's critical thinking through three modes — drill (argument-analysis items with a single defensible answer, judge stance), scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations), and expedition (guided audit of impossible-tier problems from verified packs). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識.
+description: Trains the HUMAN user's critical thinking through four modes — drill (argument-analysis items with a single defensible answer, judge stance), scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations), expedition (guided audit of impossible-tier problems from verified packs), and detective (a runtime-generated multi-layer case worked as an escape room, guide-and-judge stance). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識, detective, 查案, 破案, 偵探.
 ---
 
 ## What this is
 
-A gym for the user's thinking, not the AI's. Three modes with deliberately different epistemic stances: drill judges (items have a single defensible answer); scene never ranks interpretations; expedition guides an audit of terrain the user is not expected to conquer. On session start, ALWAYS load `shared/redlines.md`, `shared/scaffolding.md`, and `shared/structures.md` — these form the stance-neutral floor that underlies all three modes.
+A gym for the user's thinking, not the AI's. Four modes with deliberately different epistemic stances: drill judges (items have a single defensible answer); scene never ranks interpretations; expedition guides an audit of terrain the user is not expected to conquer; detective guides and judges a runtime-generated layered case. On session start, ALWAYS load `shared/redlines.md`, `shared/scaffolding.md`, and `shared/structures.md` — these form the stance-neutral floor that underlies all four modes.
 
 **Scope (all modes).** This is an educational practice tool for reasoning skills. It does not give legal, medical, financial, psychological, or safety advice, and does not diagnose, treat, or counsel. When a domain like medicine or law supplies practice material, the exercise analyzes the *reasoning* in that material, never the user's own real legal/medical/financial situation. If the user shifts from practice to a real personal situation involving harm, loss, or danger, name the boundary plainly and point to qualified professionals or local emergency/crisis resources (the manipulation domain's Distress Off-Ramp is the worked instance of this).
 
@@ -19,17 +19,20 @@ Routing keywords:
 - `scene` → load `modes/scene.md` (Socratic stance)
 - `byom` → route to scene mode's BYOM path; load `modes/scene.md`
 - `expedition` / `impossible` → load `modes/expedition.md` (guide stance; runs only from a verified expedition pack)
+- `detective` → load `modes/detective.md` (guide-and-judge stance; a runtime-generated multi-layer case). Also zh intent 查案 / 破案 / 偵探.
 - `switch mode` → soft-switch protocol (see below)
 
-Intent routes without a clarifying question: descriptions of analyzing encountered material (news, reports, scenes, someone's proposal) → scene; descriptions of structured practice or getting better at a specific argument operation → drill. Ask the single clarifying question only when intent is genuinely indeterminate.
+Intent routes without a clarifying question: descriptions of analyzing encountered material (news, reports, scenes, someone's proposal) → scene; descriptions of structured practice or getting better at a specific argument operation → drill; descriptions of wanting to work a runtime-generated layered case or escape-room-style mystery (distinct from analyzing material the user brings — that is scene) → detective. Ask the single clarifying question only when intent is genuinely indeterminate.
 
-**Rule:** load exactly one mode file — `modes/drill.md`, `modes/scene.md`, or `modes/expedition.md` — never more than one in the same response context.
+**Model recommendation:** detective mode recommends an opus-class or stronger model. Its case generation (reverse-design key chains, ablation self-checks) is the most demanding work in the skill; weaker models are more likely to produce a cosmetic key chain or an unregistered accidental flaw. The fallback ladder degrades or refuses rather than shipping a broken case, but the experience is best on a stronger model.
+
+**Rule:** load exactly one mode file — `modes/drill.md`, `modes/scene.md`, `modes/expedition.md`, or `modes/detective.md` — never more than one in the same response context.
 
 ---
 
 ## Soft-Switch Protocol (Same-Session Mode Switch)
 
-Switching between drill and scene mid-session is possible; a fresh session gives the cleanest stance separation. Expedition is excluded: switching into or out of expedition mid-session is unsupported — close and start fresh (modes/expedition.md). When the user requests a switch, emit this block verbatim before continuing:
+Switching between drill, scene, and detective mid-session is possible; a fresh session gives the cleanest stance separation. Detective is soft-switchable like drill and scene. Expedition is excluded: switching into or out of expedition mid-session is unsupported — close and start fresh (modes/expedition.md). When the user requests a switch, emit the matching STANCE RESET block verbatim before continuing (the drill↔scene blocks below are the template; for a switch involving detective, state the previous stance as void, name detective's guide-and-judge stance as the new one, and include the matching Unload/load file line).
 
 **drill → scene:**
 

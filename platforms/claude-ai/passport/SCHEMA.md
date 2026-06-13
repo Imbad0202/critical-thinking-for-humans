@@ -41,6 +41,9 @@ last_session: 2026-06-12
 - `expeditions` — one entry per completed expedition: `pack_id role
   disciplines_unprompted` (IDs from modes/expedition.md); absent until one
   completes.
+- `detective` — one entry per completed detective case: `layers_solved/layers_total
+  eggs_found/eggs_total false_positives unregistered_flaws_found structures_hit`
+  (IDs from shared/structures.md); absent until one is completed.
 - All values above are sample data illustrating the format — regenerate from the
   live tally, never copy them.
 
