@@ -284,6 +284,13 @@ CHECKS = [
      "Weak-model fallback ladder"),
     ("modes/drill.md", "fallback-refuse",
      "refuse to generate this item"),
+    # --- v1.4: detective mode (4th mode) ---
+    ("modes/detective.md", "detective-positioning",
+     "Position between scene and expedition"),
+    ("modes/detective.md", "detective-judges-not-ranks",
+     "never ranks the frame itself"),
+    ("modes/detective.md", "detective-never-solves",
+     "never catches it for them"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
