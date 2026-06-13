@@ -88,6 +88,25 @@ Scene mode must cycle through all six lenses across each scene.
 
 ---
 
+## Fallacy-Recognition Lenses
+
+Scene's **fallacy-recognition track** (modes/scene.md) uses these five lenses.
+They are NOT frames — frames are interpretive and never ranked (redline 1);
+fallacy lenses adjudicate the *form* of an argument and DO return a ruling
+(`fallacy` / `not_fallacy` / `insufficient_context`). Each lens carries a
+**reverse-guard**: the legitimate move it must NOT mislabel as the fallacy.
+Lens IDs are not loggable structure IDs — they never appear in `drill_result.structure`; the fallacy track logs them in `scene_process.fallacies_examined`.
+
+| Lens ID | Detects | Reverse-guard (must NOT mislabel) |
+|---------|---------|-----------------------------------|
+| `fallacy_false_dilemma` | The argument assumes only A or B, hiding a real third option. | Some situations genuinely have only two options — not every binary is a false dilemma. |
+| `fallacy_ad_hominem` | Attacks the arguer's character or identity instead of the argument — the person-level fact is offered as a substitute for rebuttal, not as evidence of bias (which would be a fair challenge; see strawman for distorting the argument itself). | A fair challenge to a conflict of interest is NOT ad hominem; equally, challenging a documented pattern of systematic error is NOT ad hominem. |
+| `fallacy_strawman` | Distorts the opponent's argument, then attacks the distortion. | Accurately restating an opponent's weak argument is NOT a strawman. |
+| `fallacy_appeal` | Appeals to an irrelevant authority, to emotion, or to the crowd. | Appealing to a relevant expert on their own subject is NOT a fallacy; first-hand emotional testimony is NOT an appeal to emotion; an empirical consensus among domain experts is NOT an appeal to the crowd. |
+| `fallacy_equivocation` | The same term is swapped between two meanings across the argument. | A word shifting sense naturally across contexts is NOT equivocation; the swap must occur within one inferential chain. |
+
+---
+
 ## Metrics Note
 
 Drill records hit/miss per structure ID — that is how the gym tracks which muscles
