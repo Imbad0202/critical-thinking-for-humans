@@ -10,7 +10,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# (file, label, required substring)
+# (file, label, required substring) or (file, label, required substring, h2_title)
+# With h2_title, the substring must appear inside that H2 section's body —
+# a sentence moved out of its section is a FAIL even if present elsewhere.
 CHECKS = [
     # --- shared/structures.md (Task 2) ---
     ("shared/structures.md", "canonical-id-rule",
@@ -256,12 +258,14 @@ CHECKS = [
      "any file declaring a `pack_id` field"),
     ("modes/expedition.md", "pack-boundary-runtime",
      "The pack boundary holds at runtime too"),
-    ("docs/GATE-checklist.md", "gate8-no-pack-refusal", "8A (no-pack refusal)"),
+    ("docs/GATE-checklist.md", "gate8-no-pack-refusal", "8A (no-pack refusal)",
+     "Gate 8 — Expedition Probes"),
     ("docs/GATE-checklist.md", "gate8-hint-discipline",
-     "8B (hint discipline, auditor)"),
+     "8B (hint discipline, auditor)", "Gate 8 — Expedition Probes"),
     ("docs/GATE-checklist.md", "gate8-breakthrough-stop",
-     "8C (breakthrough stop)"),
-    ("docs/GATE-checklist.md", "gate8-pack-boundary", "8D (pack boundary)"),
+     "8C (breakthrough stop)", "Gate 8 — Expedition Probes"),
+    ("docs/GATE-checklist.md", "gate8-pack-boundary", "8D (pack boundary)",
+     "Gate 8 — Expedition Probes"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
@@ -273,9 +277,9 @@ _OVERLAY_MAP = {
     "SKILL.md": "platforms/claude-ai/SKILL.md",
 }
 CHECKS += [
-    (_OVERLAY_MAP[rel], f"claude-ai-{label}", needle)
-    for rel, label, needle in list(CHECKS)
-    if rel in _OVERLAY_MAP
+    (_OVERLAY_MAP[entry[0]], f"claude-ai-{entry[1]}", *entry[2:])
+    for entry in list(CHECKS)
+    if entry[0] in _OVERLAY_MAP
 ]
 
 # (file, label, substring that must be ABSENT)
@@ -289,15 +293,30 @@ FORBIDDEN = [
 ]
 
 
-def main() -> int:
+def h2_section_body(text: str, title: str) -> str | None:
+    """Return the body of the H2 section with the given title, or None."""
+    lines = text.splitlines()
+    start = None
+    for i, line in enumerate(lines):
+        if start is None:
+            if line.strip() == f"## {title}":
+                start = i + 1
+        elif line.startswith("## "):
+            return "\n".join(lines[start:i])
+    return "\n".join(lines[start:]) if start is not None else None
+
+
+def main(root: Path = ROOT) -> int:
     failures = 0
     missing_files = set()
     texts = {}
-    for rel, label, needle in CHECKS:
+    for entry in CHECKS:
+        rel, label, needle = entry[0], entry[1], entry[2]
+        section = entry[3] if len(entry) > 3 else None
         if rel in missing_files:
             failures += 1
             continue
-        path = ROOT / rel
+        path = root / rel
         if rel not in texts:
             if not path.exists():
                 # One FAIL line per missing file, but every check on it still
@@ -307,14 +326,21 @@ def main() -> int:
                 failures += 1
                 continue
             texts[rel] = path.read_text(encoding="utf-8")
-        text = texts[rel]
-        if needle.strip() in text:
+        scope = texts[rel]
+        if section is not None:
+            scope = h2_section_body(scope, section)
+            if scope is None:
+                print(f"FAIL [{label}] H2 section missing in {rel}: {section!r}")
+                failures += 1
+                continue
+        if needle.strip() in scope:
             print(f"PASS [{label}]")
         else:
-            print(f"FAIL [{label}] missing in {rel}: {needle!r}")
+            where = f"section {section!r} of {rel}" if section else rel
+            print(f"FAIL [{label}] missing in {where}: {needle!r}")
             failures += 1
     for rel, label, needle in FORBIDDEN:
-        path = ROOT / rel
+        path = root / rel
         if not path.exists():
             print(f"FAIL [{rel}] file missing")
             failures += 1

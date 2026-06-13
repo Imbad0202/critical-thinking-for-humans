@@ -1,0 +1,33 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: checks-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Invariant lint
+        run: python3 scripts/check_invariants.py
+      - name: Pack schema lint
+        run: python3 scripts/check_pack_schema.py
+      - name: Verbatim block sync
+        run: python3 scripts/check_verbatim_blocks.py
+      - name: Version consistency
+        run: python3 scripts/check_version_consistency.py
+      - name: Mutation + unit tests
+        run: |
+          pip install --quiet pytest
+          python3 -m pytest scripts/ -q
+      - name: claude.ai zip build
+        run: bash scripts/build_claude_ai_zip.sh

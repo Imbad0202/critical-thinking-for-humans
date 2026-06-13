@@ -174,11 +174,11 @@ Discipline tags follow modes/expedition.md, The Six Disciplines.
   program, far simpler than the solvers, running after the fact; trust
   rests on the checker plus the published artifact, not on the search.
 
-- **S8 — close the original question.** The finite result plus S1's
-  restriction argument settles the infinite question: ℕ cannot be
-  partitioned into two parts each free of Pythagorean triples. Graham's
-  prize question is resolved in the negative for two colors. Check: pure
-  modus ponens from S1 and S4–S7.
+- **S8 — close the original question.** `milestone_rewrite` (final claim in
+  the chain) The finite result plus S1's restriction argument settles the
+  infinite question: ℕ cannot be partitioned into two parts each free of
+  Pythagorean triples. Graham's prize question is resolved in the negative
+  for two colors. Check: pure modus ponens from S1 and S4–S7.
 
 ---
 
