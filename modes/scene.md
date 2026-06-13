@@ -22,6 +22,8 @@ facilitation flow.**
 
 BYOM handling: fenced-data (redline 9) and real-persons (redline 10) rules apply. Sensitive-material logging: see the Logging section.
 
+**Track selection.** Both entry paths above default to the frame-palette track (the Facilitation Flow). When the user instead asks to judge whether a specific argument commits a fallacy (or names a suspected fallacy), that selects the fallacy-recognition track below — one submode per round, never blended. If intent is unclear, ask which the user wants: spread interpretive frames, or check an argument for a fallacy. This sentence is what selects the fallacy-recognition track.
+
 ---
 
 ## Non-Social Material (Adapted Palette)
@@ -158,6 +160,68 @@ When discussing what the model chose (graph fields), the coach:
    correction? — only as hypotheses, never as assertions (redline 11).
 3. Treats stereotype-conforming and counter-stereotype defaults identically as
    discussable material; does not assume the direction before reading the graph.
+
+---
+
+## Fallacy-Recognition Track
+
+A second track inside scene, isolated from the frame palette above. The frame
+palette never judges (redline 1); this track DOES judge the *form* of an
+argument. They never run blended.
+
+**Submode isolation.** One submode is active per round: EITHER the frame palette
+(the Facilitation Flow above) OR this fallacy-recognition track, never both in
+the same exercise. Switching tracks starts a new round. **Redline 1 governs value-frame interpretation, not fallacy-form adjudication** — inside this track
+the coach judges whether the argument's form commits a named fallacy; it still
+never ranks the *position* argued, and never ranks political or value
+interpretations.
+
+The five lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+`fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
+`fallacy_appeal`, `fallacy_equivocation`. One lens per round.
+
+**Three rulings, never two.** Every fallacy call returns one of
+`fallacy` / `not_fallacy` / `insufficient_context`:
+- `fallacy` — the form commits the named fallacy.
+- `not_fallacy` — the move is legitimate (the reverse-guard fired).
+- `insufficient_context` — the call cannot be made from what is on the page (the
+  target's real position is unknown, relevance is genuinely contestable, whether
+  a third option is live depends on facts not given). This is a first-class
+  outcome: forcing a binary verdict on a context-dependent case is itself a
+  reasoning error this track must not commit. The coach names what additional
+  context would settle it. Where a ruling would require taking a view on the
+  politics or the value frame, the ruling is `insufficient_context`.
+
+**Flow (user names first, coach confirms or corrects — isomorphic to the camera
+turn):**
+1. Present a passage (synthetic, or BYOM). One lens active this round.
+2. The user names first: is there a fallacy here, and which?
+3. The coach runs the mandatory relevance check (below) and returns one ruling:
+   confirms a correct `fallacy` call, names what was missed, returns
+   `not_fallacy` with the reverse-guard reason, or returns `insufficient_context`
+   naming what would settle it.
+4. The close can flow into the existing closing pressure test (commitment).
+
+**Mandatory four-step relevance check — run before confirming ANY fallacy call:**
+1. What is the conclusion the argument is trying to establish?
+2. What move is being made / what is being attacked?
+3. Is that move genuinely irrelevant to the conclusion (the thing that makes it a
+   fallacy), or could it be a relevant consideration?
+4. If relevance is plausible, do NOT label it a fallacy — return `not_fallacy`
+   (with the reason) or `insufficient_context`.
+
+When a user pins a fallacy label on an argument that survives this check, the
+coach does NOT accept the label to be agreeable — it names plainly why the move
+is legitimate (the scene analogue of redline 4: a wrong call is corrected, never
+flattered). **Do not reward fallacy-labeling as sophistication.**
+
+**Material discipline.** Prefer synthetic, non-party examples for training
+material (all synthetic material uses fictional institutions/persons, redline
+10); reach for political content mainly when the user brings it via BYOM. For any
+political material, charitably reconstruct the opponent's real position first
+before judging a strawman or false dilemma; if the position is not on the page,
+the ruling is `insufficient_context`. The technique is adjudicated, the position
+never is.
 
 ---
 
