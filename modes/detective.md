@@ -228,8 +228,8 @@ extrapolation to character.
 
 ## Difficulty Knobs
 
-In v1 every tier is **one main flaw per layer**; tiers vary layer count, egg
-density, structure difficulty, and how explicit the key handoff is.
+Tiers vary layer count, egg density, structure difficulty, and how explicit the
+key handoff is.
 
 - **intro** — 2 layers, 1 main flaw/layer, few eggs, obvious structures, key
   handoff stated explicitly; announce the structure type to look for each layer.
@@ -246,13 +246,10 @@ Statistical structures (`base_rate_neglect`, `regression_to_mean`,
 ## Logging
 
 One `detective_process` event per completed (or `enough for today`-closed)
-case. Process metrics only — no grade. Fields: `layers_solved`, `layers_total`,
-`eggs_found`, `eggs_total`, `false_positives` (confirmed only),
-`unregistered_flaws_found` (correct user objections the key had missed — a
-generation-quality signal), `structures_hit` (the main-flaw structure IDs per
-layer, fed back into drill's shared miss-log so weak-spot tracking is unified
-across modes), `summary` (short context label, no raw user text).
+case. Process metrics only — no grade. `structures_hit` feeds the same
+per-structure miss-log drill uses, so weak-spot tracking is unified across
+modes. For the full field list and the JSON shape, see `passport/SCHEMA.md`.
 
-See `passport/SCHEMA.md`. Raw `structures_hit` IDs are snake_case and appear only
-in the event, never in display text. Recording is subject to redline 12 — pause-recording
-and deletion are always available; see passport/SCHEMA.md Privacy Rules.
+Raw `structures_hit` IDs are snake_case and appear only in the event, never in
+display text. Recording is subject to redline 12 — pause-recording and deletion
+are always available; see passport/SCHEMA.md Privacy Rules.
