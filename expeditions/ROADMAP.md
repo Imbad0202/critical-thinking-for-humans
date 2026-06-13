@@ -51,12 +51,66 @@ improvising from memory.
   an audit target. Revisit only if a genuinely verified humanities result
   appears.
 
-## Phase 2 — scale-out
+## Phase 2 — scale-out (DONE)
 
-Once katago-adversarial has stabilised the pack template (second instance),
-the remaining ROADMAP packs become a known work-list. At that point a Workflow
-pipeline is justified — one agent per source: read first-party → draft pack →
-pass check_pack_schema.py → human (maintainer) converges and re-verifies every
-numeric claim against the source. First-party verification strength stays the
-gate: a workflow draft is a draft, not a verified pack, until the numbers are
-re-checked against the original.
+Once katago-adversarial stabilised the pack template (second instance), the
+remaining ROADMAP packs became a known work-list and were drafted via a
+Workflow fan-out — one agent per source: read first-party → draft pack →
+pass check_pack_schema.py → maintainer converges and re-verifies every numeric
+claim against the source. First-party verification strength stayed the gate: a
+workflow draft is a draft, not a verified pack, until the numbers are
+re-checked against the original. (Re-verification caught a real fluent-wrongness
+trap — the AlphaTensor 5×5-mod-2 "96" figure is not in the Nature text — which
+is exactly why the gate exists.)
+
+## Phase 3 — vetted candidate pool
+
+Survey of 2017–2025 results against the four bars (solved / first-party
+verified / beyond-single-human / first-party-checkable) + dual-use. PASSes
+below; rejected candidates and why are recorded so the search is not repeated.
+None authored yet — each is still a first-party verification session.
+
+Ranked by transfer value (domain spread away from SAT-math + provenance
+cleanliness + accessibility):
+
+| candidate | domain | source | verification | role | note |
+|-----------|--------|--------|--------------|------|------|
+| busy-beaver-5 | computability | arXiv:2509.12337 (2024) | Coq-verified; 181M machines enumerated; BB(5)=47,176,870 | climber | top pick — new domain, cleanest provenance, first BB value ever formally verified |
+| alphaproof-imo-2024 | formal math / ML | Nature s41586-025-09833-y | Lean machine-checked; public proof mirror | auditor | read a Lean proof you could not write; strongest ML-math provenance |
+| lams-problem | design theory | arXiv:2012.04715 (2020) | ~1 TB DRAT nonexistence certificate, third-party checkable | auditor | audit a NEGATIVE result (no projective plane of order 10); replaces unverifiable 1989 search |
+| chromatic-number-plane-5 | geometry / graph coloring | arXiv:1804.02385 (2018) | 1581-vertex unit-distance graph, non-4-colourability SAT-verifiable | forecaster | amateur-discovered; parent problem (CNP) STILL OPEN — frame as "is this the answer?" (it isn't) |
+| ramsey-4-5-hol4 | Ramsey / graph theory | arXiv:2404.01761, ITP 2024 | HOL4 kernel-verified; re-proves unverified 1995 R(4,5)=25 | auditor | "why re-prove a known result" lesson |
+| alphageometry-imo | geometry / ML | Nature s41586-023-06747-5 (2024) | DDAR symbolic engine + human experts; 25/30 IMO-shortlist | auditor | human-readable proofs; partly redundant with alphaproof |
+| pentago-solved | games | arXiv:1404.0743 (2014) | strong solution by parallel retrograde analysis; open-source artifact | climber | games-domain spread; fully reproducible |
+| schur-number-5 | combinatorics / SAT | arXiv:1711.08076, AAAI 2018 | 2 PB DRAT→LRAT, ACL2-verified checker | auditor | clean but SAT-family-adjacent to BPT/Keller — author only for completeness |
+
+**Recommended next quartet (four domains, four verification styles):**
+busy-beaver-5 (Coq / computability), alphaproof-imo-2024 (Lean / formal-ML),
+lams-problem (DRAT / design theory), chromatic-number-plane-5 (SAT-graph /
+geometry).
+
+### Borderline — author only with the contestation built in
+
+- **funsearch-cap-set** (Nature s41586-023-06924-6, 2023): the size-512 dim-8
+  construction is trivially checkable, but it improves a *lower bound* on an
+  OPEN problem. Pack must audit the construction, never imply the cap-set
+  problem is solved. Forecaster role.
+- **alphaevolve-48-mult** (arXiv:2506.13242, 2025): the 4×4 non-commutative
+  48-multiplication result is rational-checkable, but Waksman (1970) already did
+  46 over commutative rings, so the "beats Strassen" framing is contested. Only
+  author if the pack teaches the contestation itself — pedagogically rich but
+  messy.
+
+### Rejected (recorded so the search is not repeated)
+
+- **Viazovska sphere packing dim 8/24** (2016), **Huang sensitivity
+  conjecture** (2019), **polynomial Freiman-Ruzsa** (Gowers-Green-Manners-Tao
+  2023): all are HUMAN proofs — fail the beyond-single-human bar. The
+  PFR/Kepler-style Lean formalizations are first-party checkable but formalize a
+  human result; usable only as formal-verification-auditing packs, never as
+  "AI/computation solved it."
+- **Generic endgame tablebases / Connect Four / older checkers**: either
+  pedagogically thin (no single result to audit), or predate the AI-class-search
+  era. Prefer a named solved game (Pentago) instead.
+- **AlphaEvolve engineering optimisations** (kissing-number dim 11, scheduling):
+  mostly lack independent first-party math verification — fail bar 2.
