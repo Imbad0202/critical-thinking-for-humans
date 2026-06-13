@@ -149,7 +149,7 @@ CHECKS = [
     # --- review round 1: new rule sentences ---
     ("shared/structures.md", "technique-not-loggable",
      "procedure, not a loggable structure"),
-    ("shared/structures.md", "ten-structures", "ten loggable structure IDs"),
+    ("shared/structures.md", "twelve-structures", "twelve loggable structure IDs"),
     ("shared/structures.md", "structure-base-rate-neglect", "base_rate_neglect"),
     ("shared/structures.md", "structure-regression-to-mean", "regression_to_mean"),
     ("shared/structures.md", "structure-simpson-paradox", "simpson_paradox"),

@@ -11,12 +11,14 @@ Canonical IDs are snake_case English and never localized; the display layer tran
 
 ## Reasoning Structures
 
-The ten loggable structure IDs — every `drill_result.structure` value comes
+The twelve loggable structure IDs — every `drill_result.structure` value comes
 from this table, with one exception: `manipulation_spot` items log technique
 IDs from `shared/manipulation-taxonomy.md`. The first seven are causal-inductive;
-the last three (`base_rate_neglect`, `regression_to_mean`, `simpson_paradox`)
-are statistical-reasoning structures and assume the user has basic numeracy —
-prefer them at standard tier and above, not intro.
+three (`base_rate_neglect`, `regression_to_mean`, `simpson_paradox`) are
+statistical-reasoning structures that assume basic numeracy — prefer them at
+standard tier and above, not intro; the last two (`circular_reasoning`,
+`hasty_generalization`) are formal/inductive structures with no numeracy gate,
+drillable at every tier.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
