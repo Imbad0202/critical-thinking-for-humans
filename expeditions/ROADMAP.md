@@ -79,27 +79,28 @@ cleanliness + accessibility):
 | alphaproof-imo-2024 | formal math / ML | Nature s41586-025-09833-y | Lean machine-checked; public proof mirror | auditor | DONE (Phase 3 workflow). read a Lean proof you could not write; strongest ML-math provenance |
 | lams-problem | design theory | arXiv:2012.04715 (2020) | DRAT nonexistence certificate for the hardest sub-case (a few GB, NOT the ~1 TB the survey guessed), third-party checkable; the 2020 redo found consistency issues in the 1989/2011 searches | auditor | DONE (Phase 3 workflow). audit a NEGATIVE result (no projective plane of order 10); the 2020 SAT redo made the 1989 result independently verifiable for the first time |
 | chromatic-number-plane-5 | geometry / graph coloring | arXiv:1804.02385 (2018) | 1581-vertex unit-distance graph, non-4-colourability SAT-verifiable | forecaster | DONE (Phase 3 workflow). amateur-discovered; parent problem (CNP) STILL OPEN — frame as "is this the answer?" (it isn't) |
-| ramsey-4-5-hol4 | Ramsey / graph theory | arXiv:2404.01761, ITP 2024 | HOL4 kernel-verified; re-proves unverified 1995 R(4,5)=25 | auditor | "why re-prove a known result" lesson |
-| alphageometry-imo | geometry / ML | Nature s41586-023-06747-5 (2024) | DDAR symbolic engine + human experts; 25/30 IMO-shortlist | auditor | human-readable proofs; partly redundant with alphaproof |
-| pentago-solved | games | arXiv:1404.0743 (2014) | strong solution by parallel retrograde analysis; open-source artifact | climber | games-domain spread; fully reproducible |
-| schur-number-5 | combinatorics / SAT | arXiv:1711.08076, AAAI 2018 | 2 PB DRAT→LRAT, ACL2-verified checker | auditor | clean but SAT-family-adjacent to BPT/Keller — author only for completeness |
+| ramsey-4-5-hol4 | Ramsey / graph theory | arXiv:2404.01761, ITP 2024 | HOL4 kernel-verified; re-proves the 1995 R(4,5)=25 (which rested on trust-the-program, not a kernel-checked proof) | auditor | DONE (Phase 3 remainder). "why re-prove a believed result" = belief vs verification |
+| alphageometry-imo | geometry / ML | Nature s41586-023-06747-5 (2024) | symbolic deduction engine + LM; 25/30 olympiad-geometry benchmark | auditor | DONE (Phase 3 remainder). human-readable + symbolically checked vs alphaproof's machine-formal Lean |
+| pentago-solved | games | arXiv:1404.0743 (2014) | strongly solved, parallel in-core retrograde analysis; 3.0×10^15 states; open-source | climber | DONE (Phase 3 remainder). first-player win; games-domain spread |
+| schur-number-5 | combinatorics / SAT | arXiv:1711.08076, AAAI 2018 | S(5)=160; two-petabyte DRAT; formally-verified checker | auditor | DONE (Phase 3 remainder). a+b=c monochromatic / Schur-Ramsey framing, 2 PB scale (differentiated from BPT/Keller) |
 
 **Recommended next quartet (four domains, four verification styles):**
 busy-beaver-5 (Coq / computability), alphaproof-imo-2024 (Lean / formal-ML),
 lams-problem (DRAT / design theory), chromatic-number-plane-5 (SAT-graph /
 geometry).
 
-### Borderline — author only with the contestation built in
+### Borderline — DONE, authored WITH the contestation built in
 
-- **funsearch-cap-set** (Nature s41586-023-06924-6, 2023): the size-512 dim-8
-  construction is trivially checkable, but it improves a *lower bound* on an
-  OPEN problem. Pack must audit the construction, never imply the cap-set
-  problem is solved. Forecaster role.
-- **alphaevolve-48-mult** (arXiv:2506.13242, 2025): the 4×4 non-commutative
-  48-multiplication result is rational-checkable, but Waksman (1970) already did
-  46 over commutative rings, so the "beats Strassen" framing is contested. Only
-  author if the pack teaches the contestation itself — pedagogically rich but
-  messy.
+- **funsearch-cap-set** (Nature s41586-023-06924-6, 2023): DONE (forecaster).
+  Pack audits the dim-8 size-512 construction and the γ ≥ 2.2184 bound as
+  lower bounds on an OPEN problem, and re-attributes the widely-cited 2.2202
+  figure to Ellenberg (human), not the AI — grounded in Ernest Davis's
+  first-party critique. Never implies the cap-set problem is solved.
+- **alphaevolve-48-mult** (AlphaEvolve white paper arXiv:2506.13131 + rational
+  follow-up Dumas–Pernet–Sedoglavic arXiv:2506.13242, 2025): DONE (auditor).
+  The 48 is real but **only over the complex numbers**; Waksman (1970) did 4×4
+  in 46 over commutative rings, so the contestation IS the pack — what was
+  beaten, in what algebraic setting, and what prior work the headline omits.
 
 ### Rejected (recorded so the search is not repeated)
 
