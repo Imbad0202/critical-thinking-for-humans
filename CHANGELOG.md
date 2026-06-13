@@ -15,6 +15,17 @@ release has been tagged yet — everything to date sits under Unreleased.
   + three statistical: base_rate_neglect, regression_to_mean, simpson_paradox
   + two formal: circular_reasoning, hasty_generalization),
   manipulation-recognition domain with taxonomy.
+- **Scene fallacy-recognition track** — a second, isolated track inside scene
+  for five formal/persuasive fallacies (false dilemma, ad hominem, strawman,
+  appeal-to-X, equivocation) the frame palette cannot key. One submode per round
+  (frames stay never-ranked; the fallacy track judges argument *form*, not the
+  position). Three rulings — `fallacy` / `not_fallacy` / `insufficient_context` —
+  with a mandatory four-step relevance check and a reverse-guard so a sound
+  argument is never mislabeled a fallacy (the scene analogue of redline 4).
+  Synthetic-first material, charitable reconstruction before any political
+  strawman ruling, `scene_process.fallacies_examined` logging, Gate 10 probes.
+  Designed and cross-model reviewed (codex GO-WITH-CHANGES, all findings
+  addressed) before implementation.
 - Local passport (`~/.ct-gym/events.jsonl`) plus claude.ai platform overlay
   and zip build.
 - Expedition packs (10, cross-domain). Phase 1-2: boolean-pythagorean-triples

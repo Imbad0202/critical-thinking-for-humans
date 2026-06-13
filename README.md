@@ -52,6 +52,13 @@ reports, a proposal — byom (bring your own material)). All six interpretive fr
 steelmanned. The camera turns on your own reading too: your interpretation is
 examined with the same rigor as the others. Ends with you committing to a
 position and defending it against the strongest objection.
+Scene also runs a separate **fallacy-recognition track**: bring an argument and
+the coach helps you judge whether it commits a named fallacy — false dilemma, ad
+hominem, strawman, a fallacious appeal, equivocation — with three honest rulings
+(it is a fallacy, it is not, or there is not enough context to say), and a guard
+against the opposite mistake of crying "fallacy" at a sound argument. One track
+runs at a time; frames are never ranked, but a fallacy in the form of an argument
+is named plainly.
 
 **expedition** — guide stance. Problems that stayed open for decades and fell
 to AI-class search, run only from curated packs with verified solutions —
