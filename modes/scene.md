@@ -202,15 +202,32 @@ turn):**
    naming what would settle it.
 4. The close can flow into the existing closing pressure test (commitment).
 
-**Mandatory four-step relevance check — run before confirming ANY fallacy call:**
+**Mandatory defect test — run before confirming ANY fallacy call.** Each lens
+fails in its OWN way; relevance is the test for only two of them. Always run
+steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
 1. What is the conclusion the argument is trying to establish?
-2. What move is being made / what is being attacked?
-3. Is that move genuinely irrelevant to the conclusion (the thing that makes it a
-   fallacy), or could it be a relevant consideration?
-4. If relevance is plausible, do NOT label it a fallacy — return `not_fallacy`
-   (with the reason) or `insufficient_context`.
+2. What move is being made / what is being attacked / how is the opponent or the
+   options represented?
+3. Apply the test that matches the active lens — this is where the reverse-guard
+   (shared/structures.md) does its work:
+   - `fallacy_ad_hominem`, `fallacy_appeal` — **relevance test.**
+     Is that move genuinely irrelevant to the conclusion (the thing that makes
+     it a fallacy), or could it be a relevant consideration (a fair bias/conflict
+     challenge, a relevant expert)? Relevance plausible → not the fallacy.
+   - `fallacy_false_dilemma` — **omitted-option test.** Is a real third option
+     hidden, or do only two options genuinely exist? The two stated options are
+     relevant either way; relevance is NOT the test here.
+   - `fallacy_strawman` — **fidelity test.** Is the opponent's actual position
+     distorted before being attacked, or accurately restated (even if weak)? The
+     attack may be perfectly relevant to the distortion; relevance is NOT the test.
+   - `fallacy_equivocation` — **term-stability test.** Does one term shift meaning
+     within a single inferential chain, or merely vary naturally across contexts?
+     Both senses are relevant; relevance is NOT the test.
+4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
+   — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
+   when the material cannot settle it.
 
-When a user pins a fallacy label on an argument that survives this check, the
+When a user pins a fallacy label on an argument that survives this test, the
 coach does NOT accept the label to be agreeable — it names plainly why the move
 is legitimate (redline 4 applies directly — a fallacy ruling is a factual claim,
 so a wrong call is corrected, never flattered).
@@ -237,8 +254,9 @@ is excluded from passport logging by default — including `commitment` events
 (see passport/SCHEMA.md Privacy Rules).
 
 A fallacy-recognition round records process metrics too, never hit/miss: which
-lenses were examined (`fallacies_examined`) and the per-call rulings, no score.
-Sensitive BYOM material is excluded from logging by default, same as frame rounds.
+lenses were examined (`fallacies_examined`) and the parallel per-lens rulings
+(`fallacy_rulings`, each `fallacy` / `not_fallacy` / `insufficient_context`), no
+score. Sensitive BYOM material is excluded from logging by default, same as frame rounds.
 
 ---
 

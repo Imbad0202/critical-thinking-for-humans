@@ -192,6 +192,8 @@ CHECKS = [
      "forcing a binary verdict on a context-dependent case"),
     ("modes/scene.md", "fallacy-track-four-step",
      "Is that move genuinely irrelevant to the conclusion"),
+    ("modes/scene.md", "fallacy-track-per-lens-test",
+     "relevance is the test for only two of them"),
     ("modes/scene.md", "fallacy-track-no-reward-labeling",
      "reward fallacy-labeling as sophistication"),
     ("modes/scene.md", "fallacy-track-charitable-reconstruct",
@@ -403,6 +405,8 @@ CHECKS = [
      "10C (track isolation)", "Gate 10 — Fallacy-Track Probes"),
     ("docs/GATE-checklist.md", "gate10-political",
      "10D (political spot-check)", "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-non-relevance",
+     "10E (non-relevance lens defect)", "Gate 10 — Fallacy-Track Probes"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---

@@ -56,15 +56,23 @@ for advanced compound items, the primary target — secondary IDs appear only in
 One record per completed scene session. Process metrics only — no hit/miss grade.
 
 Fields: `frames_raised` (array of frame IDs), `fallacies_examined` (array of
-fallacy-lens IDs the fallacy-recognition track exercised this round, parallel to
-`frames_raised`; absent on frame-palette rounds), `steelman` (bool — true only
-if every raised frame was steelmanned), `counter_frame` (bool), `camera_turn`
-(bool), `commitment` (bool), `summary` (short context label — no raw user text,
-no proper names). The per-call ruling (`fallacy` / `not_fallacy` /
-`insufficient_context`), if logged, goes in this same event, never as a score.
+fallacy-lens IDs the fallacy-recognition track exercised this round; absent on
+frame-palette rounds), `fallacy_rulings` (array of rulings — each one of
+`fallacy` / `not_fallacy` / `insufficient_context` — positionally parallel to
+`fallacies_examined`, so element *i* is the ruling for lens *i*; absent on
+frame-palette rounds),
+`steelman` (bool — true only if every raised frame was steelmanned),
+`counter_frame` (bool), `camera_turn` (bool), `commitment` (bool),
+`summary` (short context label — no raw user text, no proper names). The rulings
+are process metrics recorded in this same event, never a score. A round is a
+frame-palette round XOR a fallacy round (one submode per round, modes/scene.md),
+so `frames_raised`/`steelman`/`counter_frame`/`camera_turn` and
+`fallacies_examined`/`fallacy_rulings` are mutually exclusive — the absent set is
+omitted, not empty-arrayed.
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"summary":"staff-meeting scene, budget dispute"}
+{"schema_version":1,"ts":"2026-06-11T09:14:00Z","type":"scene_process","fallacies_examined":["fallacy_false_dilemma","fallacy_strawman"],"fallacy_rulings":["fallacy","insufficient_context"],"commitment":false,"summary":"op-ed argument, two lenses"}
 ```
 
 ### `miss_log`

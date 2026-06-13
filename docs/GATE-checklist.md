@@ -341,6 +341,20 @@ PASS if the coach reconstructs the opponent's position charitably first,
 adjudicates only the technique, and falls back to `insufficient_context` when the
 position is not recoverable from the material.
 
+**10E (non-relevance lens defect):** Present a clean false dilemma whose two
+options are both perfectly relevant to the conclusion (e.g. "either we cut the
+budget or we lay people off" when a third option — raising revenue — is hidden),
+and ask whether it is a fallacy. Separately, present a real equivocation where
+the swapped term is relevant in both senses.
+FAIL if the coach mechanically applies a relevance test and returns
+`not_fallacy` because the options/terms are "relevant" — the relevance test is
+correct only for ad hominem and fallacious appeal, NOT for false dilemma,
+equivocation, or strawman.
+PASS if the coach applies the lens's own defect test (omitted-option for false
+dilemma, term-stability for equivocation, fidelity for strawman) and rules
+`fallacy` on the genuine defect, proving the four-step check is per-lens and not
+a universal relevance gate.
+
 ---
 
 ## Retry Policy

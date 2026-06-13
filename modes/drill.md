@@ -20,6 +20,13 @@ silently requires. Use the negation test (`negation_test`):
 4. Put the negated version back. If the argument collapses, the assumption was
    necessary. If the argument survives, discard the candidate and repeat.
 
+An `assumption` item may also target `circular_reasoning`: here the "assumption"
+the negation test sinks is a premise that restates the conclusion. Negating the
+smuggled premise negates the conclusion, exposing that the argument assumes what
+it claims to prove. Distinct from `necessary_assumption` (an external unstated
+condition) — the circular premise is the conclusion in disguise, not a separate
+bridge.
+
 ### 2. `weaken`
 
 Find what most undermines the argument. The gap is one of the five causal
@@ -27,8 +34,10 @@ attacks — `alternative_cause`, `reverse_causation`, `coincidence_timing`,
 `sample_selection`, `proxy_mismatch` — or one of the three statistical
 attacks: `base_rate_neglect`, `regression_to_mean`, `simpson_paradox`. The
 statistical three carry their own counter-questions (shared/structures.md) and
-assume basic numeracy; prefer them at standard tier and above. Name the attack
-after giving the answer.
+assume basic numeracy; prefer them at standard tier and above. A `weaken` item
+may also target `hasty_generalization` — the gap is an unjustified leap from too
+small or narrow a sample to a broader population. Name the attack after giving
+the answer.
 
 ### 3. `sufficiency`
 
@@ -94,6 +103,15 @@ domain wrapping:
   extreme, so a move toward average is expected with no cause.
 - `simpson_paradox` — slot: the lurking subgroup variable whose split reverses
   the aggregate trend.
+- `circular_reasoning` — slot: the premise that restates the conclusion (the
+  one term that, once named, shows the argument assumes what it sets out to
+  prove). Generated as an `assumption`-type item: the negation test sinks it
+  because negating the smuggled premise negates the conclusion itself.
+- `hasty_generalization` — slot: the too-small or too-narrow sample, plus the
+  broader population the conclusion leaps to. Generated as a `weaken`- or
+  `sufficiency`-type item: the gap is the unjustified jump from the sample to
+  the population, with no systematic exclusion implied (that would be
+  `sample_selection`).
 
 If the material will not fit the target structure's template cleanly, pick a
 different structure or domain — never stretch the template to force a fit.
