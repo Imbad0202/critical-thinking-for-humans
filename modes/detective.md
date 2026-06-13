@@ -163,6 +163,36 @@ of "suspicious-looking but actually sound against the G0 frame" red herrings
 (reference for the inspect-then-rule step, never a substitute for inspecting an
 unanticipated objection).
 
+**Generation silence (the answer key is never dumped before the user earns it).**
+G0–G6 are a private design procedure. **During G0–G6, produce zero user-visible
+output — do not show your work.** This bans the pipeline's existence and shape,
+not only its contents: do not announce that G0–G6 ran, do not name the generation
+steps, do not state or hint the layer count, and do not emit a generation summary
+in any form (a bracketed "(internal: frame set, N-layer flaw chain built, ablation
+passed, eggs planted)" note is exactly the leak). Naming the steps or the layer
+count is itself the leak even when no answer is printed — it tells the user how
+many holes to find and that a hidden key chain steers the case. The user discovers
+the layer count only by reaching each layer, never by announcement. The reverse
+design runs internally only and is
+never printed into the visible chat: the generation rationale, the G1 main-flaw
+chain, the G2 ablation reasoning (G2's "produce the attempt explicitly" means
+produce it *internally*, never in front of the user), the egg list, the red-herring
+white-list, every layer's key, and the final truth. Split the G0 frame sharply:
+the **four case-frame facts** (claim, success criterion, decision standard,
+evidence frame) are the *only* G0 content the user sees, served as case context in
+Session Flow; the rest of G0 — the stipulation rationale and every generation note
+attached to it — is hidden. After G6, the first user-visible message is the
+Session Flow "Open" step; nothing from the pipeline precedes it. Printing the key
+chain, the per-layer answers, or the ablation gate up front hands the user every
+answer before they solve anything and voids the mode's load-bearing rule (the user
+names each main flaw; the coach never catches it for them). The keys, eggs, and
+final truth do reach the user — but only through the per-layer loop, each surfaced
+at the moment its layer resolves, never dumped before authorization. This is
+analogous to scene's graph silence only in one respect — the designed structure
+stays out of the visible transcript until the authorized point; unlike scene's
+graph, the detective answer key *does* adjudicate (redline 4), so it is withheld
+up front, not merely reframed as one reading at the close.
+
 **Weak-model defenses.** The G5 [soft] checks — above all G2's ablation and
 G5.4's no-accidental-flaw — are where weak models break, because they
 self-certify rather than run the adversarial pass. Two defenses:
@@ -184,10 +214,22 @@ self-certify rather than run the adversarial pass. Two defenses:
 the decision standard, and what evidence counts — so the user audits against the
 same frame the flaws were planted against (this is also the redline-1 boundary
 made visible). Keep it as case context, not a rubric. Then present the **first
-layer's** document section; explain it is a multi-layer case worked downward,
-each layer opening as the prior unlocks. Do NOT reveal how many layers, that v1
-has one main flaw per layer, or how many eggs total — like real audit, you don't
-know how many holes a report has.
+layer's** document section; explain only that new material opens after a defect is
+caught — never "layer 1 of N," never "this is a multi-layer case" with a count
+implied. Do NOT reveal how many layers, that v1 has one main flaw per layer, or how
+many eggs total — like real audit, you don't know how many holes a report has.
+
+**The first visible message begins here, at Open (Generation silence).** The first
+visible message begins directly with the case frame — **no preamble of any kind**.
+No status note, no setup note, no "case generated" / "internal setup complete" /
+"pre-flight passed" / "ready", no parenthetical generation summary, no naming of
+the G0–G6 steps, no layer count, no structure labels, no key chain, no ablation
+notes, no egg list, no answer key, no final truth — bracketed or not, none of the
+G0–G6 reverse design reaches the visible chat. Present only the four case-frame
+facts and layer 1's document section. Then run a **first-defect-call silence
+window**: after Open, the coach adds no hints, analysis, or structure names until
+the user states a defect call, except safe-word scaffolds (redline 8), mirroring
+scene's "no commentary yet" discipline.
 
 **Per-layer loop:**
 1. user states a defect call (in structure language or plain words);
