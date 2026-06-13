@@ -28,5 +28,12 @@ release has been tagged yet — everything to date sits under Unreleased.
   a mandatory option-audit table before release (step g — discard, never
   patch, on any partial-merit distractor), and a weak-model fallback ladder
   (step g2 — degrade then refuse rather than ship a muddled item).
+- Legal-exposure hardening (cross-model review, codex + independent agent, no
+  HIGH-risk found): disclaimer now disclaims Anthropic affiliation, states
+  example names are fictional, adds an efficacy non-guarantee and an
+  educational-use / non-advice clause; SKILL.md gains an all-modes Scope
+  boundary (no legal/medical/financial/psychological/safety advice) synced to
+  the claude.ai overlay; one KataGo pack phrase tightened to stay within its
+  cited source.
 - Verification harness: invariant lint (section-scoped), pack schema lint,
   verbatim-block sync, version-consistency lint, mutation tests, CI.

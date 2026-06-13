@@ -231,8 +231,8 @@ that objection's resolution.
   against it, done — adversarial training closes such holes. *Resolution:* this
   was tested directly. Three natural defenses each protected against previously
   discovered attacks and each fell to a freshly trained adversary; "none
-  withstand freshly trained adversaries" (AAAI 2025). The blind spot regenerates
-  faster than the patch closes it. This is the load-bearing AI-era lesson and
+  withstand freshly trained adversaries" (AAAI 2025). The blind-spot class
+  re-emerges against each hardened model rather than being closed by it. This is the load-bearing AI-era lesson and
   the step most worth probing.
 
 - **T5 — Is the human-executability claim overstated?** *Objection:* maybe only

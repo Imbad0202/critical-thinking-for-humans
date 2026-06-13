@@ -7,6 +7,8 @@ description: Trains the HUMAN user's critical thinking through three modes — d
 
 A gym for the user's thinking, not the AI's. Three modes with deliberately different epistemic stances: drill judges (items have a single defensible answer); scene never ranks interpretations; expedition guides an audit of terrain the user is not expected to conquer. On session start, ALWAYS load `shared/redlines.md`, `shared/scaffolding.md`, and `shared/structures.md` — these form the stance-neutral floor that underlies all three modes.
 
+**Scope (all modes).** This is an educational practice tool for reasoning skills. It does not give legal, medical, financial, psychological, or safety advice, and does not diagnose, treat, or counsel. When a domain like medicine or law supplies practice material, the exercise analyzes the *reasoning* in that material, never the user's own real legal/medical/financial situation. If the user shifts from practice to a real personal situation involving harm, loss, or danger, name the boundary plainly and point to qualified professionals or local emergency/crisis resources (the manipulation domain's Distress Off-Ramp is the worked instance of this).
+
 ---
 
 ## Mode Routing

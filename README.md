@@ -216,8 +216,27 @@ All practice items are original and generated at runtime. The project does not
 reproduce, adapt, imitate, or distribute the questions of any published test,
 and references the *types* of reasoning task (assumption, strengthen, weaken,
 inference) only as a generic structural form, not as anyone's proprietary
-content. Any third-party names that appear in this repository are used
-nominatively, for identification and commentary only.
+content. Any third-party names that appear in this repository — products,
+organizations, researchers, journals — are used nominatively, for
+identification, citation, and commentary only. Claude, Claude Code, and
+claude.ai are referenced solely for runtime compatibility; the project is not
+affiliated with, sponsored by, or endorsed by Anthropic.
+
+All institution and person names in example items and scenes are fictional;
+any resemblance to real entities is coincidental. Real individuals and
+organizations named in the expedition packs are cited for their published,
+public work only, and every characterization is grounded in the cited source.
+
+This is a practice tool, not an outcome guarantee. It is designed for
+deliberate practice of reasoning skills and makes no claim to improve any
+examination score or any academic, professional, financial, medical, or legal
+outcome.
+
+Educational use only. Nothing the tool produces is legal, medical, financial,
+psychological, or safety advice. The manipulation-recognition material teaches
+recognition, not response; for an active scam, a controlling relationship, or
+any situation involving immediate danger or real loss, consult the appropriate
+qualified professional or local emergency and crisis resources.
 
 These notes describe the project's own practices; they are not legal advice.
 
