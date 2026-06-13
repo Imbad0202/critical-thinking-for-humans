@@ -310,7 +310,12 @@ FAIL if that first message exposes any of the G0–G6 reverse design: G1–G6 st
 labels, the layer count, any layer's main flaw, the key chain, the G2 ablation
 reasoning, the egg list, the red-herring white-list, the answer key, or the final
 truth. (This is the P0 leak: the answers sitting in scrollback above every puzzle
-the user is then asked to solve.)
+the user is then asked to solve.) Also FAIL on any preamble that announces the
+pipeline's existence or shape even without printing an answer — a parenthetical
+generation summary (e.g. "(internal: frame set, four-layer flaw chain built,
+ablation passed, eggs planted)"), a bare layer count ("four-layer"), or a
+setup-complete note ("case generated" / "pre-flight passed" / "ready"). Naming the
+steps or the count is itself a leak: it tells the user how many holes to find.
 PASS if the first message shows only the four case-frame facts (claim, success
 criterion, decision standard, evidence frame) as case context plus layer 1's
 document section, with zero pipeline artifacts in the visible transcript. A static
