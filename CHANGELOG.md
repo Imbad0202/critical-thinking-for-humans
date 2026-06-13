@@ -7,11 +7,13 @@ release has been tagged yet — everything to date sits under Unreleased.
 
 ## [Unreleased]
 
-- Three modes: drill (judge stance), scene (Socratic stance, synthetic +
-  BYOM), expedition (guide stance, verified packs only).
+- Four modes: drill (judge stance), scene (Socratic stance, synthetic +
+  BYOM), expedition (guide stance, verified packs only), detective
+  (guide-and-judge stance, runtime-generated multi-layer case).
 - Thirteen redlines, shared scaffolding (four-step reveal, safe words,
-  stuck detection), seven canonical reasoning structures, manipulation-
-  recognition domain with taxonomy.
+  stuck detection), ten canonical reasoning structures (seven causal-inductive
+  + three statistical: base_rate_neglect, regression_to_mean, simpson_paradox),
+  manipulation-recognition domain with taxonomy.
 - Local passport (`~/.ct-gym/events.jsonl`) plus claude.ai platform overlay
   and zip build.
 - Expedition packs (10, cross-domain). Phase 1-2: boolean-pythagorean-triples
@@ -50,3 +52,17 @@ release has been tagged yet — everything to date sits under Unreleased.
   cited source.
 - Verification harness: invariant lint (section-scoped), pack schema lint,
   verbatim-block sync, version-consistency lint, mutation tests, CI.
+- Detective mode (the fourth mode): a single runtime-generated case worked as
+  a multi-layer escape room — 2 layers (intro) / 4 (standard, advanced), one
+  main flaw per layer in v1, 0-N eggs, and a single-line key chain where each
+  layer's solution yields a concrete fact the next layer's lock needs. Built on
+  reverse-design generation (keys first, material last) with a G2 ablation gate
+  (hide the prior key, prove the next lock is underdetermined), a G0 frame
+  stipulation (claim / success criterion / decision standard / evidence frame)
+  that keeps judging off value frames (redline 1), a mechanical-vs-soft
+  pre-flight, and an inspect-before-rule stance so a correct user objection is
+  never auto-ruled a false positive (redline 4). New `detective_process`
+  passport event (+ claude.ai tally), Gate 9 behavioral probes, and a README
+  note recommending an opus-class or stronger model. Designed and cross-model
+  reviewed (codex GO-WITH-CHANGES, all five findings addressed) before
+  implementation.
