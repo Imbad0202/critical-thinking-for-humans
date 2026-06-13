@@ -214,6 +214,12 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      Is that move genuinely irrelevant to the conclusion (the thing that makes
      it a fallacy), or could it be a relevant consideration (a fair bias/conflict
      challenge, a relevant expert)? Relevance plausible → not the fallacy.
+     For a conflict-of-interest challenge, relevance is necessary but NOT
+     sufficient: check the conclusion's strength too. A conflict supporting a
+     limited conclusion (possible bias, needs corroboration) → `not_fallacy`;
+     the same conflict used by itself to dismiss the claim as false or not
+     credible → `fallacy` (circumstantial ad hominem). Do not let "the conflict
+     is relevant" wave through a wholesale credibility dismissal.
    - `fallacy_false_dilemma` — **omitted-option test.** Is a real third option
      hidden, or do only two options genuinely exist? The two stated options are
      relevant either way; relevance is NOT the test here.
