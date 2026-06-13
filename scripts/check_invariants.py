@@ -323,6 +323,12 @@ CHECKS = [
      "detective_process"),
     ("modes/detective.md", "detective-log-unregistered",
      "unregistered_flaws_found"),
+    ("SKILL.md", "detective-routing",
+     "`detective` → load `modes/detective.md`"),
+    ("SKILL.md", "detective-soft-switchable",
+     "Detective is soft-switchable like drill and scene"),
+    ("SKILL.md", "detective-opus-recommendation",
+     "detective mode recommends an opus-class or stronger model"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---
@@ -347,6 +353,11 @@ FORBIDDEN = [
     ("platforms/claude-ai/passport/SCHEMA.md", "claude-ai-no-jsonl-schema", "events.jsonl"),
     ("platforms/claude-ai/shared/redlines.md", "claude-ai-no-on-disk", "stay on disk"),
     ("platforms/claude-ai/shared/scaffolding.md", "claude-ai-no-on-disk-scaffolding", "on disk"),
+    # Guard against the stale three-mode phrasing returning to either SKILL file.
+    ("SKILL.md", "no-stale-three-modes", "through three modes"),
+    ("SKILL.md", "no-stale-three-modes-body", "Three modes with deliberately"),
+    ("platforms/claude-ai/SKILL.md", "no-stale-three-modes-overlay", "through three modes"),
+    ("platforms/claude-ai/SKILL.md", "no-stale-three-modes-body-overlay", "Three modes with deliberately"),
 ]
 
 
