@@ -17,7 +17,7 @@ release has been tagged yet — everything to date sits under Unreleased.
   manipulation-recognition domain with taxonomy.
 - **Scene fallacy-recognition track** — a second, isolated track inside scene
   for five formal/persuasive fallacies (false dilemma, ad hominem, strawman,
-  appeal-to-X, equivocation) the frame palette cannot key. One submode per round
+  fallacious appeal, equivocation) the frame palette cannot key. One submode per round
   (frames stay never-ranked; the fallacy track judges argument *form*, not the
   position). Three rulings — `fallacy` / `not_fallacy` / `insufficient_context` —
   with a mandatory four-step relevance check and a reverse-guard so a sound
