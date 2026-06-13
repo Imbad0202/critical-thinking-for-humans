@@ -1,0 +1,65 @@
+# Expedition Pack: AlphaProof at IMO 2024
+
+`pack_id: alphaproof-imo-2024`
+
+An AI system scored a silver medal at the 2024 IMO, and its proofs are
+machine-checked in Lean. The auditor's load-bearing question: does the
+"silver-medal" framing survive the fact that some solutions took three days
+against a 4.5-hour human session, and the problems were hand-formalized first?
+
+## problem
+
+**The summit.** At the 2024 International Mathematical Olympiad (Bath, UK, July 2024), DeepMind's combined AlphaProof + AlphaGeometry 2 system solved **4 of the 6 problems**, scoring **28 out of 42 points** — the score of a silver medallist, one point below the gold-medal cutoff of 29.
+
+**The answer (what was actually produced).** AlphaProof produced machine-checked **Lean** proofs for three problems: P1 and P2 plus **P6**, the hardest problem of the contest (full marks from only 5 of 609 human contestants). AlphaGeometry 2 solved the geometry problem **P4**. The two **combinatorics** problems, **P3 and P5**, were not solved. Every AlphaProof solution is a formal Lean proof term verified by Lean's kernel — there is no informal hand-wave; the proof either type-checks or it does not.
+
+**The load-bearing honesty point.** The system did not work under competition conditions. Humans had two sessions of 4.5 hours. AlphaProof solved one problem within minutes but took **up to three days** of compute on the others (AlphaGeometry 2's P4 took 19 seconds). Separately, the five non-geometry problem *statements* were **manually translated into Lean by human experts** before AlphaProof searched for proofs — the natural-language-to-formal step was not automated for the contest problems.
+
+**Accessibility note.** A trained human auditor does *not* need to verify the Lean proof itself (that is what Lean's kernel does, and trusting a small verified kernel is the whole point). What the auditor *can* and *must* check is the **framing**: do "machine-verified proof" and "silver-medal-equivalent performance" mean the same thing once you account for the days of compute, the human formalization of the problem statement, and the fact that two whole problem-types went unsolved? The auditable gap is between a correctness claim (airtight) and a performance/equivalence claim (contestable).
+
+## history
+
+**How long open / who.** This is not a centuries-old conjecture but a *capability* milestone: getting an AI to do rigorous, machine-verifiable olympiad mathematics end-to-end. The work is DeepMind's AlphaProof (LM + AlphaZero-style RL searching in Lean) and AlphaGeometry 2 (neuro-symbolic, Gemini-based). Result announced July 2024; the full method published in *Nature* (Olympiad-level formal mathematical reasoning with reinforcement learning, s41586-025-09833-y) in November 2025. The community had spent years on automated theorem proving and on informal LLM "solutions" that read fluently but could be silently wrong.
+
+**Dead end 1 — Informal LLM chain-of-thought as the proof.** Letting a language model write a natural-language proof and trusting it. This is a **dead end** because fluent prose hides logical gaps; there is no kernel to reject a wrong step, so a confident-looking solution can be unsound. AlphaProof's answer is to make Lean the substrate so correctness is mechanical, not rhetorical.
+
+**Dead end 2 — Pure symbolic search without learned guidance.** Brute-forcing Lean tactic sequences. This is a **dead end** because the proof-step search space is astronomically large; unguided search times out long before reaching olympiad-depth proofs. The fix is AlphaZero-style learned value/policy guiding the search.
+
+**Dead end 3 — Training only on existing human-written formal proofs.** The corpus of formalized olympiad mathematics is tiny. Relying on it is a **dead end** for data: there simply is not enough. The breakthrough was generating ~80 million auto-formalized statements and doing reinforcement learning against the prover/kernel as ground truth.
+
+**Dead end 4 — Treating combinatorics like algebra/number theory.** AlphaProof solved the algebra and number-theory problems but **both combinatorics problems (P3, P5) failed**. Assuming one method covers all olympiad domains is a **dead end**; combinatorial problems resisted the same search, exposing a genuine capability boundary that the silver-medal headline can obscure.
+
+## solution_provenance
+
+**Where the verified solution lives.** Primary method paper: *Olympiad-level formal mathematical reasoning with reinforcement learning*, **Nature** (2025), DOI **10.1038/s41586-025-09833-y**, published November 2025. First-party announcement: DeepMind blog, *AI achieves silver-medal standard solving International Mathematical Olympiad problems* (July 2024), https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/. AlphaGeometry 2 detail: arXiv 2502.03544. Insider explainer: Julian Schrittwieser, julian.ac/blog/2025/11/13/alphaproof-paper/.
+
+**How verified.** The deepest layer of verification is intrinsic and machine-level: each AlphaProof solution is a Lean proof term checked by Lean's kernel, so soundness does not rest on human or peer-reviewer judgement — it is mechanically verified. The *scoring* (28/42, problem-by-problem) was done by official IMO graders / medallists, per the DeepMind announcement. Medal cutoffs for IMO 2024 (gold 29, silver 22, bronze 16, out of 42) I verified against the UKMT/BMOS IMO 2024 results page, which agrees with the gold-cutoff figure DeepMind reports.
+
+**First-party check.** I read directly: the DeepMind blog (4/6, 28/42, P1/P2/P6 by AlphaProof, P4 by AlphaGeometry 2, P3/P5 combinatorics unsolved, "minutes" to "up to three days," 19 seconds for P4, two 4.5-hour human sessions, gold threshold 29, P6 solved by only 5/609); the UKMT IMO 2024 results page (gold 29 / silver 22 / bronze 16). I could **not** read the *Nature* paper body directly — it redirected to an authentication wall — so the explicit "five non-geometry statements manually formalized in Lean by experts" wording comes from secondary summaries of the paper plus Schrittwieser's insider blog (which confirms statements are formalized, with stochastic/randomized prompting), not from the paper text I read first-party.
+
+## step_graph
+
+- **S0 — Has this already been done / what exactly was claimed?** `search_first` Retrieve the first-party announcement and the *Nature* paper before trusting any headline. Separate the three distinct claims: (a) proofs are machine-checked, (b) score = 28/42 = silver, (c) "AI does olympiad math." Check: the DeepMind blog and Nature DOI exist and state 4/6 and 28/42 verbatim.
+- **S1 — Decompose "silver medal" into independently checkable sub-claims.** `lemma_decomposition` Split into: problems-solved count (4), per-problem attribution (P1/P2/P6 AlphaProof, P4 AlphaGeometry 2), points (28), and the medal cutoff (gold 29 / silver 22). Each is separately falsifiable. Check: cross the 28 against the IMO-official silver band [22,29) — 28 sits in the silver band, one below gold, consistent.
+- **S2 — Reframe "solved" as "produced a kernel-checked Lean term."** `representation_shift` The honest unit of success is not "got the answer" but "emitted a proof object Lean's kernel accepts." This reframing is what makes the correctness claim airtight and *also* exposes what it does NOT cover (problem formalization, time). Check: AlphaProof outputs are Lean proofs; Lean's trusted kernel either accepts or rejects — no human grading needed for soundness.
+- **S3 — Probe the degenerate/extreme cases the headline hides.** `small_case_probe` Look at the extremes: hardest problem (P6, solved — impressive) vs the unsolved class (P3 & P5, both combinatorics — a clean failure mode), and the time extreme (19 seconds for P4 vs three days for others). Check: DeepMind states P6 solved and both combinatorics problems unsolved; the spread of solve-times is stated (minutes to three days).
+- **S4 — Write the abandonment condition for the silver-medal framing.** `kill_criteria` Decide in advance what would break "competition-equivalent": if compute time grossly exceeds the human 9-hour budget, OR if humans did the natural-language→Lean step, OR if a whole problem-class is missed. Check: all three triggers fire — up-to-3-days compute, human-formalized statements, combinatorics missed — so "equivalent to a human silver medallist under contest conditions" is the over-claim to flag, while "silver-equivalent *score* on these problems" survives.
+- **S5 — Which other field has audited this exact shape?** `shape_question` The shape is "a verifier-backed result with a contestable performance wrapper" — identical to benchmark/eval auditing in ML and to formal-verification claims in software (the kernel is sound; the spec/setup is where bodies are buried). Borrow that discipline: trust the kernel, interrogate the harness. Check: the locus of doubt is the formalization and timing harness, not the proof — same as auditing a verified compiler's *spec*, not its proof.
+- **S6 — Recast the summit as the precise sentence that survives audit.** `milestone_rewrite` Final defensible claim: "On 4 of the 6 IMO 2024 problems — including the hardest — AlphaProof/AlphaGeometry 2 produced solutions scoring 28/42 (a silver-medal score), with AlphaProof's proofs machine-verified in Lean; the statements were human-formalized and some solutions took days of compute." Check: every clause traces to a first-party figure; drop any clause and you either lose information or introduce the over-claim.
+
+## breakthrough
+
+**S2 (the representation shift to "kernel-checked Lean term") is the breakthrough.** It eluded the community because the prior reflex was to make AI produce *human-readable* mathematics and then argue about whether it was correct — a swamp of fluent-but-wrong outputs. Reframing success as "emit a proof object a small trusted kernel accepts" moves correctness out of rhetoric and into mechanism, which simultaneously makes the search trainable (the kernel is a perfect reward signal) and makes the honest limits visible (the kernel says nothing about whether the *statement* was faithfully formalized or how long the search took).
+
+## audit_targets
+
+- **T1 — The proofs are genuinely machine-checked, not graded-as-plausible.** AlphaProof output is a Lean proof term verified by Lean's kernel. *Objection:* "Couldn't the kernel itself or the Lean formalization be buggy?" *Resolution:* Lean's trusted kernel is small and itself heavily scrutinized; a soundness bug would be a Lean-wide event, not specific to this result. This target survives — soundness of the *proof given the formal statement* is the strongest, least contestable claim in the whole pack.
+
+- **T2 — "Silver medal" describes a SCORE, not contest-equivalent performance.** 28/42 lands in the IMO 2024 silver band (gold 29, silver 22). *Objection:* "Then it really did earn silver, full stop." *Resolution:* The 28 points are real and correctly placed, but humans earned their medals in two 4.5-hour sessions while AlphaProof took up to three days; the score is equivalent, the *conditions* are not. Audit the verb: "scored at silver level" holds; "performed like a silver medallist" overreaches.
+
+- **T3 — The natural-language→Lean step was done by humans, not the system.** The five non-geometry problem statements were manually formalized in Lean by experts before the prover ran. *Objection:* "Formalization is mechanical bookkeeping, irrelevant to the achievement." *Resolution:* It is not mechanical — faithful formalization can itself encode mathematical insight and is where mis-statements silently change the problem; an end-to-end claim must own this human input. (Note: I confirmed this via secondary summaries + insider blog, not the paper body — see unverified_claims.)
+
+- **T4 — A whole problem-class (combinatorics) was missed.** Both P3 and P5 were unsolved. *Objection:* "4/6 is still excellent; the misses are noise." *Resolution:* The misses are not random — they cluster entirely in combinatorics, revealing a structural capability boundary that the aggregate "silver" headline hides. Auditing the *distribution* of failures, not just the count, is what distinguishes a real reasoner from a domain-specialist.
+
+- **T5 — Compute time is the honesty fulcrum.** Solve times ranged from minutes to three days (P4: 19 seconds). *Objection:* "Wall-clock time is an engineering detail, irrelevant to whether the math is right." *Resolution:* It is irrelevant to *correctness* (T1 stands) but central to *equivalence* (T2). Keeping these two axes separate is the core audit skill this pack trains: a result can be 100% sound and simultaneously not a like-for-like human comparison.
+

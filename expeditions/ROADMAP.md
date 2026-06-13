@@ -75,10 +75,10 @@ cleanliness + accessibility):
 
 | candidate | domain | source | verification | role | note |
 |-----------|--------|--------|--------------|------|------|
-| busy-beaver-5 | computability | arXiv:2509.12337 (2024) | Coq-verified; 181M machines enumerated; BB(5)=47,176,870 | climber | top pick — new domain, cleanest provenance, first BB value ever formally verified |
-| alphaproof-imo-2024 | formal math / ML | Nature s41586-025-09833-y | Lean machine-checked; public proof mirror | auditor | read a Lean proof you could not write; strongest ML-math provenance |
-| lams-problem | design theory | arXiv:2012.04715 (2020) | ~1 TB DRAT nonexistence certificate, third-party checkable | auditor | audit a NEGATIVE result (no projective plane of order 10); replaces unverifiable 1989 search |
-| chromatic-number-plane-5 | geometry / graph coloring | arXiv:1804.02385 (2018) | 1581-vertex unit-distance graph, non-4-colourability SAT-verifiable | forecaster | amateur-discovered; parent problem (CNP) STILL OPEN — frame as "is this the answer?" (it isn't) |
+| busy-beaver-5 | computability | arXiv:2509.12337 (2024) | Coq-verified; 181M machines enumerated; BB(5)=47,176,870 | climber | DONE (Phase 3 workflow). top pick — new domain, cleanest provenance, first BB value ever formally verified |
+| alphaproof-imo-2024 | formal math / ML | Nature s41586-025-09833-y | Lean machine-checked; public proof mirror | auditor | DONE (Phase 3 workflow). read a Lean proof you could not write; strongest ML-math provenance |
+| lams-problem | design theory | arXiv:2012.04715 (2020) | DRAT nonexistence certificate for the hardest sub-case (a few GB, NOT the ~1 TB the survey guessed), third-party checkable; the 2020 redo found consistency issues in the 1989/2011 searches | auditor | DONE (Phase 3 workflow). audit a NEGATIVE result (no projective plane of order 10); the 2020 SAT redo made the 1989 result independently verifiable for the first time |
+| chromatic-number-plane-5 | geometry / graph coloring | arXiv:1804.02385 (2018) | 1581-vertex unit-distance graph, non-4-colourability SAT-verifiable | forecaster | DONE (Phase 3 workflow). amateur-discovered; parent problem (CNP) STILL OPEN — frame as "is this the answer?" (it isn't) |
 | ramsey-4-5-hol4 | Ramsey / graph theory | arXiv:2404.01761, ITP 2024 | HOL4 kernel-verified; re-proves unverified 1995 R(4,5)=25 | auditor | "why re-prove a known result" lesson |
 | alphageometry-imo | geometry / ML | Nature s41586-023-06747-5 (2024) | DDAR symbolic engine + human experts; 25/30 IMO-shortlist | auditor | human-readable proofs; partly redundant with alphaproof |
 | pentago-solved | games | arXiv:1404.0743 (2014) | strong solution by parallel retrograde analysis; open-source artifact | climber | games-domain spread; fully reproducible |
