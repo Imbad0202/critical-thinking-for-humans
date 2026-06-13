@@ -110,8 +110,10 @@ Fields: `layers_solved` (int), `layers_total` (int), `eggs_found` (int),
 inspected and found is sound against the G0 frame),
 `unregistered_flaws_found` (int — correct user objections the answer key had
 missed; a generation-quality signal), `structures_hit` (array of the main-flaw
-structure IDs for solved layers only (length = layers_solved), from shared/structures.md — fed into the same miss-log
-drill uses), `summary` (short context label — no raw user text).
+structure IDs the user caught, one per solved layer (length = layers_solved),
+from shared/structures.md — feeds per-structure exposure tracking, sharing
+drill's per-structure record so practice coverage is unified across modes),
+`summary` (short context label — no raw user text).
 
 ```
 {"schema_version":1,"ts":"2026-06-13T10:00:00Z","type":"detective_process","layers_solved":3,"layers_total":4,"eggs_found":2,"eggs_total":5,"false_positives":1,"unregistered_flaws_found":0,"structures_hit":["proxy_mismatch","base_rate_neglect","alternative_cause"],"summary":"investment-memo case, cracked to L3"}

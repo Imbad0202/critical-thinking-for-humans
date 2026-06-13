@@ -246,9 +246,11 @@ Statistical structures (`base_rate_neglect`, `regression_to_mean`,
 ## Logging
 
 One `detective_process` event per completed (or `enough for today`-closed)
-case. Process metrics only — no grade. `structures_hit` feeds the same
-per-structure miss-log drill uses, so weak-spot tracking is unified across
-modes. For the full field list and the JSON shape, see `passport/SCHEMA.md`.
+case. Process metrics only — no grade. `structures_hit` records the structures
+the user caught on solved layers; it feeds per-structure exposure tracking
+(which structures the user has practised), sharing drill's per-structure record
+so practice coverage is unified across modes. For the full field list and the
+JSON shape, see `passport/SCHEMA.md`.
 
 Raw `structures_hit` IDs are snake_case and appear only in the event, never in
 display text. Recording is subject to redline 12 — pause-recording and deletion
