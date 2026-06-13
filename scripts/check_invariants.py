@@ -311,6 +311,18 @@ CHECKS = [
      "requires adversarial reasoning"),
     ("modes/detective.md", "detective-no-accidental-flaw",
      "unregistered (N+1)th flaw"),
+    ("modes/detective.md", "detective-open-frame-first",
+     "present the G0 frame first"),
+    ("modes/detective.md", "detective-safe-words",
+     "`enough for today`"),
+    ("modes/detective.md", "detective-intro-two-layers",
+     "2 layers, 1 main flaw/layer"),
+    ("modes/detective.md", "detective-statistical-gate",
+     "appear in detective only at standard and above"),
+    ("modes/detective.md", "detective-log-event",
+     "detective_process"),
+    ("modes/detective.md", "detective-log-unregistered",
+     "unregistered_flaws_found"),
 ]
 
 # --- claude.ai overlay (platforms/claude-ai/) ---

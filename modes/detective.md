@@ -177,3 +177,82 @@ self-certify rather than run the adversarial pass. Two defenses:
    inspect-before-rule step is the actual safety net.
 
 ---
+
+## Session Flow
+
+**Open:** present the G0 frame first — state the claim, the success criterion,
+the decision standard, and what evidence counts — so the user audits against the
+same frame the flaws were planted against (this is also the redline-1 boundary
+made visible). Keep it as case context, not a rubric. Then present the **first
+layer's** document section; explain it is a multi-layer case worked downward,
+each layer opening as the prior unlocks. Do NOT reveal how many layers, that v1
+has one main flaw per layer, or how many eggs total — like real audit, you don't
+know how many holes a report has.
+
+**Per-layer loop:**
+1. user states a defect call (in structure language or plain words);
+2. coach checks the call against the answer key AND against the G0 frame:
+   - the layer's main flaw → confirm, reveal key, open next layer; an egg touched
+     in passing is confirmed and scored on the spot;
+   - a registered egg but not the main flaw → no unlock; "that's a real defect —
+     noted — but this layer still has something unmoved" + a clue-level prompt;
+   - a defect not in the answer key → inspect first (see Layer Structure):
+     confirm honestly if it is a real unregistered flaw, explain plainly only if
+     it is sound against the frame, or name a frame dispute as interpretation;
+3. on unlock, coach hands the key over explicitly: "you now know the real number
+   is 23% — carry it into the next layer."
+
+**Safe words (escape-room flavored), always honored (redline 8):**
+- `hint` → one clue step pointing at where to look in this layer, never the main
+  flaw itself;
+- `stuck` → walk a parallel single-layer mini-case to demonstrate the move, then
+  return; if still stuck, give an explicit prompt toward this layer's main flaw
+  (an escape room must not trap the user forever);
+- `enough for today` → close with the tally even if the final layer not reached.
+- the global safe word `forget this one` also applies (SKILL.md — discards
+  pending events only).
+
+**Close — three audit metrics (stated, not prosecuted; Data-as-Mirror):**
+- **depth** — deepest layer solved (all layers = case cracked);
+- **recall** — eggs found / total eggs;
+- **precision** — confirmed false positives only (a defect the coach inspected
+  and found is sound against the G0 frame). An objection that turned out to be a
+  real unregistered flaw is NOT a precision miss — it counts as a caught flaw,
+  because the user was right.
+
+The coach reveals each missed egg plainly and explains each confirmed false
+positive as why it is sound against the stipulated frame. Facts only, no
+extrapolation to character.
+
+---
+
+## Difficulty Knobs
+
+In v1 every tier is **one main flaw per layer**; tiers vary layer count, egg
+density, structure difficulty, and how explicit the key handoff is.
+
+- **intro** — 2 layers, 1 main flaw/layer, few eggs, obvious structures, key
+  handoff stated explicitly; announce the structure type to look for each layer.
+- **standard** — 4 layers, 1 main flaw/layer, medium eggs, no structure announce.
+- **advanced** — 4 layers, 1 main flaw/layer, more eggs, statistical-deep-water
+  structures allowed, key handoff implicit (the user must realize the prior fact
+  is useful).
+
+Statistical structures (`base_rate_neglect`, `regression_to_mean`,
+`simpson_paradox`) appear in detective only at standard and above (numeracy gate).
+
+---
+
+## Logging
+
+One `detective_process` event per completed (or `enough for today`-closed)
+case. Process metrics only — no grade. Fields: `layers_solved`, `layers_total`,
+`eggs_found`, `eggs_total`, `false_positives` (confirmed only),
+`unregistered_flaws_found` (correct user objections the key had missed — a
+generation-quality signal), `structures_hit` (the main-flaw structure IDs per
+layer, fed back into drill's shared miss-log so weak-spot tracking is unified
+across modes), `summary` (short context label, no raw user text).
+
+See `passport/SCHEMA.md`. Raw `structures_hit` IDs are snake_case and appear only
+in the event, never in display text. Recording is subject to redline 12 — pause-recording
+and deletion are always available; see passport/SCHEMA.md Privacy Rules.
