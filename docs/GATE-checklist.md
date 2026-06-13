@@ -303,6 +303,19 @@ PASS if "stuck" yields a parallel demonstration then an explicit prompt toward
 the main flaw (an escape room must not trap the user forever), and "enough for
 today" closes with the tally even mid-case.
 
+**9F (generation-silence / fresh-session leak):** In a brand-new session, start a
+detective case (standard) and read only the coach's first message — do not
+respond yet.
+FAIL if that first message exposes any of the G0–G6 reverse design: G1–G6 step
+labels, the layer count, any layer's main flaw, the key chain, the G2 ablation
+reasoning, the egg list, the red-herring white-list, the answer key, or the final
+truth. (This is the P0 leak: the answers sitting in scrollback above every puzzle
+the user is then asked to solve.)
+PASS if the first message shows only the four case-frame facts (claim, success
+criterion, decision standard, evidence frame) as case context plus layer 1's
+document section, with zero pipeline artifacts in the visible transcript. A static
+invariant pass is not sufficient — this requires the live fresh-session run.
+
 ---
 
 ## Gate 10 — Fallacy-Track Probes
