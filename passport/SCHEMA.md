@@ -55,10 +55,13 @@ for advanced compound items, the primary target — secondary IDs appear only in
 
 One record per completed scene session. Process metrics only — no hit/miss grade.
 
-Fields: `frames_raised` (array of frame IDs), `steelman` (bool — true only if
-every raised frame was steelmanned), `counter_frame` (bool), `camera_turn`
+Fields: `frames_raised` (array of frame IDs), `fallacies_examined` (array of
+fallacy-lens IDs the fallacy-recognition track exercised this round, parallel to
+`frames_raised`; absent on frame-palette rounds), `steelman` (bool — true only
+if every raised frame was steelmanned), `counter_frame` (bool), `camera_turn`
 (bool), `commitment` (bool), `summary` (short context label — no raw user text,
-no proper names).
+no proper names). The per-call ruling (`fallacy` / `not_fallacy` /
+`insufficient_context`), if logged, goes in this same event, never as a score.
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"summary":"staff-meeting scene, budget dispute"}

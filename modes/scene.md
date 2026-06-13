@@ -235,6 +235,10 @@ made a closing commitment (yes/no). No score is assigned. Sensitive BYOM materia
 is excluded from passport logging by default — including `commitment` events
 (see passport/SCHEMA.md Privacy Rules).
 
+A fallacy-recognition round records process metrics too, never hit/miss: which
+lenses were examined (`fallacies_examined`) and the per-call rulings, no score.
+Sensitive BYOM material is excluded from logging by default, same as frame rounds.
+
 ---
 
 ## Difficulty Knobs

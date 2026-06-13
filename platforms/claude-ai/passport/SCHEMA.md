@@ -29,6 +29,7 @@ profile: domain=education; difficulty=intro; feedback=cushioned
 tally: necessary_assumption 0/1 | alternative_cause 1/1 | sample_selection 0/1
 recent_misses: 2026-06-12 necessary_assumption took an extreme condition as necessary | 2026-06-12 sample_selection dropout exclusion not checked
 scenes: 2 | frames_raised: frame_power frame_counter
+  (fallacy-recognition rounds also list `fallacies_examined`: the fallacy-lens IDs)
 last_session: 2026-06-12
 ```
 
