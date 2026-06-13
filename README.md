@@ -63,6 +63,64 @@ honestly and routes you to drill or scene; the authoring spec is
 
 ---
 
+## Which Domains, Which Mode
+
+Not every field plugs into every mode, and the gym says so rather than
+pretending otherwise. The seven drill structures are causal-inductive tools:
+they need material where someone offers **evidence for a conclusion** and a
+single gap can be engineered. That fits some fields natively and not others.
+When you name a domain that does not fit drill, the coach **stops, says why,
+and points you to the path that does** — it never silently re-skins another
+field's material under your domain's name.
+
+**Fields that fit drill directly** — anything built on empirical or causal
+argument:
+
+- **Physics, chemistry, biology, earth science** — not the laws or theorems
+  themselves (those are deductive; see below), but *experimental reasoning*: a
+  paper claims A caused B without controlling a third factor
+  (`alternative_cause`), a sample that excludes the cases most able to refute
+  it (`sample_selection`), a metric that measures activity instead of the
+  claimed outcome (`proxy_mismatch`). You drill the gap between a study's
+  evidence and its conclusion.
+- **Human geography, economics, the social sciences, policy, medicine,
+  education, business** — causal and inductive claims are the native material.
+- **Manipulation recognition** — its own built-in domain (below).
+
+**Fields that need scene mode, not drill** — where there is no single
+defensible answer to key against:
+
+- **Music, art, literature, film, design** — aesthetic and interpretive
+  judgement. Redline 1 forbids the gym from adjudicating a value frame, so it
+  will not hand you "is this piece good?" as a keyed item — that answer does
+  not exist. Instead, **scene mode** dissects *discourse about* the art: bring
+  a review, a curatorial statement, a critical essay, and the coach lays out
+  interpretive frames over its argument ("this essay calls the style a
+  decline — on what evidence? what does it not see?"). You audit the reasoning,
+  never the artwork.
+- **Pure mathematics, formal logic, theoretical CS** — deductive systems. A
+  proof is valid or it is not; there is no inductive gap to engineer. Scene
+  mode handles these as **non-social analytical material** (modes/scene.md):
+  an adapted lens set — step validity, hidden premises, reversibility, edge and
+  degenerate cases, quantifier scope, necessary vs sufficient — dissects a
+  flawed derivation step by step.
+- **Pure ethics / aesthetics / definitional disputes** — value and definition
+  questions, not evidential ones. Same routing: scene mode, frames laid out,
+  no verdict on the value position itself.
+
+This boundary is the tool being honest, not a limitation to work around. A gym
+that trains critical thinking must not pretend that "which symphony is better"
+or "is this conjecture true" have the same shape as "does this study's evidence
+support its claim." Different shapes, different modes — and for the fields drill
+cannot key, scene is where you bring your own material and still train every
+frame.
+
+(Expedition mode is orthogonal to this: it runs on verified packs regardless of
+your home field — what it trains is auditing a chain you could not have produced,
+not your domain's content.)
+
+---
+
 ## Built-in Domain: Manipulation Recognition
 
 Name it at intake (sales pressure, scam scripts, political rhetoric,
