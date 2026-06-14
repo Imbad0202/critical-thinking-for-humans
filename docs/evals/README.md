@@ -13,7 +13,7 @@ and 2:
 | Layer | Tool | What it checks | Strength |
 |-------|------|----------------|----------|
 | 1 | `scripts/check_invariants.py` | Rule sentences exist in source | Weakest — text presence only |
-| **1.5** | **This directory** | **Independent models agree the keyed answers hold; adversarial prompts do not breach redlines** | **Cross-model, reproducible** |
+| **1.5** | **This directory** | **Keyed answers are reproducible across independent models (stability, not correctness); adversarial prompts do not breach redlines; a human anchor for correctness is specified but unrun** | **Cross-model + human-anchor protocol** |
 | 2 | `docs/GATE-checklist.md` | A human, in a fresh session, sees the skill uphold rules | Behavioral |
 | 3 | Real-world usage | Edge cases no controlled probe anticipates | Strongest |
 
@@ -23,7 +23,9 @@ model in one session** (the step-(g) reverse-solve in `modes/drill.md` is
 self-audit, not independent verification). Nothing else signs off. An eval that
 asks the *same* model whether its own keys are correct measures nothing — it is
 the correlated self-evaluation `GATE-RUN-2026-06-13.md` already warns against.
-So every protocol here uses **at least one independent model as judge**.
+So every protocol here puts the key in front of an **independent judge**: another
+model for stability, or a human for validity. What an independent judge cannot
+be is the author model grading itself.
 
 ### What cross-model agreement is and is not
 

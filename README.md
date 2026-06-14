@@ -40,10 +40,10 @@ So this is a gym for the reps. The AI is the coach and you do the work.
 You **drill** argument structures, pull apart a real situation in **scene**,
 **audit** reasoning you could not have produced on an **expedition**, or crack a
 layered case flaw by flaw as a **detective**. Every item names the underlying
-structure, so the move you just made has a handle you can recognize next time.
-Whether that recognition carries from a journal to an email to a contract is the
-open question the field has not settled; this is a place to practice the move,
-not a promise that it transfers. All four modes track your patterns over time in
+structure, so the move you just made gets a name rather than staying an
+unrepeatable intuition. Whether a named move carries from a journal to an email
+to a contract is the open question the field has not settled; this is a place to
+practice the move, not a promise that it transfers. All four modes track your patterns over time in
 a passport on your machine, showing you what no single session can: your
 longitudinal blind spots.
 
@@ -87,8 +87,8 @@ Three commitments, non-negotiable:
    closes with you taking a defensible position and defending it against the
    strongest objection. Endless hedging is not the goal.
 
-A gym doesn't tell you where to walk. It makes you able to walk, and it will
-absolutely tell you when you stumble.
+A gym doesn't tell you where to walk. It puts the weight in your hands, and it
+will absolutely tell you when you stumble.
 
 ---
 
@@ -200,9 +200,9 @@ not your domain's content.)
 ## Built-in Domain: Manipulation Recognition
 
 Name it at intake (sales pressure, scam scripts, political rhetoric,
-relational manipulation, 話術辨識) and the gym trains you to spot the
-technique, not memorize the story: false scarcity, love bombing, gaslighting,
-whataboutism, and ten more, each with a counter-question you keep.
+relational manipulation, 話術辨識) and the gym has you practice spotting the
+technique rather than memorizing the story: false scarcity, love bombing,
+gaslighting, whataboutism, and ten more, each with a counter-question you keep.
 Recognition only, by hard rule: the coach never writes, improves, or
 personalizes a manipulative script for use on a real target, in any framing.
 Political material samples techniques across the spectrum; the technique is
