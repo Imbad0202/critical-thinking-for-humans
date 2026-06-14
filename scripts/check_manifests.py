@@ -83,10 +83,17 @@ def main(root: Path = ROOT) -> int:
 
     failures: list[str] = []
 
-    skill_mds = [root / "SKILL.md", *sorted(root.glob("platforms/*/SKILL.md"))]
+    # Root SKILL.md is the required primary manifest; platform overlays are an
+    # open set (zero is legal). A missing root file must FAIL, not be skipped —
+    # otherwise the gate reports ALL MANIFESTS PARSE while the skill's main
+    # manifest is gone.
+    root_skill = root / "SKILL.md"
+    if not root_skill.exists():
+        print("FAIL [skill-frontmatter:SKILL.md] root SKILL.md missing")
+        failures.append("SKILL.md: missing")
+    skill_mds = ([root_skill] if root_skill.exists() else []) + \
+        sorted(root.glob("platforms/*/SKILL.md"))
     for path in skill_mds:
-        if not path.exists():
-            continue
         rel = str(path.relative_to(root))
         errs = check_skill_md(rel, path.read_text(encoding="utf-8"), yaml_mod)
         failures += errs
