@@ -104,6 +104,14 @@ def main(root: Path = ROOT) -> int:
         try:
             with zipfile.ZipFile(zip_path) as zf:
                 names = [n for n in zf.namelist() if n.endswith("SKILL.md")]
+                # An empty match means the build shipped a zip with no manifest
+                # (layout change, renamed/omitted SKILL.md). That must FAIL, not
+                # vacuously pass — a zip whose SKILL.md is gone is exactly the
+                # broken artifact this gate exists to catch.
+                if not names:
+                    print("FAIL [zip-frontmatter] zip contains no SKILL.md "
+                          "member")
+                    failures.append("zip: no SKILL.md member")
                 for name in names:
                     text = zf.read(name).decode("utf-8")
                     errs = check_skill_md(f"zip:{name}", text, yaml_mod)
