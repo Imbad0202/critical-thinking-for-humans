@@ -145,13 +145,19 @@ date), and keeps the failing cases inline.
 
 ## Status
 
-**Protocol 1 (cross-model stability):** one run exists —
-`key-agreement-2026-06-14-claude+gpt5.5+gemini3.md`. 24 synthetic items across
-all twelve structures; gpt-5.5 and gemini-3 each reproduced the author key on
-24/24. This is a **stability ceiling, not a validity result** — the run reads as
-a ceiling effect (even items seeded with a partial-merit distractor did not split
-the judges), and the models share training blind spots. It makes no claim that
-any key is correct.
+**Protocol 1 (cross-model stability):** two runs exist, both 24/24 unanimous.
+- Run A (`key-agreement-2026-06-14-claude+gpt5.5+gemini3.md`): 24 items, single
+  author (Claude), judged by gpt-5.5 + gemini-3.
+- Run B (`key-agreement-2026-06-14b-cross-author-rotation.md`): 24 advanced
+  items, **authored in rotation by all three vendors** (8 each), each batch
+  judged by the other two — removes the author-bias limitation of run A. Still
+  24/24.
+
+Both are a **stability ceiling, not a validity result.** Run B rules out author
+bias as the explanation, which makes the reproducibility finding stronger and the
+validity gap no smaller: rotating which LLM writes adds no non-LLM judge, and
+items seeded with tempting near-miss distractors still did not split the judges.
+Neither run claims any key is correct.
 
 **Protocol 1b (human validity anchor):** no run. This is the only protocol that
 could speak to key *correctness*; until it has a result file, the directory makes
