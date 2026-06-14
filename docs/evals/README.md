@@ -145,6 +145,19 @@ date), and keeps the failing cases inline.
 
 ## Status
 
-No result runs yet. Templates only. The first run is a follow-up; until a result
-file exists here, the README makes no empirical effectiveness claim and should
-not be read as if it did.
+**Protocol 1 (cross-model stability):** one run exists —
+`key-agreement-2026-06-14-claude+gpt5.5+gemini3.md`. 24 synthetic items across
+all twelve structures; gpt-5.5 and gemini-3 each reproduced the author key on
+24/24. This is a **stability ceiling, not a validity result** — the run reads as
+a ceiling effect (even items seeded with a partial-merit distractor did not split
+the judges), and the models share training blind spots. It makes no claim that
+any key is correct.
+
+**Protocol 1b (human validity anchor):** no run. This is the only protocol that
+could speak to key *correctness*; until it has a result file, the directory makes
+no validity claim, and the stability number above does not substitute for one.
+
+**Protocols 2 (behavior probes) and 3 (localization):** no runs yet.
+
+Until a protocol-1b result file exists, the README makes no empirical
+effectiveness or correctness claim and should not be read as if it did.
