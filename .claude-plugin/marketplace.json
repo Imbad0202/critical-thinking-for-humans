@@ -10,7 +10,7 @@
       "name": "critical-thinking-for-humans",
       "source": "./",
       "description": "Four modes: drill (12 argument structures, judge stance), scene (Socratic frames + fallacy-recognition track), expedition (audit verified impossible-tier packs), detective (runtime-generated multi-layer case). Manipulation-recognition domain, thirteen redlines, local passport.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "license": "CC-BY-NC-4.0"
     }
   ]

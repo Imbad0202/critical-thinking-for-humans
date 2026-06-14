@@ -4,6 +4,34 @@ All notable changes to critical-thinking-for-humans are documented here. Heading
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
+## [1.0.1] - 2026-06-14
+
+Research-grade hardening after cross-model critique. No behavior change to the
+four modes; this release sharpens honesty and adds manifest-validity CI.
+
+- **Manifest parse fix.** `SKILL.md` (root and the claude-ai overlay) wraps its
+  `description` in a `>-` block scalar so the embedded `Triggers:` colon is
+  literal text. The prior unquoted value parsed as a second YAML mapping key and
+  failed strict parsers and marketplace frontmatter validation.
+- **New `scripts/check_manifests.py` + CI** (pre-build and post-build): parses
+  every SKILL.md frontmatter, `plugin.json`, `marketplace.json`, and the
+  SKILL.md inside the shipped zip. A missing root manifest, an absent zip
+  member, or an unclosed frontmatter line now fails the gate.
+- **Honest positioning.** The transfer claim is stated as the open hypothesis it
+  is (grounded in the contested far-transfer literature and a moderate,
+  heterogeneous meta-analytic effect), not a settled result. The README and
+  `modes/drill.md` now state plainly that a drill key is written and self-audited
+  by one model with no independent sign-off.
+- **Drill challenge window.** A new Session Flow step: after the dissection the
+  coach stops, invites a challenge to the key, and resolves it before the
+  passport write, so a key it cannot defend on the merits never enters the
+  longitudinal stats. Locked by the invariant lint.
+- **`docs/evals/`** evidence framework (templates only): the headline metric is
+  cross-model agreement, not single-model self-scored accuracy. No empirical
+  effectiveness claim until a result file exists.
+- README prose normalized (em dashes removed); invariant-locked sentences kept
+  verbatim.
+
 ## [1.0.0] - 2026-06-14
 
 First public release.
