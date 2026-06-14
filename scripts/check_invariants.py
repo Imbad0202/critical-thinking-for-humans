@@ -84,6 +84,10 @@ CHECKS = [
      "\"cannot be determined\" is a legitimate and rewarded answer"),
     ("modes/drill.md", "name-the-skeleton",
      "the canonical ID goes into the passport event, not the display"),
+    ("modes/drill.md", "honor-key-challenge",
+     "The coach never defends a key by authority"),
+    ("modes/drill.md", "challenge-window-before-write",
+     "Open the challenge window — STOP and wait for the user"),
     ("shared/structures.md", "display-plain-language",
      "raw snake_case IDs appear only in passport events"),
     # --- modes/scene.md (Task 6) ---

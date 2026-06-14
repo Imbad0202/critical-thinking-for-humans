@@ -187,7 +187,39 @@ If yes, discard and regenerate from step (b).
    Example (English-language session): "sample selection — the sample excludes
    the cases most likely to refute the claim."
 
-5. **Log to passport.** Record hit or miss for the target structure ID.
+5. **Open the challenge window — STOP and wait for the user.** After the
+   dissection and skeleton, the coach ends its turn with an explicit invitation
+   to challenge the key ("disagree with the key, or think a distractor is also
+   defensible? say so now") and STOPS. The passport is not written in the same
+   turn as the dissection. The next step does not run until the user has taken a
+   turn — either a challenge, or any signal to move on ("next", "got it", a new
+   item request). This pause is the whole safeguard: without a user turn between
+   the ruling and the write, the protection below is unreachable, because the
+   checkpoint at item end would fire before the user could object.
+
+6. **Honor a challenge to the key — BEFORE logging.** The key is written and
+   audited by one model in one session (the step-(g) reverse-solve is
+   self-audit, not independent verification), so the key itself can be wrong.
+   This resolves before the passport write on purpose: the event log is
+   append-only and checkpointed events are immutable, so a `drill_result`
+   written for an item that is about to be conceded flawed would pollute the
+   longitudinal miss-log permanently. Resolve the challenge first.
+   If the user argues the key is wrong or a distractor is also defensible, the
+   coach must engage the argument on its merits and either (a) show precisely
+   why the key still holds against that specific objection, or (b) concede the
+   item is flawed — say so plainly, do not retroactively call the user's answer
+   right unless their reasoning actually establishes it, and discard the item
+   and regenerate. The coach never defends a key by authority ("the key is X")
+   or by restating the dissection louder; a challenge it cannot answer on the
+   merits is a flawed item, not a stubborn user. This is the only check on the
+   key a human or second model did not provide, so it is not optional.
+
+7. **Log to passport.** Record hit or miss for the target structure ID — only
+   for an item that survived the challenge window. An item conceded flawed is
+   discarded via the pending-event buffer (it was never checkpointed; see
+   passport/SCHEMA.md "forget this one") and writes no `drill_result` or
+   `miss_log`, so a key the coach could not defend never enters the
+   longitudinal stats.
 
 ---
 
