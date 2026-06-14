@@ -36,16 +36,16 @@ login detected, verify now" and clicks before asking the one question their own
 discipline trained them to ask: where is the evidence for that premise? The
 structure is identical. The eye just does not carry over.
 
-So this is a gym for that carry-over. The AI is the coach and you do the work.
+So this is a gym for the reps. The AI is the coach and you do the work.
 You **drill** argument structures, pull apart a real situation in **scene**,
 **audit** reasoning you could not have produced on an **expedition**, or crack a
 layered case flaw by flaw as a **detective**. Every item names the underlying
-structure, on the premise that a named structure is easier to carry from a
-journal to an email to a contract than an unnamed intuition. Whether that
-carry-over actually happens is exactly the open question the field has not
-settled; the naming is the bet, not a promise. All four modes track your
-patterns over time in a passport on your machine, showing you what no single
-session can: your longitudinal blind spots.
+structure, so the move you just made has a handle you can recognize next time.
+Whether that recognition carries from a journal to an email to a contract is the
+open question the field has not settled; this is a place to practice the move,
+not a promise that it transfers. All four modes track your patterns over time in
+a passport on your machine, showing you what no single session can: your
+longitudinal blind spots.
 
 Why spar with an AI? Because criticizing other people is easy and criticizing
 yourself is not. An AI removes the audience. Nobody hears you get it wrong. If
@@ -60,15 +60,13 @@ items have a keyed answer and the coach rules right or wrong against it, but
 that key is written and audited by the same model, in the same session. The
 reverse-solve gate (modes/drill.md) makes the model re-solve its own item with
 fresh eyes, which catches sloppy distractors; it does not make the key
-independently verified. No human and no second model signs off. So on a subtle
-item the model can confidently key the wrong option, and you would be trained
-into its blind spot wearing the authority of "the coach says." Treat the coach
-as a sparring partner, not an oracle: when its ruling does not survive your own
-argument, that disagreement is itself the practice. Push back, and the coach is
-required to answer the objection on its merits or concede the item is flawed
-(modes/drill.md, "honor a challenge to the key"), never to defend the key by
-authority. Your challenge is the only check on the key that no human and no
-second model provided. It is practice, not advice.
+independently verified. No human and no second model signs off, so on a subtle
+item the coach can confidently key the wrong option. Treat it as a sparring
+partner, not an oracle: a ruling that does not survive your own argument is a
+move to push back on, and pushing back is the practice, not a deference test.
+The coach is required to answer the objection on its merits or concede the item
+is flawed (modes/drill.md, "honor a challenge to the key"), never to defend the
+key by authority. It is practice, not advice.
 
 ---
 

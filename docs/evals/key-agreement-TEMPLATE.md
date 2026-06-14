@@ -1,7 +1,9 @@
-# Cross-Model Key Agreement — TEMPLATE (no run yet)
+# Cross-Model Key Agreement (Stability) — TEMPLATE (no run yet)
 
 Copy to `key-agreement-<date>-<model-set>.md` and fill. See `README.md` for the
-protocol and what this may/may not claim.
+protocol and what this may/may not claim. This protocol reports **stability /
+reproducibility only**. For a correctness claim, use the human validity anchor
+(`README.md` protocol 1b) — not this file, however high the agreement.
 
 ## Method
 
@@ -13,8 +15,10 @@ protocol and what this may/may not claim.
 
 ## Epistemic status
 
-Cross-model agreement is a proxy for "this item has a single defensible answer,"
-not proof. No human-expert key. Shared blind spots across models are possible.
+Stability, not validity. High agreement means the key is *typical* of how
+current models read the item, not that it is *correct* — the models share
+training data and so share blind spots. No human-expert key stands behind this
+number. A correctness claim requires the human validity anchor (protocol 1b).
 
 ## Results
 

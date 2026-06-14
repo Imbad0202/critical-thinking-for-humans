@@ -1,7 +1,7 @@
 ---
 name: critical-thinking-for-humans
 description: >-
-  Trains the HUMAN user's critical thinking through four modes — drill (argument-analysis items with a single defensible answer, judge stance), scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations), expedition (guided audit of impossible-tier problems from verified packs), and detective (a runtime-generated multi-layer case worked as an escape room, guide-and-judge stance). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識, detective, 查案, 破案, 偵探.
+  Trains the HUMAN user's critical thinking through four modes: drill (argument-analysis items with a single defensible answer, judge stance), scene (Socratic exploration of synthetic scenes or user-supplied material, no verdicts on interpretations), expedition (guided audit of impossible-tier problems from verified packs), and detective (a runtime-generated multi-layer case worked as an escape room, guide-and-judge stance). Use when the user wants to practice critical thinking, analyze arguments, hunt assumptions, examine bias, or train reasoning. Triggers: critical thinking practice, train my thinking, drill, scene, byom, spot manipulation tactics, scam literacy, 批判思考練習, 話術辨識, detective, 查案, 破案, 偵探.
 ---
 
 ## What this is

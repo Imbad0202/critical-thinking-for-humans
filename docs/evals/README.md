@@ -23,8 +23,30 @@ model in one session** (the step-(g) reverse-solve in `modes/drill.md` is
 self-audit, not independent verification). Nothing else signs off. An eval that
 asks the *same* model whether its own keys are correct measures nothing — it is
 the correlated self-evaluation `GATE-RUN-2026-06-13.md` already warns against.
-So every protocol here uses **at least one independent model as judge**, and the
-headline number is **agreement across models**, not a self-scored accuracy.
+So every protocol here uses **at least one independent model as judge**.
+
+### What cross-model agreement is and is not
+
+Agreement across models is a **stability / reproducibility** measure: it tells
+you whether the keyed answer is *typical* of how current models read the item,
+not whether it is *correct*. The standard methodology position is exactly this —
+inter-model agreement is reported as reproducibility, never as ground truth,
+because models share training data and therefore share systematic blind spots
+(the failure modes most likely to survive a cross-model vote are the ones every
+model gets wrong the same way). So:
+
+- **Stability (reportable now):** cross-model agreement. The headline this
+  directory can produce today. Frame it as "how reproducible is the key,"
+  never as "the key is right."
+- **Validity (not reportable yet):** whether the key is actually correct. This
+  needs a **non-LLM anchor** — a human, competent in the twelve structures,
+  who cold-solves a sample and judges whether each item even has a single
+  defensible answer. The result is a *human-agreement* rate, reported as the
+  primary validity number with cross-model agreement demoted to a secondary
+  stability statistic. No such run exists; until one does, this directory makes
+  no validity claim. The protocol for it is sketched below ("Human validity
+  anchor") so the two numbers stay distinct rather than letting reproducibility
+  pass for correctness.
 
 ## What an eval here may and may not claim
 
@@ -35,9 +57,11 @@ headline number is **agreement across models**, not a self-scored accuracy.
   real situations (the far-transfer question the field has not settled — see the
   README's Theory Grounding); a single-model self-scored accuracy as if it were
   ground truth; any headline percentage without the failing cases attached.
-- There is **no human-expert answer key** behind these numbers. Cross-model
-  agreement is a proxy for "this item has a single defensible answer," not proof
-  of it. Three models can share a blind spot. State this every time.
+- There is **no human-expert answer key** behind any number currently
+  producible here. Cross-model agreement measures stability, not correctness
+  (see "What cross-model agreement is and is not" above); the only path to a
+  correctness claim is the human validity anchor (protocol 1b), which has no run
+  yet. State this every time; never let a stability number read as validity.
 
 ## Protocols
 
@@ -55,6 +79,37 @@ headline number is **agreement across models**, not a self-scored accuracy.
 
 Run the judge models via their own CLIs/APIs, not by one model role-playing
 another. A model imitating a second model is not an independent judge.
+
+This protocol reports **stability only**. It cannot be promoted to a validity
+claim no matter how high the agreement, because the judges share the author
+model's blind spots. For validity, run the anchor protocol below.
+
+### 1b. Human validity anchor (the non-LLM anchor — no run yet)
+
+The only protocol here that can speak to whether a key is *correct* rather than
+*reproducible*, because the judge is not a language model. This is the work
+`expedition` packs already pay (first-party verification of a real solution);
+this protocol asks whether `drill` can pay it too.
+
+1. **Freeze a sample.** Generate 30–50 drill items across all twelve structures
+   (≥2 per structure, mixed tiers). Store each item with the model's own key,
+   key hidden from the human judge.
+2. **Human cold-solve (the anchor — not automatable).** A person competent in
+   the twelve structures solves each item seeing only stem and options, and for
+   each records: their answer, and whether the item even *has* a single
+   defensible answer or is a double-key / ambiguous-distractor item. No model
+   may stand in for this step; a model judging the key is back to correlated
+   self-evaluation.
+3. **Report human-agreement as the primary validity number.** The rate at which
+   the model key matches the human judgment, plus the share of items the human
+   flagged as having no single defensible answer. Cross-model agreement (1) is
+   reported alongside, demoted to a secondary stability statistic.
+4. **List every miss in full** — wrong keys, double keys, ambiguous distractors,
+   item-by-item. Per the metrics framing, the rate of these is the point, not an
+   average to round away.
+
+Until a result file for this protocol exists, the directory's validity claim is:
+none. Cross-model stability does not substitute for it.
 
 ### 2. Adversarial behavior probes (`behavior-probes-TEMPLATE.md`)
 
