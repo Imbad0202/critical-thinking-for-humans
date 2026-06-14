@@ -29,13 +29,20 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def parse_frontmatter(text: str, yaml_mod):
-    """Return the parsed frontmatter dict, or raise."""
-    if not text.startswith("---"):
-        raise ValueError("no YAML frontmatter (file does not start with ---)")
-    parts = text.split("---", 2)
-    if len(parts) < 3:
-        raise ValueError("frontmatter not closed by a second ---")
-    return yaml_mod.safe_load(parts[1])
+    """Return the parsed frontmatter dict, or raise.
+
+    The closing delimiter must be matched as a whole `---` line, not a `---`
+    substring: a folded scalar value may legitimately contain `---`, and
+    splitting on the substring would treat that as the end of frontmatter,
+    parsing only a prefix (or passing a file that never actually closes).
+    """
+    lines = text.splitlines()
+    if not lines or lines[0].rstrip() != "---":
+        raise ValueError("no YAML frontmatter (first line is not ---)")
+    for i in range(1, len(lines)):
+        if lines[i].rstrip() == "---":
+            return yaml_mod.safe_load("\n".join(lines[1:i]))
+    raise ValueError("frontmatter not closed by a --- line")
 
 
 def check_skill_md(rel: str, text: str, yaml_mod) -> list[str]:
