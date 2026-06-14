@@ -87,7 +87,7 @@ CHECKS = [
     ("modes/drill.md", "honor-key-challenge",
      "The coach never defends a key by authority"),
     ("modes/drill.md", "challenge-window-before-write",
-     "The passport is not written in the same turn as the dissection"),
+     "Open the challenge window — STOP and wait for the user"),
     ("shared/structures.md", "display-plain-language",
      "raw snake_case IDs appear only in passport events"),
     # --- modes/scene.md (Task 6) ---
