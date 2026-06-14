@@ -4,6 +4,31 @@ All notable changes to critical-thinking-for-humans are documented here. Heading
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
+## [1.0.2] - 2026-06-14
+
+Positioning and eval-honesty pass after a second round of cross-model critique.
+Documentation only; no behavior change to the four modes.
+
+- **Positioning: a practice environment, not a transfer claim.** The README no
+  longer sells itself as a fix for carry-over. It is a place to practice the
+  move; whether a named move transfers stays the field's open question, stated
+  once rather than as a repeated hedge. The "rigor does not transfer on its own"
+  motivation is kept (a true phenomenon, not a promise). Removed the
+  "trained into its blind spot" harm framing: under a practice-environment
+  framing a wrong key is a move to push back on, and the user judges their own
+  level.
+- **Eval metric honesty: stability vs validity.** Cross-model agreement is
+  documented as a *stability / reproducibility* measure only (models share
+  training data, so they share blind spots), never as correctness. Added
+  protocol 1b — a human validity anchor: a person competent in the twelve
+  structures cold-solves a frozen sample, human-agreement is the primary
+  validity number, cross-model agreement demoted to a secondary stability
+  statistic. No run yet, so no validity claim. New
+  `docs/evals/human-validity-anchor-TEMPLATE.md`.
+- **SKILL.md description em-dash** (root + claude-ai overlay): the one
+  user-facing string the prior voice pass missed, changed to a colon. Trigger
+  keywords untouched; routing unchanged.
+
 ## [1.0.1] - 2026-06-14
 
 Research-grade hardening after cross-model critique. No behavior change to the
