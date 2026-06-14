@@ -4,7 +4,7 @@
     "name": "Cheng-I Wu",
     "url": "https://github.com/Imbad0202"
   },
-  "description": "A gym for your critical thinking — the AI coaches, you train. Four modes (drill, scene, expedition, detective) across distinct reasoning stances, with a longitudinal passport on your machine.",
+  "description": "A gym for your critical thinking. The AI coaches; you train. Four modes (drill, scene, expedition, detective) across distinct reasoning stances, with a longitudinal passport on your machine.",
   "plugins": [
     {
       "name": "critical-thinking-for-humans",
