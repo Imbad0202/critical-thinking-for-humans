@@ -8,6 +8,10 @@ Invariants:
    version; pre-first-release, no version badge may exist.
 4. README.md, SKILL.md, and docs/*.md reference no X.Y.Z version newer than
    the latest CHANGELOG version (pre-first-release: none at all).
+5. docs/ARCHITECTURE.md header `# Architecture (vX.Y.Z)` equals the latest
+   CHANGELOG version exactly. Invariant 4 only catches *forward* drift (a
+   future version); a header pinned to an older release passes 4 but is still
+   stale, so it gets its own equality check.
 
 Exit 0 aligned; 1 violations; 2 invocation error.
 """
@@ -20,6 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 HEADING = re.compile(r"^## \[(Unreleased|\d+\.\d+\.\d+)\]", re.MULTILINE)
 BADGE = re.compile(r"badge/version-v(\d+\.\d+\.\d+)")
 VERSION_REF = re.compile(r"\bv(\d+\.\d+\.\d+)\b")
+ARCH_HEADER = re.compile(r"^# Architecture \(v(\d+\.\d+\.\d+)\)", re.MULTILINE)
 
 
 def semver(s: str) -> tuple[int, ...]:
@@ -84,6 +89,20 @@ def main(root: Path = ROOT) -> int:
             failures += 1
         else:
             print(f"PASS [no-future-versions:{rel}]")
+
+    arch = root / "docs" / "ARCHITECTURE.md"
+    if latest and arch.exists():
+        m = ARCH_HEADER.search(arch.read_text(encoding="utf-8"))
+        if not m:
+            print("FAIL [arch-header] docs/ARCHITECTURE.md has no "
+                  "'# Architecture (vX.Y.Z)' header")
+            failures += 1
+        elif m.group(1) == latest:
+            print("PASS [arch-header]")
+        else:
+            print(f"FAIL [arch-header] header v{m.group(1)} != "
+                  f"latest CHANGELOG version {latest}")
+            failures += 1
 
     print(f"\n{'ALIGNED' if not failures else f'{failures} violation(s)'}")
     return 1 if failures else 0

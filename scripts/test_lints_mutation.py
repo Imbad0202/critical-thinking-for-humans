@@ -129,6 +129,19 @@ def test_version_lint_future_reference(tree, capsys):
     capsys.readouterr()
 
 
+def test_version_lint_stale_arch_header(tree, capsys):
+    # A backward-stale ARCHITECTURE header (older than latest CHANGELOG) passes
+    # the forward-only no-future-versions scan but must FAIL [arch-header].
+    arch = tree / "docs/ARCHITECTURE.md"
+    text = arch.read_text(encoding="utf-8")
+    mutated = cvc.ARCH_HEADER.sub("# Architecture (v0.0.1)", text, count=1)
+    assert mutated != text, "ARCHITECTURE header needle absent, cannot mutate"
+    arch.write_text(mutated, encoding="utf-8")
+    rc = cvc.main(tree)
+    out = capsys.readouterr().out
+    assert rc == 1 and "FAIL [arch-header]" in out
+
+
 def test_version_lint_release_requires_badge(tree, capsys):
     # A released CHANGELOG (a versioned entry) with NO matching README badge
     # must FAIL. Construct the situation outright rather than relying on the
