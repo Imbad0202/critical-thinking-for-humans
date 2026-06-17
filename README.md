@@ -1,6 +1,6 @@
 # critical-thinking-for-humans
 
-[![Version](https://img.shields.io/badge/version-v1.0.2-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.0.2)
+[![Version](https://img.shields.io/badge/version-v1.1.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.1.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
@@ -338,7 +338,7 @@ passport/SCHEMA.md). The platform delta is storage only: no local filesystem, so
 the event log becomes a session tally plus a copy-paste passport block the user
 saves and re-imports (see `platforms/claude-ai/passport/SCHEMA.md`); redline 12
 is reworded to stay honest about where conversation data lives. Modes, stances,
-redlines 1 through 11 and 13, and the item pipeline are identical.
+redlines 1 through 11, 13, and 14, and the item pipeline are identical.
 
 Maintenance rule: when you edit a canonical file that has an overlay counterpart,
 review the overlay in the same commit. `scripts/check_invariants.py` re-checks
