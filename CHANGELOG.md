@@ -4,6 +4,38 @@ All notable changes to critical-thinking-for-humans are documented here. Heading
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
+## [Unreleased]
+
+A fourteenth redline. Behavioral change to every judging mode (drill, detective,
+and factual claims anywhere); version bump deferred to the maintainer.
+
+- **RL14 — "Concede on the merits, never to please."** Detective's only runtime
+  safety net (the coach concedes when the user catches a flaw the answer key
+  missed) previously lived only in `modes/detective.md`, below redline level and
+  with no guard against sliding from stubbornness into sycophancy. RL14 makes it
+  a floor-level, two-way constraint: never defend a challenged judgement by
+  authority (a self-authored key — and the frame it is judged against — carries
+  the same blind spot, so neither is self-evidently right), and never concede to
+  be agreeable (a concession not anchored to the specific step where the user's
+  reasoning is established is fabricated, withheld like a false defense). The
+  ruling must be *produced, not felt*: a four-fact reconstruction (user's claim /
+  key's claim / the frame criterion and whether it is itself sound / the verdict
+  reading off the first three) written in the visible turn. A wrong key gets a
+  short admission, not a balanced-sounding tribunal. An explicit residual-limit
+  paragraph states what prompt text cannot enforce — reverse-fitted theater — and
+  names the real backstop: the user keeps the floor to challenge again.
+- **Translation discipline** baked into the redline: the force lives in three
+  pivot words whose obvious Chinese renderings collapse it — a concession is
+  改判／承認錯誤 not 讓步／妥協, reasoning that holds is 成立 not 有道理／說得通,
+  the merits are 理據／論證本身 not 優點.
+- **Connected edits.** `shared/redlines.md` + claude-ai mirror (RL14 text,
+  thirteen→fourteen); `modes/detective.md` inspect step annotated with the
+  same-model blind-spot warning + RL14 cross-refs; `modes/expedition.md`,
+  `shared/scaffolding.md` (+mirror), `docs/ARCHITECTURE.md` (thirteen→fourteen,
+  RL14 row in the redline table); `scripts/check_invariants.py` gains RL14
+  invariants (auto-mirrored via the overlay map). Reviewed dual-track (codex
+  gpt-5.5 + gemini 3.1-pro) across three rounds; lint 299/299.
+
 ## [1.0.2] - 2026-06-14
 
 Positioning and eval-honesty pass after a second round of cross-model critique.

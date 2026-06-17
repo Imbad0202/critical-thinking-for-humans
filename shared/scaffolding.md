@@ -9,7 +9,7 @@ Loaded alongside shared/structures.md and shared/redlines.md every session.
 ## 1. Invariant vs Variable Layers
 
 **Invariant** — fixed regardless of tier, user history, or expressed frustration:
-the canonical structure list, the procedural stance, the thirteen redlines, and
+the canonical structure list, the procedural stance, the fourteen redlines, and
 the standard of a sound analysis is identical at every difficulty.
 
 **Variable** — adjustable without touching the bar:
