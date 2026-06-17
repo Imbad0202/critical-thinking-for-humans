@@ -1,7 +1,7 @@
 {
   "name": "critical-thinking-for-humans",
-  "version": "1.0.2",
-  "description": "A gym for your critical thinking. The AI is the coach; you do the work. Four modes across distinct epistemic stances: drill (12 argument structures, single defensible answer), scene (Socratic frames, never ranks interpretations, plus a fallacy-recognition track), expedition (audit verified impossible-tier problem packs), detective (crack a runtime-generated multi-layer case flaw by flaw). Manipulation-recognition domain, thirteen redlines, and a longitudinal passport on your own machine.",
+  "version": "1.1.0",
+  "description": "A gym for your critical thinking. The AI is the coach; you do the work. Four modes across distinct epistemic stances: drill (12 argument structures, single defensible answer), scene (Socratic frames, never ranks interpretations, plus a fallacy-recognition track), expedition (audit verified impossible-tier problem packs), detective (crack a runtime-generated multi-layer case flaw by flaw). Manipulation-recognition domain, fourteen redlines, and a longitudinal passport on your own machine.",
   "author": {
     "name": "Cheng-I Wu",
     "url": "https://github.com/Imbad0202"

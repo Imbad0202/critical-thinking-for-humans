@@ -4,10 +4,10 @@ All notable changes to critical-thinking-for-humans are documented here. Heading
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
-## [Unreleased]
+## [1.1.0] - 2026-06-17
 
 A fourteenth redline. Behavioral change to every judging mode (drill, detective,
-and factual claims anywhere); version bump deferred to the maintainer.
+and factual claims anywhere).
 
 - **RL14 — "Concede on the merits, never to please."** Detective's only runtime
   safety net (the coach concedes when the user catches a flaw the answer key
