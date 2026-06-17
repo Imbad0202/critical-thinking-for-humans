@@ -6,7 +6,7 @@ stayed open for decades and fell to AI-class search. Success is never "the user
 solves it"; success is a completed audit, a calibrated prediction, or a climbed
 step sequence — announced as such at the start. Validity claims are judged
 plainly (a step is valid or it is not); no ranking of interpretations is
-involved. All thirteen redlines bind.
+involved. All fourteen redlines bind.
 
 What expedition trains is not the subject matter; it is the human-executable
 translation of machine advantages — see The Six Disciplines.

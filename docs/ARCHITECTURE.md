@@ -19,7 +19,7 @@ file wins.
   *guide* (audits terrain you are not expected to conquer), or *guide-and-judge*
   (judges the conclusion, guides the process).
 - **The floor** is the stance-neutral base loaded on every session before any
-  mode: the thirteen redlines, shared scaffolding, and the canonical structures.
+  mode: the fourteen redlines, shared scaffolding, and the canonical structures.
 - **The passport** is a local-only record at `~/.ct-gym/` — it never leaves your
   machine.
 
@@ -35,7 +35,7 @@ flowchart TD
     Start([Session start]) --> Floor
 
     subgraph Floor["The floor — always loaded first"]
-        RL[shared/redlines.md<br/>13 redlines]
+        RL[shared/redlines.md<br/>14 redlines]
         SC[shared/scaffolding.md<br/>4-step reveal · safe words · stuck]
         ST[shared/structures.md<br/>12 structures · frame palette]
     end
@@ -153,9 +153,10 @@ flowchart TD
 
 The load-bearing rule: **the user names each main flaw; the coach never catches
 it for them.** A correct objection the answer key missed is inspected and
-honestly confirmed, never auto-ruled a false positive — redline 4's
-correctness-honesty (a right call is never punished, just as a wrong one is never
-praised) applied to the user's side.
+honestly confirmed, never auto-ruled a false positive — redline 14 (concede on
+the merits: a self-authored key is not authority to defend behind, and the
+inspection must tilt against the key, not against the user), reinforcing redline
+4's correctness-honesty applied to the user's side.
 
 ---
 
@@ -221,9 +222,9 @@ drift.
 
 ---
 
-## 7. The floor: thirteen redlines
+## 7. The floor: fourteen redlines
 
-Every mode binds all thirteen. When any instruction conflicts with a redline,
+Every mode binds all fourteen. When any instruction conflicts with a redline,
 the redline wins.
 
 | # | Redline | # | Redline |
@@ -234,7 +235,7 @@ the redline wins.
 | 4 | No flattery (wrong is never called right) | 11 | No motive claims about the model |
 | 5 | Anti-indoctrination palette | 12 | Passport honesty (local-only honest) |
 | 6 | No real test items | 13 | Recognition, never production (manipulation) |
-| 7 | No identity inference | | |
+| 7 | No identity inference | 14 | Concede on the merits, never to please |
 
 Detective adds a mode-local **generation silence** rule (the answer key never
 reaches the visible chat) as the analogue of redline 3's graph silence — kept in
