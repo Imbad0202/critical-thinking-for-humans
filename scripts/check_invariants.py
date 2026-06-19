@@ -7,6 +7,7 @@ runtime behavior honors it (behavioral gates live in docs/GATE-checklist.md).
 """
 import sys
 from pathlib import Path
+from typing import Optional
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -471,7 +472,7 @@ FORBIDDEN = [
 ]
 
 
-def h2_section_body(text: str, title: str) -> str | None:
+def h2_section_body(text: str, title: str) -> Optional[str]:
     """Return the body of the H2 section with the given title, or None."""
     lines = text.splitlines()
     start = None
