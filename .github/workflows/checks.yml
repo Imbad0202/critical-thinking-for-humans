@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Lets release.yml reuse this job on tag push, so the canonical list of
+  # checks lives only here.
+  workflow_call:
 
 concurrency:
   group: checks-${{ github.ref }}-${{ github.event_name }}
@@ -39,3 +42,8 @@ jobs:
         # The pre-build run skips the zip-frontmatter check (no artifact yet);
         # re-run after the build so the SKILL.md that actually ships is parsed.
         run: python3 scripts/check_manifests.py
+      - name: Portable build
+        # The portable build carries its own wording gates (filesystem/router
+        # vocabulary must not survive the rewrite); running it here makes those
+        # gates fire on every push, not only on a maintainer's machine.
+        run: bash scripts/build_portable.sh

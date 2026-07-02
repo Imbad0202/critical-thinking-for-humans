@@ -3,6 +3,9 @@ dist/
 .gstack/
 __pycache__/
 *.pyc
+.pytest_cache/
 
 # Design specs and implementation plans are kept locally, not shipped.
 docs/superpowers/
+.local-plans/
+.context/

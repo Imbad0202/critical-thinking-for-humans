@@ -1,0 +1,53 @@
+name: release
+
+# Tag-time gate + artifact publication. Pushing a v* tag re-runs the full
+# checks workflow (the canonical lint list lives in checks.yml), adds the
+# release-only gates (tag-to-CHANGELOG equality, README Last-Updated
+# freshness), builds both distributable editions, and attaches them to the
+# GitHub Release, so the portable edition needs no local build.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+
+  release:
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Release-only gates
+        run: python3 scripts/check_version_consistency.py --release --tag "${GITHUB_REF_NAME}"
+      - name: Build artifacts
+        run: |
+          bash scripts/build_claude_ai_zip.sh
+          bash scripts/build_portable.sh
+      - name: Extract release notes from CHANGELOG
+        # The lint above already guarantees this exact section exists with a
+        # non-empty body for this exact tag; test -s makes any drift loud.
+        run: |
+          awk -v ver="${GITHUB_REF_NAME#v}" '
+            index($0, "## [" ver "]") == 1 { on = 1; next }
+            on && /^## \[/ { exit }
+            on { print }
+          ' CHANGELOG.md > release-notes.md
+          test -s release-notes.md || { echo "no CHANGELOG entry for ${GITHUB_REF_NAME}" >&2; exit 1; }
+      - name: Create GitHub Release with artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            dist/critical-thinking-for-humans-claude-ai.zip \
+            dist/critical-thinking-for-humans-portable.md \
+            --verify-tag \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file release-notes.md

@@ -15,6 +15,13 @@ cp -R "$ROOT/modes" "$ROOT/shared" "$ROOT/passport" "$DEST/"
 # TEMPLATE.md describes the regenerable markdown view of the local event log;
 # the claude.ai edition has neither, so it ships without it.
 rm "$DEST/passport/TEMPLATE.md"
+# Expedition packs are runtime material (modes/expedition.md discovers packs in
+# expeditions/ and refuses honestly without them). PACK-SCHEMA.md ships too:
+# expedition.md cites it as the authoring spec and it declares no pack_id.
+# ROADMAP.md is repo planning, not runtime, and stays out.
+mkdir -p "$DEST/expeditions"
+cp "$ROOT"/expeditions/*.md "$DEST/expeditions/"
+rm "$DEST/expeditions/ROADMAP.md"
 
 # 2. Platform overlay — whole-file replacements win over canonical.
 cp -R "$ROOT/platforms/claude-ai/." "$DEST/"

@@ -4,6 +4,45 @@ All notable changes to critical-thinking-for-humans are documented here. Heading
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
+## [1.1.1] - 2026-07-02
+
+Release-engineering pass: publish automation, manifest-version enforcement, and
+a fuller claude.ai edition. No behavior change to the four modes' stance,
+redlines, or item pipeline.
+
+- **Expedition packs ship in the claude.ai zip.** `build_claude_ai_zip.sh` now
+  copies `expeditions/` (16 packs plus PACK-SCHEMA.md; ROADMAP.md excluded as
+  planning material), so expedition can run on claude.ai instead of always
+  taking the honest no-pack refusal. The claude.ai passport overlay already
+  recorded completed expeditions, so no schema change. Stated caveat (README):
+  the expedition path is less battle-tested on claude.ai; if the platform does
+  not expose the bundled pack files, the mode degrades to the no-pack refusal.
+- **Release workflow.** New `.github/workflows/release.yml`: pushing a `v*` tag
+  re-runs the checks workflow via `workflow_call`, adds two release-only gates
+  (tag-to-CHANGELOG equality and README Last-Updated freshness), builds both
+  artifacts, and attaches them to the GitHub Release. The portable edition is
+  now downloadable without a local build.
+- **Portable build joins CI.** `checks.yml` now runs `build_portable.sh`, so
+  its wording gates (no filesystem/router vocabulary may survive the rewrite)
+  fire on every push rather than only on a maintainer's machine.
+- **Version lint: four new checks** in `check_version_consistency.py`, each
+  with a mutation test proving it fails on drift: `.claude-plugin/plugin.json`
+  and `marketplace.json` versions must equal the latest CHANGELOG version; the
+  README must carry a matching "What's new in vX.Y.Z" section and a
+  `**Last Updated:**` stamp (freshness enforced at release time via
+  `--release`); and `--tag` asserts the tag being cut equals the CHANGELOG.
+- **Gate probe harness (advisory).** New `scripts/gate_probe_harness.sh` runs a
+  small subset of single-turn Gate probes headlessly and greps transcripts for
+  mechanical failure markers (e.g. Gate 9F generation-silence leaks). It
+  supplements `docs/GATE-checklist.md`; multi-turn, judgment-heavy probes stay
+  manual, and a grep-clean transcript still requires human review.
+- **Scripts dual-licensed.** Code under `scripts/` is additionally offered
+  under MIT (`scripts/LICENSE`); repository content stays CC BY-NC 4.0. New
+  README License section.
+- `.gitignore` now excludes `.local-plans/`, `.context/`, and `.pytest_cache/`
+  in the tracked file, so the exclusion holds on every clone rather than
+  depending on one machine's local git excludes.
+
 ## [1.1.0] - 2026-06-17
 
 A fourteenth redline. Behavioral change to every judging mode (drill, detective,

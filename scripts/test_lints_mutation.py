@@ -5,7 +5,9 @@ nothing if the lint is inert. Pattern (borrowed from ARS): copy the checked
 tree into tmp, mutate one rule at a time, assert the matching check FAILs,
 restore. The invariant table is homogeneous, so one loop covers every entry.
 """
+import json
 import shutil
+from datetime import date
 from pathlib import Path
 
 import pytest
@@ -17,7 +19,7 @@ import check_version_consistency as cvc
 
 REPO = Path(__file__).resolve().parent.parent
 NEEDED_DIRS = ["shared", "modes", "passport", "platforms", "docs",
-               "expeditions"]
+               "expeditions", ".claude-plugin"]
 NEEDED_FILES = ["SKILL.md", "README.md", "CHANGELOG.md"]
 PACK = "expeditions/boolean-pythagorean-triples.md"
 
@@ -140,6 +142,73 @@ def test_version_lint_stale_arch_header(tree, capsys):
     rc = cvc.main(tree)
     out = capsys.readouterr().out
     assert rc == 1 and "FAIL [arch-header]" in out
+
+
+def _latest_changelog_version(tree):
+    headings = cvc.HEADING.findall(
+        (tree / "CHANGELOG.md").read_text(encoding="utf-8"))
+    return max((h for h in headings if h != "Unreleased"), key=cvc.semver)
+
+
+def test_version_lint_plugin_version_drift(tree, capsys):
+    path = tree / ".claude-plugin/plugin.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["version"] = "0.0.1"
+    path.write_text(json.dumps(data), encoding="utf-8")
+    rc = cvc.main(tree)
+    out = capsys.readouterr().out
+    assert rc == 1 and "FAIL [plugin-version]" in out
+
+
+def test_version_lint_marketplace_version_drift(tree, capsys):
+    path = tree / ".claude-plugin/marketplace.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["plugins"][0]["version"] = "0.0.1"
+    path.write_text(json.dumps(data), encoding="utf-8")
+    rc = cvc.main(tree)
+    out = capsys.readouterr().out
+    assert rc == 1 and "FAIL [marketplace-version]" in out
+
+
+@pytest.mark.parametrize("pattern,replacement,kwargs,label", [
+    (cvc.WHATS_NEW, "## What's new in v0.0.1", {}, "readme-whats-new"),
+    (cvc.WHATS_NEW, "## Recent changes", {}, "readme-whats-new"),
+    (cvc.LAST_UPDATED, "Last touched: whenever", {}, "readme-last-updated"),
+    (cvc.LAST_UPDATED, "**Last Updated:** 2020-01-01", {"release": True},
+     "readme-last-updated-fresh"),
+])
+def test_version_lint_readme_stamp_mutations(tree, capsys, pattern,
+                                             replacement, kwargs, label):
+    readme = tree / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    mutated = pattern.sub(replacement, text, count=1)
+    assert mutated != text, f"{label}: needle absent, cannot mutate"
+    readme.write_text(mutated, encoding="utf-8")
+    rc = cvc.main(tree, **kwargs)
+    out = capsys.readouterr().out
+    assert rc == 1 and f"FAIL [{label}]" in out
+
+
+def test_version_lint_release_mode_fresh_stamp_green(tree, capsys):
+    readme = tree / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    readme.write_text(
+        cvc.LAST_UPDATED.sub(f"**Last Updated:** {date.today().isoformat()}",
+                             text),
+        encoding="utf-8")
+    assert cvc.main(tree, release=True) == 0
+    capsys.readouterr()
+
+
+def test_version_lint_tag_mismatch(tree, capsys):
+    rc = cvc.main(tree, tag="v9.9.9")
+    out = capsys.readouterr().out
+    assert rc == 1 and "FAIL [tag-matches-changelog]" in out
+
+
+def test_version_lint_tag_match_green(tree, capsys):
+    assert cvc.main(tree, tag="v" + _latest_changelog_version(tree)) == 0
+    capsys.readouterr()
 
 
 def test_version_lint_release_requires_badge(tree, capsys):

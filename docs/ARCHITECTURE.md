@@ -1,4 +1,4 @@
-# Architecture (v1.1.0)
+# Architecture (v1.1.1)
 
 How `critical-thinking-for-humans` is put together: what loads when, how a
 session routes to one of four modes, how the twelve reasoning structures are
@@ -208,7 +208,7 @@ flowchart TD
 
     Canonical -->|"runs directly"| CC["Claude Code skill<br/>(full: 4 modes + on-disk passport<br/>+ expedition packs)"]
 
-    Canonical -->|"build_claude_ai_zip.sh<br/>+ platforms/claude-ai/ overlays"| Zip["claude.ai zip<br/>same modes & redlines;<br/>passport → copy-paste block<br/>(no local filesystem)"]
+    Canonical -->|"build_claude_ai_zip.sh<br/>+ platforms/claude-ai/ overlays"| Zip["claude.ai zip<br/>same modes & redlines;<br/>16 expedition packs included;<br/>passport → copy-paste block<br/>(no local filesystem)"]
 
     Canonical -->|"build_portable.sh"| Port["Portable single-file .md<br/>any frontier model;<br/>drill + scene + detective only<br/>(no packs, no on-disk passport)"]
 
