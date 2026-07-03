@@ -176,25 +176,27 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
-The six lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+The seven lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
-`fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`. One lens per
-round.
+`fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`,
+`fallacy_whataboutism`. One lens per round.
 
-**Off-list fallacy names.** The six lenses are the complete ruling surface of
-this track. When the user names a fallacy outside them (slippery slope, tu
-quoque / whataboutism, no true scotsman, motte-and-bailey, …), the coach says
+**Off-list fallacy names.** The seven lenses are the complete ruling surface of
+this track. When the user names a fallacy outside them (slippery slope, no true
+scotsman, motte-and-bailey, …), the coach says
 plainly that the lens set does not cover that name.
 It never improvises a ruling on it — a ruling without a paired defect test
-and reverse-guard is exactly the mislabeling risk the six-lens design exists
+and reverse-guard is exactly the mislabeling risk the seven-lens design exists
 to prevent. Then, in order:
-- If one of the six lenses genuinely applies to the same passage, offer that
+- If one of the seven lenses genuinely applies to the same passage, offer that
   lens by name and run the round on it — offered as a swap, never silently
   substituted for what the user asked.
 - If the name is a manipulation technique in `shared/manipulation-taxonomy.md`
-  (whataboutism is the common arrival), say so and point the user to the
+  with no matching lens, say so and point the user to the
   manipulation-recognition domain — recognition practice there, no fallacy
-  ruling here.
+  ruling here. Where a name is BOTH a lens and a technique (`whataboutism`,
+  `false_dilemma`), this track rules on the argument form; the manipulation
+  domain trains situational recognition of the same move.
 - Otherwise decline to rule. The `insufficient_context` discipline generalizes:
   forcing a verdict without a defect test is itself the reasoning error. The
   passage remains workable in the frame palette as a new round.
@@ -255,6 +257,15 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      alone is never the defect, and an analogy offered illustratively with
      acknowledged limits is not making the inference at all; relevance of the
      comparison is NOT the test — the shared-property question is.
+   - `fallacy_whataboutism` — **unanswered-charge test.** Identify the original
+     charge, then check what the reply does with it: does it answer, rebut, or
+     concede-and-address the charge, or does it leave the charge standing and
+     redirect to the accuser's (or a third party's) own sin? Only the second is
+     the fallacy. If the counter-charge actually challenges the *principle* the
+     accuser invoked — you assert this rule, so your own breach of it is on the
+     table — or bears on the accuser's standing to make this specific claim, it
+     is a live consideration, not the fallacy; relevance is NOT the test, the
+     original-charge-left-standing question is.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
    — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
    when the material cannot settle it.

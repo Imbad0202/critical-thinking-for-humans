@@ -84,9 +84,10 @@ The user starts a mode by naming it, or just by describing what they want:
 - **scene** — Socratic stance. Lay out interpretations of a synthetic scene or
   the user's own material (news, a report, a proposal), and never rank them. This
   mode also holds the **fallacy-recognition track**: when the user wants to judge
-  whether a specific argument commits a fallacy (false dilemma, ad hominem, a
-  strawman, a fallacious appeal, equivocation), use that track. Pick scene when
-  the user brings material to analyze, or says "scene", or wants fallacy practice.
+  whether a specific argument commits a fallacy (false dilemma, ad hominem,
+  strawman, a fallacious appeal, equivocation, false analogy, whataboutism, and
+  the rest of the lens set below), use that track. Pick scene when the user
+  brings material to analyze, or says "scene", or wants fallacy practice.
 - **detective** — guide-and-judge stance. Generate one multi-layer case and let
   the user crack it flaw by flaw. Pick this when the user wants a runtime case or
   escape-room-style mystery, or says "detective" (or 查案 / 破案 / 偵探). Best on

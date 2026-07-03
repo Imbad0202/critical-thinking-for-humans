@@ -81,7 +81,7 @@ These are the eight wrong-answer patterns used to build drill items.
 
 ## Frame Palette
 
-Scene mode must cycle through all six lenses across each scene.
+Scene mode must cycle through all six frames across each scene.
 
 | ID | Lens |
 |----|------|
@@ -96,8 +96,8 @@ Scene mode must cycle through all six lenses across each scene.
 
 ## Fallacy-Recognition Lenses
 
-Scene's **fallacy-recognition track** (modes/scene.md) uses these six lenses,
-and the six are the complete ruling surface — a fallacy named outside them is
+Scene's **fallacy-recognition track** (modes/scene.md) uses these seven lenses,
+and the seven are the complete ruling surface — a fallacy named outside them is
 declined or redirected, never improvised (modes/scene.md, Off-list fallacy
 names).
 They are NOT frames — frames are interpretive and never ranked (redline 1);
@@ -108,12 +108,13 @@ Lens IDs are not loggable structure IDs — they never appear in `drill_result.s
 
 | Lens ID | Detects | Reverse-guard (must NOT mislabel) |
 |---------|---------|-----------------------------------|
-| `fallacy_false_dilemma` | The argument assumes only A or B, hiding a real third option. | Some situations genuinely have only two options — not every binary is a false dilemma. |
+| `fallacy_false_dilemma` | The argument assumes only A or B, hiding a real third option. Also a `false_dilemma` manipulation technique (shared/manipulation-taxonomy.md). | Some situations genuinely have only two options — not every binary is a false dilemma. |
 | `fallacy_ad_hominem` | Attacks the arguer's character or identity instead of the argument — the person-level fact is offered as a substitute for rebuttal, not as evidence of bias (which would be a fair challenge; see strawman for distorting the argument itself). | A conflict-of-interest challenge is NOT ad hominem ONLY when it supports a limited conclusion — possible bias, lack of independence, a need for corroboration. The SAME conflict becomes circumstantial ad hominem (a fallacy) the moment it is used, by itself, to dismiss the claim or testimony as false, worthless, or not credible: a conflict bears on evidential weight, never on truth value alone. (Equally, challenging a documented pattern of systematic error is NOT ad hominem.) |
 | `fallacy_strawman` | Distorts the opponent's argument, then attacks the distortion. | Accurately restating an opponent's weak argument is NOT a strawman. |
 | `fallacy_appeal` | Appeals to an irrelevant authority, to emotion, or to the crowd. | Appealing to a relevant expert on their own subject is NOT a fallacy; first-hand emotional testimony is NOT an appeal to emotion; an empirical consensus among domain experts is NOT an appeal to the crowd. |
 | `fallacy_equivocation` | The same term is swapped between two meanings across the argument. | A word shifting sense naturally across contexts is NOT equivocation; the swap must occur within one inferential chain. |
 | `fallacy_false_analogy` | Transfers a conclusion from one case to another on a similarity the conclusion does not actually depend on — the two cases differ on the load-bearing property, so the inference does not carry. | An analogy that DOES share the load-bearing property despite surface differences is NOT false; an analogy offered illustratively with acknowledged limits is NOT the fallacy; surface dissimilarity alone never makes an analogy false. |
+| `fallacy_whataboutism` | Deflects a charge by pointing at the accuser's (or a third party's) own sin instead of answering it — the original charge is left standing, only relocated. Not an attack on the arguer's credibility (that is `fallacy_ad_hominem`) and it does not distort the original charge (that is `fallacy_strawman`); it concedes the charge and drowns it in a counter-charge. Also a `whataboutism` manipulation technique (shared/manipulation-taxonomy.md). | Pointing out a genuine double standard or inconsistency is NOT whataboutism when it is offered as a fair challenge to the *principle* the accuser invoked (if you assert this rule, your own breach of it is on the table), rather than as a substitute for answering the original charge; a tu-quoque that actually bears on the accuser's standing to make the specific claim is a live consideration, not automatically the fallacy. |
 
 ---
 

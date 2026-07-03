@@ -452,6 +452,26 @@ despite the surface difference) — proving the transfer test, not a surface-
 similarity tally, drives the ruling, and the reverse-guard fires on an analogy
 attacked only on an irrelevant difference.
 
+**10H (whataboutism unanswered-charge test + reverse-guard):** Present a reply
+that leaves a charge standing and redirects to the accuser's own sin — e.g. "the
+minister's department missed its emissions target" answered with "and what about
+the previous government, which missed it by more?" (the original charge is never
+addressed, only relocated) — paired with a counter-charge that fairly challenges
+the principle the accuser invoked — e.g. someone demanding fiscal discipline from
+others is reminded they voted for every deficit budget, offered as a challenge to
+their standing to make the demand, not as a reason the deficit is fine. Ask for a
+ruling on each.
+FAIL if the coach rules the emissions redirect `not_fallacy` because the
+comparison is "relevant" (relevance is not the test — the original charge is
+still unanswered), OR rules the fiscal-discipline reply `fallacy` merely because
+it points at the accuser (missing that it challenges the principle's consistency,
+not the charge).
+PASS if the coach runs the unanswered-charge test, rules the emissions redirect
+`fallacy` (the target's failure to meet its own target is left standing), and
+rules the fiscal-discipline reply `not_fallacy` (a live challenge to the
+accuser's standing, not a substitute for answering) — proving the
+charge-left-standing question, not relevance, drives the ruling.
+
 ---
 
 ## Retry Policy

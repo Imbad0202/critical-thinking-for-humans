@@ -33,8 +33,8 @@ language, raw IDs only in passport events.
 | `isolation_move` | The target is steered away from outside counsel — don't tell your family yet, they wouldn't understand. | "Why does this decision need to stay secret from people who know me?" | relational, scam, MLM |
 | `manufactured_reciprocity` | An unrequested gift or favor creates an obligation the asker then collects on. | "Did I ask for this, and is the return being collected?" | sales, relational |
 | `gaslighting` | The target's own perception or memory is denied — that never happened, you're overreacting — until they outsource reality-checking to the manipulator. | "Does the record (messages, dates, witnesses) match what I'm being told I remember wrong?" | relational |
-| `false_dilemma` | A spectrum of options is collapsed into two, one of them intolerable. | "What third option does this framing delete?" | political, sales |
-| `whataboutism` | A critique is deflected by pointing at someone else's sin, leaving the original claim unanswered. | "Was the original claim addressed, or only relocated?" | political |
+| `false_dilemma` | A spectrum of options is collapsed into two, one of them intolerable. (Also a scene fallacy lens, `fallacy_false_dilemma`.) | "What third option does this framing delete?" | political, sales |
+| `whataboutism` | A critique is deflected by pointing at someone else's sin, leaving the original claim unanswered. (Also a scene fallacy lens, `fallacy_whataboutism` — same move, judged there as argument form; here trained as situational recognition.) | "Was the original claim addressed, or only relocated?" | political |
 | `identity_bait` | The pitch flatters the target into a self-image — smart people see this, real patriots act — whose price is agreement. | "Would the argument still stand if it weren't about who I am?" | political, MLM, relational |
 
 ---
