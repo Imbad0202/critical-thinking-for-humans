@@ -15,11 +15,18 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 3.9 mirrors the oldest system python contributors run the lints
+        # under via bare `python3` (PR #7 / #6): a 3.10+-only construct that
+        # passes on 3.12 alone would still crash local builds. 3.12 is the
+        # current baseline.
+        python-version: ["3.9", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
       - name: Manifest parse lint
         run: |
           pip install --quiet pyyaml
