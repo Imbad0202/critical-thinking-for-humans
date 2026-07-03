@@ -4,6 +4,19 @@ All notable changes to critical-thinking-for-humans are documented here. Heading
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
+## [1.1.2] - 2026-07-03
+
+Licensing correction, no behavior change: the four modes, the shared floor, and
+the build pipeline are untouched.
+
+- **Scripts MIT dual-license withdrawn.** v1.1.1 additionally offered the code
+  under `scripts/` under MIT. That grant ends here: `scripts/LICENSE` is
+  deleted and the README License section now states a single license. The
+  entire repository, code included, is licensed under CC BY-NC 4.0 only.
+  Copies obtained under MIT while v1.1.1 was current keep that grant (MIT is
+  irrevocable for already-distributed copies); no new MIT grant is made from
+  this release forward.
+
 ## [1.1.1] - 2026-07-02
 
 Release-engineering pass: publish automation, manifest-version enforcement, and

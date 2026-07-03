@@ -1,10 +1,10 @@
 # critical-thinking-for-humans
 
-[![Version](https://img.shields.io/badge/version-v1.1.1-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.1.1)
+[![Version](https://img.shields.io/badge/version-v1.1.2-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.1.2)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
-**Last Updated:** 2026-07-02
+**Last Updated:** 2026-07-03
 
 A gym for your critical thinking. The AI is the coach; you do the work.
 
@@ -26,15 +26,12 @@ just describe what you want to practice. (No Claude Code? A single-file [portabl
 edition](#portable-single-file-edition-any-model) runs in any frontier model's
 chat window.)
 
-## What's new in v1.1.1
+## What's new in v1.1.2
 
-Release engineering, not behavior: the four modes are unchanged. Tagged releases
-now carry both built artifacts (the claude.ai zip and the portable single file)
-as downloads, so the portable edition no longer requires a local build. The
-claude.ai zip now ships the 16 expedition packs, so expedition can run there
-too. The version lint grew four checks (plugin manifests, this section, the
-Last-Updated stamp, tag-to-CHANGELOG equality), and the build/lint code under
-`scripts/` is now additionally MIT-licensed. Full details in
+Licensing only, no behavior change: the four modes, the shared floor, and the
+build pipeline are untouched. The MIT dual-license that v1.1.1 attached to the
+build and lint code under `scripts/` is withdrawn; the entire repository, code
+included, is licensed under CC BY-NC 4.0 and nothing else. Full details in
 [CHANGELOG.md](CHANGELOG.md).
 
 ---
@@ -339,11 +336,9 @@ These notes describe the project's own practices; they are not legal advice.
 
 ## License
 
-Repository content (the modes, shared floor, expedition packs, and docs) is
-licensed under CC BY-NC 4.0 (see [LICENSE](LICENSE)). The build and lint code
-under `scripts/` is additionally available under the MIT license (see
-[scripts/LICENSE](scripts/LICENSE)): Creative Commons licenses are not designed
-for software, so the code carries a software license of its own.
+Everything in this repository (the modes, shared floor, expedition packs, docs,
+and the build and lint code under `scripts/`) is licensed under CC BY-NC 4.0
+(see [LICENSE](LICENSE)).
 
 ---
 
