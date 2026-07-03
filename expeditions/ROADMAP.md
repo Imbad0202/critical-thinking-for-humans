@@ -134,7 +134,7 @@ None authored yet — each remains one first-party verification session.
 | candidate | domain | source | verification style | role | why it fills a gap |
 |-----------|--------|--------|--------------------|------|--------------------|
 | 3d-euler-blowup | physics / PDE fluid dynamics | PNAS 122(27) e2500940122 (2025), open via PMC12260595; load-bearing artifact is Part II rigorous numerics, arXiv:2305.05660, peer-reviewed SIAM MMS 23(1):25-130 (2025); Part I analysis arXiv:2210.07191 | computer-assisted proof (rigorous interval numerics, verified error bounds); SIAM-refereed | auditor | **AUTHORED** (Phase 4, first pack). NEW verification style (certified numerics, not SAT/formal-Lean/game-solve) in a NEW domain (fluid PDE); a 1757-old question closed by machine-certified error control, not pen-and-paper. Scope kept honest: axisymmetric + boundary + nearly-self-similar, NOT general free-space 3D Euler (still open) |
-| serine-hydrolase-design | chemistry / de novo enzyme design | Science 388 (2025) DOI 10.1126/science.adu2454; PDB 9DED/9DEE/9DEF/9DEG/9DEH/9MRB | prediction-vs-experiment (crystal structures match designs <1 Å Cα-RMSD; measured Michaelis-Menten kinetics); coords deposited | forecaster | Forecaster role AND a NEW domain (chemistry). Unlike CASP14 it DESIGNS a new catalyst whose function is a fresh empirical bet, not a natural-fold prediction |
+| serine-hydrolase-design | chemistry / de novo enzyme design | Science 388 (2025) DOI 10.1126/science.adu2454; open via PMC11384011 / bioRxiv + author-hosted PDF; PDB 9DED/9DEE/9DEF/9DEG/9DEH/9MRB | prediction-vs-experiment (crystal structures match designs to best-case ~0.7–0.83 Å backbone Cα, some ~1.2–1.4 Å; measured multi-turnover kinetics); coords deposited | forecaster | **AUTHORED** (Phase 4, fifth pack). Forecaster role AND a NEW domain (chemistry). Unlike CASP14 it DESIGNS a new catalyst whose function is a fresh empirical bet, not a natural-fold prediction. Honesty scope: "<1 Å" is best-case not typical; headline 2×10⁵ M⁻¹s⁻¹ efficiency is final-Science-version-only (preprint tops ~3,800); no wet-lab directed evolution but YES computational iteration; multi-turnover genuine but fragile; rivals nature on structure/mechanism NOT efficiency (still 2–5 orders below). Dual-use PASS with wording guardrail (framed as ester/plastic hydrolysis, no organophosphate/FP-probe detail) |
 | empty-hexagon-30 | combinatorial geometry | arXiv:2403.00737 (SAT) + arXiv:2403.17370, ITP 2024 (Lean) | SAT-cert AND full Lean formalization — dual verification | forecaster | Forecaster fit (predict the threshold: 29? 30? 31? before reveal). Carries BOTH a SAT cert and a kernel-checked Lean proof, unusual belt-and-suspenders provenance. Domain overlaps combinatorics — its pull is the role + double verification, not domain novelty |
 | connect-four-bdd-oracle | solved games / symbolic search | arXiv:2507.05267 (2025, PREPRINT — not peer-reviewed); Zenodo 10.5281/zenodo.14582823 (46.8 GB 7z download); code on GitHub (no license file) | strongly-solved via symbolic BDD (exact algorithm + consistency checks vs Tromp/Edelkamp-Kissmann/1988 value; NOT a SAT/DRAT cert, NOT formally verified); 89.6 GB uncompressed queryable oracle | climber | **AUTHORED** (Phase 4, third pack). Climber role, NON-SAT game-solve — breaks the SAT skew, adds to the thin climber set. Novelty = first COMPLETE MATERIALIZED strong-solution table (value known 1988; Tromp's 8-ply DB effectively strong-solved via search), NOT "first to solve". Symbolic sets-of-states on ONE core — distinct from pentago's explicit parallel retrograde |
 | 2048-4x3-strongly-solved | solved games / stochastic MDP | arXiv:2510.04580 (2025); code CC-BY-4.0 | strongly-solved as exact MDP value iteration (correct-by-construction; no SAT cert); 3 independent runs + SHA256 | climber | Climber role, and the lane's first STOCHASTIC game: "strongly solved" here means exact optimal EXPECTED value, computed by an age-ordering trick that makes the DAG acyclic. NOTE: distinct from the REJECTED 4×3-2048 item — that one shipped no queryable database; this arXiv:2510.04580 release does |
@@ -231,13 +231,23 @@ verification track.
 - **axiomprover-fels** (arXiv:2602.03716, 2026; solution.lean 2544 lines, 0
   sorry, 0 new axioms): auditor. Natural-language-in, kernel-checked-proof-out
   autoformalization of the open Fel's conjecture.
-- **imandra-marabou-checker** (arXiv:2405.10611, ITP 2025): auditor. A
-  DIFFERENT flavour worth one slot on its own merit — a formally-verified checker
-  that re-checks an automated DNN-verifier's certificates, i.e. "who verifies the
-  verifier." Only member of the cluster teaching that specific discipline.
-- Prefer erdos-728-gpt5 (human + kernel dual track) or imandra-marabou-checker
-  (verify-the-verifier) as the one-or-two authored; hold the rest as recorded
-  PASSes so the search is not repeated.
+- **imandra-marabou-checker** (arXiv:2405.10611, ITP 2025): **AUTHORED** (Phase 4,
+  sixth pack). Auditor. A DIFFERENT flavour worth its own slot — a peer-reviewed
+  (ITP 2025 / LIPIcs), formally-verified checker that re-checks an automated
+  DNN-verifier's certificates, i.e. "who verifies the verifier." Only member of the
+  cluster teaching that specific discipline. Honest scope: the CHECKER is verified,
+  Marabou is NOT (stays untrusted); trust is MIGRATED not eliminated (residual base
+  = soundness theorem + Imandra kernel); soundness is of the FORMAL QUERY, not yet
+  formally linked to the real network (explicit future work); coverage partial
+  (UNSAT branch only, some output uncertified); BEYOND-SINGLE-HUMAN is a PARTIAL/
+  honest-stretch bar — the proof is a human formal-methods result, the "beyond"
+  angle is only the machine-scale AI artifact under audit, NOT a superhuman/AI proof.
+  Pack does NOT claim "0-sorry" (paper prints no admit-count).
+- Batch closed at TWO authored (erdos-728-gpt5 + imandra-marabou-checker),
+  honoring the re-cluster discipline. **alphaproof-nexus** and **axiomprover-fels**
+  remain recorded PASSes, deliberately NOT authored, so the formal-proof-of-ML lane
+  does not re-skew the pool; re-surface only if a later phase wants another
+  formal-ML slot.
 
 ### Rejected (recorded so the search is not repeated)
 
