@@ -215,11 +215,14 @@ the way Phase 4 exists to avoid — this time in formal-proof-of-ML rather than
 SAT. Pick AT MOST one or two, and prefer the ones carrying a second, contrasting
 verification track.
 
-- **erdos-728-gpt5** (arXiv:2601.07421, 2026; Lean proof Erdos728b.lean, 0
-  sorry, axioms = [propext, Classical.choice, Quot.sound]): auditor. Strongest of
-  the five for teaching value because it carries a two-track contrast —
-  kernel-check PLUS an expert human review (Terence Tao). First Erdős problem
-  regarded as autonomously AI-resolved.
+- **erdos-728-gpt5** — **AUTHORED** (Phase 4, fourth pack). arXiv:2601.07421
+  (2026, a *writeup* by Sothanaphan, NOT peer-reviewed) + public Lean proof
+  Erdos728b.lean (0 sorry, axioms = [propext, Classical.choice, Quot.sound]):
+  auditor. Two-track contrast — kernel-check (validity) PLUS informal expert
+  review (Tao: statement-fidelity/novelty/autonomy). Honest scope: "resolved" =
+  the human-reconstructed intended statement; "autonomous" = no injected human
+  MATH insight (narrow, not hands-off); "first" = first-autonomous-among-a-
+  Jan-2026-cluster; Tao framed it as lowest-hanging-fruit, speed-not-difficulty.
 - **alphaproof-nexus** (arXiv:2605.22763, DeepMind 2026; Lean 4 repo, Apache-2.0):
   climber. 9 open Erdős problems + 44 OEIS conjectures resolved and
   compiler-checked. Distinct from alphaproof-imo-2024 (open research conjectures,
