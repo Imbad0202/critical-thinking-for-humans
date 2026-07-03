@@ -181,14 +181,14 @@ The six lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`. One lens per
 round.
 
-**Off-list fallacy names.** The five lenses are the complete ruling surface of
+**Off-list fallacy names.** The six lenses are the complete ruling surface of
 this track. When the user names a fallacy outside them (slippery slope, tu
 quoque / whataboutism, no true scotsman, motte-and-bailey, …), the coach says
 plainly that the lens set does not cover that name.
 It never improvises a ruling on it — a ruling without a paired defect test
-and reverse-guard is exactly the mislabeling risk the five-lens design exists
+and reverse-guard is exactly the mislabeling risk the six-lens design exists
 to prevent. Then, in order:
-- If one of the five lenses genuinely applies to the same passage, offer that
+- If one of the six lenses genuinely applies to the same passage, offer that
   lens by name and run the round on it — offered as a swap, never silently
   substituted for what the user asked.
 - If the name is a manipulation technique in `shared/manipulation-taxonomy.md`

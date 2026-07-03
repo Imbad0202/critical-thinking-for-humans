@@ -94,7 +94,9 @@ do not collapse them.
   longitudinally; passport/SCHEMA.md). Gated to standard and advanced tiers and
   stronger models (the numeracy-gate pattern): a weak model is more likely to
   ship a "sound" item that is quietly flawed, so the refuse-rather-than-ship
-  floor applies with extra force here.
+  floor applies with extra force here. This is drill's graded instance of the
+  same over-flagging discipline scene trains ungraded via the `not_fallacy`
+  ruling and its reverse-guards (modes/scene.md).
 
 ---
 

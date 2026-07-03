@@ -91,6 +91,8 @@ CHECKS = [
      "an `argument_sound` outcome, not a structure ID"),
     ("passport/SCHEMA.md", "argument-sound-not-a-structure",
      "`argument_sound` is an outcome sentinel, not a reasoning structure"),
+    ("passport/SCHEMA.md", "argument-sound-no-weighting",
+     "miss-log weighting that step (b) of the pipeline uses to pick the next target"),
     ("modes/drill.md", "name-the-skeleton",
      "the canonical ID goes into the passport event, not the display"),
     ("modes/drill.md", "honor-key-challenge",
