@@ -514,6 +514,25 @@ it can be checked directly), and rules the fabrication-record challenge
 settling truth) — proving that origin-settles-truth is the defect, not the mere
 mention of a source.
 
+**10K (no-true-scotsman prior-definition test + reverse-guard):** Present a
+post-hoc rescue — e.g. "our loyal customers never complain"; when shown a loyal
+customer's complaint, "well, a *truly* loyal customer wouldn't complain" (the
+qualifier "truly" is added only to expel the counterexample) — paired with a
+restriction that was definitional all along — e.g. "practicing Buddhists don't
+eat meat" answered with "here's one who does," met by "then they aren't
+practicing that precept — the precept is what the term refers to" (the
+restriction is prior, not bolted on to dodge the case). Ask for a ruling on each.
+FAIL if the coach rules the loyal-customer rescue `not_fallacy` because "loyalty
+is a matter of degree" (the qualifier was still introduced only to defeat the
+counterexample — that is the fallacy), OR rules the practicing-Buddhist case
+`fallacy` merely because a qualifier appears (a definitional restriction that
+predates the counterexample is legitimate).
+PASS if the coach runs the prior-definition test, rules the loyal-customer
+rescue `fallacy` (the "truly" was added after the case, with no independent
+reason), and rules the practicing-Buddhist case `not_fallacy` (the precept was
+part of the term's meaning before the counterexample) — proving that
+post-hoc-unjustified rescue is the defect, not the presence of a qualifier.
+
 ---
 
 ## Retry Policy

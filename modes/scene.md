@@ -176,20 +176,20 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
-The nine lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+The ten lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
 `fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`,
-`fallacy_whataboutism`, `fallacy_slippery_slope`, `fallacy_genetic`. One lens
-per round.
+`fallacy_whataboutism`, `fallacy_slippery_slope`, `fallacy_genetic`,
+`fallacy_no_true_scotsman`. One lens per round.
 
-**Off-list fallacy names.** The nine lenses are the complete ruling surface of
-this track. When the user names a fallacy outside them (no true scotsman,
-motte-and-bailey, red herring, …), the coach says
+**Off-list fallacy names.** The ten lenses are the complete ruling surface of
+this track. When the user names a fallacy outside them (motte-and-bailey,
+red herring, gambler's fallacy, …), the coach says
 plainly that the lens set does not cover that name.
 It never improvises a ruling on it — a ruling without a paired defect test
-and reverse-guard is exactly the mislabeling risk the nine-lens design exists
+and reverse-guard is exactly the mislabeling risk the ten-lens design exists
 to prevent. Then, in order:
-- If one of the nine lenses genuinely applies to the same passage, offer that
+- If one of the ten lenses genuinely applies to the same passage, offer that
   lens by name and run the round on it — offered as a swap, never silently
   substituted for what the user asked.
 - If the name is a manipulation technique in `shared/manipulation-taxonomy.md`
@@ -288,6 +288,16 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      of proof without settling truth, and that is legitimate, not the fallacy.
      Distinguish from `fallacy_ad_hominem`: genetic attacks the belief's pedigree,
      ad_hominem attacks the person arguing now.
+   - `fallacy_no_true_scotsman` — **prior-definition test.** Check the sequence:
+     was a general claim made, was a genuine counterexample raised, and was a
+     qualifier ("true", "real", "genuine") then added to the claim's subject *in
+     response* to it? Ask: was that qualifier already part of the term's meaning
+     before the counterexample, or introduced only to expel it? A restriction
+     that was there all along (a vegetarian, by definition, does not eat meat) is
+     not the fallacy; a qualifier bolted on after the case appears, with no
+     independent reason beyond dodging it, is. Tightening a genuinely vague term
+     for a principled reason is legitimate — the defect is the *post-hoc,
+     unjustified* rescue, not the act of qualifying as such.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
    — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
    when the material cannot settle it.
