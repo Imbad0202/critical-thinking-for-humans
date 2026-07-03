@@ -115,3 +115,166 @@ geometry).
   era. Prefer a named solved game (Pentago) instead.
 - **AlphaEvolve engineering optimisations** (kissing-number dim 11, scheduling):
   mostly lack independent first-party math verification — fail bar 2.
+
+---
+
+## Phase 4 — survey (2024-2026, weighted to pool gaps)
+
+The pool now has a known shape problem: 6 of the 16 authored packs teach the
+same SAT-certificate lesson, and 13 of 16 sit in the auditor role. A survey that
+just adds "the next impressive result" would deepen both skews. So this round is
+weighted deliberately AWAY from SAT-certificate verification, away from
+combinatorics/games, and toward the two under-served roles (forecaster,
+climber). Ranking below follows the ROADMAP's stated transfer-value criteria:
+verification-style diversity first, then domain spread, then role spread, then
+provenance cleanliness (formally verified > peer reviewed; open primary source
+reachable). Every PASS was reached at its primary source, not a press summary.
+None authored yet — each remains one first-party verification session.
+
+| candidate | domain | source | verification style | role | why it fills a gap |
+|-----------|--------|--------|--------------------|------|--------------------|
+| 3d-euler-blowup | physics / PDE fluid dynamics | PNAS 122(30) e2500940122 (2025), open via PMC12260595; companion arXiv:2305.05660 | computer-assisted proof (rigorous interval numerics, verified error bounds); PNAS-refereed | auditor | NEW verification style (certified numerics, not SAT/formal-Lean/game-solve) in a NEW domain (fluid PDE); a 1757-old question closed by machine-certified error control, not pen-and-paper |
+| serine-hydrolase-design | chemistry / de novo enzyme design | Science 388 (2025) DOI 10.1126/science.adu2454; PDB 9DED/9DEE/9DEF/9DEG/9DEH/9MRB | prediction-vs-experiment (crystal structures match designs <1 Å Cα-RMSD; measured Michaelis-Menten kinetics); coords deposited | forecaster | Forecaster role AND a NEW domain (chemistry). Unlike CASP14 it DESIGNS a new catalyst whose function is a fresh empirical bet, not a natural-fold prediction |
+| empty-hexagon-30 | combinatorial geometry | arXiv:2403.00737 (SAT) + arXiv:2403.17370, ITP 2024 (Lean) | SAT-cert AND full Lean formalization — dual verification | forecaster | Forecaster fit (predict the threshold: 29? 30? 31? before reveal). Carries BOTH a SAT cert and a kernel-checked Lean proof, unusual belt-and-suspenders provenance. Domain overlaps combinatorics — its pull is the role + double verification, not domain novelty |
+| connect-four-bdd-oracle | solved games / symbolic search | arXiv:2507.05267 (2025); Zenodo 10.5281/zenodo.14582823; code on GitHub | strongly-solved via symbolic BDD (correct-by-construction; NOT a SAT/DRAT cert); 89.6 GB queryable oracle | climber | Climber role, NON-SAT game-solve. First complete strong solution of 7×6 Connect-Four, in 47 h on ONE consumer core — distinct from the rejected 1988 value-only result and from pentago's in-core retrograde |
+| 2048-4x3-strongly-solved | solved games / stochastic MDP | arXiv:2510.04580 (2025); code CC-BY-4.0 | strongly-solved as exact MDP value iteration (correct-by-construction; no SAT cert); 3 independent runs + SHA256 | climber | Climber role, and the lane's first STOCHASTIC game: "strongly solved" here means exact optimal EXPECTED value, computed by an age-ordering trick that makes the DAG acyclic. NOTE: distinct from the REJECTED 4×3-2048 item — that one shipped no queryable database; this arXiv:2510.04580 release does |
+| casp16-rna | RNA structure prediction | Kretsch et al., bioRxiv 2025.05.06.652459 / Proteins 2025; open via PMC12248019 | blind assessment: 65 groups vs 42 withheld X-ray/cryo-EM/NMR structures | auditor | NEW domain (RNA) and a HUMBLING result: deep-learning did NOT beat human experts; no unseen natural RNA hit TM-score > 0.8. Trains skepticism toward capability hype, not celebration. Distinct from protein CASP14 |
+| collapsi-solved | solved games / retrograde analysis | arXiv:2507.16823 (2025); open-source solver | strongly-solved (complete win/loss classification; solver enables first-party recompute) | climber | Climber role, brand-new 2025 game solve. User works a specific deal ply by ply, taking the solver-marked winning move and confirming the classification propagates. Domain overlaps games — pulled in for role, not domain |
+| othello-8x8-weakly-solved | solved games / large-scale search | arXiv:2310.19387 (Takizawa, late 2023) | weakly-solved via pruned alpha-beta on an Edax variant; solver released for recompute | climber | Climber role, the marquee "last classic board game" absent from the pool: 8×8 Othello, perfect play is a DRAW. Late-2023 but within the brief's allowance. Domain overlaps games; value is role + iconic result |
+| breakthrough-6x6 | solved games / PNS + NN scheduler | ICGA Journal, DOI 10.1177/13896911261430592 (2026) | constructive proof tree (retrograde tablebases + proof-number search; not SAT); peer-reviewed | climber | Climber role; AI hook is a neural-net scheduler steering an otherwise-intractable proof search. PROVENANCE CAVEAT: SAGE body paywalled; the independent-Maastricht-check + CNN/hardware details are second-hand from a search index of a 403-walled thesis PDF, weaker than the open-primary PASSes above |
+
+**Recommended next (the four that most diversify the pool):**
+
+1. **3d-euler-blowup** — the single strongest gap-filler. It is the only
+   candidate that adds a genuinely new verification STYLE (computer-assisted
+   certified numerics) in a genuinely new DOMAIN (fluid PDE), and it clears the
+   beyond-single-human bar cleanly because it is a machine-certified proof, not
+   a human argument. Open primary source (PMC), PNAS referees named.
+2. **serine-hydrolase-design** — the best second forecaster pack and a new
+   chemistry domain. Deposited PDB coordinates make the atomic-accuracy claim
+   first-party checkable, and "designed molecule as an empirical bet" is a
+   distinct discipline from CASP14's natural-fold prediction. Dual-use here is
+   mild (a catalyst, not a hazard), unlike the antibody-design borderline.
+3. **connect-four-bdd-oracle** — best climber pick to break the SAT skew: a
+   strongly-solved game by symbolic BDD, correct-by-construction, with a
+   queryable 89.6 GB oracle anyone can probe. New verification substrate, new
+   role, clean open provenance.
+4. **casp16-rna** — the humbling result the pool lacks. Every existing
+   forecaster/auditor pack audits a WIN; this audits a documented FAILURE of
+   deep learning to beat human experts, which trains the exact hype-skepticism
+   reflex the tool is for. New domain, open primary source.
+
+Rationale for the shape of this quartet: it spans four verification styles
+(certified numerics / prediction-vs-experiment / symbolic BDD / blind
+assessment), four domains (PDE physics / chemistry / games / RNA biology), and
+covers all three under-served pressures — two non-auditor roles (forecaster,
+climber) plus a rare negative-result auditor. The remaining PASSes
+(2048-4x3, empty-hexagon-30, collapsi, othello, breakthrough-6x6) are strong
+but each overlaps an axis the quartet already covers, so they are the next tier,
+not the first. Among them, weight 2048-4x3 (stochastic twist) and
+empty-hexagon-30 (dual SAT+Lean, forecaster) above the three additional
+game-solves, and treat breakthrough-6x6 as lowest-priority on provenance
+grounds until its open thesis PDF is directly reachable.
+
+### Borderline
+
+Not clean accepts; author only if the specific scope condition is met.
+
+- **rfdiffusion-antibody-design** (Nature 2024-2025; PMC10983868, PDB 9NH7 /
+  EMD-49405): prediction-vs-experiment, forecaster. Two problems. (a) The
+  verified-solution bar is fuzzier than existing packs — the deposited positive
+  complexes are checkable, but the headline "atomically accurate de novo
+  antibody design" is contested (author-reported low success, an explicit
+  SARS-CoV-2 design failure, and a Dec-2025 non-peer-reviewed critique on RMSD
+  superposition / selective reporting). (b) Dual-use: the transferable content
+  is a working antibody-design capability. Author ONLY if scoped to "audit the
+  atomic-accuracy claim against the deposited structures" with the dual-use
+  guardrail; otherwise hold.
+- **csp7-crystal-structure-prediction** (2024; open via PMC11789161 /
+  PMC11789160): blind held-out benchmark, forecaster. Clean on all four bars and
+  dual-use. Borderline purely on archetype overlap: it is the SAME
+  predicted-vs-withheld-experiment logic as CASP14, transplanted to molecular
+  crystal packing. Not a duplicate (different domain, CIF/RMSD substrate), but it
+  trains largely the same discipline. Author only if a distinct SECOND forecaster
+  in a materials domain is wanted after serine-hydrolase-design lands.
+- **gencast-weather** (Nature 2024; open via PMC11666454 / arXiv:2312.15796):
+  the candidate pitched it as pure predict-then-reveal-against-physical-reality,
+  but its headline verification is against ERA5 reanalysis (a model analysis
+  field), not raw observations — so the load-bearing forecaster framing is
+  inaccurate against the primary source, and CASP14 already occupies that lane
+  more cleanly (reveal against withheld experimental crystallography). Weaker
+  instance of an existing lane on the very axis that mattered. Hold unless
+  reframed honestly around reanalysis-as-ground-truth.
+
+### Formal-autoformalization cluster — real, but hold as a batch
+
+Five 2024-2026 Lean/Imandra results PASSed vetting and are individually clean
+(open arXiv + public kernel-checked repos, first-party re-runnable). They are
+grouped here on purpose: authoring all five would re-cluster the pool in exactly
+the way Phase 4 exists to avoid — this time in formal-proof-of-ML rather than
+SAT. Pick AT MOST one or two, and prefer the ones carrying a second, contrasting
+verification track.
+
+- **erdos-728-gpt5** (arXiv:2601.07421, 2026; Lean proof Erdos728b.lean, 0
+  sorry, axioms = [propext, Classical.choice, Quot.sound]): auditor. Strongest of
+  the five for teaching value because it carries a two-track contrast —
+  kernel-check PLUS an expert human review (Terence Tao). First Erdős problem
+  regarded as autonomously AI-resolved.
+- **alphaproof-nexus** (arXiv:2605.22763, DeepMind 2026; Lean 4 repo, Apache-2.0):
+  climber. 9 open Erdős problems + 44 OEIS conjectures resolved and
+  compiler-checked. Distinct from alphaproof-imo-2024 (open research conjectures,
+  not olympiad tasks). The batch's flagship if a single formal-ML climber is
+  wanted.
+- **axiomprover-fels** (arXiv:2602.03716, 2026; solution.lean 2544 lines, 0
+  sorry, 0 new axioms): auditor. Natural-language-in, kernel-checked-proof-out
+  autoformalization of the open Fel's conjecture.
+- **imandra-marabou-checker** (arXiv:2405.10611, ITP 2025): auditor. A
+  DIFFERENT flavour worth one slot on its own merit — a formally-verified checker
+  that re-checks an automated DNN-verifier's certificates, i.e. "who verifies the
+  verifier." Only member of the cluster teaching that specific discipline.
+- Prefer erdos-728-gpt5 (human + kernel dual track) or imandra-marabou-checker
+  (verify-the-verifier) as the one-or-two authored; hold the rest as recorded
+  PASSes so the search is not repeated.
+
+### Rejected (recorded so the search is not repeated)
+
+- **JailbreakBench** and any jailbreak/red-team-infra benchmark: no single
+  verified solution (a moving leaderboard gated on an LLM judge, not a
+  certificate) AND fails dual-use (ships runnable jailbreak artifacts + stored
+  harmful outputs = capability transfer). Do not re-surface this class.
+- **many-shot-jailbreaking** (Anthropic, NeurIPS 2024): the RESULT passes all
+  four bars (real power-law scaling of attack success, first-party from the
+  proceedings PDF), but it is held out here on dual-use grounds. It is only
+  admissible if a pack can be confined strictly to the scaling-law / attack-vs-
+  defense reasoning and NEVER surface harmful content; if that framing is
+  rejected, drop it. Recorded as PASS-with-caveat, not authored.
+- **go-defenses-still-fail** (arXiv:2406.12843, AAAI 2025): PASSes vetting
+  (three named KataGo defenses each defeated by fresh adversaries; open code +
+  replayable games) and is a legitimate distinct sequel to katago-adversarial
+  (the claim under audit is "we patched it," and the finding is it is still
+  broken). Recorded as an authorable PASS, but deprioritized against the Phase 4
+  diversity mandate because it sits in the same games / ML-robustness / auditor
+  cell as an existing pack.
+- **luxsit-luciferase**: wet-lab assay is not independently re-verifiable from
+  the primary source (no blind competition / neutral adjudicator like CASP14),
+  and it duplicates CASP14's forecaster role — structural-vs-functional is a
+  domain distinction, not a new discipline.
+- **book-ramsey R(B_8,B_10)=37 (AutoMath/Lean)**: the result is a SHORT
+  human-checkable proof AutoMath merely surfaced — no AI-class search embodied,
+  so it fails the beyond-single-human bar. The candidate summary also fabricated
+  a "SAT-plus-search" novelty the source explicitly disclaims.
+- **unstable-singularities (DeepMind, neural)**: fails the verified-solution bar
+  as of 2026-07 — high-precision NUMERICAL discovery on a non-refereed preprint;
+  the computer-assisted existence proof is "in preparation," so existence remains
+  formally open. RE-VET once the companion proof is published and refereed (would
+  then likely be a clean PASS). Distinct from 3d-euler-blowup, which PROVES one
+  blowup rather than discovering families of profiles.
+- **diii-d plasma tearing control** (Nature): fails first-party-checkable
+  (data on-request-only, proprietary DIII-D diagnostics, no public code) and
+  verified-solution (single un-replicated campaign, a control demo not a checkable
+  solution). Same rejection class as AlphaEvolve engineering optimizations.
+- **2048 4×3 (earlier framing)**: rejected as pitched because no state-value
+  database was released — checking required rebuilding a ~2.56 TB database on
+  heavy compute, so the "check against the released database" climb was not
+  first-party checkable. NOTE the PASS above (arXiv:2510.04580) is the
+  distinct, database-releasing version; do not conflate.
