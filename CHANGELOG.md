@@ -4,6 +4,33 @@ All notable changes to critical-thinking-for-humans are documented here. Heading
 follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
 git tag being cut (enforced by `scripts/check_version_consistency.py`).
 
+## [1.2.0] - 2026-07-03
+
+Content expansion, no behavior change: the four modes, the shared floor, the
+redlines, and the build pipeline are untouched. This release grows the
+expedition pool with six independently-verified packs and extends scene mode's
+fallacy-recognition track, addressing the method-skew flagged in issue #15 (six
+of the earlier packs taught a near-identical SAT-certificate lesson).
+
+- **Six new expedition packs (#15).** Each was first-party verified against the
+  four bars (real / verified-solution / beyond-single-human / first-party-
+  checkable) plus a dual-use check, then double-reviewed before landing. The set
+  deliberately spans six distinct verification styles across six domains to
+  counter the earlier SAT skew: `3d-euler-blowup` (certified interval numerics,
+  fluid PDE), `casp16-rna` (blind-assessment negative result, RNA structure),
+  `connect-four-bdd-oracle` (symbolic BDD strong-solve, games), `erdos-728-gpt5`
+  (two-track AI-math verification), `serine-hydrolase-design` (forecaster,
+  prediction-vs-experiment de novo enzyme chemistry), and
+  `imandra-marabou-checker` (auditor, verify-the-verifier formal methods). Each
+  pack bakes in its honest scope so no headline overclaims survive the reveal.
+- **Scene fallacy-recognition track grown 5→10 lenses.** Added `false_analogy`,
+  `whataboutism`, `slippery_slope`, `genetic`, and `no_true_scotsman`, each with
+  a defect test, reverse-guard, invariant needles, mutation coverage, and a GATE
+  probe.
+- **No runtime rule, redline, or router change.** Lint suite green (invariants
+  325/325, pack-schema 22/22, verbatim blocks 6/6), pytest 30 passed, both build
+  targets clean.
+
 ## [1.1.2] - 2026-07-03
 
 Licensing correction, no behavior change: the four modes, the shared floor, and

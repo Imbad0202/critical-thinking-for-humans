@@ -1,6 +1,6 @@
 # critical-thinking-for-humans
 
-[![Version](https://img.shields.io/badge/version-v1.1.2-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.1.2)
+[![Version](https://img.shields.io/badge/version-v1.2.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.2.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
@@ -26,13 +26,16 @@ just describe what you want to practice. (No Claude Code? A single-file [portabl
 edition](#portable-single-file-edition-any-model) runs in any frontier model's
 chat window.)
 
-## What's new in v1.1.2
+## What's new in v1.2.0
 
-Licensing only, no behavior change: the four modes, the shared floor, and the
-build pipeline are untouched. The MIT dual-license that v1.1.1 attached to the
-build and lint code under `scripts/` is withdrawn; the entire repository, code
-included, is licensed under CC BY-NC 4.0 and nothing else. Full details in
-[CHANGELOG.md](CHANGELOG.md).
+Content expansion, no behavior change: the four modes, the shared floor, the
+redlines, and the build pipeline are untouched. This release adds six
+independently first-party-verified expedition packs — spanning certified
+numerics, a blind-assessment negative result, a symbolic game-solve, two-track
+AI-math verification, forecaster de novo enzyme chemistry, and verify-the-
+verifier formal methods — and grows scene mode's fallacy-recognition track from
+five lenses to ten. Every pack bakes in its honest scope so no headline
+overclaims survive the reveal. Full details in [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
