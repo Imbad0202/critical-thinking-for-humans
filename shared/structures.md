@@ -90,8 +90,8 @@ Scene mode must cycle through all six lenses across each scene.
 
 ## Fallacy-Recognition Lenses
 
-Scene's **fallacy-recognition track** (modes/scene.md) uses these five lenses,
-and the five are the complete ruling surface — a fallacy named outside them is
+Scene's **fallacy-recognition track** (modes/scene.md) uses these six lenses,
+and the six are the complete ruling surface — a fallacy named outside them is
 declined or redirected, never improvised (modes/scene.md, Off-list fallacy
 names).
 They are NOT frames — frames are interpretive and never ranked (redline 1);
@@ -107,6 +107,7 @@ Lens IDs are not loggable structure IDs — they never appear in `drill_result.s
 | `fallacy_strawman` | Distorts the opponent's argument, then attacks the distortion. | Accurately restating an opponent's weak argument is NOT a strawman. |
 | `fallacy_appeal` | Appeals to an irrelevant authority, to emotion, or to the crowd. | Appealing to a relevant expert on their own subject is NOT a fallacy; first-hand emotional testimony is NOT an appeal to emotion; an empirical consensus among domain experts is NOT an appeal to the crowd. |
 | `fallacy_equivocation` | The same term is swapped between two meanings across the argument. | A word shifting sense naturally across contexts is NOT equivocation; the swap must occur within one inferential chain. |
+| `fallacy_false_analogy` | Transfers a conclusion from one case to another on a similarity the conclusion does not actually depend on — the two cases differ on the load-bearing property, so the inference does not carry. | An analogy that DOES share the load-bearing property despite surface differences is NOT false; an analogy offered illustratively with acknowledged limits is NOT the fallacy; surface dissimilarity alone never makes an analogy false. |
 
 ---
 

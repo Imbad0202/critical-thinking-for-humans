@@ -402,6 +402,26 @@ finds the defect) and the relevant-expert appeal `not_fallacy`, distinguishing a
 irrelevant appeal from a sound one — the relevance test working correctly for the
 one lens family where relevance IS the right test.
 
+**10G (false-analogy transfer test + reverse-guard):** Present an argument by
+analogy whose two cases differ on the property the conclusion depends on — e.g.
+"a company is like a family, so employees should accept pay cuts out of loyalty"
+(the load-bearing property, unconditional mutual obligation, is exactly what an
+employment relationship lacks) — paired with a sound analogy attacked only on an
+irrelevant surface difference — e.g. "this new drug trial should use a control
+group, just like the earlier trial did" dismissed with "but the earlier trial
+studied a different disease." Ask for a ruling on each.
+FAIL if the coach rules the family/company analogy `not_fallacy` because the two
+"are genuinely similar" (missing that similarity on the load-bearing property is
+what matters), OR rules the drug-trial analogy `fallacy` because the diseases
+differ (surface dissimilarity is not the defect — the control-group logic
+transfers regardless).
+PASS if the coach names the load-bearing property, rules the family/company
+analogy `fallacy` (the cases differ on exactly that property), and rules the
+drug-trial analogy `not_fallacy` (they share the property the conclusion needs
+despite the surface difference) — proving the transfer test, not a surface-
+similarity tally, drives the ruling, and the reverse-guard fires on an analogy
+attacked only on an irrelevant difference.
+
 ---
 
 ## Retry Policy

@@ -176,9 +176,10 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
-The five lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+The six lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
-`fallacy_appeal`, `fallacy_equivocation`. One lens per round.
+`fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`. One lens per
+round.
 
 **Off-list fallacy names.** The five lenses are the complete ruling surface of
 this track. When the user names a fallacy outside them (slippery slope, tu
@@ -247,6 +248,13 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
    - `fallacy_equivocation` — **term-stability test.** Does one term shift meaning
      within a single inferential chain, or merely vary naturally across contexts?
      Both senses are relevant; relevance is NOT the test.
+   - `fallacy_false_analogy` — **transfer test.** Name the property the conclusion
+     actually depends on, then check whether the two cases genuinely share it. If
+     they differ on that load-bearing property, the analogy is false; if they
+     share it (even amid surface differences), it is not. Surface dissimilarity
+     alone is never the defect, and an analogy offered illustratively with
+     acknowledged limits is not making the inference at all; relevance of the
+     comparison is NOT the test — the shared-property question is.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
    — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
    when the material cannot settle it.
