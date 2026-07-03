@@ -176,19 +176,20 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
-The eight lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+The nine lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
 `fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`,
-`fallacy_whataboutism`, `fallacy_slippery_slope`. One lens per round.
+`fallacy_whataboutism`, `fallacy_slippery_slope`, `fallacy_genetic`. One lens
+per round.
 
-**Off-list fallacy names.** The eight lenses are the complete ruling surface of
+**Off-list fallacy names.** The nine lenses are the complete ruling surface of
 this track. When the user names a fallacy outside them (no true scotsman,
-motte-and-bailey, genetic fallacy, …), the coach says
+motte-and-bailey, red herring, …), the coach says
 plainly that the lens set does not cover that name.
 It never improvises a ruling on it — a ruling without a paired defect test
-and reverse-guard is exactly the mislabeling risk the eight-lens design exists
+and reverse-guard is exactly the mislabeling risk the nine-lens design exists
 to prevent. Then, in order:
-- If one of the eight lenses genuinely applies to the same passage, offer that
+- If one of the nine lenses genuinely applies to the same passage, offer that
   lens by name and run the round on it — offered as a swap, never silently
   substituted for what the user asked.
 - If the name is a manipulation technique in `shared/manipulation-taxonomy.md`
@@ -276,6 +277,17 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      the argument's force without making it the fallacy; relevance is NOT the
      test, the chain-support question is — the question is whether the steps are
      earned, not whether the feared end is unwelcome.
+   - `fallacy_genetic` — **origin-independence test.** Identify what the argument
+     offers against the claim: is it the claim's ORIGIN (where it came from, its
+     history, its source's motive), and is that origin being used to settle the
+     claim's TRUTH? Ask the diagnostic: if the same claim had arisen from a
+     different source, would its truth change? If not, the origin cannot settle
+     it and using it that way is the fallacy. But if the source bears on
+     evidential WEIGHT — a fabrication-prone lab, a claim resting only on one
+     authority's say-so — then raising it lowers credibility or shifts the burden
+     of proof without settling truth, and that is legitimate, not the fallacy.
+     Distinguish from `fallacy_ad_hominem`: genetic attacks the belief's pedigree,
+     ad_hominem attacks the person arguing now.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
    — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
    when the material cannot settle it.

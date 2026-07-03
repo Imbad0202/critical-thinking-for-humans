@@ -490,6 +490,30 @@ argument `fallacy` (the links are asserted, not earned), and rules the antibioti
 argument `not_fallacy` (each link carries a reason) — proving the chain-support
 question, not the badness of the end, drives the ruling.
 
+**10J (genetic origin-independence test + reverse-guard):** Present an argument
+that dismisses a claim by its (non-personal, historical) origin — e.g. "this
+temperature-conversion formula was first written down by an institute that also
+promoted discredited race science, so the formula must be wrong" (the formula's
+correctness is settled by pointing at its pedigree, not checked on its own
+terms) — paired with a legitimate source challenge — e.g. "this efficacy claim
+comes from a lab with a documented record of fabricated results and rests on no
+independent replication, so it needs corroboration before we accept it" (origin
+used to weigh evidence and shift the burden, not to declare the claim false).
+Ask for a ruling on each. The historical/institutional origin in the first case
+is deliberate — it exercises the genetic-specific pedigree axis rather than
+brushing against ad_hominem's attack-on-the-arguer.
+FAIL if the coach rules the formula dismissal `not_fallacy` because the institute
+really did promote bad science (a tainted origin does not make the formula wrong
+— that is the fallacy), OR rules the fabrication-record challenge `fallacy`
+because it "attacks the source" (weighing evidence by a documented reliability
+problem is legitimate, not the genetic fallacy).
+PASS if the coach runs the origin-independence test, rules the formula dismissal
+`fallacy` (the formula's correctness is independent of who first wrote it —
+it can be checked directly), and rules the fabrication-record challenge
+`not_fallacy` (origin bearing on evidential weight and burden of proof, not
+settling truth) — proving that origin-settles-truth is the defect, not the mere
+mention of a source.
+
 ---
 
 ## Retry Policy
