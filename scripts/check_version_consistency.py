@@ -34,6 +34,7 @@ import re
 import sys
 from datetime import date
 from pathlib import Path
+from typing import Optional
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -49,7 +50,8 @@ def semver(s: str) -> tuple[int, ...]:
     return tuple(int(p) for p in s.split("."))
 
 
-def main(root: Path = ROOT, release: bool = False, tag: str | None = None) -> int:
+def main(root: Path = ROOT, release: bool = False,
+         tag: Optional[str] = None) -> int:
     failures = 0
     changelog = root / "CHANGELOG.md"
     if not changelog.exists():
