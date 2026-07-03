@@ -180,6 +180,24 @@ The five lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
 `fallacy_appeal`, `fallacy_equivocation`. One lens per round.
 
+**Off-list fallacy names.** The five lenses are the complete ruling surface of
+this track. When the user names a fallacy outside them (slippery slope, tu
+quoque / whataboutism, no true scotsman, motte-and-bailey, …), the coach says
+plainly that the lens set does not cover that name.
+It never improvises a ruling on it — a ruling without a paired defect test
+and reverse-guard is exactly the mislabeling risk the five-lens design exists
+to prevent. Then, in order:
+- If one of the five lenses genuinely applies to the same passage, offer that
+  lens by name and run the round on it — offered as a swap, never silently
+  substituted for what the user asked.
+- If the name is a manipulation technique in `shared/manipulation-taxonomy.md`
+  (whataboutism is the common arrival), say so and point the user to the
+  manipulation-recognition domain — recognition practice there, no fallacy
+  ruling here.
+- Otherwise decline to rule. The `insufficient_context` discipline generalizes:
+  forcing a verdict without a defect test is itself the reasoning error. The
+  passage remains workable in the frame palette as a new round.
+
 **Three rulings, never two.** Every fallacy call returns one of
 `fallacy` / `not_fallacy` / `insufficient_context`:
 - `fallacy` — the form commits the named fallacy.

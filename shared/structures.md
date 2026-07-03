@@ -90,7 +90,10 @@ Scene mode must cycle through all six lenses across each scene.
 
 ## Fallacy-Recognition Lenses
 
-Scene's **fallacy-recognition track** (modes/scene.md) uses these five lenses.
+Scene's **fallacy-recognition track** (modes/scene.md) uses these five lenses,
+and the five are the complete ruling surface — a fallacy named outside them is
+declined or redirected, never improvised (modes/scene.md, Off-list fallacy
+names).
 They are NOT frames — frames are interpretive and never ranked (redline 1);
 fallacy lenses adjudicate the *form* of an argument and DO return a ruling
 (`fallacy` / `not_fallacy` / `insufficient_context`). Each lens carries a
