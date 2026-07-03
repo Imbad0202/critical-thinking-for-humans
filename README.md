@@ -105,10 +105,10 @@ will absolutely tell you when you stumble.
 ## The Four Modes
 
 **drill.** Judge stance. Original argument-analysis items built in your field
-around one of twelve structures (necessary assumption, alternative cause, reverse
+around one of thirteen structures (necessary assumption, alternative cause, reverse
 causation, coincidence/timing, sample selection, proxy mismatch, evidence
 sufficiency, base rate neglect, regression to the mean, Simpson's paradox,
-circular reasoning, hasty generalization). You commit an answer before any
+circular reasoning, hasty generalization, weak analogy). You commit an answer before any
 analysis appears; then every option is dissected and the transferable structure
 named. You leave with the skeleton, not just the answer.
 
@@ -152,7 +152,7 @@ declines to start rather than shipping a broken case.)
 ## Which Domains, Which Mode
 
 Not every field plugs into every mode, and the gym says so rather than
-pretending otherwise. The twelve drill structures are seven causal-inductive plus three statistical plus two formal/inductive tools:
+pretending otherwise. The thirteen drill structures are seven causal-inductive plus three statistical plus three formal/inductive tools:
 they need material where someone offers **evidence for a conclusion** and a
 single gap can be engineered. That fits some fields natively and not others.
 When you name a domain that does not fit drill, the coach **stops, says why,

@@ -11,14 +11,14 @@ Canonical IDs are snake_case English and never localized; the display layer tran
 
 ## Reasoning Structures
 
-The twelve loggable structure IDs — every `drill_result.structure` value comes
+The thirteen loggable structure IDs — every `drill_result.structure` value comes
 from this table, with one exception: `manipulation_spot` items log technique
 IDs from `shared/manipulation-taxonomy.md`. The first seven are causal-inductive;
 three (`base_rate_neglect`, `regression_to_mean`, `simpson_paradox`) are
 statistical-reasoning structures that assume basic numeracy — prefer them at
-standard tier and above, not intro; the last two (`circular_reasoning`,
-`hasty_generalization`) are formal/inductive structures with no numeracy gate,
-drillable at every tier.
+standard tier and above, not intro; the last three (`circular_reasoning`,
+`hasty_generalization`, `weak_analogy`) are formal/inductive structures with no
+numeracy gate, drillable at every tier.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
@@ -34,6 +34,7 @@ drillable at every tier.
 | `simpson_paradox` | A trend that holds in aggregated data reverses (or vanishes) once the data is split by a lurking subgroup variable; the merged numbers mislead. | "Does the aggregate trend survive when the data is broken out by the relevant subgroup?" | A hospital shows higher overall survival than a rival, but once cases are split by severity the rival does better in every severity tier — the mix of cases drove the aggregate. |
 | `circular_reasoning` | A premise covertly presupposes the conclusion; the argument travels in a circle, treating what it must prove as already given. This is the premise being the conclusion restated — distinct from `necessary_assumption` (an external unstated condition the argument needs) and from the `premise_restatement` distractor (which paraphrases stated evidence, not the conclusion). | "Can this premise be stated or verified without already knowing the conclusion?" | "Brightline Tutoring is the most trusted name in test prep because more families trust it than any other service." — the premise (more families trust it) is the conclusion (most trusted) restated. |
 | `hasty_generalization` | There is data, but the sample is too small or too narrow to support the leap to the population. Upstream of this sits `evidence_sufficiency` (no conclusion is licensed at all — no baseline, no control); here a direction is established, but the sample is simply too small to reach the population. Unlike `sample_selection` (which systematically excludes refuting cases), this sample is just too small or too narrow, with no systematic exclusion implied. | "Is this sample large and broad enough to stand in for the whole population the conclusion is about?" | "Three of my neighbours switched to the new commuter rail and loved it, so the line will be popular across the whole metro region." — three neighbours cannot represent a metro region. |
+| `weak_analogy` | A conclusion is transferred from one case to another on a similarity the conclusion does not actually depend on; the two cases differ on the load-bearing property, so the inference does not carry. Distinct from `irrelevant_comparison` (a distractor pattern that compares mismatched referents) — here the analogy is the argument's own engine, and the flaw is the named disanalogy on the property that matters. | "Does the analogy hold on the property the conclusion actually needs, or only on surface features?" | "A city budget is like a household budget, so a city running a deficit is as reckless as a family maxing out its credit cards." — a household cannot issue currency or bonds against future tax revenue; the analogy breaks on exactly the property (sovereign fiscal capacity) the conclusion rests on. |
 
 **Contrast pair (hasty vs sufficiency)** — the two collapse in generation unless the stem is tightly built, so item generators anchor on this contrast, not boundary prose alone:
 
@@ -41,6 +42,11 @@ drillable at every tier.
 - `evidence_sufficiency` (no direction is even established yet): "Two of our stores raised prices 5% last month; foot traffic this month is about the same as the chain average, so price has no effect on traffic." — no baseline, no control, no before/after for those two stores; nothing is established to project from.
 
 A drill stem must land cleanly on one side. **Forbidden:** any stem where both "sample too small" and "cannot determine" are simultaneously defensible — if a generated stem reads as both, regenerate (do not patch), per the drill pipeline's step-g reverse-solve check (modes/drill.md).
+
+**Contrast pair (weak analogy vs sound analogy attacked on an irrelevant difference)** — the generation trap for `weak_analogy` is the mirror of the hasty/sufficiency one: a stem must not let "the cases differ, so the analogy fails" pass when the difference is irrelevant to the conclusion.
+
+- `weak_analogy` (the cases genuinely differ on the load-bearing property): "A vaccine trial is like a coin-flip experiment, so a run of ten healthy vaccinated people proves the vaccine works." — the load-bearing property (an independent, known base rate of the outcome) is exactly what a coin flip has and an uncontrolled vaccine observation lacks; the analogy breaks where the conclusion rests.
+- a SOUND analogy attacked only on an irrelevant difference (NOT the fallacy): "This drug trial should use a control group, just as the earlier hypertension trial did." — objecting "but that trial studied a different disease" attacks a surface difference; the control-group logic transfers regardless of disease, so the analogy holds. A stem built to key `weak_analogy` must not accidentally be this — if the only available attack is an irrelevant difference, the argument is sound and the item is mis-keyed (regenerate, do not patch).
 
 ---
 

@@ -48,7 +48,7 @@ parallel case, but the user states the defect.
 
 A case is 4 layers at standard and advanced, 2 at intro. In v1 each layer has
 **exactly one main flaw per layer** — one keyed reasoning structure from
-shared/structures.md (the twelve-structure set). It must be caught to unlock the
+shared/structures.md (the thirteen-structure set). It must be caught to unlock the
 layer. (Multi-flaw layers are a v2 extension; the v1 constraint exists because
 multi-main-flaw layers are the largest generation-reliability risk.)
 

@@ -16,7 +16,7 @@ Recognition, never production: redline 13 governs every use of this file.
 ## Technique Table
 
 The loggable technique IDs. Manipulation drill items log these instead of the
-twelve reasoning-structure IDs (shared/structures.md notes the exception).
+thirteen reasoning-structure IDs (shared/structures.md notes the exception).
 Canonical IDs are snake_case English and never localized; display follows the
 shared/structures.md display rules — plain-language labels in the user's
 language, raw IDs only in passport events.

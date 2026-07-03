@@ -36,8 +36,9 @@ attacks: `base_rate_neglect`, `regression_to_mean`, `simpson_paradox`. The
 statistical three carry their own counter-questions (shared/structures.md) and
 assume basic numeracy; prefer them at standard tier and above. A `weaken` item
 may also target `hasty_generalization` — the gap is an unjustified leap from too
-small or narrow a sample to a broader population. Name the attack after giving
-the answer.
+small or narrow a sample to a broader population — or `weak_analogy`, the gap
+being an analogy that breaks on the property the conclusion actually depends on.
+Name the attack after giving the answer.
 
 ### 3. `sufficiency`
 
@@ -51,7 +52,7 @@ Default structure ID for this type: `evidence_sufficiency` — log hits and miss
 Identify the primary manipulation technique operating in a synthetic pitch,
 message, or short transcript. Available only in the manipulation-recognition
 domain (`shared/manipulation-taxonomy.md`); items log technique IDs from that
-file's table instead of the twelve structure IDs. The pipeline applies with
+file's table instead of the thirteen structure IDs. The pipeline applies with
 two substitutions: step (c) designs ONE primary technique in; step (f) draws
 distractors from the technique table — other technique IDs plausibly suggested
 by the surface text but not primarily operating — instead of the distractor
@@ -152,6 +153,13 @@ domain wrapping:
   `sufficiency`-type item: the gap is the unjustified jump from the sample to
   the population, with no systematic exclusion implied (that would be
   `sample_selection`).
+- `weak_analogy` — slot: the named relevant disanalogy — the property the
+  conclusion depends on that the two cases do NOT share. Generated as a
+  `weaken`-type item: the gap is that the analogy carrying the conclusion breaks
+  on exactly the load-bearing property. Anchor generation on the contrast pair
+  (shared/structures.md): the disanalogy must be relevant to the conclusion, not
+  a surface difference, or the argument is actually sound (see the sound-argument
+  items above). No numeracy gate — drillable at every tier.
 
 If the material will not fit the target structure's template cleanly, pick a
 different structure or domain — never stretch the template to force a fit.
@@ -182,7 +190,7 @@ step-f distractor notes; never shown when the item is presented.)
 For a sound-argument item there is no designed gap; the claim being made is that
 the argument *holds*, so the audit inverts. Before presenting, enumerate the
 strongest candidate attack the item's target-adjacent structures could mount —
-at minimum walk the twelve structures and, for each that could plausibly apply
+at minimum walk the thirteen structures and, for each that could plausibly apply
 to this argument, write one hidden line naming the attack it would make and why
 that attack does NOT land on this argument (out of scope, or aimed at a point the
 conclusion does not rest on). Release the item ONLY if every walked structure
