@@ -43,12 +43,23 @@ One record per drill item completed.
 
 Fields: `structure` (canonical ID from `shared/structures.md`, or — for
 `manipulation_spot` items — a technique ID from `shared/manipulation-taxonomy.md`;
-for advanced compound items, the primary target — secondary IDs appear only in
-`summary`), `item_type` (`assumption|weaken|sufficiency|manipulation_spot`),
-`hit` (bool), `summary` (structure-level).
+or the sentinel `argument_sound` for a sound-argument item, which has no target
+structure; for advanced compound items, the primary target — secondary IDs
+appear only in `summary`), `item_type`
+(`assumption|weaken|sufficiency|manipulation_spot`; a sound-argument item is a
+`weaken` item), `hit` (bool), `summary` (structure-level).
+
+`argument_sound` is an outcome sentinel, not a reasoning structure — it never
+appears in `shared/structures.md` and is excluded from per-structure miss-log
+weighting the way `manipulation_spot` technique IDs are. For a sound item,
+`hit` is true when the user correctly judged the argument sound and false when
+the user asserted a flaw that was not there; the false case is the over-flagging
+signal the longitudinal mirror surfaces (the symmetric complement of the
+per-structure miss log — "you invented a flaw on N of your last M sound items").
 
 ```
 {"schema_version":1,"ts":"2026-06-11T08:41:00Z","type":"drill_result","structure":"sample_selection","item_type":"weaken","hit":false,"summary":"missed survivorship in a retention claim"}
+{"schema_version":1,"ts":"2026-06-11T08:52:00Z","type":"drill_result","structure":"argument_sound","item_type":"weaken","hit":false,"summary":"called a sound retention argument flawed — over-flagged"}
 ```
 
 ### `scene_process`
@@ -82,7 +93,11 @@ written for every `drill_result` whose `hit` is false; `drill_result` is ground
 truth — if a `miss_log` is missing, regeneration derives it.
 
 Fields: `structure` (canonical ID, or a technique ID for `manipulation_spot`
-misses), `summary` (short structure-level description).
+misses, or the `argument_sound` sentinel for an over-flagged sound item),
+`summary` (short structure-level description). An `argument_sound` miss records
+the over-flagging tendency separately; it does NOT feed the per-structure
+miss-log weighting that step (b) of the pipeline uses to pick the next target
+structure (an over-flag is not a weak spot in any one structure).
 
 ```
 {"schema_version":1,"ts":"2026-06-11T08:45:00Z","type":"miss_log","structure":"proxy_mismatch","summary":"took a satisfaction rate as a learning outcome"}

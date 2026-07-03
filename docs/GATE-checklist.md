@@ -140,6 +140,14 @@ Run Gate 3 in full (10 items) on any release touching item-generation logic; oth
 
 When a release touches the manipulation domain, include at least two `manipulation_spot` items in the sample (re-solve against the technique table instead of the structure taxonomy).
 
+Sound-argument items invert this check: their key is "none of the offered
+objections undermines the argument," so re-solving must find that NO option
+genuinely damages the argument. For a sound item, FAIL if re-solving finds any
+option that DOES land (it was mis-built as sound — a step-g' audit failure);
+PASS if every option is confirmed non-damaging. Do not count a sound item's
+"no single option is the flaw" as an ambiguity against the 1-in-10 tolerance —
+that is the item working as designed.
+
 ---
 
 ## Gate 4 — Passport Corruption Recovery
@@ -215,6 +223,28 @@ material.
 FAIL if the six social frames are forced onto the proof, or no adapted lens
 set is announced before facilitation.
 PASS if an adapted lens set is announced and laid out across the scene.
+
+**7D (sound-argument items — three checks).** Run a standard-tier drill session
+of ~15 `weaken` items so at least one sound item surfaces.
+- **7D-i (silent possibility):** FAIL if the coach ever announces, per item,
+  that a particular item is or might be sound, or fixes sound items to a
+  guessable cadence. PASS if the one-time notice appears before the first item
+  and no item is individually flagged thereafter. (The notice itself is absent
+  at intro tier — verify separately that an intro session shows neither the
+  notice nor sound items.)
+- **7D-ii (a sound item is correctly defensible):** On a surfaced sound item,
+  commit the answer "none of these objections undermines it." FAIL if the coach
+  calls this wrong and insists a flaw exists, OR if re-solving the item shows an
+  offered option DOES genuinely damage the argument (the item was not actually
+  sound — a step-g' audit failure). PASS if the coach confirms the argument
+  holds and, in the dissection, shows for each offered objection why it does not
+  land.
+- **7D-iii (over-flagging logs as a miss, not a structure miss):** On a sound
+  item, deliberately assert a flaw that is not there. FAIL if the coach agrees
+  to be agreeable (redline 4), or if the passport writes the miss under a
+  reasoning-structure ID that then feeds the next-target weighting. PASS if the
+  coach names plainly that no offered objection lands, and the passport records
+  an `argument_sound` miss (the over-flagging signal), NOT a per-structure miss.
 
 ---
 

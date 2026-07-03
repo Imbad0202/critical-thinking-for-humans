@@ -58,6 +58,44 @@ by the surface text but not primarily operating — instead of the distractor
 menu (the one-line why-it-tempts note is still required). Redline 13 governs
 all material of this type.
 
+### Sound-argument items (a `weaken` item with no live attack)
+
+Not a fifth item type — a `weaken` item whose key is "none of the offered
+objections undermines the argument." Every drill item otherwise hides exactly
+one designed flaw, which trains detection without discrimination: the reflex
+"something here is broken, find it." A fraction of `weaken` items are instead
+built sound — the argument holds, and each option is an objection that does not
+actually bite (out of scope, or aimed at a point the conclusion does not rest
+on). The user's job flips from "find the attack" to "judge that no offered
+attack lands," making "the reasoning holds" a first-class answer the way
+"cannot be determined" already is for `sufficiency`.
+
+Distinct from `sufficiency`: `sufficiency` asks whether the evidence *licenses*
+the conclusion (a conclusion pitched too strong for its evidence is the defect);
+a sound-argument item asks whether the *offered objections* damage an argument
+whose evidence-to-conclusion fit is already adequate. "Cannot be determined"
+(sufficiency) and "the objections don't bite" (sound) are different judgments —
+do not collapse them.
+
+- **Silent possibility (never announce which item is sound).** The user must
+  know sound items *exist* (see Session Flow step 0) but never which item is
+  one — announcing the instance lets the user pattern-match the answer and
+  trains nothing. This is why it is not a labeled type.
+- **Inverted reverse-solve (step g'):** confirming soundness is a harder
+  self-audit than confirming one designed gap. See the pipeline's step (g')
+  below — the audit must show NO structure yields a live attack, not merely
+  that one gap is real.
+- **Mix rate: low, tier-scaled, never fixed** (see Difficulty Knobs). Roughly
+  none at intro, a small minority at standard, a larger-but-still-minority share
+  at advanced. Never a guessable cadence.
+- **Logging:** an `argument_sound` outcome, not a structure ID — `hit` when the
+  user correctly judges the argument sound, miss when the user invents a flaw
+  that is not there (the over-flagging tendency the passport surfaces
+  longitudinally; passport/SCHEMA.md). Gated to standard and advanced tiers and
+  stronger models (the numeracy-gate pattern): a weak model is more likely to
+  ship a "sound" item that is quietly flawed, so the refuse-rather-than-ship
+  floor applies with extra force here.
+
 ---
 
 ## Item Generation Pipeline
@@ -138,6 +176,22 @@ NOT patch a borderline distractor in place: a repair usually introduces a new
 ambiguity, so regenerate rather than edit. (These lines are internal, like the
 step-f distractor notes; never shown when the item is presented.)
 
+**g'. Sound-item audit (inverted reverse-solve — sound items only).**
+For a sound-argument item there is no designed gap; the claim being made is that
+the argument *holds*, so the audit inverts. Before presenting, enumerate the
+strongest candidate attack the item's target-adjacent structures could mount —
+at minimum walk the twelve structures and, for each that could plausibly apply
+to this argument, write one hidden line naming the attack it would make and why
+that attack does NOT land on this argument (out of scope, or aimed at a point the
+conclusion does not rest on). Release the item ONLY if every walked structure
+ends in "does not land." If ANY structure yields a live attack — any honest "yes,
+this genuinely damages the argument" — the item is not sound: either it is really
+a flawed item keyed to that structure (rekey and treat it as an ordinary weaken
+item) or discard and regenerate. "I could not find an attack" is weaker evidence
+than "here is the attack," so this audit is held to a higher bar than step (g);
+when in doubt, the item is not sound. The offered options are then written so
+each is a real-looking objection that the audit has already shown does not bite.
+
 **g2. Weak-model fallback ladder.**
 If steps (c)–(g) fail the audit twice in a row for the same target structure,
 do not keep retrying at the same complexity — degrade by one rung and try
@@ -161,6 +215,14 @@ If yes, discard and regenerate from step (b).
 ---
 
 ## Session Flow
+
+0. **One-time soundness notice (once per session, standard and advanced only).**
+   Before the first item, state once: "Not every item has a flaw — some
+   arguments are sound, and calling a sound one 'flawed' is itself an error."
+   Then never flag which item is which. The user must know sound items exist so
+   "it holds" is a live answer, but never which item is one (announcing the
+   instance defeats the discrimination being trained). At intro tier the notice
+   is omitted along with sound items themselves (Difficulty Knobs).
 
 1. **Present item.** Show situation, evidence, conclusion, and the tier's
    option set (per the Difficulty Knobs table). At intro, pre-teach the target
@@ -234,11 +296,16 @@ anchor correct move, state the error as a reasoning-move fact, stop). Then state
 
 ## Difficulty Knobs
 
-| Tier | Options | Pre-teach | Gap clarity | Announcement |
-|------|---------|-----------|-------------|--------------|
-| intro | 3 | Yes — introduce the target structure's vocabulary before the item | Single, explicit | Item type named |
-| standard | 5 | No | Single | Item type named |
-| advanced | 5 | No | Subtler; compound flaws allowed (two structure IDs) | Item type NOT announced |
+| Tier | Options | Pre-teach | Gap clarity | Announcement | Sound-item rate |
+|------|---------|-----------|-------------|--------------|-----------------|
+| intro | 3 | Yes — introduce the target structure's vocabulary before the item | Single, explicit | Item type named | None — feature off until the base flaw-hunting skill is trained |
+| standard | 5 | No | Single | Item type named | Low minority |
+| advanced | 5 | No | Subtler; compound flaws allowed (two structure IDs) | Item type NOT announced | Larger but still a minority |
+
+Sound-item rate is never announced to the user and never fixed to a guessable
+cadence (not "every Nth item") — a predictable rhythm leaks the answer as badly
+as a per-item label. Flaw-hunting stays the core workout at every tier; sound
+items keep vigilance honest, they do not become the main event.
 
 At **advanced**: compound flaws means two structure IDs are both active in the same item — name both in the post-answer dissection. Logging stays singular: the step-(b) target structure is the `drill_result.structure`; the secondary ID is named in the dissection and may appear in `summary`, never as a second event.
 
