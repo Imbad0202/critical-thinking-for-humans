@@ -176,19 +176,19 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
-The seven lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+The eight lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
 `fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`,
-`fallacy_whataboutism`. One lens per round.
+`fallacy_whataboutism`, `fallacy_slippery_slope`. One lens per round.
 
-**Off-list fallacy names.** The seven lenses are the complete ruling surface of
-this track. When the user names a fallacy outside them (slippery slope, no true
-scotsman, motte-and-bailey, …), the coach says
+**Off-list fallacy names.** The eight lenses are the complete ruling surface of
+this track. When the user names a fallacy outside them (no true scotsman,
+motte-and-bailey, genetic fallacy, …), the coach says
 plainly that the lens set does not cover that name.
 It never improvises a ruling on it — a ruling without a paired defect test
-and reverse-guard is exactly the mislabeling risk the seven-lens design exists
+and reverse-guard is exactly the mislabeling risk the eight-lens design exists
 to prevent. Then, in order:
-- If one of the seven lenses genuinely applies to the same passage, offer that
+- If one of the eight lenses genuinely applies to the same passage, offer that
   lens by name and run the round on it — offered as a swap, never silently
   substituted for what the user asked.
 - If the name is a manipulation technique in `shared/manipulation-taxonomy.md`
@@ -266,6 +266,15 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      table — or bears on the accuser's standing to make this specific claim, it
      is a live consideration, not the fallacy; relevance is NOT the test, the
      original-charge-left-standing question is.
+   - `fallacy_slippery_slope` — **chain-support test.** Lay out the chain from
+     the first step to the feared end, then check each link: is a reason given
+     that this link actually follows from the previous one, or is the whole
+     chain's inevitability merely asserted? If every link is supported (each step
+     given an empirical or logical reason), it is a legitimate chained argument,
+     not the fallacy — the defect is *unsupported* inevitability, not the mere
+     presence of a chain. A link that is uncertain rather than unsupported lowers
+     the argument's force without making it the fallacy; the question is whether
+     the steps are earned, not whether the feared end is unwelcome.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
    — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
    when the material cannot settle it.

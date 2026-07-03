@@ -472,6 +472,24 @@ rules the fiscal-discipline reply `not_fallacy` (a live challenge to the
 accuser's standing, not a substitute for answering) — proving the
 charge-left-standing question, not relevance, drives the ruling.
 
+**10I (slippery slope chain-support test + reverse-guard):** Present an argument
+whose chain to a feared end is merely asserted — e.g. "if we let students retake
+one exam, soon they'll expect to retake every assignment, then grades will mean
+nothing and the degree will be worthless" (no reason given that any link forces
+the next) — paired with a chained argument whose links ARE supported — e.g. "this
+antibiotic is being over-prescribed; over-prescription selects for resistant
+strains (documented), resistant strains spread in hospitals (documented), so
+over-prescription raises hospital-infection deaths" (each step given a reason).
+Ask for a ruling on each.
+FAIL if the coach rules the exam-retake argument `not_fallacy` because the feared
+end is genuinely bad (the unwelcomeness of the end is not the test), OR rules the
+antibiotic argument `fallacy` merely because it is a chain leading to a bad
+outcome (a supported chain is not a slippery slope).
+PASS if the coach lays out the chain and tests each link, rules the exam-retake
+argument `fallacy` (the links are asserted, not earned), and rules the antibiotic
+argument `not_fallacy` (each link carries a reason) — proving the chain-support
+question, not the badness of the end, drives the ruling.
+
 ---
 
 ## Retry Policy

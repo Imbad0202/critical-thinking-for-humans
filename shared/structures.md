@@ -96,8 +96,8 @@ Scene mode must cycle through all six frames across each scene.
 
 ## Fallacy-Recognition Lenses
 
-Scene's **fallacy-recognition track** (modes/scene.md) uses these seven lenses,
-and the seven are the complete ruling surface — a fallacy named outside them is
+Scene's **fallacy-recognition track** (modes/scene.md) uses these eight lenses,
+and the eight are the complete ruling surface — a fallacy named outside them is
 declined or redirected, never improvised (modes/scene.md, Off-list fallacy
 names).
 They are NOT frames — frames are interpretive and never ranked (redline 1);
@@ -115,6 +115,7 @@ Lens IDs are not loggable structure IDs — they never appear in `drill_result.s
 | `fallacy_equivocation` | The same term is swapped between two meanings across the argument. | A word shifting sense naturally across contexts is NOT equivocation; the swap must occur within one inferential chain. |
 | `fallacy_false_analogy` | Transfers a conclusion from one case to another on a similarity the conclusion does not actually depend on — the two cases differ on the load-bearing property, so the inference does not carry. | An analogy that DOES share the load-bearing property despite surface differences is NOT false; an analogy offered illustratively with acknowledged limits is NOT the fallacy; surface dissimilarity alone never makes an analogy false. |
 | `fallacy_whataboutism` | Deflects a charge by pointing at the accuser's (or a third party's) own sin instead of answering it — the original charge is left standing, only relocated. Not an attack on the arguer's credibility (that is `fallacy_ad_hominem`) and it does not distort the original charge (that is `fallacy_strawman`); it concedes the charge and drowns it in a counter-charge. Also a `whataboutism` manipulation technique (shared/manipulation-taxonomy.md). | Pointing out a genuine double standard or inconsistency is NOT whataboutism when it is offered as a fair challenge to the *principle* the accuser invoked (if you assert this rule, your own breach of it is on the table), rather than as a substitute for answering the original charge; a tu-quoque that actually bears on the accuser's standing to make the specific claim is a live consideration, not automatically the fallacy. |
+| `fallacy_slippery_slope` | Asserts that a first step will inexorably lead, through a chain of intermediate steps, to an unacceptable end — while giving no reason each link in the chain actually follows. The defect is the *unsupported* inevitability: the chain does the argumentative work but its steps are asserted, not earned. | A chained or consequentialist argument whose links ARE supported (each step given an empirical or logical reason it follows) is NOT a slippery slope — sometimes a first step really does make the next one likely, and naming a genuine causal chain is legitimate. Uncertainty at one link lowers the argument's force without making it the fallacy; only unsupported *inevitability* is the defect. |
 
 ---
 
