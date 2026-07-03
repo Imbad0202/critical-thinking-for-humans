@@ -20,7 +20,7 @@ In 1930 Ott-Heinrich Keller conjectured that any tiling of n-dimensional space b
 
 The proof works through the Corrádi–Szabó (1990) reduction to cliques in the Keller graph Gₙ,ₛ, whose vertices are ⟨2s⟩ⁿ with two vertices adjacent iff they differ by exactly s in at least one coordinate and differ in at least two coordinates. A clique of size 2ⁿ in some Gₙ,ₛ witnesses that the conjecture is FALSE in dimension n. Kisielewicz (2017) had reduced dimension 7 to the single question of whether G₇,₃ contains a clique of size 2⁷ = 128. The authors prove (Theorem 1) that none of G₇,₃, G₇,₄, G₇,₆ contains a clique of size 128 — hence the conjecture holds.
 
-**Accessibility note.** The *claim* is visualizable to a layperson: can you ever tile space with cubes so that no two cubes share a full face? The two-dimensional picture (offset brick-laying still forces full-edge contacts) is intuitive. What is NOT human-auditable is the *proof*: it is the absence of a 128-clique in a graph on thousands of vertices, established by a SAT solver emitting a 200+ gigabyte unsatisfiability certificate across tens of thousands of subformulas. No human reads that certificate; the audit target is the *encoding* and the *checker*, not the search.
+**Accessibility note.** The *claim* is visualizable to a layperson: can you ever tile space with cubes so that no two cubes share a full face? The two-dimensional picture (offset brick-laying still forces full-edge contacts) is intuitive. What is NOT human-auditable is the *proof*: it is the absence of a 128-clique in a graph on thousands of vertices, established by a SAT solver emitting a 224-gigabyte unsatisfiability certificate across tens of thousands of subformulas. No human reads that certificate; the audit target is the *encoding* and the *checker*, not the search.
 
 ## history
 
@@ -63,7 +63,7 @@ After all this, dimension 7 was a single, sharply-posed finite question that sti
 
 ## breakthrough
 
-**S6 is the breakthrough** — not the SAT search itself but the certified-checker pipeline (DRAT proof → DRAT-trim → ACL2check, a checker formally verified in ACL2). It eluded the community because earlier dimension-7 work could pose the clique question but could not produce a *machine-auditable* answer; the move that closes the case is recognizing that the entire trust burden can be shifted onto a formally-verified proof checker, so a 200-gigabyte certificate no human can read still constitutes a rigorous proof. The hard mathematical narrowing (S1–S3, reducing to a single 128-clique question in G₇,₃) was already done by Corrádi-Szabó, Debroni et al., and Kisielewicz; what was missing was certified exhaustive search at scale.
+**S6 is the breakthrough** — not the SAT search itself but the certified-checker pipeline (DRAT proof → DRAT-trim → ACL2check, a checker formally verified in ACL2). It eluded the community because earlier dimension-7 work could pose the clique question but could not produce a *machine-auditable* answer; the move that closes the case is recognizing that the entire trust burden can be shifted onto a formally-verified proof checker, so a 224-gigabyte certificate no human can read still constitutes a rigorous proof. The hard mathematical narrowing (S1–S3, reducing to a single 128-clique question in G₇,₃) was already done by Corrádi-Szabó, Debroni et al., and Kisielewicz; what was missing was certified exhaustive search at scale.
 
 ## audit_targets
 
