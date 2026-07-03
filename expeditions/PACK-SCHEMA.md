@@ -29,6 +29,31 @@ spec; it ships with the repo, not with runtime builds.
 
 ---
 
+## Role-Conditional Fields
+
+`audit_targets` is auditor-shaped: it carries the objection/resolution a probe
+turns on. A forecaster pack asks the user to *predict* rather than probe, and
+the grading it needs — what forecast counts as well-calibrated, over-confident,
+or under-confident — has no auditor field to live in. Without it the coach must
+improvise the grade, in a mode whose core rule is no improvisation beyond pack
+content.
+
+- `calibration_key` — **required when the pack declares a forecaster role fit**
+  (the pack states it is a forecaster exercise, e.g. alphafold-casp14,
+  chromatic-number-plane-5); omit otherwise. Per forecast target (`- **F<n>`),
+  three parts: the **calibrated** answer band (the range or claim a
+  well-calibrated forecast lands in), what an **over-confident** forecast looks
+  like, and what an **under-confident** one looks like. This is the scoring
+  rubric the coach reads instead of inventing; the forecast *prompts* stay in
+  `audit_targets`, the *grading* lives here. The band is stated as a range or
+  a "credit for / miscalibrated if" pair, never a single point answer that
+  collapses calibration back into right/wrong.
+
+Climber packs (busy-beaver-5) need no analogous field: the only knob is step
+size, which the step_graph already carries, and there is no forecast to grade.
+
+---
+
 ## Authoring Rules
 
 - Solved problems only — verified solutions, never open conjectures. An open

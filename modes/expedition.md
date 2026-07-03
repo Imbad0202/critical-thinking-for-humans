@@ -57,10 +57,13 @@ criterion before work begins.
   inference. Success: the step sequence is climbed with the user performing
   the inferences, however small the steps.
 - **forecaster** — before each reveal, the user predicts which attack line
-  will work and why; after the reveal, prediction and reality are compared.
-  Success: calibration data — where the user's instincts run hot or cold —
-  read per Data as Mirror (shared/scaffolding.md §5c), stated, never
-  prosecuted.
+  will work and why; after the reveal, prediction and reality are compared
+  against the pack's `calibration_key` — the coach grades from that rubric's
+  calibrated / over-confident / under-confident bands, never an improvised
+  standard (no `calibration_key`, no forecaster grading: fall back to auditor
+  or decline, per No Pack, No Expedition). Success: calibration data — where
+  the user's instincts run hot or cold — read per Data as Mirror
+  (shared/scaffolding.md §5c), stated, never prosecuted.
 
 ---
 

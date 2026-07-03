@@ -64,3 +64,41 @@ The breakthrough step is **S4** — re-attributing the 2.2202 capacity figure. I
 - **T4 — "The LLM understood the mathematics."** *Objection:* Suggests reasoning where there is search. *Resolution:* The model is never told the problem; it only mutates a `priority` subroutine. Davis's central charge is the "shallowness" of any implied understanding — the math-steering lives in the genetic wrapper, invisible to the LLM.
 - **T5 — "This is a broad new method for hard math."** *Objection:* Over-generalizes from a narrow construction-search win. *Resolution:* Requires an efficient evaluator, rich score signal, and small mutable skeleton (authors' own preconditions); corresponding author Fawzi confirmed a direct RL-over-constructions approach "didn't scale." Forecast transfer only where all three preconditions hold.
 
+
+---
+
+## calibration_key
+
+The scoring rubric for the forecasts in `audit_targets`. Read this to grade;
+do not invent a grade. Bands are first-party from the FunSearch Nature paper
+and Ernest Davis's analysis, with the two figures I did NOT independently
+confirm flagged.
+
+- **F1 (did FunSearch solve the cap-set problem?)** — *Calibrated:* "no — it
+  improved two lower bounds via explicit constructions; the parent problem is
+  open, c_n exact only for n ≤ 6, upper bound γ ≤ 2.756 untouched." *Over-
+  confident:* "cracked / solved cap-set" — the Nature news framing taken literally.
+  *Under-confident:* "the constructions don't count as progress" — denies a real
+  lower-bound improvement.
+- **F2 (is 2.2202 FunSearch's discovery?)** — *Calibrated:* "provenance splits —
+  FunSearch alone gave γ ≥ 2.2184; the jump to 2.2202 was Ellenberg spotting a
+  symmetry in the human-readable program (Davis: ~99.99% of that credit is
+  Ellenberg's)." *Over-confident:* "2.2202 is the AI's result." *Under-confident:*
+  "FunSearch contributed nothing to the bound" — erases the standalone 2.2184.
+- **F3 (does the record mean anything without the baseline?)** — *Calibrated:*
+  "only against prior art — dim-8 baseline 496, capacity baseline 2.2180, binding
+  upper bound Ellenberg–Gijswijt γ ≤ 2.756." Full credit does not require the 496
+  figure, which is NOT independently confirmed here against OEIS A090245. *Over-
+  confident:* cites 496 as settled fact. *Under-confident:* "no baseline exists to
+  compare against."
+- **F4 (did the LLM understand the mathematics?)** — *Calibrated:* "no — it is
+  search, not reasoning; the model is never told the problem and only mutates a
+  `priority` subroutine; the math-steering lives in the genetic wrapper." *Over-
+  confident:* "the LLM reasoned about cap-sets." *Under-confident:* "the LLM did
+  nothing" — understates that its mutations drove the construction search.
+- **F5 (is this a broad new method for hard math?)** — *Calibrated:* "transfer
+  only where all three authors' preconditions hold — efficient evaluator, rich
+  score signal, small mutable skeleton; Fawzi confirmed direct RL-over-
+  constructions didn't scale." *Over-confident:* "a general engine for hard math."
+  *Under-confident:* "a one-off with no transfer" — ignores the stated conditions
+  under which it does transfer.

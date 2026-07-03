@@ -61,3 +61,39 @@ solve.
 - **T3 — Forecast: does it generalize to multi-chain complexes and dynamics?** *Objection:* "solved protein folding" tempts over-extrapolation to assemblies and motion. *Resolution:* no — the paper itself reports weakness on bridging domains dominated by heterotypic contacts and defers full hetero-complexes to "a future system"; single static structures, not ensembles or assembly, are what was delivered. A forecaster who predicted broad transfer to complexes/dynamics is miscalibrated against the authors' own stated scope.
 - **T4 — Forecast: is the margin over competitors incremental or a step change?** *Objection:* press coverage inflates; maybe it was a normal generational gain. *Resolution:* backbone 0.96 Å vs 2.8 Å next-best (Nature), and the CASP14 summed z-score 244.0 vs 90.8 (Proteins, not first-party confirmed by me) — a category break, not an increment. Predicting "step change" is supported, but note the z-score figure sits in the unverified column.
 
+
+---
+
+## calibration_key
+
+The scoring rubric for the forecasts in `audit_targets` — the band a
+well-calibrated forecast lands in, and what an over- or under-confident one
+looks like, per target. Read this to grade; do not invent a grade.
+
+- **F1 (does pLDDT track real accuracy?)** — *Calibrated:* "positive and strong
+  but imperfect" — a correlation clearly above zero with real scatter (the paper
+  gives Pearson r = 0.76 on n = 10,795 held-out chains, near-unit slope). Credit
+  the *reasoning* — that confidence and correctness are distinct propositions
+  bridged empirically — not a guessed number. *Over-confident:* "pLDDT is
+  accuracy" / "r ≈ 1" / treats high confidence as a guarantee. *Under-confident:*
+  "self-reported confidence is worthless" — denies any calibration, ignoring that
+  it was demonstrated blind.
+- **F2 (does CASP14 performance transfer off-benchmark?)** — *Calibrated:*
+  "transfers, on the strength of post-training-cutoff hold-out" — the answer AND
+  the kill-criterion reasoning (accuracy and pLDDT calibration both re-tested on
+  PDB structures deposited after the cutoff). *Over-confident:* "transfers
+  everywhere" with no scope limit. *Under-confident:* "a benchmark champion will
+  regress in the wild" — predicts failure the post-cutoff test already refuted.
+- **F3 (does it generalize to complexes and dynamics?)** — *Calibrated:* "no —
+  single static structures only; assemblies and motion are out of scope," matching
+  the authors' own stated weakness on heterotypic-contact bridging domains.
+  *Over-confident:* "solved protein folding, so complexes and dynamics too."
+  *Under-confident:* "the single-chain result itself is unreliable" — understates
+  what was in fact delivered.
+- **F4 (incremental or step change?)** — *Calibrated:* "step change" — backbone
+  0.96 Å vs 2.8 Å next-best is a category break, not a generational increment.
+  Full credit does not depend on the CASP14 summed z-score (244.0 vs 90.8), which
+  is not first-party confirmed here; a forecaster leaning on the Å margin is
+  calibrated. *Over-confident:* treats the unverified z-score as settled fact.
+  *Under-confident:* "just a normal generational gain" — reads press deflation
+  into a category break.

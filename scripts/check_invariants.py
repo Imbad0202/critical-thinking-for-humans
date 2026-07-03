@@ -308,6 +308,8 @@ CHECKS = [
     ("modes/expedition.md", "pack-refusal-fields",
      "The coach refuses a pack missing any of its required fields"),
     ("modes/expedition.md", "auditor-default", "auditor (default)"),
+    ("modes/expedition.md", "forecaster-grades-from-calibration-key",
+     "grades from that rubric's"),
     ("modes/expedition.md", "search-first", "`search_first`"),
     ("modes/expedition.md", "discipline-kill-criteria", "`kill_criteria`"),
     ("modes/expedition.md", "expedition-no-soft-switch",

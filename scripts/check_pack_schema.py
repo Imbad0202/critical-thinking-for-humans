@@ -35,7 +35,24 @@ VALID_DISCIPLINES = {
 SNAKE_TOKEN = re.compile(r"`([a-z]+(?:_[a-z]+)+)`")
 STEP_BULLET = re.compile(r"^- \*\*S\d+", re.MULTILINE)
 AUDIT_BULLET = re.compile(r"^- \*\*T\d+", re.MULTILINE)
+FORECAST_BULLET = re.compile(r"^- \*\*F\d+", re.MULTILINE)
 PROVENANCE_MARKER = re.compile(r"arXiv|doi|https?://|LNCS|ISBN", re.IGNORECASE)
+# A pack "declares a forecaster role fit" when its prose says so (PACK-SCHEMA.md,
+# Role-Conditional Fields). Matched loosely — "a forecaster pack", "forecaster
+# exercise", "forecaster-role pack" — so the required calibration_key field is
+# gated on the pack's own self-declaration, not on a separate metadata knob.
+FORECASTER_DECL = re.compile(r"forecaster[\s-]+(?:pack|exercise|role)|"
+                             r"is a \*?forecaster", re.IGNORECASE)
+# The three rubric bands calibration_key must tag per forecast target, matched
+# as structured labels (like audit_targets' *Objection:* / *Resolution*) rather
+# than as free-text tokens — a label survives prose line-wrapping, a bare word
+# does not, and the intro naming all three in prose must not satisfy a bullet.
+# The `-\s*` inside each label absorbs a hard-wrap that splits "Over-\nconfident".
+CALIBRATION_LABELS = (
+    ("*Calibrated:*", re.compile(r"\*Calibrated:\*")),
+    ("*Over-confident:*", re.compile(r"\*Over-\s*confident:\*")),
+    ("*Under-confident:*", re.compile(r"\*Under-\s*confident:\*")),
+)
 
 
 def h2_sections(text: str) -> dict[str, str]:
@@ -129,6 +146,31 @@ def check_pack(path: Path) -> list[str]:
         if n_tagged < n_targets:
             errors.append(f"only {n_tagged}/{n_targets} audit targets carry "
                           f"an explicit {label}")
+
+    # A forecaster pack must carry a calibration_key rubric (PACK-SCHEMA.md,
+    # Role-Conditional Fields); an auditor/climber pack must not need one.
+    if FORECASTER_DECL.search(text):
+        cal = sections.get("calibration_key", "")
+        if "calibration_key" not in sections:
+            errors.append("declares a forecaster role but has no "
+                          "calibration_key section (PACK-SCHEMA.md requires it)")
+        elif not cal.strip():
+            errors.append("calibration_key section is empty")
+        else:
+            # Count bands per forecast bullet, not across the whole section:
+            # the section intro names all three bands in prose, so a
+            # section-wide substring test passes even when a bullet drops one.
+            bullets = re.split(r"^(?=- \*\*F\d+)", cal, flags=re.MULTILINE)
+            forecasts = [b for b in bullets if FORECAST_BULLET.match(b)]
+            if not forecasts:
+                errors.append("calibration_key carries no forecast bullet "
+                              "(- **F<n>)")
+            for bullet in forecasts:
+                fm = re.match(r"- \*\*(F\d+)", bullet)
+                for label, pat in CALIBRATION_LABELS:
+                    if not pat.search(bullet):
+                        errors.append(f"calibration_key {fm.group(1)} lacks a "
+                                      f"{label} band")
 
     return errors
 

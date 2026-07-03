@@ -6,6 +6,7 @@ tree into tmp, mutate one rule at a time, assert the matching check FAILs,
 restore. The invariant table is homogeneous, so one loop covers every entry.
 """
 import json
+import re
 import shutil
 from datetime import date
 from pathlib import Path
@@ -22,6 +23,7 @@ NEEDED_DIRS = ["shared", "modes", "passport", "platforms", "docs",
                "expeditions", ".claude-plugin"]
 NEEDED_FILES = ["SKILL.md", "README.md", "CHANGELOG.md"]
 PACK = "expeditions/boolean-pythagorean-triples.md"
+FORECASTER_PACK = "expeditions/alphafold-casp14.md"
 
 
 @pytest.fixture()
@@ -88,6 +90,30 @@ def test_section_scope_catches_moved_sentence(tree, capsys):
 ])
 def test_pack_lint_catches(tree, capsys, mutate):
     pack = tree / PACK
+    original = pack.read_text(encoding="utf-8")
+    mutated = mutate(original)
+    assert mutated != original
+    pack.write_text(mutated, encoding="utf-8")
+    assert cps.main(tree) == 1
+    capsys.readouterr()
+
+
+@pytest.mark.parametrize("mutate", [
+    # drop the whole calibration_key section from a forecaster pack
+    lambda t: t.split("## calibration_key")[0],
+    # keep the header but empty the rubric bullets
+    lambda t: re.sub(r"## calibration_key.*", "## calibration_key\n",
+                     t, flags=re.DOTALL),
+    # strip every over-confident band label (leaves calibrated + under)
+    lambda t: t.replace("*Over-confident:*", "*Note:*"),
+    # strip every under-confident band label
+    lambda t: t.replace("*Under-confident:*", "*Note:*"),
+    # break exactly ONE bullet's band, proving the check is per-bullet, not
+    # per-section (a whole-section substring test would pass on the other four)
+    lambda t: t.replace("*Over-confident:*", "*Note:*", 1),
+])
+def test_forecaster_calibration_lint_catches(tree, capsys, mutate):
+    pack = tree / FORECASTER_PACK
     original = pack.read_text(encoding="utf-8")
     mutated = mutate(original)
     assert mutated != original

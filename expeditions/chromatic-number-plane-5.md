@@ -57,3 +57,37 @@ You predict, before each reveal, what the result does and does NOT settle.
 - **T4 — "The non-4-colourability is a trust-me proof needing expert refereeing." Predict: independently machine-verifiable.** *Objection:* a 1581-vertex argument sounds humanly uncheckable. *Resolution:* it is a finite SAT instance (UNSAT on the 4-colouring encoding); the Polymath thread confirms a computer search over ~278–400-vertex subgraphs verifies it, re-runnable by anyone. Forecast "checkable, not faith-based."
 - **T5 — "Before de Grey the safe bet was χ = 4." Predict: that bet LOSES.** *Objection:* 4 was the standing lower bound for decades, so it was the conservative guess. *Resolution:* de Grey's explicit graph proves no 4-colouring of the plane exists, killing χ = 4 outright. First-party: abstract states the graph is "not 4-colourable." Forecast "4 is eliminated; the live window is 5/6/7."
 
+
+---
+
+## calibration_key
+
+The scoring rubric for the forecasts in `audit_targets`. Read this to grade a
+forecast; do not invent a grade. Every band here is first-party from
+arXiv:1804.02385, the Polymath16 thread, and Kalai's post.
+
+- **F1 (does it settle χ = 5?)** — *Calibrated:* "not tight — it fixes only the
+  lower bound; χ ∈ {5,6,7} stays open." *Over-confident:* "χ = 5 now proved" —
+  the title's "at least 5" rounded to "is 5." *Under-confident:* "proves nothing
+  about χ" — misses that the lower bound genuinely moved from 4 to 5.
+- **F2 (did Polymath16 close the gap to an exact value?)** — *Calibrated:* "gap
+  stays open — Polymath16 shrank the graphs and cut computer reliance, did not
+  determine χ." *Over-confident:* "a Tao-backed project closed it." *Under-
+  confident:* "Polymath achieved nothing" — ignores the real reduction in graph
+  size and search dependence.
+- **F3 (would a smaller non-4-colourable graph raise the bound?)** — *Calibrated:*
+  "no — smaller ≠ higher bound; a smaller non-4-colourable graph still only proves
+  χ ≥ 5, it just lowers verification cost. χ ≥ 6 needs a non-*5*-colourable
+  graph." *Over-confident:* "smaller graph = stronger bound." *Under-confident:*
+  "smaller graphs are pointless" — misses the real gain (cheaper certificate).
+- **F4 (is the proof a trust-me argument or machine-verifiable?)** — *Calibrated:*
+  "independently machine-verifiable — a finite SAT/UNSAT instance re-runnable by
+  anyone." *Over-confident:* n/a — the checkable direction is the correct one; a
+  forecaster claiming certainty here is right. *Under-confident:* "a 1581-vertex
+  argument needs expert refereeing on faith." (This target rewards the confident
+  correct call; over-confidence would be claiming it settles χ, which is F1.)
+- **F5 (was χ = 4 the safe pre-de-Grey bet?)** — *Calibrated:* "that bet loses —
+  de Grey's explicit graph eliminates χ = 4; the live window is 5/6/7." *Over-
+  confident:* "so χ = 5 is now the safe bet" — eliminating 4 does not crown 5.
+  *Under-confident:* "4 might still hold" — contradicts the explicit
+  not-4-colourable graph.
