@@ -273,8 +273,9 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      given an empirical or logical reason), it is a legitimate chained argument,
      not the fallacy — the defect is *unsupported* inevitability, not the mere
      presence of a chain. A link that is uncertain rather than unsupported lowers
-     the argument's force without making it the fallacy; the question is whether
-     the steps are earned, not whether the feared end is unwelcome.
+     the argument's force without making it the fallacy; relevance is NOT the
+     test, the chain-support question is — the question is whether the steps are
+     earned, not whether the feared end is unwelcome.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
    — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
    when the material cannot settle it.
