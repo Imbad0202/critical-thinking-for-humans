@@ -1,0 +1,52 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-17-scope-boundary",
+  "publishDate": "2026-07-17",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "expedition",
+  "domain": "science",
+  "title": "尚未揭曉的適用邊界",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/expedition.js",
+    "modes/expedition.md",
+    "expeditions/alphafold-casp14.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "scope-boundary",
+        "chapter": "預測 03",
+        "location": "遠征卷宗・邊界地圖室",
+        "speaker": "林霧華",
+        "role": "遠征嚮導",
+        "characterId": "lin_wuhua",
+        "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
+        "briefing": "最後一題要劃清界線：這項成果證明了什麼，又還不能證明什麼。限制段落會在你先做預測後才揭曉。",
+        "evidenceTitle": "尚未揭曉的適用邊界",
+        "evidence": "CASP14（2020）的成果，主要證明 AlphaFold 2 能從一條胺基酸序列預測單條蛋白質鏈的一個靜態形狀。下一步要問：這個結果能不能直接延伸到多條蛋白質如何組合，以及蛋白質隨時間改變的動態？",
+        "prompt": "在讀論文的限制段落前，你的預測是哪一個？",
+        "options": [
+          {
+            "id": "A",
+            "text": "既然單鏈很準，多鏈組合與蛋白質動態也應該一併解決。"
+          },
+          {
+            "id": "B",
+            "text": "單鏈靜態結構的成果成立；多鏈組合與蛋白質動態仍需分開驗證。"
+          },
+          {
+            "id": "C",
+            "text": "只要多鏈組合還沒驗證，單鏈結果本身也不可信。"
+          },
+          {
+            "id": "D",
+            "text": "只要模型自己給出高信心，換到任何新情境都不必再測。"
+          }
+        ]
+      }
+    ]
+  }
+}

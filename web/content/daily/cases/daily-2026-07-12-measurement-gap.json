@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-12-measurement-gap",
+  "publishDate": "2026-07-12",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "drill",
+  "domain": "education",
+  "title": "學院內部摘要",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/drill.js",
+    "modes/drill.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "measurement-gap",
+        "chapter": "推理快問 01",
+        "location": "灰橋學院・評鑑室",
+        "speaker": "林霧華",
+        "role": "推理教練",
+        "characterId": "lin_wuhua",
+        "backgroundAsset": "web/assets/art/backgrounds/graybridge-academy-lecture-hall.webp",
+        "briefing": "這題練習「測量指標與結論不符」：先確認報告實際量了什麼，再看結論宣稱了什麼。",
+        "evidenceTitle": "學院內部摘要",
+        "evidence": "灰橋學院導入一套同儕回饋模組。91% 的學生認為模組有用，三屆學生的完成率都是 97%。學院因此聲稱：「這套模組已證明能提升學生分析學術論證的能力。」",
+        "prompt": "哪項新資料最能削弱學院的結論？",
+        "options": [
+          {
+            "id": "A",
+            "text": "同一批學生在導入前後接受標準化論證能力測驗，成績沒有明顯變化。"
+          },
+          {
+            "id": "B",
+            "text": "這三年研究所招生人數增加了 18%。"
+          },
+          {
+            "id": "C",
+            "text": "部分學生認為每學期完成六次回饋太花時間。"
+          }
+        ]
+      }
+    ]
+  }
+}

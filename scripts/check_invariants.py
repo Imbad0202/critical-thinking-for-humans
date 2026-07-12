@@ -149,7 +149,7 @@ CHECKS = [
     ("README.md", "independence-disclaimer",
      "not affiliated with, sponsored by, or endorsed"),
     ("README.md", "original-items-disclaimer",
-     "All practice items are original and generated at runtime"),
+     "All practice items are original. CLI/Skill sessions generate items at runtime"),
     ("README.md", "non-legal",
      "not legal advice"),
     ("README.md", "safest-place",

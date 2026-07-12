@@ -1,0 +1,20 @@
+/index.html
+  Cache-Control: no-cache
+
+/dist/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/assets/art/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/assets/audio/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/standalone/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/content/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/src/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400

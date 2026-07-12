@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "contentId": "<PUBLIC_CASE_ID>",
+  "publishDate": "2099-01-01",
+  "answers": [
+    {
+      "itemId": "<PUBLIC_ITEM_ID>",
+      "correctOptionId": "<OPTION_ID>",
+      "hitFeedback": "<FEEDBACK_SHOWN_AFTER_A_CORRECT_COMMITMENT>",
+      "missFeedback": "<FEEDBACK_SHOWN_AFTER_AN_INCORRECT_COMMITMENT>",
+      "structure": "<STRUCTURE_TOKEN>",
+      "structureLabel": "<STRUCTURE_LABEL>",
+      "xp": {
+        "hit": 40,
+        "miss": 15
+      }
+    }
+  ]
+}

@@ -197,10 +197,14 @@ only when used; a sensitive BYOM session writes no events at all unless you ask.
 
 ---
 
-## 6. Three build targets
+## 6. Delivery targets
 
-The repo is the single source of truth. Two other editions are generated from
-it and never hand-edited.
+The canonical skill remains the behavioral source of truth. The ZIP and
+portable editions are generated; the Web Casebook contains deliberately
+authored bilingual excerpts with explicit source paths. They do not execute the
+full Skill runtime, and structural CI gates are not a substitute for human
+validity review. This separation prevents a skill update from silently changing
+a live answer.
 
 ```mermaid
 flowchart TD
@@ -208,17 +212,28 @@ flowchart TD
 
     Canonical -->|"runs directly"| CC["Claude Code skill<br/>(full: 4 modes + on-disk passport<br/>+ expedition packs)"]
 
-    Canonical -->|"build_claude_ai_zip.sh<br/>+ platforms/claude-ai/ overlays"| Zip["claude.ai zip<br/>same modes & redlines;<br/>16 expedition packs included;<br/>passport → copy-paste block<br/>(no local filesystem)"]
+    Canonical -->|"build_claude_ai_zip.sh<br/>+ platforms/claude-ai/ overlays"| Zip["claude.ai zip<br/>same modes & redlines;<br/>22 expedition packs included;<br/>passport → copy-paste block<br/>(no local filesystem)"]
 
     Canonical -->|"build_portable.sh"| Port["Portable single-file .md<br/>any frontier model;<br/>drill + scene + detective only<br/>(no packs, no on-disk passport)"]
 
+    Canonical -->|"authored bilingual excerpts<br/>+ CI source/leak gates"| Web["Web Casebook<br/>4 fixed browser excerpts + optional Daily API<br/>public prompts in Git;<br/>answers in Private Blob"]
+
     Canonical -.->|"check_invariants.py gates every build"| Gate["section-scoped invariant lint:<br/>redlines & SKILL invariants survive<br/>the overlay/rewrite, no local-FS<br/>vocabulary leaks into the zip"]
+
+    Web -.->|"Vercel Cron<br/>promotes scheduled → published"| Daily["Daily Dispatch<br/>server date + private ruling<br/>safe public fallback"]
 ```
 
 Maintenance rule: editing a canonical file that has an overlay counterpart means
 reviewing the overlay in the same commit. `check_invariants.py` re-checks every
 redline and SKILL.md invariant against the overlay copies and fails the build on
 drift.
+
+Web maintenance is intentionally not automatic substitution: `canonicalSourcePaths`
+records where a case came from, `check_daily_cases.py` prevents answer leakage,
+and a maintainer must revalidate both locale versions, the public prompt, and the
+private ruling before assigning a new publish date. A source path proves
+traceability, not semantic fidelity. Already-published cases remain immutable for
+that day.
 
 ---
 

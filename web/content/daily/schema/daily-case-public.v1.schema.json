@@ -1,0 +1,372 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "daily-case-public.v1.schema.json",
+  "title": "Critical Thinking for Humans public daily case bundle, version 1",
+  "description": "Browser-safe daily content. Adjudication and post-commit reveal data are intentionally outside this schema.",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "id",
+    "publishDate",
+    "locale",
+    "visibility",
+    "mode",
+    "title",
+    "canonicalSourcePaths",
+    "content"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "../schema/daily-case-public.v1.schema.json"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "$ref": "#/$defs/slug"
+    },
+    "publishDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"
+    },
+    "visibility": {
+      "const": "public"
+    },
+    "mode": {
+      "enum": [
+        "drill",
+        "scene",
+        "expedition",
+        "detective"
+      ]
+    },
+    "domain": {
+      "description": "Optional in schema v1 for backward compatibility; new fixtures declare it explicitly.",
+      "enum": [
+        "education",
+        "health",
+        "public",
+        "science",
+        "work"
+      ]
+    },
+    "title": {
+      "$ref": "#/$defs/nonEmptyText"
+    },
+    "canonicalSourcePaths": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(?:modes|shared|expeditions|web/content)/[A-Za-z0-9._/-]+\\.(?:md|js)$"
+      }
+    },
+    "content": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/choiceSequence"
+        },
+        {
+          "$ref": "#/$defs/multiLensScene"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "scene"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "content": {
+            "$ref": "#/$defs/multiLensScene"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "enum": [
+              "drill",
+              "expedition",
+              "detective"
+            ]
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "content": {
+            "$ref": "#/$defs/choiceSequence"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "token": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$"
+    },
+    "choiceId": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]{0,2}$"
+    },
+    "nonEmptyText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "backgroundAsset": {
+      "type": "string",
+      "pattern": "^web/assets/art/backgrounds/[a-z0-9-]+\\.webp$"
+    },
+    "option": {
+      "type": "object",
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/choiceId"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyText"
+        }
+      },
+      "additionalProperties": false
+    },
+    "choiceItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "chapter",
+        "location",
+        "speaker",
+        "role",
+        "characterId",
+        "backgroundAsset",
+        "briefing",
+        "evidenceTitle",
+        "evidence",
+        "prompt",
+        "options"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "chapter": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "location": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "speaker": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "role": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "characterId": {
+          "$ref": "#/$defs/token"
+        },
+        "backgroundAsset": {
+          "$ref": "#/$defs/backgroundAsset"
+        },
+        "briefing": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "evidenceTitle": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "evidence": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "prompt": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "$ref": "#/$defs/option"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "choiceSequence": {
+      "type": "object",
+      "required": [
+        "kind",
+        "items"
+      ],
+      "properties": {
+        "kind": {
+          "const": "choice-sequence"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/choiceItem"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "sceneHeader": {
+      "type": "object",
+      "required": [
+        "location",
+        "speaker",
+        "role",
+        "characterId",
+        "backgroundAsset",
+        "text"
+      ],
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "speaker": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "role": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "characterId": {
+          "$ref": "#/$defs/token"
+        },
+        "backgroundAsset": {
+          "$ref": "#/$defs/backgroundAsset"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyText"
+        }
+      },
+      "additionalProperties": false
+    },
+    "lens": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "reading",
+        "prompt",
+        "options"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/token"
+        },
+        "label": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "reading": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "prompt": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/nonEmptyText"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "commitment": {
+      "type": "object",
+      "required": [
+        "id",
+        "text",
+        "objection"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/choiceId"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "objection": {
+          "$ref": "#/$defs/nonEmptyText"
+        }
+      },
+      "additionalProperties": false
+    },
+    "multiLensScene": {
+      "type": "object",
+      "required": [
+        "kind",
+        "scene",
+        "lenses",
+        "positions",
+        "commitments"
+      ],
+      "properties": {
+        "kind": {
+          "const": "multi-lens-scene"
+        },
+        "scene": {
+          "$ref": "#/$defs/sceneHeader"
+        },
+        "lenses": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "$ref": "#/$defs/lens"
+          }
+        },
+        "positions": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/nonEmptyText"
+          }
+        },
+        "commitments": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/commitment"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-16-base-rate",
+  "publishDate": "2026-07-16",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "drill",
+  "domain": "health",
+  "title": "罕見疾病篩檢傳單",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/drill.js",
+    "modes/drill.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "base-rate",
+        "chapter": "推理快問 02",
+        "location": "灰橋醫館・統計檔案室",
+        "speaker": "艾達・貝爾",
+        "role": "檔案專家",
+        "characterId": "ada_bell",
+        "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
+        "briefing": "這題練習「忽略基準率」：判讀陽性結果時，除了檢測準確度，也要看疾病原本有多常見。",
+        "evidenceTitle": "罕見疾病篩檢傳單",
+        "evidence": "某疾病的盛行率約為 0.1%（每 1,000 人約 1 人）。檢測對患者的命中率為 99%，健康者有 5% 會出現偽陽性。有人驗出陽性後，傳單便稱他「幾乎確定罹病」。",
+        "prompt": "哪個理由最能推翻「陽性幾乎等於罹病」？",
+        "options": [
+          {
+            "id": "A",
+            "text": "這項檢測仍會漏掉約 1% 的患者。"
+          },
+          {
+            "id": "B",
+            "text": "健康者遠多於患者，因此 5% 的偽陽性會產生大量陽性結果。"
+          },
+          {
+            "id": "C",
+            "text": "有些人不願接受篩檢，會降低整體受檢率。"
+          }
+        ]
+      }
+    ]
+  }
+}

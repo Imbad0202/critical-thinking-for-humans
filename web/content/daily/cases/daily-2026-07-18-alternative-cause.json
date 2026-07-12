@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-18-alternative-cause",
+  "publishDate": "2026-07-18",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "drill",
+  "domain": "public",
+  "title": "夜間事故簡報",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/drill.js",
+    "modes/drill.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "alternative-cause",
+        "chapter": "推理快問 03",
+        "location": "灰橋市・議事廳",
+        "speaker": "程硯舟",
+        "role": "外勤記者",
+        "characterId": "cheng_yanzhou",
+        "backgroundAsset": "web/assets/art/backgrounds/society-reading-room-dawn.webp",
+        "briefing": "這題練習「替代原因」：兩件事先後發生，不代表第一件就是唯一原因。",
+        "evidenceTitle": "夜間事故簡報",
+        "evidence": "新路燈啟用後，夜間事故減少了 20%。市府因此宣稱：「事故下降完全是新路燈造成的。」",
+        "prompt": "哪項新資料最能削弱「事故下降全是路燈造成」？",
+        "options": [
+          {
+            "id": "A",
+            "text": "同一個月開始夜間封路施工，夜間車流量減少了 35%。"
+          },
+          {
+            "id": "B",
+            "text": "新路燈比舊路燈省電 30%。"
+          },
+          {
+            "id": "C",
+            "text": "多數受訪居民認為街道變亮了。"
+          }
+        ]
+      }
+    ]
+  }
+}

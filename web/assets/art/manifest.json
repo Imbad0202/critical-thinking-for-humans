@@ -1,0 +1,502 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "title": "霧燈疑案社",
+    "englishTitle": "The Lantern & Lens Society",
+    "setting": "Original fictional multicultural port city Graybridge, circa 1890s",
+    "locale": "zh-Hant-TW",
+    "plannedAssetCount": 44
+  },
+  "defaults": {
+        "generatorRequested": "gpt-image-2",
+        "generatorExecution": "Codex built-in imagegen (host-managed model)",
+        "exactModelExposedByTool": false,
+    "originalFormat": "png",
+    "webFormat": "webp",
+    "webQuality": 86,
+    "backgroundSize": "1536x1024",
+    "characterSize": "1024x1536",
+    "safeArea": "Keep irreplaceable content inside the center 64% width and center 70% height; reserve the lower 30% as a subdued dialogue-box zone; survive centered 9:16 crop.",
+    "style": "Original mature 2D visual-novel illustration, semi-realistic human proportions, confident lithographic ink contours, layered gouache and transparent watercolor, subtle aged-paper grain, controlled cinematic gaslight, painterly rather than photorealistic.",
+    "exclusions": "No text, letters, numbers, logos, interface, watermark, deerstalker hat, curved pipe, Inverness cape, 221B reference, copyrighted detective character, actor likeness, chibi proportions, flat mascot vector style, photorealism, gore, malformed hands or extra fingers."
+  },
+  "characters": [
+    {
+      "id": "lin_wuhua",
+      "displayName": "林霧華 Lin Wuhua",
+      "role": "推理導師",
+      "anchor": "left",
+      "identityLock": "33-year-old Taiwanese woman; oval face, high cheekbones, dark almond eyes, glossy black center-parted hair in a low braided bun with one short strand beside her right cheek; charcoal high-collar blouse, fitted aubergine long coat, oxblood gloves, brass compass brooch; folding brass monocular loupe and cream clue cards."
+    },
+    {
+      "id": "ada_bell",
+      "displayName": "艾達・貝爾 Ada Bell",
+      "role": "密碼與檔案專家",
+      "anchor": "right",
+      "identityLock": "26-year-old Black British woman; deep brown skin, softly elongated round face, bright dark-brown eyes, black coiled hair in a consistent crown braid; deep teal high-collar blouse, mustard short waistcoat, navy long skirt, ink-stained cuffs; brass pince-nez on a chain, wooden cipher wheel and small grid notebook."
+    },
+    {
+      "id": "cheng_yanzhou",
+      "displayName": "程硯舟 Cheng Yanzhou",
+      "role": "記者與外勤夥伴",
+      "anchor": "right",
+      "identityLock": "28-year-old Taiwanese man; warm tan skin, refined square face, expressive thick eyebrows, neatly side-parted short black hair; olive waistcoat, ivory shirt with rolled sleeves, rust-red neckerchief, dark brown trousers; leather camera satchel, folding newspaper camera, pencil and folded unreadable newspaper."
+    },
+    {
+      "id": "oscar_vale",
+      "displayName": "奧斯卡・維爾 Oscar Vale",
+      "role": "對手型督察",
+      "anchor": "left",
+      "identityLock": "43-year-old white Graybridge inspector; tall broad-shouldered build, rectangular weathered face, grey-blue eyes, short salt-and-pepper hair, neatly trimmed short beard, faint scar through left eyebrow; midnight-blue double-breasted municipal long coat, grey waistcoat, dark burgundy scarf, silver whistle; black bowler hat usually held and a plain leather case folder without real insignia."
+    }
+  ],
+  "assets": [
+    {
+      "id": "char_lin_wuhua_model_sheet",
+      "kind": "character_reference",
+      "file": "characters/lin-wuhua/model-sheet.webp",
+      "generationSize": "1536x1024",
+      "usage": "Canonical identity reference for every Lin Wuhua image; not shown directly in gameplay.",
+      "anchor": "left",
+      "references": [],
+      "prompt": "Create an original character model sheet for Lin Wuhua, a 33-year-old Taiwanese woman and calm private investigator in the fictional multicultural port city Graybridge, circa 1890s. She has an oval face, high cheekbones, dark almond eyes, glossy black center-parted hair fixed in a low braided bun, and one short strand beside her right cheek. Her fixed outfit is a charcoal high-collar blouse, fitted aubergine long coat, oxblood gloves and a brass compass brooch. Her fixed props are a folding brass monocular loupe and cream clue cards. Show exactly the same woman in one full-body front view, one three-quarter view and one side view, plus four consistent head expressions: neutral, insight, concern and skepticism. Clean warm vellum studio sheet, separated figures, accurate hands, mature semi-realistic proportions. Original mature 2D visual-novel illustration, lithographic ink contours, layered gouache and transparent watercolor, subtle aged-paper grain. No labels or text, no logo, no watermark, no deerstalker, no pipe, no cape, no copyrighted character, no actor likeness, no photorealism."
+    },
+    {
+      "id": "char_ada_bell_model_sheet",
+      "kind": "character_reference",
+      "file": "characters/ada-bell/model-sheet.webp",
+      "generationSize": "1536x1024",
+      "usage": "Canonical identity reference for every Ada Bell image; not shown directly in gameplay.",
+      "anchor": "right",
+      "references": [],
+      "prompt": "Create an original character model sheet for Ada Bell, a 26-year-old Black British archive conservator and cipher expert in the fictional multicultural port city Graybridge, circa 1890s. She has deep brown skin, a softly elongated round face, bright dark-brown eyes and black coiled hair fixed in a crown braid. Her fixed outfit is a deep teal high-collar blouse, mustard short waistcoat, navy long skirt and subtly ink-stained cuffs. Her fixed props are brass pince-nez on a chain, a wooden cipher wheel and a small grid notebook. Show exactly the same woman in one full-body front view, one three-quarter view and one side view, plus four consistent head expressions: welcoming, delighted, concerned and analytical. Clean warm vellum studio sheet, separated figures, accurate hands, mature semi-realistic proportions. Original mature 2D visual-novel illustration, lithographic ink contours, layered gouache and transparent watercolor, subtle aged-paper grain. No labels or text, no logo, no watermark, no copyrighted character, no actor likeness, no photorealism."
+    },
+    {
+      "id": "char_cheng_yanzhou_model_sheet",
+      "kind": "character_reference",
+      "file": "characters/cheng-yanzhou/model-sheet.webp",
+      "generationSize": "1536x1024",
+      "usage": "Canonical identity reference for every Cheng Yanzhou image; not shown directly in gameplay.",
+      "anchor": "right",
+      "references": [],
+      "prompt": "Create an original character model sheet for Cheng Yanzhou, a 28-year-old Taiwanese photographic reporter and quick-witted field partner in the fictional multicultural port city Graybridge, circa 1890s. He has warm tan skin, a refined square face, expressive thick eyebrows and neatly side-parted short black hair. His fixed outfit is an olive waistcoat, ivory shirt with rolled sleeves, rust-red neckerchief and dark brown trousers. His fixed props are a leather camera satchel, folding newspaper camera, pencil and a folded newspaper with no readable print. Show exactly the same man in one full-body front view, one three-quarter view and one side view, plus four consistent head expressions: friendly, triumphant, sheepish and alarmed. Clean warm vellum studio sheet, separated figures, accurate hands, mature semi-realistic proportions. Original mature 2D visual-novel illustration, lithographic ink contours, layered gouache and transparent watercolor, subtle aged-paper grain. No labels or text, no logo, no watermark, no copyrighted character, no actor likeness, no photorealism."
+    },
+    {
+      "id": "char_oscar_vale_model_sheet",
+      "kind": "character_reference",
+      "file": "characters/oscar-vale/model-sheet.webp",
+      "generationSize": "1536x1024",
+      "usage": "Canonical identity reference for every Oscar Vale image; not shown directly in gameplay.",
+      "anchor": "left",
+      "references": [],
+      "prompt": "Create an original character model sheet for Oscar Vale, a 43-year-old municipal inspector and procedural rival in the fictional multicultural port city Graybridge, circa 1890s. He is tall and broad-shouldered with a rectangular weathered face, grey-blue eyes, short salt-and-pepper hair, a neatly trimmed short beard and a faint scar through his left eyebrow. His fixed outfit is a midnight-blue double-breasted municipal long coat, grey waistcoat, dark burgundy scarf and silver whistle. His fixed props are a black bowler hat usually held in one hand and a plain leather case folder without real insignia. Show exactly the same man in one full-body front view, one three-quarter view and one side view, plus four consistent head expressions: formal, doubtful, shocked and grudgingly approving. Clean warm vellum studio sheet, separated figures, accurate hands, mature semi-realistic proportions. Original mature 2D visual-novel illustration, lithographic ink contours, layered gouache and transparent watercolor, subtle aged-paper grain. No labels or text, no logo, no watermark, no deerstalker, no pipe, no cape, no copyrighted character, no actor likeness, no photorealism."
+    },
+
+    {
+      "id": "char_lin_wuhua_neutral_listen",
+      "kind": "character_pose",
+      "file": "characters/lin-wuhua/neutral-listen.webp",
+      "generationSize": "1024x1536",
+      "usage": "Default mentor dialogue; left-side character card.",
+      "anchor": "left",
+      "references": ["char_lin_wuhua_model_sheet"],
+      "prompt": "Using the attached canonical Lin Wuhua model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve her face, low braided bun, aubergine long coat, charcoal blouse, oxblood gloves and brass compass brooch exactly. She stands on the left and turns gently toward the right, quietly listening to the player, calm almond eyes, relaxed mouth, one gloved hand resting over two cream clue cards and the other lowered. Her body language leaves conversational space. Low-detail fog-green to coal-black ink-wash background with soft vignette, rectangular image, head and both hands fully visible. Mature 2D visual-novel art, semi-realistic proportions, lithographic ink, layered gouache, subtle aged-paper grain and restrained gaslight rim light. No text, border, logo, watermark, deerstalker, pipe, cape, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_lin_wuhua_explain_clue",
+      "kind": "character_pose",
+      "file": "characters/lin-wuhua/explain-clue.webp",
+      "generationSize": "1024x1536",
+      "usage": "Hint and reasoning explanation dialogue.",
+      "anchor": "left",
+      "references": ["char_lin_wuhua_model_sheet"],
+      "prompt": "Using the attached canonical Lin Wuhua model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve her face, hair, aubergine long coat, charcoal blouse, oxblood gloves and brass compass brooch exactly. Positioned left and facing right, she explains a clue with focused warmth: one hand holds a blank cream evidence card at chest height while the other points to a small physical detail with her folding brass monocular loupe. Alert eyes, slightly raised brow, precise teacher-like gesture. Low-detail fog-green to coal-black ink-wash background, rectangular frame, head, hands and props fully visible. Mature semi-realistic 2D visual-novel art, lithographic ink, layered gouache, aged-paper grain, cinematic amber edge light. No readable text, logo, border, watermark, copyrighted character, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_lin_wuhua_success",
+      "kind": "character_pose",
+      "file": "characters/lin-wuhua/success.webp",
+      "generationSize": "1024x1536",
+      "usage": "Correct answer and case milestone reaction.",
+      "anchor": "left",
+      "references": ["char_lin_wuhua_model_sheet"],
+      "prompt": "Using the attached canonical Lin Wuhua model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve every identity and costume detail. Positioned left and facing right, she shows restrained but unmistakable delight after the player solves a deduction: eyes bright, a rare confident half-smile, shoulders opening, folding brass loupe lifted as it catches one small gaslight glint, her other hand offering the solved blank clue card toward the player. Elegant adult celebration, not a childish jump. Low-detail spectral-teal and coal ink-wash background with amber rim light, head and hands safe in frame. Lithographic ink and gouache, subtle paper grain. No text, logo, watermark, copyrighted character, actor likeness, deerstalker, pipe or malformed hands."
+    },
+    {
+      "id": "char_lin_wuhua_concern_recover",
+      "kind": "character_pose",
+      "file": "characters/lin-wuhua/concern-recover.webp",
+      "generationSize": "1024x1536",
+      "usage": "Supportive wrong-answer recovery dialogue.",
+      "anchor": "left",
+      "references": ["char_lin_wuhua_model_sheet"],
+      "prompt": "Using the attached canonical Lin Wuhua model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve every face, hair and costume detail. Positioned left and facing right, she responds to an incorrect inference with composed empathy rather than disappointment: softened eyes, slight concerned brow, one open palm inviting another attempt while the other hand lowers the clue card and loupe. Her posture leans forward just enough to feel attentive. Low-detail fog-green and coal ink-wash background with a quiet vellum glow around her face, head and hands fully visible. Mature semi-realistic visual-novel art, lithographic ink, gouache and paper grain. No text, red X, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_lin_wuhua_skeptical",
+      "kind": "character_pose",
+      "file": "characters/lin-wuhua/skeptical.webp",
+      "generationSize": "1024x1536",
+      "usage": "Challenge window and counterargument prompt.",
+      "anchor": "left",
+      "references": ["char_lin_wuhua_model_sheet"],
+      "prompt": "Using the attached canonical Lin Wuhua model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed features and clothing. Positioned left and facing right, she tests the player's claim with intelligent skepticism: one eyebrow subtly raised, chin slightly lowered, arms loosely folded without hostility, the brass loupe visible between two gloved fingers. Her gaze is direct and curious, not accusatory. Low-detail aubergine, fog-green and coal ink-wash background, rectangular portrait, head and hands fully visible. Mature semi-realistic 2D visual-novel illustration, lithographic ink, layered gouache, restrained gaslight. No text, logo, watermark, copyrighted detective, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_lin_wuhua_urgent_action",
+      "kind": "character_pose",
+      "file": "characters/lin-wuhua/urgent-action.webp",
+      "generationSize": "1024x1536",
+      "usage": "Timed story beat and chapter climax.",
+      "anchor": "left",
+      "references": ["char_lin_wuhua_model_sheet"],
+      "prompt": "Using the attached canonical Lin Wuhua model sheet as the exact identity and clothing reference, create one portrait-format dynamic three-quarter-body visual-novel illustration. Preserve all fixed facial, hair and outfit details. She pivots from the left toward the right in urgent action, aubergine coat hem sweeping, one gloved hand protecting the clue cards and the other extending the opened brass loupe toward an off-frame discovery. Eyes wide with controlled focus, no panic. Low-detail rain-streaked spectral-teal and coal ink-wash background with a sharp amber diagonal light, entire head and both hands safe in frame. Painterly lithographic ink and gouache, mature proportions. No text, logo, watermark, weapon, actor likeness or malformed hands."
+    },
+
+    {
+      "id": "char_ada_bell_neutral_listen",
+      "kind": "character_pose",
+      "file": "characters/ada-bell/neutral-listen.webp",
+      "generationSize": "1024x1536",
+      "usage": "Default archive companion dialogue; right-side card.",
+      "anchor": "right",
+      "references": ["char_ada_bell_model_sheet"],
+      "prompt": "Using the attached canonical Ada Bell model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve her deep brown skin, crown braid, teal blouse, mustard waistcoat, navy skirt, brass pince-nez chain and notebook exactly. Positioned right and facing left, she listens with a warm attentive expression, shoulders relaxed, grid notebook held closed in both hands at waist level. Low-detail fog-green to coal-black ink-wash rectangular background, subtle vellum glow, head and hands fully visible. Mature semi-realistic 2D visual-novel art, lithographic ink contours, layered gouache, transparent watercolor and fine aged-paper grain. No text, logo, border, watermark, copyrighted character, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_ada_bell_explain_clue",
+      "kind": "character_pose",
+      "file": "characters/ada-bell/explain-clue.webp",
+      "generationSize": "1024x1536",
+      "usage": "Pattern, source and cipher explanation.",
+      "anchor": "right",
+      "references": ["char_ada_bell_model_sheet"],
+      "prompt": "Using the attached canonical Ada Bell model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed identity and costume details. Positioned right and facing left, she enthusiastically explains a pattern: one hand rotates a small wooden cipher wheel while the other indicates two aligned blank symbols, pince-nez resting low on her nose, analytical eyes focused and a small encouraging smile. Low-detail spectral-teal and coal ink-wash background, rectangular portrait, both hands and the full prop clearly visible. Mature semi-realistic visual-novel illustration, lithographic ink, layered gouache, subtle paper grain and warm gaslight. No readable text, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_ada_bell_success",
+      "kind": "character_pose",
+      "file": "characters/ada-bell/success.webp",
+      "generationSize": "1024x1536",
+      "usage": "Correct answer celebration and collection unlock.",
+      "anchor": "right",
+      "references": ["char_ada_bell_model_sheet"],
+      "prompt": "Using the attached canonical Ada Bell model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve every face, hair and outfit detail. Positioned right and facing left, she celebrates a solved pattern with bright adult joy: broad genuine smile, eyes sparkling, one hand lifting the completed wooden cipher wheel and the other making a compact delighted fist near her heart. The brass pince-nez chain catches a tiny amber glint. Low-detail fog-green and coal ink-wash background with a restrained gaslight halo, head and hands safe in frame. Mature lithographic ink and gouache visual-novel art. No confetti, text, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_ada_bell_concern_recover",
+      "kind": "character_pose",
+      "file": "characters/ada-bell/concern-recover.webp",
+      "generationSize": "1024x1536",
+      "usage": "Wrong-answer hint and emotional recovery.",
+      "anchor": "right",
+      "references": ["char_ada_bell_model_sheet"],
+      "prompt": "Using the attached canonical Ada Bell model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed identity and clothing details. Positioned right and facing left, she reacts to an incorrect answer with gentle concern and practical encouragement: softened smile, brows slightly knit, one palm open beneath the cipher wheel as if offering a smaller first step, the other hand holding her notebook close. Low-detail fog-green, vellum and coal ink-wash background, full head and hands visible. Mature semi-realistic visual-novel art, lithographic ink, layered gouache and subtle aged-paper grain. No red X, text, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_ada_bell_skeptical",
+      "kind": "character_pose",
+      "file": "characters/ada-bell/skeptical.webp",
+      "generationSize": "1024x1536",
+      "usage": "Source credibility challenge.",
+      "anchor": "right",
+      "references": ["char_ada_bell_model_sheet"],
+      "prompt": "Using the attached canonical Ada Bell model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed features. Positioned right and facing left, she studies a doubtful source with playful analytical skepticism: one eyebrow lifted above her pince-nez, lips thoughtfully pursed, blank notebook page tilted toward the light, wooden cipher wheel tucked under the other arm. Low-detail deep teal to coal ink-wash background, both hands safe in frame. Mature semi-realistic 2D visual-novel art, lithographic ink, gouache and fine paper grain. No readable writing, text, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_ada_bell_urgent_action",
+      "kind": "character_pose",
+      "file": "characters/ada-bell/urgent-action.webp",
+      "generationSize": "1024x1536",
+      "usage": "Discovery reveal and urgent archive scene.",
+      "anchor": "right",
+      "references": ["char_ada_bell_model_sheet"],
+      "prompt": "Using the attached canonical Ada Bell model sheet as the exact identity and clothing reference, create one portrait-format dynamic three-quarter-body visual-novel illustration. Preserve all fixed facial, hair and costume details. From the right she turns sharply toward the left, eyes widened by a decisive discovery, one hand holding an opened grid notebook with abstract non-readable marks and the other pointing off-frame, crown braid and clothing remaining neat. Low-detail archive-shadow ink-wash background with a diagonal amber beam and spectral-teal edge light, head and hands fully visible. Painterly lithographic ink and gouache, mature proportions. No readable text, logo, watermark, actor likeness or malformed hands."
+    },
+
+    {
+      "id": "char_cheng_yanzhou_neutral_listen",
+      "kind": "character_pose",
+      "file": "characters/cheng-yanzhou/neutral-listen.webp",
+      "generationSize": "1024x1536",
+      "usage": "Default field-partner dialogue; right-side card.",
+      "anchor": "right",
+      "references": ["char_cheng_yanzhou_model_sheet"],
+      "prompt": "Using the attached canonical Cheng Yanzhou model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve his warm tan face, side-parted black hair, olive waistcoat, rolled ivory sleeves, rust neckerchief and camera satchel exactly. Positioned right and facing left, he listens with an easy attentive half-smile, one thumb hooked under the satchel strap and the other hand holding a pencil loosely. Low-detail fog-green to coal ink-wash background, rectangular portrait, full head and both hands visible. Mature semi-realistic 2D visual-novel art, lithographic ink, layered gouache, transparent watercolor and subtle paper grain. No text, logo, watermark, copyrighted character, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_cheng_yanzhou_explain_clue",
+      "kind": "character_pose",
+      "file": "characters/cheng-yanzhou/explain-clue.webp",
+      "generationSize": "1024x1536",
+      "usage": "Eyewitness, headline and field-evidence explanation.",
+      "anchor": "right",
+      "references": ["char_cheng_yanzhou_model_sheet"],
+      "prompt": "Using the attached canonical Cheng Yanzhou model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed identity and outfit details. Positioned right and facing left, he explains a field clue with energetic clarity: one hand offers a folded newspaper with no readable print, the other circles a blank area using his pencil, eyebrows expressive and smile confident but not smug. Camera satchel remains visible. Low-detail rust, fog-green and coal ink-wash background, hands and props fully visible. Mature semi-realistic visual-novel art, lithographic ink, gouache and aged-paper grain. No readable text, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_cheng_yanzhou_success",
+      "kind": "character_pose",
+      "file": "characters/cheng-yanzhou/success.webp",
+      "generationSize": "1024x1536",
+      "usage": "Fast positive feedback and clue-photo unlock.",
+      "anchor": "right",
+      "references": ["char_cheng_yanzhou_model_sheet"],
+      "prompt": "Using the attached canonical Cheng Yanzhou model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve every fixed detail. Positioned right and facing left, he responds to a correct answer with infectious but adult enthusiasm: open grin, eyebrows lifted, one compact fist raised near shoulder level while the other steadies his folding camera as a tiny warm flash reflects from the lens. Low-detail spectral-teal and coal ink-wash background with gaslight amber accents, full head and hands visible. Mature painterly 2D visual-novel art, lithographic ink, gouache and paper texture. No text, confetti, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_cheng_yanzhou_concern_recover",
+      "kind": "character_pose",
+      "file": "characters/cheng-yanzhou/concern-recover.webp",
+      "generationSize": "1024x1536",
+      "usage": "Light, non-shaming wrong-answer reaction.",
+      "anchor": "right",
+      "references": ["char_cheng_yanzhou_model_sheet"],
+      "prompt": "Using the attached canonical Cheng Yanzhou model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed details. Positioned right and facing left, he admits the trail was wrong with a sheepish, reassuring expression: crooked apologetic smile, one eyebrow raised, one hand rubbing the back of his neck while the other keeps hold of the pencil and folded blank newspaper. He looks human and encouraging, never mocking the player. Low-detail vellum, rust and coal ink-wash background, hands fully visible. Mature visual-novel art, lithographic ink and gouache. No text, red X, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_cheng_yanzhou_skeptical",
+      "kind": "character_pose",
+      "file": "characters/cheng-yanzhou/skeptical.webp",
+      "generationSize": "1024x1536",
+      "usage": "Alternative interpretation and media-literacy prompt.",
+      "anchor": "right",
+      "references": ["char_cheng_yanzhou_model_sheet"],
+      "prompt": "Using the attached canonical Cheng Yanzhou model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed identity and outfit details. Positioned right and facing left, he questions a too-neat story: head tilted, eyes narrowed thoughtfully, lips in a half-smile, arms loosely crossed with a blank newspaper tucked under one elbow and pencil visible. Low-detail olive, fog-green and coal ink-wash background, full head and hands safe in frame. Mature semi-realistic 2D visual-novel illustration, lithographic ink, layered gouache and paper grain. No readable text, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_cheng_yanzhou_urgent_action",
+      "kind": "character_pose",
+      "file": "characters/cheng-yanzhou/urgent-action.webp",
+      "generationSize": "1024x1536",
+      "usage": "Chase, fleeting evidence and dramatic reveal.",
+      "anchor": "right",
+      "references": ["char_cheng_yanzhou_model_sheet"],
+      "prompt": "Using the attached canonical Cheng Yanzhou model sheet as the exact identity and clothing reference, create one portrait-format dynamic three-quarter-body visual-novel illustration. Preserve all fixed features. He steps quickly from the right toward the left, coatless rolled sleeves emphasizing motion, camera lifted in both hands to catch a fleeting clue, eyes sharply focused, camera satchel swinging in a controlled arc. Low-detail rain-and-fog ink-wash background with a brief amber lens reflection, head, elbows and camera fully inside frame. Mature semi-realistic lithographic ink and gouache visual-novel art. No readable text, logo, watermark, weapon, actor likeness or malformed hands."
+    },
+
+    {
+      "id": "char_oscar_vale_neutral_listen",
+      "kind": "character_pose",
+      "file": "characters/oscar-vale/neutral-listen.webp",
+      "generationSize": "1024x1536",
+      "usage": "Default rival-inspector dialogue; left-side card.",
+      "anchor": "left",
+      "references": ["char_oscar_vale_model_sheet"],
+      "prompt": "Using the attached canonical Oscar Vale model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve his rectangular face, left-brow scar, salt-and-pepper hair, short beard, midnight-blue municipal coat, grey waistcoat, burgundy scarf and silver whistle exactly. Positioned left and facing right, he listens formally with a guarded neutral expression, bowler hat held at his side and plain leather case folder under one arm. Low-detail coal and fog-green ink-wash background, rectangular portrait, head and both hands visible. Mature semi-realistic visual-novel art, lithographic ink, gouache and aged-paper grain. No real police insignia, text, logo, watermark, copyrighted character, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_oscar_vale_explain_clue",
+      "kind": "character_pose",
+      "file": "characters/oscar-vale/explain-clue.webp",
+      "generationSize": "1024x1536",
+      "usage": "Rules, procedure and official evidence explanation.",
+      "anchor": "left",
+      "references": ["char_oscar_vale_model_sheet"],
+      "prompt": "Using the attached canonical Oscar Vale model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed facial and costume details. Positioned left and facing right, he explains an official constraint with crisp authority: one hand opens a plain leather case folder containing blank papers while the other indicates a specific empty line, expression serious but fair, bowler hat tucked under an elbow. Low-detail navy, fog-green and coal ink-wash background, hands and folder fully visible. Mature semi-realistic 2D visual-novel art, lithographic ink, layered gouache and gaslight edge. No readable text, real badge, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_oscar_vale_success",
+      "kind": "character_pose",
+      "file": "characters/oscar-vale/success.webp",
+      "generationSize": "1024x1536",
+      "usage": "Grudging approval after strong evidence.",
+      "anchor": "left",
+      "references": ["char_oscar_vale_model_sheet"],
+      "prompt": "Using the attached canonical Oscar Vale model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve every fixed detail. Positioned left and facing right, he gives restrained, hard-earned approval: shoulders finally relaxed, one corner of his mouth lifting, grey-blue eyes respectful, one hand touching the brim of the bowler hat held at chest level in a brief salute while the other closes the case folder. Low-detail coal and midnight-blue ink-wash background with one amber gaslight rim, full head and hands visible. Mature lithographic ink and gouache visual-novel art. No text, badge, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_oscar_vale_concern_recover",
+      "kind": "character_pose",
+      "file": "characters/oscar-vale/concern-recover.webp",
+      "generationSize": "1024x1536",
+      "usage": "Serious but non-hostile recovery after a weak inference.",
+      "anchor": "left",
+      "references": ["char_oscar_vale_model_sheet"],
+      "prompt": "Using the attached canonical Oscar Vale model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed details. Positioned left and facing right, he responds to a flawed inference with grave concern rather than contempt: brow furrowed around the faint left scar, case folder lowered, one large open hand signaling pause and reconsideration, eyes steady and protective. Low-detail fog-green, recovery-rust and coal ink-wash background with subdued contrast, full head and hands visible. Mature semi-realistic lithographic ink and gouache visual-novel art. No red X, text, real insignia, logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_oscar_vale_skeptical",
+      "kind": "character_pose",
+      "file": "characters/oscar-vale/skeptical.webp",
+      "generationSize": "1024x1536",
+      "usage": "Formal objection and high-stakes challenge window.",
+      "anchor": "left",
+      "references": ["char_oscar_vale_model_sheet"],
+      "prompt": "Using the attached canonical Oscar Vale model sheet as the exact identity and clothing reference, create one portrait-format three-quarter-body visual-novel character illustration. Preserve all fixed features. Positioned left and facing right, he presents a disciplined skeptical challenge: one grey-blue eye slightly narrowed, jaw set, arms crossed over the closed plain case folder, bowler hat hanging from two fingers, imposing but not villainous. Low-detail midnight-blue, oxblood and coal ink-wash background, head and hands fully visible. Mature semi-realistic 2D visual-novel illustration, lithographic ink, layered gouache and fine paper grain. No text, police logo, watermark, actor likeness or malformed hands."
+    },
+    {
+      "id": "char_oscar_vale_urgent_action",
+      "kind": "character_pose",
+      "file": "characters/oscar-vale/urgent-action.webp",
+      "generationSize": "1024x1536",
+      "usage": "Danger warning and chapter climax.",
+      "anchor": "left",
+      "references": ["char_oscar_vale_model_sheet"],
+      "prompt": "Using the attached canonical Oscar Vale model sheet as the exact identity and clothing reference, create one portrait-format dynamic three-quarter-body visual-novel illustration. Preserve all fixed facial and outfit details. From the left he steps protectively toward the right, midnight-blue coat opening with motion, one hand extended to halt the group and the other gripping the closed case folder, bowler hat tucked against his side, eyes wide and alert. Low-detail rain-dark coal background crossed by urgent gaslight amber, full head and hands inside frame. Mature painterly lithographic ink and gouache art. No weapon, text, badge, logo, watermark, actor likeness or malformed hands."
+    },
+
+    {
+      "id": "bg_society_reading_room_dawn",
+      "kind": "background",
+      "file": "backgrounds/society-reading-room-dawn.webp",
+      "generationSize": "1536x1024",
+      "usage": "Daily-practice home and calm return state.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide establishing background plate of the Lantern & Lens Society reading room at dawn in the original fictional 1890s port city Graybridge. A welcoming walnut study with tall bookcases, a broad investigation table, brass magnifying instruments, pinned blank evidence cards, four distinctive empty chairs and one gas lamp still glowing as cool fog-blue sunrise enters a bay window. A row of small unlit desk lanterns suggests daily progress. Cozy mystery, no people. Keep the central investigation table and bay window inside the center safe area, preserve a centered phone crop, and make the lower 30 percent darker and low-detail for a dialogue box. Original mature 2D adventure-game background, lithographic ink contours, layered gouache and watercolor, subtle aged-paper grain, fog green, vellum, coal and restrained gaslight amber. No readable text, UI, logo, watermark, 221B reference or copyrighted setting."
+    },
+    {
+      "id": "bg_society_reading_room_rain_night",
+      "kind": "background",
+      "file": "backgrounds/society-reading-room-rain-night.webp",
+      "generationSize": "1536x1024",
+      "usage": "Main-story and difficult-case hub.",
+      "anchor": "center",
+      "references": ["bg_society_reading_room_dawn"],
+      "prompt": "Create the exact same Lantern & Lens Society reading room as the attached dawn reference, now during a heavy rainy night. Preserve furniture layout, bay window, investigation table, four chairs and brass instruments. Rain beads on the glass, distant spectral-teal lightning diffuses through coal fog, two gas lamps make intimate amber islands over blank clue cards, and the rest of the room recedes into aubergine shadow. No people. Keep major objects in the central safe area, retain a centered 9:16 crop, and suppress detail and contrast in the lower 30 percent for dialogue. Original painterly 2D adventure-game background, lithographic ink, layered gouache, transparent watercolor and fine paper grain. No readable text, UI, logo, watermark, 221B or copyrighted detective references."
+    },
+    {
+      "id": "bg_gaslight_narrow_alley",
+      "kind": "background",
+      "file": "backgrounds/gaslight-narrow-alley.webp",
+      "generationSize": "1536x1024",
+      "usage": "Observation, eyewitness and timeline exercises.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide background plate of an original narrow gaslit alley in fictional 1890s Graybridge after rain. Wet cobbles reflect two amber lamps; brick service doors, a tipped handcart, a torn blank poster, fresh wheel tracks and a single dropped glove create several nonverbal clues. Fog closes the far end beneath iron fire escapes, with no close people and only one tiny indistinct silhouette far away. Arrange clues around the central 64 percent so they survive centered mobile crop; leave the lower 30 percent dark and low-detail for dialogue. Mature 2D mystery adventure background, semi-realistic architecture, lithographic ink contours, layered gouache, watercolor bloom and subtle paper grain, coal, fog green, oxblood and amber palette. No readable text, gore, body, logo, watermark, copyrighted detective reference or modern object."
+    },
+    {
+      "id": "bg_night_train_compartment",
+      "kind": "background",
+      "file": "backgrounds/night-train-compartment.webp",
+      "generationSize": "1536x1024",
+      "usage": "Causal-chain and conflicting-testimony exercises.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide interior background plate of a luxurious but slightly worn 1890s night-train compartment crossing fictional Graybridge countryside. Two facing green-velvet benches, brass luggage rack, swaying amber lamp, fogged window with blurred moonlit fields, a stopped pocket watch on the seat, one damp umbrella and three cups arranged as quiet evidence. No people. Symmetrical composition with the clue-bearing seats and window inside the central safe area, usable after centered 9:16 crop; lower 30 percent subdued for a dialogue box. Original 2D visual-novel mystery background, confident lithographic ink, layered gouache and watercolor, aged-paper grain, coal, fog green, brass and vellum. No readable labels, real railway logos, UI, watermark, copyrighted reference or modern elements."
+    },
+    {
+      "id": "bg_municipal_evidence_archive",
+      "kind": "background",
+      "file": "backgrounds/municipal-evidence-archive.webp",
+      "generationSize": "1536x1024",
+      "usage": "Evidence strength, classification and source-reliability exercises.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide background plate of the Graybridge municipal evidence archive, an original 1890s vaulted records room with rolling ladders, numbered-looking but completely blank canvas boxes, specimen drawers, a central sorting table, brass scales, sealed glass jars containing harmless fibers and a narrow high window cutting spectral-teal light through dust. No people, no real police insignia. Put the sorting table, scales and key cabinets in the central safe area and keep the lower 30 percent dark and visually quiet for dialogue; preserve centered mobile crop. Mature 2D adventure-game environment, lithographic ink, layered gouache, transparent watercolor and fine aged-paper texture, fog green, coal, brass and vellum. No readable text or digits, logo, UI, watermark, gore or copyrighted setting."
+    },
+    {
+      "id": "bg_fog_harbor_dock",
+      "kind": "background",
+      "file": "backgrounds/fog-harbor-dock.webp",
+      "generationSize": "1536x1024",
+      "usage": "Probability, missing-information and risk exercises.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide cinematic background plate of the fictional Graybridge harbor dock before sunrise, circa 1890s. Dense layered fog, black timber piers, quiet canal water, mooring ropes, cargo crates with blank sides, a brass harbor lamp and the vague shape of a steamship beyond visibility. Small clues include two different boot prints, a frayed rope and one dry patch beneath an awning. No visible people. Keep lamp, rope and central pier inside the safe area and readable in a centered phone crop; lower 30 percent low-detail for dialogue. Original 2D mystery adventure illustration, lithographic ink, atmospheric watercolor, layered gouache and paper grain, spectral teal, coal, fog green and a small amber focus. No text, logo, watermark, gore, real company mark or copyrighted setting."
+    },
+    {
+      "id": "bg_blackthorn_manor_library",
+      "kind": "background",
+      "file": "backgrounds/blackthorn-manor-library.webp",
+      "generationSize": "1536x1024",
+      "usage": "Long-form chapter and weekly boss case.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide grand background plate of Blackthorn Manor library in the original fictional 1890s Graybridge world. Dark carved wood, double-height shelves, rolling ladder, cold fireplace, tall curtained windows, a central celestial globe and an inlaid reading desk holding blank correspondence, a snapped wax seal and one displaced volume. Elegant unease rather than horror, no people. Keep desk, globe and fireplace in the center safe region for mobile crop; lower 30 percent subdued for visual-novel dialogue. Mature 2D mystery-game background, precise lithographic ink, layered gouache, watercolor shadows, subtle aged-paper grain, aubergine, oxblood, coal, vellum and restrained brass. No readable book titles, text, family crest, logo, watermark, corpse, gore or copyrighted mansion."
+    },
+    {
+      "id": "bg_graybridge_chronicle_pressroom",
+      "kind": "background",
+      "file": "backgrounds/graybridge-chronicle-pressroom.webp",
+      "generationSize": "1536x1024",
+      "usage": "Media-literacy, headline and data-interpretation exercises.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide energetic background plate of the Graybridge Chronicle printing room, an original late-1890s newspaper workshop. Large iron rotary press, composing trays filled with abstract unreadable type blocks, hanging blank proof sheets, ink rollers, paper stacks and a photographer's drying line. Warm work lamps meet cool window fog; machinery is stopped and no people are present. Arrange the press opening and proof table within the central safe area and centered mobile crop; simplify the lower 30 percent for dialogue. Original painterly 2D adventure-game environment, lithographic linework, gouache, transparent watercolor and paper grain, coal, ink blue, rust, vellum and amber. No readable headline, alphabet, logo, watermark, modern device or copyrighted newspaper name."
+    },
+    {
+      "id": "bg_graybridge_academy_lecture_hall",
+      "kind": "background",
+      "file": "backgrounds/graybridge-academy-lecture-hall.webp",
+      "generationSize": "1536x1024",
+      "usage": "Argument structure, research and education scenarios.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide background plate of an original 1890s Graybridge Academy stepped lecture hall after class. Curved rows of dark wood benches descend to a demonstration table with brass scientific instruments, three unlabeled evidence cards, a large slate bearing only faint abstract diagrams with no letters, and tall windows filled with pearly fog. Inclusive and scholarly, no people. Keep demonstration table and slate in the central safe area and usable in centered phone crop; lower 30 percent quiet and dark for dialogue. Mature 2D visual-novel background, lithographic ink contours, layered gouache, transparent watercolor and subtle aged-paper grain, fog green, vellum, coal and brass. No readable equations, text, crest, logo, watermark, real university or copyrighted setting."
+    },
+    {
+      "id": "bg_clocktower_observatory",
+      "kind": "background",
+      "file": "backgrounds/clocktower-observatory.webp",
+      "generationSize": "1536x1024",
+      "usage": "Weekly summary, streak milestone and season finale.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Wide climactic background plate of the Graybridge clocktower observatory at blue hour, circa 1890s. Open ironwork roof, giant clock gears framing the sides, brass telescope aimed across a foggy city, a circular star-chart table with abstract lines and glowing amber node points but no text, and distant gas lamps emerging one by one below. Hopeful mystery, not fantasy magic, no people. Keep telescope and chart table central for a 9:16 crop; make lower 30 percent low-detail for dialogue. Original mature 2D adventure-game illustration, lithographic ink, layered gouache, transparent watercolor, fine paper grain, spectral teal, midnight ink, brass and amber. No letters, numbers, logo, UI, watermark, copyrighted clocktower or modern skyline."
+    },
+
+    {
+      "id": "ui_daily_case_path_map",
+      "kind": "interface_illustration",
+      "file": "interface/daily-case-path-map.webp",
+      "generationSize": "1536x1024",
+      "usage": "Behind the HTML daily path; progress nodes are interactive DOM overlays.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Create a wide decorative investigation-map background for an original 1890s detective learning game. An angled walnut desktop holds a large vellum city map with winding routes but absolutely no labels, six empty circular brass lens settings along a clear path, red thread used sparingly, sealed blank envelopes, a compass and a glowing desk lamp in the upper corner. The route should flow from lower center toward upper center, leaving generous clean space around every node for HTML buttons. Mature hand-painted 2D visual-novel interface art, lithographic ink, layered gouache, watercolor and subtle paper grain, fog green, vellum, brass, oxblood and amber. No text, numbers, icons, UI labels, logo, watermark, copyrighted detective object, deerstalker or pipe."
+    },
+    {
+      "id": "ui_season_casefile_cover",
+      "kind": "interface_illustration",
+      "file": "interface/season-casefile-cover.webp",
+      "generationSize": "1536x1024",
+      "usage": "Season/chapter selection hero with HTML title overlay.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Create a wide still-life hero illustration for an original 1890s mystery game's season case file. A dark green leather dossier lies open on walnut beneath a brass reading lens, blank vellum pages, an intact oxblood wax seal, four small object tokens representing the four investigators, a pocket compass and a thin ribbon of fog crossing the table. Keep the central 45 percent of the dossier visually quiet and blank for Traditional Chinese HTML title overlay. Mature painterly 2D visual-novel art, lithographic ink, gouache, watercolor, tactile aged-paper grain and cinematic gaslight. No generated words, letters, numbers, logo, watermark, 221B, pipe, deerstalker or copyrighted reference."
+    },
+
+    {
+      "id": "fx_clue_discovered",
+      "kind": "full_frame_transition",
+      "file": "effects/clue-discovered.webp",
+      "generationSize": "1536x1024",
+      "usage": "350–500ms correct-step reveal; animate scale and lens flare in WebGL/CSS.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Create a full-frame reward transition plate for an original 1890s detective game: concentric brass observation-lens rings snap into focus around a small glowing blank clue card, while fine vellum fibers, ink lines and tiny amber dust motes spiral inward from a midnight-ink and fog-green surround. Strong circular motion but a clean quiet center for HTML feedback text. Elegant, tactile, intellectually satisfying, not casino-like and not childish confetti. Hand-painted lithographic ink, layered gouache, watercolor and paper grain. No text, checkmark, logo, watermark, deerstalker, pipe or copyrighted reference."
+    },
+    {
+      "id": "fx_case_solved_wax_seal",
+      "kind": "full_frame_transition",
+      "file": "effects/case-solved-wax-seal.webp",
+      "generationSize": "1536x1024",
+      "usage": "Chapter completion and major milestone celebration.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Create a full-frame major achievement plate for an original 1890s detective game. A rich oxblood wax seal has just been pressed onto layered blank case papers; the seal bears only an abstract lantern-and-lens geometry with no letters. Warm gaslight radiates through brass compass lines, and four subtle threads converge toward the seal from the dark vellum edges. Leave the central surrounding area uncluttered for HTML completion text. Sophisticated earned triumph, tactile lithographic ink, layered gouache, watercolor and fine paper texture, amber, brass, oxblood, vellum and midnight ink. No words, numbers, UI, logo, watermark, copyrighted crest or confetti."
+    },
+    {
+      "id": "fx_misdirection_ink_bloom",
+      "kind": "full_frame_transition",
+      "file": "effects/misdirection-ink-bloom.webp",
+      "generationSize": "1536x1024",
+      "usage": "250–400ms wrong-answer beat before a supportive hint.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Create a full-frame gentle wrong-turn transition plate for an original 1890s detective game. A thin reasoning line on vellum branches into the wrong route, dissolves into a soft recovery-rust and spectral-teal ink bloom, then curls back toward a small warm gaslight point. The composition should communicate reconsideration, not failure or danger. Keep the central 40 percent calm enough for HTML hint text. Painterly watercolor diffusion, restrained lithographic lines, gouache paper texture, fog green, rust, midnight ink and amber. No red X, alarm symbol, words, numbers, logo, watermark, shame imagery, gore or copyrighted reference."
+    },
+    {
+      "id": "fx_streak_lanterns",
+      "kind": "full_frame_transition",
+      "file": "effects/streak-lanterns.webp",
+      "generationSize": "1536x1024",
+      "usage": "Daily streak milestone; individual lanterns can be masked and lit by CSS.",
+      "anchor": "center",
+      "references": [],
+      "prompt": "Create a wide streak milestone plate for an original 1890s detective learning game. Seven distinct small brass desk lanterns form a graceful arc across a dark walnut evidence table; the first six glow at graduated warmth while the seventh is just igniting, reflecting in a brass compass and blank vellum cards. Fog curls behind them like a stage curtain. Maintain clear separation around each lantern for CSS masking and leave the middle foreground quiet for HTML text. Mature hand-painted 2D art, lithographic ink, gouache, watercolor and fine aged-paper grain, coal, fog green, brass and amber. No numbers, labels, text, logo, watermark, confetti or copyrighted reference."
+    }
+  ]
+}

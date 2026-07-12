@@ -1,0 +1,75 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-15-raven-ai-audit",
+  "publishDate": "2026-07-15",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "detective",
+  "domain": "work",
+  "title": "董事會摘要與部署名冊",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/detective.js",
+    "modes/detective.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "same-team-baseline",
+        "chapter": "稽核步驟 01",
+        "location": "黑棘莊園・董事書房",
+        "speaker": "奧斯卡・維爾",
+        "role": "首席調查員",
+        "characterId": "oscar_vale",
+        "backgroundAsset": "web/assets/art/backgrounds/blackthorn-manor-library.webp",
+        "briefing": "先決定要比較誰。若導入前後不是同一組團隊，百分比再漂亮也不能回答團隊是否改善。",
+        "evidenceTitle": "董事會摘要與部署名冊",
+        "evidence": "董事會摘要把「導入前全公司 25%」和「導入後試用團隊 15%」相比，宣稱逾期率下降 40%。試用組由六個自願申請的資深團隊組成；這些團隊也是近兩年準時率最高的一群。專案紀錄另記載：這六個團隊在導入前一季的逾期率是 12%。",
+        "prompt": "如果要判斷這六個團隊導入後是否改善，下一步必須帶走哪個基準？",
+        "options": [
+          {
+            "id": "A",
+            "text": "同一批六個團隊導入前的 12%。"
+          },
+          {
+            "id": "B",
+            "text": "導入前全公司的 25%。"
+          },
+          {
+            "id": "C",
+            "text": "六個試用團隊導入後的 15%。"
+          }
+        ]
+      },
+      {
+        "id": "compare-with-baseline",
+        "chapter": "稽核步驟 02",
+        "location": "渡鴉公司・專案檔案室",
+        "speaker": "艾達・貝爾",
+        "role": "檔案專家",
+        "characterId": "ada_bell",
+        "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
+        "briefing": "現在使用上一份卷宗解鎖的同隊基準。沒有那個數字，單看 15% 無法知道逾期率是上升、下降，還是不變。",
+        "evidenceTitle": "試用團隊導入後報表",
+        "evidence": "專案報表顯示，這六個試用團隊導入後一季的逾期率是 15%。請把它和上一個步驟解鎖的「同隊導入前基準」比較。",
+        "prompt": "把上一個步驟的基準和 15% 放在一起，哪個結論成立？",
+        "options": [
+          {
+            "id": "A",
+            "text": "逾期率下降，這組數字支持「導入後改善」。"
+          },
+          {
+            "id": "B",
+            "text": "逾期率上升；這組數字不支持改善，但也不能證明 AI 造成惡化。"
+          },
+          {
+            "id": "C",
+            "text": "逾期率不變，因此無法判斷方向。"
+          }
+        ]
+      }
+    ]
+  }
+}

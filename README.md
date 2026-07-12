@@ -4,9 +4,49 @@
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
-**Last Updated:** 2026-07-03
+**Last Updated:** 2026-07-12
 
 A gym for your critical thinking. The AI is the coach; you do the work.
+
+## Three ways to play
+
+The Web game is a third entry point, not a replacement for the original skill.
+All three paths share this repository as their source, but they currently have
+different runtimes and content breadth:
+
+| Entry | Best for | What runs today |
+|---|---|---|
+| **Claude Code plugin / CLI** | Dynamic practice with an AI coach | Four canonical modes, 22 verified Expedition packs, and the on-disk Passport |
+| **Claude.ai Skill ZIP** | No local install; upload and chat | Four modes and the pack library, with a copy-paste Passport instead of local files |
+| **Web Casebook** | Players who do not use a CLI | Four fixed bilingual excerpts plus an optional server-backed zh-TW Daily case; no model call |
+
+The portable single-file Markdown build is a compatibility variant of the chat
+path. It includes Drill, Scene, and Detective, but not Expedition or an on-disk
+Passport.
+
+**New: bilingual Casebook + Daily Dispatch.** [`web/`](web/README.md) opens with a
+real domain choice instead of dropping everyone into an education case. Its UI
+and four fixed excerpts switch between English and Taiwan-oriented Traditional Chinese.
+Drill, Scene, the Forecaster excerpt of Expedition, and the two-step Detective
+dependency demo each have a finishable browser flow, using an original 1890s
+mystery setting, generated character/background art, visual-novel dialogue,
+original background music, answer effects, a local-first Passport, and
+responsive layouts. These authored excerpts demonstrate selected mechanics;
+they are not runtime-generated full Skill sessions and have not received an
+independent human validity sign-off. A fifth, independent Daily entry can rotate
+zh-TW cases through Vercel: public prompts stay in the repo while unpublished
+cases and answer records stay in Private Blob. If that API is absent, all four
+fixed excerpts keep working. [Try the current web demo](https://critical-thinking-for-humans.vercel.app/).
+
+The checked-in seven-day Daily rotation mirrors the public fixed excerpts and
+therefore demonstrates the server-response flow rather than anti-cheat
+integrity. A production scored rotation needs independent cases whose keys do
+not ship in the browser bundle or public repository.
+
+```bash
+python -m http.server 4173 --directory web
+# open http://127.0.0.1:4173/
+```
 
 **Install in 30 seconds** (Claude Code CLI / VS Code / JetBrains):
 
@@ -307,7 +347,9 @@ This is an independent project, not affiliated with, sponsored by, or endorsed
 by any standardized-test publisher or assessment organization. It is not a
 test-preparation product and makes no claim to improve any examination score.
 
-All practice items are original and generated at runtime. The project does not
+All practice items are original. CLI/Skill sessions generate items at runtime;
+the Web Casebook instead uses clearly labeled, authored fixed excerpts and a
+versioned Daily demo rotation. The project does not
 reproduce, adapt, imitate, or distribute the questions of any published test,
 and references the *types* of reasoning task (assumption, strengthen, weaken,
 inference) only as a generic structural form, not as anyone's proprietary
@@ -353,7 +395,7 @@ The repo is the single source of truth; the claude.ai-uploadable zip is generate
 ./scripts/build_claude_ai_zip.sh   # → dist/critical-thinking-for-humans-claude-ai.zip
 ```
 
-The build copies the canonical runtime files, including the 16 expedition
+The build copies the canonical runtime files, including the 22 expedition
 packs, and applies whole-file overlays from `platforms/claude-ai/` (SKILL.md,
 shared/redlines.md, shared/scaffolding.md, passport/SCHEMA.md). The platform
 delta is storage only: no local filesystem, so the event log becomes a session

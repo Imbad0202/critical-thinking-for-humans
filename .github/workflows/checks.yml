@@ -24,6 +24,11 @@ jobs:
         python-version: ["3.9", "3.12"]
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
@@ -39,6 +44,18 @@ jobs:
         run: python3 scripts/check_verbatim_blocks.py
       - name: Version consistency
         run: python3 scripts/check_version_consistency.py
+      - name: Web clean-clone and content-source guard
+        run: python3 scripts/check_web_content.py
+      - name: Public daily-case schema and answer-leak guard
+        run: python3 scripts/check_daily_cases.py
+      - name: Web locale parity and synchronized Daily fixtures
+        run: |
+          npm --prefix web run check:i18n
+          npm --prefix web run daily:sync-public -- --check
+      - name: Daily API unit tests
+        run: |
+          npm --prefix web ci --ignore-scripts
+          npm --prefix web run test:daily
       - name: Mutation + unit tests
         run: |
           pip install --quiet pytest

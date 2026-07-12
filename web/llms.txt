@@ -1,0 +1,27 @@
+# Doubt Bureau Casebook
+
+> A bilingual retro-mystery game for critical-thinking practice. It contains
+> four fixed browser excerpts—Drill, Scene, an Expedition Forecaster excerpt,
+> and a two-step Detective dependency demo—plus an optional server-backed Daily
+> case. The fixed routes do not call a model.
+
+- [Product, i18n, and local-data notes](/README.md)
+- [Art direction](/assets/art/ART_DIRECTION.md)
+- [Art manifest and generation prompts](/assets/art/manifest.json)
+- [Daily deployment and data boundary](/docs/DAILY_DEPLOYMENT.md)
+
+Player progress is stored only in browser localStorage. Never provide this site
+with a chat password, cookie, or session token.
+
+The Web game is a third entry point; it does not replace the repository’s
+Claude Code/CLI or Skill ZIP routes. The locale registry is
+`/content/demo-cases.js`, learner-facing UI strings are in
+`/content/ui-copy.js`, and fixed English/Taiwan Traditional Chinese content is
+under `/content/locales/`. Daily public prompts are under `/content/daily/`.
+Unpublished Daily cases, answer records, and credentials belong only in private
+storage and never in a public API payload.
+
+The checked-in seven-day Daily fixtures mirror public offline examples, so they
+demonstrate response shaping and payload leak prevention—not anti-cheat
+secrecy. Production scored cases need independent keys that never ship to the
+browser or public repository.

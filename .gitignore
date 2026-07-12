@@ -4,6 +4,14 @@ dist/
 __pycache__/
 *.pyc
 .pytest_cache/
+node_modules/
+
+# Vercel project metadata, local secrets, and unpublished daily cases.
+.vercel/
+web/.private/
+.env
+.env.local
+.env.*.local
 
 # Design specs and implementation plans are kept locally, not shipped.
 docs/superpowers/

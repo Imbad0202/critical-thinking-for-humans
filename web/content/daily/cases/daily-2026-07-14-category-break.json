@@ -1,0 +1,52 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-14-category-break",
+  "publishDate": "2026-07-14",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "expedition",
+  "domain": "science",
+  "title": "CASP14 如何盲測",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/expedition.js",
+    "modes/expedition.md",
+    "expeditions/alphafold-casp14.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "category-break",
+        "chapter": "預測 01",
+        "location": "遠征卷宗・CASP14 盲測台",
+        "speaker": "林霧華",
+        "role": "遠征嚮導",
+        "characterId": "lin_wuhua",
+        "backgroundAsset": "web/assets/art/backgrounds/clocktower-observatory.webp",
+        "briefing": "第一步只預測成果的幅度。不要把「表現大幅領先」偷偷擴大成「所有蛋白質問題都解決了」。",
+        "evidenceTitle": "CASP14 如何盲測",
+        "evidence": "CASP 會先把實驗得到的蛋白質結構答案封存。各隊必須在答案公開前提交預測，再由獨立評審比較預測與真實結構。這能公平比較方法，也讓領先幅度有共同標準。",
+        "prompt": "先不看結果。你預測 AlphaFold 2 和其他方法的差距會有多大？",
+        "options": [
+          {
+            "id": "A",
+            "text": "AlphaFold 2 只會比前一代好一些。"
+          },
+          {
+            "id": "B",
+            "text": "AlphaFold 2 會大幅拉開差距；但這只代表它在 CASP14 測到的任務上有突破。"
+          },
+          {
+            "id": "C",
+            "text": "AlphaFold 2 會大幅拉開差距，因此所有蛋白質研究問題都已解決。"
+          },
+          {
+            "id": "D",
+            "text": "這次不會得到可比較的結果，因為 CASP 沒有事先封存答案。"
+          }
+        ]
+      }
+    ]
+  }
+}

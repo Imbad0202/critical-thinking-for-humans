@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "public-demo-seven-day-v1",
+  "timeZone": "Asia/Taipei",
+  "strategy": "cyclic",
+  "cycleAnchorDate": "2026-07-12",
+  "entries": [
+    {
+      "date": "2026-07-12",
+      "caseId": "daily-2026-07-12-measurement-gap",
+      "path": "cases/daily-2026-07-12-measurement-gap.json"
+    },
+    {
+      "date": "2026-07-13",
+      "caseId": "daily-2026-07-13-unanswered-reply",
+      "path": "cases/daily-2026-07-13-unanswered-reply.json"
+    },
+    {
+      "date": "2026-07-14",
+      "caseId": "daily-2026-07-14-category-break",
+      "path": "cases/daily-2026-07-14-category-break.json"
+    },
+    {
+      "date": "2026-07-15",
+      "caseId": "daily-2026-07-15-raven-ai-audit",
+      "path": "cases/daily-2026-07-15-raven-ai-audit.json"
+    },
+    {
+      "date": "2026-07-16",
+      "caseId": "daily-2026-07-16-base-rate",
+      "path": "cases/daily-2026-07-16-base-rate.json"
+    },
+    {
+      "date": "2026-07-17",
+      "caseId": "daily-2026-07-17-scope-boundary",
+      "path": "cases/daily-2026-07-17-scope-boundary.json"
+    },
+    {
+      "date": "2026-07-18",
+      "caseId": "daily-2026-07-18-alternative-cause",
+      "path": "cases/daily-2026-07-18-alternative-cause.json"
+    }
+  ]
+}

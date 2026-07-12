@@ -1,0 +1,18 @@
+{
+  "name": "critical-thinking-for-humans-web",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check standalone/game-app.js && node --check standalone/game-feedback.js && node --check standalone/game-music.js",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "test:daily": "node --test tests/daily-*.test.mjs",
+    "daily:sync-public": "node scripts/sync-daily-public.mjs",
+    "daily:upload": "node scripts/upload-daily.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.6.1"
+  }
+}
