@@ -24,7 +24,7 @@
         "role": "外勤記者",
         "characterId": "cheng_yanzhou",
         "backgroundAsset": "web/assets/art/backgrounds/society-reading-room-dawn.webp",
-        "briefing": "這題練習「替代原因」：兩件事先後發生，不代表第一件就是唯一原因。",
+        "briefing": "這題練習「替代原因」：一件事發生在另一件之後，不代表前面那件就是唯一的原因。",
         "evidenceTitle": "夜間事故簡報",
         "evidence": "新路燈啟用後，夜間事故減少了 20%。市府因此宣稱：「事故下降完全是新路燈造成的。」",
         "prompt": "哪項新資料最能削弱「事故下降全是路燈造成」？",

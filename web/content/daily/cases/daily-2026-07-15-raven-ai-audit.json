@@ -24,7 +24,7 @@
         "role": "首席調查員",
         "characterId": "oscar_vale",
         "backgroundAsset": "web/assets/art/backgrounds/blackthorn-manor-library.webp",
-        "briefing": "先決定要比較誰。若導入前後不是同一組團隊，百分比再漂亮也不能回答團隊是否改善。",
+        "briefing": "先想清楚要拿誰跟誰比。如果導入前和導入後根本不是同一批團隊，百分比再好看也答不了「這批團隊到底有沒有變好」。",
         "evidenceTitle": "董事會摘要與部署名冊",
         "evidence": "董事會摘要把「導入前全公司 25%」和「導入後試用團隊 15%」相比，宣稱逾期率下降 40%。試用組由六個自願申請的資深團隊組成；這些團隊也是近兩年準時率最高的一群。專案紀錄另記載：這六個團隊在導入前一季的逾期率是 12%。",
         "prompt": "如果要判斷這六個團隊導入後是否改善，下一步必須帶走哪個基準？",
@@ -51,9 +51,9 @@
         "role": "檔案專家",
         "characterId": "ada_bell",
         "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
-        "briefing": "現在使用上一份卷宗解鎖的同隊基準。沒有那個數字，單看 15% 無法知道逾期率是上升、下降，還是不變。",
+        "briefing": "接著用上一關解鎖到的同隊基準。少了那個數字，光看一個 15%，你根本不知道逾期率是變高、變低，還是沒動。",
         "evidenceTitle": "試用團隊導入後報表",
-        "evidence": "專案報表顯示，這六個試用團隊導入後一季的逾期率是 15%。請把它和上一個步驟解鎖的「同隊導入前基準」比較。",
+        "evidence": "專案報表顯示，這六個試用團隊導入後一季的逾期率是 15%。拿它跟上一關解鎖的「同隊導入前基準」比一比。",
         "prompt": "把上一個步驟的基準和 15% 放在一起，哪個結論成立？",
         "options": [
           {

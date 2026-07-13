@@ -24,9 +24,9 @@
         "role": "遠征嚮導",
         "characterId": "lin_wuhua",
         "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
-        "briefing": "最後一題要劃清界線：這項成果證明了什麼，又還不能證明什麼。限制段落會在你先做預測後才揭曉。",
+        "briefing": "最後一題要畫清界線：這項成果證明了什麼、又還不能證明什麼。限制那一段，等你先做完預測才會揭曉。",
         "evidenceTitle": "尚未揭曉的適用邊界",
-        "evidence": "CASP14（2020）的成果，主要證明 AlphaFold 2 能從一條胺基酸序列預測單條蛋白質鏈的一個靜態形狀。下一步要問：這個結果能不能直接延伸到多條蛋白質如何組合，以及蛋白質隨時間改變的動態？",
+        "evidence": "CASP14（2020）的成果，主要證明的是 AlphaFold 2 能從一條胺基酸序列，預測出單條蛋白質鏈的一個靜態形狀。接下來要問的是：這個結果能不能直接推到「多條蛋白質怎麼組在一起」，還有「蛋白質會隨時間變動」這兩件事？",
         "prompt": "在讀論文的限制段落前，你的預測是哪一個？",
         "options": [
           {

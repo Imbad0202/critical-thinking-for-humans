@@ -24,9 +24,9 @@
         "role": "推理教練",
         "characterId": "lin_wuhua",
         "backgroundAsset": "web/assets/art/backgrounds/graybridge-academy-lecture-hall.webp",
-        "briefing": "這題練習「測量指標與結論不符」：先確認報告實際量了什麼，再看結論宣稱了什麼。",
+        "briefing": "這題練習「測量指標與結論不符」：先看報告到底量了什麼，再看結論在講什麼，兩件事不一定對得上。",
         "evidenceTitle": "學院內部摘要",
-        "evidence": "灰橋學院導入一套同儕回饋模組。91% 的學生認為模組有用，三屆學生的完成率都是 97%。學院因此聲稱：「這套模組已證明能提升學生分析學術論證的能力。」",
+        "evidence": "灰橋學院導入一套同儕回饋模組。91% 的學生覺得模組有用，三屆學生的完成率都是 97%。學院因此聲稱：「這套模組已證明能提升學生分析學術論證的能力。」",
         "prompt": "哪項新資料最能削弱學院的結論？",
         "options": [
           {

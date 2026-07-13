@@ -24,7 +24,7 @@
         "role": "檔案專家",
         "characterId": "ada_bell",
         "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
-        "briefing": "這題練習「忽略基準率」：判讀陽性結果時，除了檢測準確度，也要看疾病原本有多常見。",
+        "briefing": "這題練習「忽略基準率」：看到陽性結果，別只盯著檢測有多準，也要想這個病本來有多少人會得。",
         "evidenceTitle": "罕見疾病篩檢傳單",
         "evidence": "某疾病的盛行率約為 0.1%（每 1,000 人約 1 人）。檢測對患者的命中率為 99%，健康者有 5% 會出現偽陽性。有人驗出陽性後，傳單便稱他「幾乎確定罹病」。",
         "prompt": "哪個理由最能推翻「陽性幾乎等於罹病」？",
