@@ -145,11 +145,18 @@ python scripts/check_web_content.py
 python scripts/check_daily_cases.py
 
 # with the local static server running in another terminal
+python -m pip install -r web/tests/requirements-e2e.txt
+python -m playwright install chromium
+CASEBOOK_BASE_URL=http://127.0.0.1:4173/ python web/tests/e2e_smoke.py
+
+# deeper browser suites
 CASEBOOK_BASE_URL=http://127.0.0.1:4173/ python web/tests/e2e_modes.py
 CASEBOOK_BASE_URL=http://127.0.0.1:4173/ python web/tests/e2e_daily.py
 ```
 
-The E2E suite covers both languages, the first-run domain gate, filtered
+The focused smoke is the pull-request gate: it covers the static fallback,
+a completed Drill, and one mocked server-backed Daily ruling. The deeper E2E
+suite covers both languages, the first-run domain gate, filtered
 content, all four finishable excerpts, option dissections, Scene privacy,
 Passport persistence, audio loading, horizontal overflow, the 14px text floor,
 and 44px touch targets.

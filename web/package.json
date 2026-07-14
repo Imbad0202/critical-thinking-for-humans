@@ -6,7 +6,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "check": "node --check standalone/game-app.js && node --check standalone/game-feedback.js && node --check standalone/game-music.js",
+    "check": "cd .. && git ls-files -z -- '*.js' '*.mjs' | xargs -0 -n1 node --check",
     "check:i18n": "node scripts/check-i18n.mjs",
     "test:daily": "node --test tests/daily-*.test.mjs",
     "daily:sync-public": "node scripts/sync-daily-public.mjs",
