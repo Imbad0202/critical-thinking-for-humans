@@ -1,8 +1,8 @@
 # Roadmap
 
-## Deferred — PR2: CI, browser, and artifact closure
+## Completed — PR2: CI, browser, and artifact closure
 
-**Timing:** Start after PR1 (Daily correctness and regression coverage) is merged.
+**Status:** Implemented after PR1 (Daily correctness and regression coverage).
 
 ### Scope
 

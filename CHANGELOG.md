@@ -14,8 +14,10 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 - **Blob publication hardening.** Bypass cached private reads during the
   missing-to-published transition, and treat an existing or concurrent publish
   as idempotent only after revalidation and a complete canonical-content match.
-- **Deferred CI follow-up recorded.** `docs/ROADMAP.md` captures PR2's browser,
-  matrix, and build-once/release-the-same-artifact acceptance criteria.
+- **CI, browser, and artifact closure.** Split Python compatibility from the
+  single-run Node and Playwright checks, syntax-check every tracked JavaScript
+  module, and publish checksummed release bytes from the immutable artifact
+  already built and verified by CI.
 
 ## [1.2.0] - 2026-07-03
 

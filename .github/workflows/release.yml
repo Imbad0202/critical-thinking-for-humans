@@ -1,16 +1,16 @@
 name: release
 
-# Tag-time gate + artifact publication. Pushing a v* tag re-runs the full
-# checks workflow (the canonical lint list lives in checks.yml), adds the
-# release-only gates (tag-to-CHANGELOG equality, README Last-Updated
-# freshness), builds both distributable editions, and attaches them to the
-# GitHub Release, so the portable edition needs no local build.
+# Tag-time gate + artifact publication. checks.yml builds both distributable
+# editions once, verifies them, records checksums, and exposes the immutable
+# Actions artifact ID. This workflow publishes those exact bytes without a
+# second build.
 
 on:
   push:
     tags: ["v*"]
 
 permissions:
+  actions: read
   contents: write
 
 jobs:
@@ -27,10 +27,17 @@ jobs:
           python-version: "3.12"
       - name: Release-only gates
         run: python3 scripts/check_version_consistency.py --release --tag "${GITHUB_REF_NAME}"
-      - name: Build artifacts
+      - name: Download the verified artifact by immutable ID
+        uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ needs.checks.outputs.release_artifact_id }}
+          path: dist
+          digest-mismatch: error
+      - name: Verify downloaded artifact bytes
         run: |
-          bash scripts/build_claude_ai_zip.sh
-          bash scripts/build_portable.sh
+          unzip -tqq dist/critical-thinking-for-humans-claude-ai.zip
+          cd dist
+          sha256sum --check SHA256SUMS
       - name: Extract release notes from CHANGELOG
         # The lint above already guarantees this exact section exists with a
         # non-empty body for this exact tag; test -s makes any drift loud.
@@ -41,13 +48,45 @@ jobs:
             on { print }
           ' CHANGELOG.md > release-notes.md
           test -s release-notes.md || { echo "no CHANGELOG entry for ${GITHUB_REF_NAME}" >&2; exit 1; }
-      - name: Create GitHub Release with artifacts
+      - name: Create or refresh a draft release from the verified bytes
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" \
-            dist/critical-thinking-for-humans-claude-ai.zip \
-            dist/critical-thinking-for-humans-portable.md \
-            --verify-tag \
-            --title "${GITHUB_REF_NAME}" \
-            --notes-file release-notes.md
+          if release_state="$(gh release view "${GITHUB_REF_NAME}" --json isDraft --jq .isDraft 2>/dev/null)"; then
+            if [ "${release_state}" = "true" ]; then
+              gh release upload "${GITHUB_REF_NAME}" \
+                dist/critical-thinking-for-humans-claude-ai.zip \
+                dist/critical-thinking-for-humans-portable.md \
+                dist/SHA256SUMS \
+                --clobber
+              gh release edit "${GITHUB_REF_NAME}" \
+                --draft \
+                --verify-tag \
+                --title "${GITHUB_REF_NAME}" \
+                --notes-file release-notes.md
+            else
+              echo "${GITHUB_REF_NAME} is already published; verifying its existing assets"
+            fi
+          else
+            gh release create "${GITHUB_REF_NAME}" \
+              dist/critical-thinking-for-humans-claude-ai.zip \
+              dist/critical-thinking-for-humans-portable.md \
+              dist/SHA256SUMS \
+              --draft \
+              --verify-tag \
+              --title "${GITHUB_REF_NAME}" \
+              --notes-file release-notes.md
+          fi
+      - name: Verify remote asset bytes and publish the draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir published-assets
+          gh release download "${GITHUB_REF_NAME}" --dir published-assets
+          cmp dist/SHA256SUMS published-assets/SHA256SUMS
+          cd published-assets
+          sha256sum --check SHA256SUMS
+          cd ..
+          if [ "$(gh release view "${GITHUB_REF_NAME}" --json isDraft --jq .isDraft)" = "true" ]; then
+            gh release edit "${GITHUB_REF_NAME}" --draft=false
+          fi

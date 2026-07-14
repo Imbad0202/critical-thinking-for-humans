@@ -437,3 +437,8 @@ pasted document) and the on-disk **passport** (a plain chat has no file, so
 progress is tracked in the conversation only). The three included modes are
 drill, scene, and detective; detective is the most model-dependent and degrades
 on weaker models.
+
+Tag releases build both distributable editions once in CI. The release workflow
+downloads that immutable Actions artifact, verifies its `SHA256SUMS`, uploads
+the same files to a draft GitHub Release, downloads them again, and publishes
+the release only after the remote asset bytes pass the recorded checksums.
