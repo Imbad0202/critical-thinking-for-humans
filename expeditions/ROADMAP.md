@@ -66,9 +66,9 @@ is exactly why the gate exists.)
 ## Phase 3 — vetted candidate pool
 
 Survey of 2017–2025 results against the four bars (solved / first-party
-verified / beyond-single-human / first-party-checkable) + dual-use. PASSes
-below; rejected candidates and why are recorded so the search is not repeated.
-None authored yet — each is still a first-party verification session.
+verified / beyond-single-human / first-party-checkable) + dual-use. All PASSes
+below are now authored; rejected candidates and why are recorded so the search
+is not repeated.
 
 Ranked by transfer value (domain spread away from SAT-math + provenance
 cleanliness + accessibility):
@@ -84,7 +84,7 @@ cleanliness + accessibility):
 | pentago-solved | games | arXiv:1404.0743 (2014) | strongly solved, parallel in-core retrograde analysis; 3.0×10^15 states; open-source | climber | DONE (Phase 3 remainder). first-player win; games-domain spread |
 | schur-number-5 | combinatorics / SAT | arXiv:1711.08076, AAAI 2018 | S(5)=160; two-petabyte DRAT; formally-verified checker | auditor | DONE (Phase 3 remainder). a+b=c monochromatic / Schur-Ramsey framing, 2 PB scale (differentiated from BPT/Keller) |
 
-**Recommended next quartet (four domains, four verification styles):**
+**Initial Phase 3 quartet (now authored; four domains, four verification styles):**
 busy-beaver-5 (Coq / computability), alphaproof-imo-2024 (Lean / formal-ML),
 lams-problem (DRAT / design theory), chromatic-number-plane-5 (SAT-graph /
 geometry).
@@ -120,8 +120,8 @@ geometry).
 
 ## Phase 4 — survey (2024-2026, weighted to pool gaps)
 
-The pool now has a known shape problem: 6 of the 16 authored packs teach the
-same SAT-certificate lesson, and 13 of 16 sit in the auditor role. A survey that
+The pool now has a known shape problem: 6 of the 22 authored packs teach the
+same SAT-certificate lesson, and 15 of 22 sit in the auditor role. A survey that
 just adds "the next impressive result" would deepen both skews. So this round is
 weighted deliberately AWAY from SAT-certificate verification, away from
 combinatorics/games, and toward the two under-served roles (forecaster,
@@ -129,7 +129,8 @@ climber). Ranking below follows the ROADMAP's stated transfer-value criteria:
 verification-style diversity first, then domain spread, then role spread, then
 provenance cleanliness (formally verified > peer reviewed; open primary source
 reachable). Every PASS was reached at its primary source, not a press summary.
-None authored yet — each remains one first-party verification session.
+Six candidates are now authored; the remaining accepted candidates below are
+deliberate future backlog rather than unfinished Phase 4 release work.
 
 | candidate | domain | source | verification style | role | why it fills a gap |
 |-----------|--------|--------|--------------------|------|--------------------|
@@ -143,7 +144,7 @@ None authored yet — each remains one first-party verification session.
 | othello-8x8-weakly-solved | solved games / large-scale search | arXiv:2310.19387 (Takizawa, late 2023) | weakly-solved via pruned alpha-beta on an Edax variant; solver released for recompute | climber | Climber role, the marquee "last classic board game" absent from the pool: 8×8 Othello, perfect play is a DRAW. Late-2023 but within the brief's allowance. Domain overlaps games; value is role + iconic result |
 | breakthrough-6x6 | solved games / PNS + NN scheduler | ICGA Journal, DOI 10.1177/13896911261430592 (2026) | constructive proof tree (retrograde tablebases + proof-number search; not SAT); peer-reviewed | climber | Climber role; AI hook is a neural-net scheduler steering an otherwise-intractable proof search. PROVENANCE CAVEAT: SAGE body paywalled; the independent-Maastricht-check + CNN/hardware details are second-hand from a search index of a 403-walled thesis PDF, weaker than the open-primary PASSes above |
 
-**Recommended next (the four that most diversify the pool):**
+**Initial diversity quartet (all now authored):**
 
 1. **3d-euler-blowup** — the single strongest gap-filler. It is the only
    candidate that adds a genuinely new verification STYLE (computer-assisted

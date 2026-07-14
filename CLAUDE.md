@@ -46,7 +46,7 @@ fails the push.
 
 **Runtime layout.** Every session loads the stance-neutral floor first —
 `shared/redlines.md` (14 hard rules), `shared/scaffolding.md`,
-`shared/structures.md` (the 12 keyed reasoning structures) — then `SKILL.md`
+`shared/structures.md` (the 13 keyed reasoning structures) — then `SKILL.md`
 routes to exactly one mode file: `modes/drill.md` (judge stance),
 `modes/scene.md` (Socratic), `modes/expedition.md` (guide; runs only from
 verified packs in `expeditions/`), or `modes/detective.md` (guide-and-judge).
