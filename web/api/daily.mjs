@@ -52,6 +52,8 @@ export function createDailyHandler({
         })
       }
 
+      const awaitingPrivatePublication = Boolean(privateProvider && !result.answerable)
+
       return jsonResponse({
         schemaVersion: 1,
         date,
@@ -61,7 +63,11 @@ export function createDailyHandler({
         answerable: result.answerable,
         gradingAvailable: result.gradingAvailable,
         case: result.case,
-      }, { headers: publicDailyCacheHeaders(now, { maxAge: degraded ? 60 : undefined }) })
+      }, {
+        headers: publicDailyCacheHeaders(now, {
+          maxAge: degraded || awaitingPrivatePublication ? 60 : undefined,
+        }),
+      })
     } catch {
       return errorResponse('DAILY_CASE_UNAVAILABLE', '今日案件暫時無法載入。', {
         status: 503,

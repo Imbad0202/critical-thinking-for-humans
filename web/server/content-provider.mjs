@@ -146,10 +146,10 @@ function blobOptions(token, extra = {}) {
   return token ? { access: 'private', token, ...extra } : { access: 'private', ...extra }
 }
 
-async function readBlobRecord(blob, pathname, token) {
+async function readBlobRecord(blob, pathname, token, options = {}) {
   let result
   try {
-    result = await blob.get(pathname, blobOptions(token))
+    result = await blob.get(pathname, blobOptions(token, options))
   } catch (error) {
     throw new ContentProviderError('BLOB_READ_FAILED', error)
   }
@@ -165,6 +165,17 @@ async function readBlobRecord(blob, pathname, token) {
   const record = parseJson(raw, 'BLOB_CONTENT_INVALID')
   validatePrivateRecord(record)
   return record
+}
+
+function canonicalJson(value) {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`
+  if (value && typeof value === 'object') {
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(',')}}`
+  }
+  return JSON.stringify(value)
 }
 
 function normalizeBlobPrefix(value = 'daily') {
@@ -186,25 +197,37 @@ export function createBlobPrivateProvider({ blob, token, prefix = 'daily' }) {
     writable: true,
     getPublished(dateKey) {
       if (!isDateKey(dateKey)) throw new ContentProviderError('DATE_KEY_INVALID')
-      return readBlobRecord(blob, pathFor('published', dateKey), token)
+      // A date transitions from missing to published at most once. Bypass the
+      // Blob CDN so a cached miss cannot outlive /api/daily's short fallback TTL.
+      return readBlobRecord(blob, pathFor('published', dateKey), token, { useCache: false })
     },
     async publish(dateKey, { validate } = {}) {
       if (!isDateKey(dateKey)) throw new ContentProviderError('DATE_KEY_INVALID')
-      const existing = await readBlobRecord(blob, pathFor('published', dateKey), token)
+      const freshRead = { useCache: false }
+      const publishedPath = pathFor('published', dateKey)
+      const scheduledPath = pathFor('scheduled', dateKey)
+      const existing = await readBlobRecord(blob, publishedPath, token, freshRead)
+      const scheduled = await readBlobRecord(blob, scheduledPath, token, freshRead)
       if (existing) {
         if (existing.publishDate !== dateKey) throw new ContentProviderError('BLOB_CONTENT_MISMATCH')
         if (validate) await validate(existing)
+        if (scheduled) {
+          if (scheduled.publishDate !== dateKey) throw new ContentProviderError('BLOB_CONTENT_MISMATCH')
+          if (validate) await validate(scheduled)
+          if (canonicalJson(existing) !== canonicalJson(scheduled)) {
+            throw new ContentProviderError('BLOB_PUBLISH_CONFLICT')
+          }
+        }
         return { record: existing, status: 'already-published' }
       }
 
-      const scheduled = await readBlobRecord(blob, pathFor('scheduled', dateKey), token)
       if (!scheduled) return null
       if (scheduled.publishDate !== dateKey) throw new ContentProviderError('BLOB_CONTENT_MISMATCH')
       if (validate) await validate(scheduled)
 
       try {
         await blob.put(
-          pathFor('published', dateKey),
+          publishedPath,
           JSON.stringify(scheduled),
           blobOptions(token, {
             contentType: 'application/json; charset=utf-8',
@@ -215,11 +238,22 @@ export function createBlobPrivateProvider({ blob, token, prefix = 'daily' }) {
         return { record: scheduled, status: 'published' }
       } catch (error) {
         // A concurrent cron invocation may have won the create-only write.
-        const raced = await readBlobRecord(blob, pathFor('published', dateKey), token)
-        if (raced && raced.contentId === scheduled.contentId && raced.publishDate === dateKey) {
-          return { record: raced, status: 'already-published' }
+        let raced
+        try {
+          raced = await readBlobRecord(blob, publishedPath, token, freshRead)
+        } catch (readError) {
+          throw new ContentProviderError(
+            'BLOB_WRITE_FAILED',
+            new AggregateError([error, readError], 'Blob write failed and the race winner could not be read'),
+          )
         }
-        throw new ContentProviderError('BLOB_WRITE_FAILED', error)
+        if (!raced) throw new ContentProviderError('BLOB_WRITE_FAILED', error)
+        if (raced.publishDate !== dateKey) throw new ContentProviderError('BLOB_CONTENT_MISMATCH')
+        if (validate) await validate(raced)
+        if (canonicalJson(raced) !== canonicalJson(scheduled)) {
+          throw new ContentProviderError('BLOB_PUBLISH_CONFLICT', error)
+        }
+        return { record: raced, status: 'already-published' }
       }
     },
   })

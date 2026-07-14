@@ -13,6 +13,7 @@ export class DailyServiceError extends Error {
 }
 
 async function publicCaseForRecord({ record, dateKey, baseUrl, staticProvider }) {
+  if (record.publishDate !== dateKey) throw new DailyServiceError('CONTENT_MISMATCH', 503)
   if (record.case) return { case: record.case, rotationId: null }
   const fallback = await staticProvider.getDaily(dateKey, { baseUrl })
   if (fallback.case.id !== record.contentId) throw new DailyServiceError('CONTENT_MISMATCH', 503)
@@ -87,5 +88,8 @@ export async function publishScheduledDaily({
     },
   })
   if (!result) throw new DailyServiceError('SCHEDULED_CASE_NOT_FOUND', 404)
+  if (result.record?.publishDate !== dateKey) {
+    throw new DailyServiceError('CONTENT_MISMATCH', 503)
+  }
   return result
 }

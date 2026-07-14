@@ -67,7 +67,8 @@ Private record 有兩種合法關聯方式：
   `answers`。
 - 新題面尚未存在於 repo 時，在 record 內加上 `case`，格式與
   `daily-case-public.v1.schema.json` 相同。案件發布時 `/api/daily` 只送出這個
-  `case`，`answers` 仍留在 Private Blob。
+  `case`，`answers` 仍留在 Private Blob。內嵌 `case.publishDate` 必須與 record
+  的 `publishDate` 及檔名日期完全相同。
 
 Choice case 的每一題都必須有且只有一個 answer entry；scene case 的
 `answers` 必須是空陣列。所有 option verdict 若有提供，必須完整涵蓋公開選項。
@@ -133,7 +134,9 @@ curl -sS \
 ## 失敗時的行為
 
 - 找不到當日 `published/` record 時，`/api/daily` 仍可回傳循環 demo 預覽，
-  但 `answerable` 與 `gradingAvailable` 為 false。
+  但 `answerable` 與 `gradingAvailable` 為 false。若 Private Blob 已連線、只是
+  record 尚未發布，這個 fallback 最多在 CDN 快取 60 秒，讓同日手動補發可以
+  很快生效；未設定 private provider 的純 demo 部署仍可快取到台北午夜。
 - Blob 或 grading 暫時不可用時，既有四種本機固定模式仍可玩，不依賴 API。
 - `401` 的 cron 通常表示 `CRON_SECRET` 未部署或不一致。
 - `answerable: false` 通常表示日期路徑、prefix、publish offset 或 cron 發布狀態

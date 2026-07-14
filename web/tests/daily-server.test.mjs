@@ -7,6 +7,12 @@ import { createPublishDailyHandler } from '../api/cron/publish-daily.mjs'
 import { createDailyHandler } from '../api/daily.mjs'
 import { secondsUntilNextTaipeiDay, taipeiDateKey } from '../server/daily-date.mjs'
 import { createStaticPublicProvider } from '../server/content-provider.mjs'
+import { validatePrivateRecord } from '../server/daily-schema.mjs'
+import {
+  DailyServiceError,
+  publishScheduledDaily,
+  resolveDailyCase,
+} from '../server/daily-service.mjs'
 
 
 const DATE = '2026-07-12'
@@ -100,6 +106,10 @@ test('GET /api/daily serves a public preview without grading when private storag
   assert.equal(body.gradingAvailable, false)
   assert.deepEqual(body.case, publicCase)
   assert.equal(keysOf(body.case).includes('correctOptionId'), false)
+  assert.equal(
+    response.headers.get('cache-control'),
+    `public, max-age=0, s-maxage=${secondsUntilNextTaipeiDay(NOW)}, must-revalidate`,
+  )
   assert.match(response.headers.get('cache-control'), /must-revalidate/)
   assert.doesNotMatch(response.headers.get('cache-control'), /stale-while-revalidate/)
 })
@@ -114,6 +124,114 @@ test('GET /api/daily marks a privately published choice case answerable', async 
   assert.equal(body.gradingAvailable, true)
   assert.equal(body.case.id, privateRecord.contentId)
   assert.equal(keysOf(body.case).includes('correctOptionId'), false)
+  assert.equal(
+    response.headers.get('cache-control'),
+    `public, max-age=0, s-maxage=${secondsUntilNextTaipeiDay(NOW)}, must-revalidate`,
+  )
+})
+
+test('GET /api/daily briefly caches a missing private publication so it can become answerable', async () => {
+  let publishedRecord = null
+  const transitioningProvider = {
+    async getPublished(dateKey) {
+      return dateKey === DATE ? publishedRecord : null
+    },
+  }
+  const handler = createDailyHandler({
+    clock,
+    staticProvider,
+    resolvePrivateProvider: async () => transitioningProvider,
+  })
+
+  const preview = await json(await handler(new Request('https://casebook.test/api/daily')))
+  assert.equal(preview.body.answerable, false)
+  assert.equal(
+    preview.response.headers.get('cache-control'),
+    'public, max-age=0, s-maxage=60, must-revalidate',
+  )
+
+  publishedRecord = privateRecord
+  const published = await json(await handler(new Request('https://casebook.test/api/daily')))
+  assert.equal(published.body.answerable, true)
+  assert.equal(
+    published.response.headers.get('cache-control'),
+    `public, max-age=0, s-maxage=${secondsUntilNextTaipeiDay(NOW)}, must-revalidate`,
+  )
+})
+
+test('private records require an embedded case to use the same publish date', () => {
+  assert.throws(
+    () => validatePrivateRecord({ ...privateRecord, publishDate: '2026-07-13' }),
+    {
+      name: 'SchemaValidationError',
+      message: '$.case.publishDate: must equal publishDate',
+    },
+  )
+})
+
+test('Daily service rejects a provider record for a different requested date', async () => {
+  const wrongDate = '2026-07-11'
+  const wrongDateRecord = {
+    ...privateRecord,
+    publishDate: wrongDate,
+    case: { ...publicCase, publishDate: wrongDate },
+  }
+
+  await assert.rejects(
+    resolveDailyCase({
+      dateKey: DATE,
+      baseUrl: 'https://casebook.test/api/daily',
+      privateProvider: { async getPublished() { return wrongDateRecord } },
+      staticProvider,
+    }),
+    (error) => error instanceof DailyServiceError
+      && error.code === 'CONTENT_MISMATCH'
+      && error.status === 503,
+  )
+})
+
+test('Daily service allows cyclic static cases to keep their canonical publish date', async () => {
+  const cyclicDate = '2026-07-19'
+  const { case: _embeddedCase, ...cyclicRecord } = {
+    ...privateRecord,
+    publishDate: cyclicDate,
+  }
+  const result = await resolveDailyCase({
+    dateKey: cyclicDate,
+    baseUrl: 'https://casebook.test/api/daily',
+    privateProvider: { async getPublished() { return cyclicRecord } },
+    staticProvider,
+  })
+
+  assert.equal(result.answerable, true)
+  assert.equal(result.case.id, cyclicRecord.contentId)
+  assert.equal(result.case.publishDate, DATE)
+  assert.equal(cyclicRecord.publishDate, cyclicDate)
+})
+
+test('Daily publish rejects a wrong-date provider result even if the provider skips validation', async () => {
+  const wrongDateRecord = {
+    ...privateRecord,
+    publishDate: '2026-07-11',
+    case: { ...publicCase, publishDate: '2026-07-11' },
+  }
+
+  await assert.rejects(
+    publishScheduledDaily({
+      dateKey: DATE,
+      baseUrl: 'https://casebook.test/api/cron/publish-daily',
+      privateProvider: {
+        writable: true,
+        async publish() {
+          return { record: wrongDateRecord, status: 'published' }
+        },
+      },
+      staticProvider,
+    }),
+    (error) => error instanceof DailyServiceError
+      && error.code === 'CONTENT_MISMATCH'
+      && error.status === 503,
+  )
 })
 
 test('POST /api/answer returns only the selected ruling, never the answer key or verdict map', async () => {
@@ -208,7 +326,11 @@ test('GET cron rejects missing or weak authorization before resolving storage', 
 
 test('GET cron publishes the next Taipei day and exposes no private record', async () => {
   const tomorrow = '2026-07-13'
-  const scheduled = { ...privateRecord, publishDate: tomorrow }
+  const scheduled = {
+    ...privateRecord,
+    publishDate: tomorrow,
+    case: { ...publicCase, publishDate: tomorrow },
+  }
   const writableProvider = {
     writable: true,
     async publish(dateKey, { validate }) {
