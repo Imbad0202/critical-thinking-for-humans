@@ -1,8 +1,21 @@
 # Changelog
 
-All notable changes to critical-thinking-for-humans are documented here. Headings
-follow `## [X.Y.Z] - YYYY-MM-DD`; the latest versioned heading must equal the
-git tag being cut (enforced by `scripts/check_version_consistency.py`).
+All notable changes to critical-thinking-for-humans are documented here. Changes
+land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
+and the latest versioned heading must equal the git tag being cut (enforced by
+`scripts/check_version_consistency.py`).
+
+## [Unreleased]
+
+- **Daily publication correctness.** Shorten the CDN lifetime of an unpublished
+  fallback when private storage is available, bind embedded public cases to the
+  private record's publish date, and reject provider records returned for the
+  wrong requested date.
+- **Blob publication hardening.** Bypass cached private reads during the
+  missing-to-published transition, and treat an existing or concurrent publish
+  as idempotent only after revalidation and a complete canonical-content match.
+- **Deferred CI follow-up recorded.** `docs/ROADMAP.md` captures PR2's browser,
+  matrix, and build-once/release-the-same-artifact acceptance criteria.
 
 ## [1.2.0] - 2026-07-03
 

@@ -247,6 +247,9 @@ export function validatePrivateRecord(value, path = '$') {
   if (value.case !== undefined) {
     validatePublicCase(value.case, `${path}.case`)
     if (value.case.id !== value.contentId) fail(`${path}.case.id`, 'must equal contentId')
+    if (value.case.publishDate !== value.publishDate) {
+      fail(`${path}.case.publishDate`, 'must equal publishDate')
+    }
   }
   return value
 }
