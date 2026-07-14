@@ -20,8 +20,8 @@ file wins.
   (judges the conclusion, guides the process).
 - **The floor** is the stance-neutral base loaded on every session before any
   mode: the fourteen redlines, shared scaffolding, and the canonical structures.
-- **The passport** is a local-only record at `~/.ct-gym/` — it never leaves your
-  machine.
+- **The passport** is stored locally at `~/.ct-gym/`; when passport content is
+  loaded for a session, the relevant excerpts enter the model context.
 
 ---
 
