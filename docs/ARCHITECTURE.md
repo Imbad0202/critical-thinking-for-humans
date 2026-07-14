@@ -1,4 +1,4 @@
-# Architecture (v1.2.0)
+# Architecture (v1.3.0)
 
 How `critical-thinking-for-humans` is put together: what loads when, how a
 session routes to one of four modes, how the thirteen reasoning structures are

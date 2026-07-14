@@ -18,7 +18,7 @@ import { detectiveMode as detectiveEn } from './locales/en/detective.js'
 
 export const contentManifest = Object.freeze({
   schemaVersion: 2,
-  skillVersion: '1.2.0',
+  skillVersion: '1.3.0',
   defaultLocale: 'en',
   locales: Object.freeze(['zh-TW', 'en']),
   kind: 'bilingual-fixed-demo',

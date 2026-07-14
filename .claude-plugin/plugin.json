@@ -1,6 +1,6 @@
 {
   "name": "critical-thinking-for-humans",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A gym for your critical thinking. The AI is the coach; you do the work. Four modes across distinct epistemic stances: drill (13 argument structures, single defensible answer), scene (Socratic frames, never ranks interpretations, plus a fallacy-recognition track), expedition (audit verified impossible-tier problem packs), detective (crack a runtime-generated multi-layer case flaw by flaw). Manipulation-recognition domain, fourteen redlines, and a longitudinal passport on your own machine.",
   "skills": [
     "./"

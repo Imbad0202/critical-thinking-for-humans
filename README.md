@@ -1,10 +1,10 @@
 # critical-thinking-for-humans
 
-[![Version](https://img.shields.io/badge/version-v1.2.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.2.0)
+[![Version](https://img.shields.io/badge/version-v1.3.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.3.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-14
 
 A gym for your critical thinking. The AI is the coach; you do the work.
 
@@ -66,16 +66,16 @@ just describe what you want to practice. (No Claude Code? A single-file [portabl
 edition](#portable-single-file-edition-any-model) runs in any frontier model's
 chat window.)
 
-## What's new in v1.2.0
+## What's new in v1.3.0
 
-Content expansion, no behavior change: the four modes, the shared floor, the
-redlines, and the build pipeline are untouched. This release adds six
-independently first-party-verified expedition packs — spanning certified
-numerics, a blind-assessment negative result, a symbolic game-solve, two-track
-AI-math verification, forecaster de novo enzyme chemistry, and verify-the-
-verifier formal methods — and grows scene mode's fallacy-recognition track from
-five lenses to ten. Every pack bakes in its honest scope so no headline
-overclaims survive the reveal. Full details in [CHANGELOG.md](CHANGELOG.md).
+This release adds the bilingual Web Casebook as a third entry point: four
+finishable fixed excerpts, a local-first browser Passport, and an optional
+server-backed zh-TW Daily Dispatch whose unpublished answers stay private. It
+also hardens Daily publication races and cache behavior, adds a focused
+Playwright gate, separates Python and Node CI, and makes releases publish the
+same checksummed immutable bytes CI verified. Expedition provenance now closes
+the remaining AlphaProof and Busy Beaver first-party checks. Full details in
+[CHANGELOG.md](CHANGELOG.md).
 
 ---
 

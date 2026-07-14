@@ -7,6 +7,21 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-07-14
+
+- **Bilingual Web Casebook.** Add a third, no-model-call entry point with four
+  finishable fixed excerpts for Drill, Scene, Expedition, and Detective;
+  English and Taiwan-oriented Traditional Chinese UI/content; responsive
+  visual-novel presentation; original art and music; and a local-first browser
+  Passport. The web path is explicitly an authored demonstration rather than a
+  runtime-generated full Skill session.
+- **Daily Dispatch.** Add an optional server-backed zh-TW Daily case path with
+  public prompt fixtures, private answer records, Vercel handlers, publication
+  cron support, schema/leak guards, deployment tooling, and a static fallback
+  that leaves all four fixed modes usable when the API is absent.
+- **Traditional Chinese copy pass.** Rewrite the Web Casebook's zh-TW case text
+  into plainer Taiwan usage without changing its reasoning structures or
+  answers.
 - **Daily publication correctness.** Shorten the CDN lifetime of an unpublished
   fallback when private storage is available, bind embedded public cases to the
   private record's publish date, and reject provider records returned for the
@@ -18,6 +33,14 @@ and the latest versioned heading must equal the git tag being cut (enforced by
   single-run Node and Playwright checks, syntax-check every tracked JavaScript
   module, and publish checksummed release bytes from the immutable artifact
   already built and verified by CI.
+- **First-party expedition provenance (#10).** Verify AlphaProof's official
+  five-problem manual Lean formalization directly in the now-open Nature full
+  text, including its parallel auto-formalization nuance; recover all 13 Busy
+  Beaver sporadic holdouts and their standard identifiers from the pinned
+  Coq-BB5 v1.0.0 proof artifact.
+- **Release-document closure.** Add the missing RL14 two-direction behavioral
+  probe, correct stale reasoning-structure and expedition-roadmap prose, and
+  align all release metadata for v1.3.0.
 
 ## [1.2.0] - 2026-07-03
 
