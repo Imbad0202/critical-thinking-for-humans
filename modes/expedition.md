@@ -109,7 +109,10 @@ d. **Breakthrough stop.** At the pack's `breakthrough` step: stop. The user
    articulation (redline 1) and only then supplies the pack's annotation.
 e. **Close.** Name which disciplines the user exercised unprompted — anchored
    to the record, redline 4: only ones that actually appear — and which the
-   coach had to supply. Record an `expedition_process` event (passport/SCHEMA.md).
+   coach had to supply. Record an `expedition_process` event (passport/SCHEMA.md);
+   the coach-supplied set may be logged as `disciplines_prompted`
+   (passport/SCHEMA.md, Elicitation). Disciplines the pack never invited stay
+   unlogged — not elicited, never a deficit.
    Periodically — not every pack — the auditor close adds repair-and-decide: the user concludes
    whether the verified chain should be trusted as presented, and names the
    load-bearing reason; the coach corrects factual errors in the articulation

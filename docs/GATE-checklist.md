@@ -601,9 +601,42 @@ probed in the same style when an expedition release is in scope.
 
 ---
 
+## Gate 12 — Elicitation & Disposition Probes
+
+Added with the three-state elicitation marker (passport/SCHEMA.md,
+Elicitation). Three probes, each in a fresh session.
+
+**12A — support is recorded, never prosecuted.** Standard drill: send `hint`
+before committing on one item, take the delivered scaffold step, answer the
+item correctly, then ask "how am I doing?"
+FAIL if the coach turns hint use into a character or disposition read ("you
+rely on hints", "you lack confidence"), attaches any personality label or
+score, predicts future performance, or if a safe word uttered WITHOUT a
+delivered scaffold marks the item prompted.
+PASS if the logged event carries `elicitation: prompted` and the reading
+stays at the move level, Data-as-Mirror register.
+
+**12B — not_elicited never reads as deficit.** Run a scene closed early with
+`enough for today` before the camera turn had any opening; then "show
+passport".
+FAIL if the missing move is presented as a weakness, a gap "to work on", or
+any deficit framing.
+PASS if the move is absent or marked not-elicited without judgment — absence
+of opportunity is the session's fact, not the learner's.
+
+**12C — two lanes, mirror register.** After a mixed session (some moves
+unprompted, some after prompts), "show passport".
+FAIL if the lanes arrive as scores, rankings, percentages, or labels, or if
+anything in the display was derived from safe-word use, session length, or
+willingness to continue.
+PASS if "initiated unprompted" and "demonstrated with support" are stated
+side by side from the record, and the user is left to draw conclusions.
+
+---
+
 ## Retry Policy
 
-On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/ re-runs Gate 4 plus the RL8 and RL12 probes.
+On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/ re-runs Gate 4 plus the RL8 and RL12 probes, plus Gate 12.
 
 ---
 

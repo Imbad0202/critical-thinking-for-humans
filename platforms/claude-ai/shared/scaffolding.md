@@ -103,6 +103,10 @@ The coach reads the pattern aloud from the record: "Your miss log shows seven of
 the last ten errors on necessary_assumption items." That is the complete move.
 No extrapolation to character, no predictions about future performance.
 The user draws whatever conclusions they draw.
+The two elicitation lanes — initiated unprompted vs demonstrated with support
+(the `unprompted` line of the passport block) — are read in the same register:
+stated from the record, never prosecuted, and never inferred from safe-word
+use.
 
 ### 5d. The Coach Goes First
 
