@@ -18,7 +18,7 @@ event log and is safe to delete.
 ## Event Envelope
 
 Every event carries `schema_version` (integer, starts at 1), `ts` (ISO 8601 UTC),
-and `type` (one of the seven types below).
+and `type` (one of the eight types below).
 
 ---
 
@@ -99,8 +99,44 @@ the over-flagging tendency separately; it does NOT feed the per-structure
 miss-log weighting that step (b) of the pipeline uses to pick the next target
 structure (an over-flag is not a weak spot in any one structure).
 
+Optional `confused_with` field: the ID of the option the user actually chose —
+a pattern ID from the distractor menu (shared/structures.md), a structure ID,
+or — on a `manipulation_spot` miss — a technique ID
+(shared/manipulation-taxonomy.md).
+`confused_with` carries IDs only, never option text; the privacy register is
+unchanged. Absent on events written before the field existed; derivable going
+forward only. A stable pairwise confusion (one target structure repeatedly
+answered as the same wrong pattern) is boundary-blur evidence rather than
+extra muscle weakness; step (b) weighting does not read this field.
+
 ```
 {"schema_version":1,"ts":"2026-06-11T08:45:00Z","type":"miss_log","structure":"proxy_mismatch","summary":"took a satisfaction rate as a learning outcome"}
+{"schema_version":1,"ts":"2026-06-11T08:58:00Z","type":"miss_log","structure":"sample_selection","confused_with":"hasty_generalization","summary":"read a self-selected pilot as a small-n leap"}
+```
+
+### `item_discarded`
+
+Written at the moment a challenge in the drill challenge window succeeds — the
+coach concedes the item flawed (modes/drill.md step 6). This is a
+generation-quality signal, the drill counterpart of
+`detective_process.unregistered_flaws_found`: it measures the generator, not
+the user. The conceded item itself still writes no `drill_result` and no
+`miss_log`.
+
+Fields: `structure` (the discarded item's target — the same union as
+`drill_result.structure`: a canonical structure ID, a technique ID for a
+`manipulation_spot` item, or the `argument_sound` sentinel for a sound item),
+`reason_class` (`key_conceded|distractor_also_defensible|frame_malformed`),
+`summary` (structure-level, same privacy register as `miss_log` — never item
+content, never the user's challenge argument).
+
+`item_discarded` never feeds the per-structure miss-log weighting that step (b)
+of the pipeline uses to pick the next target structure — an overturned key is
+not a user weakness. The regenerated summary surfaces per-structure overturn
+counts on "show passport" without exposing content.
+
+```
+{"schema_version":1,"ts":"2026-06-11T08:47:00Z","type":"item_discarded","structure":"sample_selection","reason_class":"key_conceded","summary":"credited option was not the strongest weakener; key overturned on challenge"}
 ```
 
 ### `commitment`

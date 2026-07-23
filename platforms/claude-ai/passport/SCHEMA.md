@@ -27,7 +27,8 @@ an imported passport block or the current session's tally.
 CT-GYM-PASSPORT v1
 profile: domain=education; difficulty=intro; feedback=cushioned
 tally: necessary_assumption 0/1 | alternative_cause 1/1 | sample_selection 0/1
-recent_misses: 2026-06-12 necessary_assumption took an extreme condition as necessary | 2026-06-12 sample_selection dropout exclusion not checked
+recent_misses: 2026-06-12 necessary_assumption took an extreme condition as necessary | 2026-06-12 sample_selection (as hasty_generalization) dropout exclusion not checked
+discards: sample_selection 1
 scenes: 2 | frames_raised: frame_power frame_counter
   (fallacy-recognition rounds list `fallacies_examined` plus the parallel `fallacy_rulings`)
 last_session: 2026-06-12
@@ -38,7 +39,16 @@ last_session: 2026-06-12
   technique ID — `shared/manipulation-taxonomy.md`), only for structures
   attempted at least once.
 - `recent_misses` keeps the most recent 10, oldest dropped; entries are
-  structure tags and short summaries, never raw user text.
+  structure tags and short summaries, never raw user text. An entry may append
+  `(as <id>)` after its structure tag — the pattern, structure, or technique
+  ID of the option the user chose instead
+  (the CLI edition's `confused_with`); IDs only, never option text.
+- `discards` — per-target counts of drill items conceded flawed in the
+  challenge window (the CLI edition's `item_discarded`; the target carries the
+  same union as `tally` entries — structure, technique, or `argument_sound`).
+  A generation-quality signal about the coach's items,
+  not a user stat: never read for item-weighting. Absent until a concession
+  happens.
 - `expeditions` — one entry per completed expedition: `pack_id role
   disciplines_unprompted` (IDs from modes/expedition.md); absent until one
   completes.
@@ -68,6 +78,8 @@ User flow in SKILL.md.
 ## Checkpoint Protocol
 
 - **End of item:** fold the result into `tally` (and `recent_misses` on a miss).
+- **Item conceded flawed:** fold only into `discards` (per-structure count);
+  nothing enters `tally` or `recent_misses`.
 - **End of scene:** fold the process record and commitment together.
 - **"forget this one":** discards events buffered since the last checkpoint;
   everything already folded into the tally stays.

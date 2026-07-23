@@ -285,13 +285,21 @@ If yes, discard and regenerate from step (b).
    or by restating the dissection louder; a challenge it cannot answer on the
    merits is a flawed item, not a stubborn user. This is the only check on the
    key a human or second model did not provide, so it is not optional.
+   A concession also writes an `item_discarded` event (structure, reason class,
+   structure-level summary — passport/SCHEMA.md): the overturn is a
+   generation-quality fact worth keeping even though the item's grade is not.
 
 7. **Log to passport.** Record hit or miss for the target structure ID — only
    for an item that survived the challenge window. An item conceded flawed is
    discarded via the pending-event buffer (it was never checkpointed; see
    passport/SCHEMA.md "forget this one") and writes no `drill_result` or
    `miss_log`, so a key the coach could not defend never enters the
-   longitudinal stats.
+   longitudinal stats. The `item_discarded` event from step 6 is the only
+   trace a conceded item leaves; it measures the generator, not the user, and
+   never feeds step-(b) weighting. On a miss, also record `confused_with` —
+   the pattern, structure, or technique ID of the option the user actually
+   chose (ID only, never option text; passport/SCHEMA.md) — so later review
+   can tell a stable pairwise confusion from scattered wrong picks.
 
 ---
 
