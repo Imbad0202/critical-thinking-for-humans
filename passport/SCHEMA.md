@@ -18,7 +18,7 @@ event log and is safe to delete.
 ## Event Envelope
 
 Every event carries `schema_version` (integer, starts at 1), `ts` (ISO 8601 UTC),
-and `type` (one of the seven types below).
+and `type` (one of the eight types below).
 
 ---
 
@@ -101,6 +101,30 @@ structure (an over-flag is not a weak spot in any one structure).
 
 ```
 {"schema_version":1,"ts":"2026-06-11T08:45:00Z","type":"miss_log","structure":"proxy_mismatch","summary":"took a satisfaction rate as a learning outcome"}
+```
+
+### `item_discarded`
+
+Written at the moment a challenge in the drill challenge window succeeds — the
+coach concedes the item flawed (modes/drill.md step 6). This is a
+generation-quality signal, the drill counterpart of
+`detective_process.unregistered_flaws_found`: it measures the generator, not
+the user. The conceded item itself still writes no `drill_result` and no
+`miss_log`.
+
+Fields: `structure` (the target structure ID the discarded item was built
+against), `reason_class`
+(`key_conceded|distractor_also_defensible|frame_malformed`), `summary`
+(structure-level, same privacy register as `miss_log` — never item content,
+never the user's challenge argument).
+
+`item_discarded` never feeds the per-structure miss-log weighting that step (b)
+of the pipeline uses to pick the next target structure — an overturned key is
+not a user weakness. The regenerated summary surfaces per-structure overturn
+counts on "show passport" without exposing content.
+
+```
+{"schema_version":1,"ts":"2026-06-11T08:47:00Z","type":"item_discarded","structure":"sample_selection","reason_class":"key_conceded","summary":"credited option was not the strongest weakener; key overturned on challenge"}
 ```
 
 ### `commitment`
