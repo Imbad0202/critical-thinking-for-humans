@@ -51,6 +51,19 @@ Frames exercised (last 5 sessions): `frame_power` ×4 · `frame_counter` ×4 · 
 
 ---
 
+## Elicitation Lanes
+
+| Lane | Moves |
+|------|-------|
+| Initiated unprompted | `steelman` ×3 · `small_case_probe` ×1 |
+| Demonstrated with support | `counter_frame` ×2 |
+
+*(From the optional elicitation fields — passport/SCHEMA.md, Elicitation.
+Events without those fields enter neither lane: absence licenses no inference.
+Stated, never prosecuted.)*
+
+---
+
 ## Commitments
 
 - **2026-06-11** — "the scene shows role asymmetry worth checking against base rates" *(speaking order + honorifics, but n=1)*

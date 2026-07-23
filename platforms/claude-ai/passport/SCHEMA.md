@@ -29,6 +29,8 @@ profile: domain=education; difficulty=intro; feedback=cushioned
 tally: necessary_assumption 0/1 | alternative_cause 1/1 | sample_selection 0/1
 recent_misses: 2026-06-12 necessary_assumption took an extreme condition as necessary | 2026-06-12 sample_selection (as hasty_generalization) dropout exclusion not checked
 discards: sample_selection 1
+unprompted: steelman commitment small_case_probe
+prompted: counter_frame
 scenes: 2 | frames_raised: frame_power frame_counter
   (fallacy-recognition rounds list `fallacies_examined` plus the parallel `fallacy_rulings`)
 last_session: 2026-06-12
@@ -49,6 +51,15 @@ last_session: 2026-06-12
   A generation-quality signal about the coach's items,
   not a user stat: never read for item-weighting. Absent until a concession
   happens.
+- `unprompted` / `prompted` — move and discipline IDs the session record
+  explicitly placed in a lane: `unprompted` (scene moves, expedition
+  disciplines, detective catches made before any clue) and `prompted` (moves
+  that followed a coach-delivered scaffold). Everything unmarked stays a plain
+  record — absence licenses no inference, and neither lane is ever derived by
+  complement. Absence of opportunity never reads as deficit.
+  Nothing here is ever inferred from safe-word use, session length, or
+  willingness to continue, and no disposition label or score is ever derived
+  from it. Both lines absent until a session records one.
 - `expeditions` — one entry per completed expedition: `pack_id role
   disciplines_unprompted` (IDs from modes/expedition.md); absent until one
   completes.

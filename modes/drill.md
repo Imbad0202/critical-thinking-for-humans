@@ -319,6 +319,11 @@ If yes, discard and regenerate from step (b).
    the pattern, structure, or technique ID of the option the user actually
    chose (ID only, never option text; passport/SCHEMA.md) — so later review
    can tell a stable pairwise confusion from scattered wrong picks.
+   Record `elicitation` when the record makes it plain: `prompted` if a
+   coach-delivered scaffold (a hint step or a stuck walk-through) preceded
+   commitment on this item, else `independent` (passport/SCHEMA.md,
+   Elicitation) — an ability-support fact about the item, never a disposition
+   read from the safe word itself.
 
 ---
 

@@ -51,7 +51,8 @@ appear only in `summary`), `item_type`
 
 `argument_sound` is an outcome sentinel, not a reasoning structure — it never
 appears in `shared/structures.md` and is excluded from per-structure miss-log
-weighting the way `manipulation_spot` technique IDs are. For a sound item,
+weighting the way `manipulation_spot` technique IDs are. Optional elicitation
+carrier `elicitation` — see Elicitation. For a sound item,
 `hit` is true when the user correctly judged the argument sound and false when
 the user asserted a flaw that was not there; the false case is the over-flagging
 signal the longitudinal mirror surfaces (the symmetric complement of the
@@ -79,7 +80,9 @@ are process metrics recorded in this same event, never a score. A round is a
 frame-palette round XOR a fallacy round (one submode per round, modes/scene.md),
 so `frames_raised`/`steelman`/`counter_frame`/`camera_turn` and
 `fallacies_examined`/`fallacy_rulings` are mutually exclusive — the absent set is
-omitted, not empty-arrayed.
+omitted, not empty-arrayed. Optional per-move elicitation carrier
+`elicitation` — see Elicitation, which also holds the four booleans' behavior
+anchors.
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"summary":"staff-meeting scene, budget dispute"}
@@ -156,7 +159,8 @@ One record per completed expedition session. Process metrics only — no grade.
 Fields: `pack_id`, `role` (`auditor|climber|forecaster`), `disciplines_unprompted`
 (array of discipline IDs from modes/expedition.md that the record shows the user
 deployed without prompting), `breakthrough_articulated` (bool), `summary` (short
-context label — no raw user text).
+context label — no raw user text). Optional elicitation carrier
+`disciplines_prompted` — see Elicitation.
 
 ```
 {"schema_version":1,"ts":"2026-06-12T10:00:00Z","type":"expedition_process","pack_id":"example-pack","role":"auditor","disciplines_unprompted":["small_case_probe"],"breakthrough_articulated":true,"summary":"audited step graph, probed two load-bearing steps"}
@@ -175,10 +179,72 @@ missed; a generation-quality signal), `structures_hit` (array of the main-flaw
 structure IDs the user caught, one per solved layer (length = layers_solved),
 from shared/structures.md — feeds per-structure exposure tracking, sharing
 drill's per-structure record so practice coverage is unified across modes),
-`summary` (short context label — no raw user text).
+`summary` (short context label — no raw user text). Optional elicitation
+carrier `structures_hit_prompted` — see Elicitation.
 
 ```
 {"schema_version":1,"ts":"2026-06-13T10:00:00Z","type":"detective_process","layers_solved":3,"layers_total":4,"eggs_found":2,"eggs_total":5,"false_positives":1,"unregistered_flaws_found":0,"structures_hit":["proxy_mismatch","base_rate_neglect","alternative_cause"],"summary":"investment-memo case, cracked to L3"}
+```
+
+---
+
+## Elicitation
+
+Ability and disposition need separate reads: a move made unprompted tells a
+different story from the same move made after a prompt, and today's records
+largely collapse the two. Process events may therefore carry an elicitation
+marker with at most three coarse states — `not_elicited` (the session offered
+no real opportunity for the move), `prompted` (the move followed a coach
+prompt or scaffold), `independent` (the record shows the user initiated it
+unprompted). `not_elicited` is load-bearing:
+absence of opportunity must never read as learner deficit.
+
+Elicitation is read from reasoning moves only. It is
+never inferred from safe-word use, session length, or willingness to continue.
+Recording that a scaffold preceded a move is an ability-support fact about
+that move; the use of a safe word itself is never a disposition signal.
+No personality labels, no disposition scores — three coarse states maximum.
+
+All elicitation fields are optional and additive. `schema_version` stays 1:
+an event without them is complete, and a reader must not infer anything from
+their absence — old events simply predate the fields.
+
+The regenerated summary ("show passport") presents two lanes — "initiated
+unprompted" and "demonstrated with support" — in the Data-as-Mirror register
+(shared/scaffolding.md §5c): stated, never prosecuted.
+
+Per-event carriers:
+
+- `drill_result` — optional `elicitation` (`prompted|independent`): `prompted`
+  when a coach-delivered scaffold (a `hint` step or a `stuck` walk-through)
+  preceded commitment on that item — the scaffold delivered, never the
+  safe-word utterance itself.
+  `not_elicited` never applies to drill; every presented item is an
+  opportunity.
+- `scene_process` — optional `elicitation` map: keys from
+  `steelman|counter_frame|camera_turn|commitment`, values from the three
+  states. A move the scene never gave a real opening for is `not_elicited`.
+  Consistency: `prompted|independent` accompany a `true` boolean;
+  `not_elicited` only a `false` one.
+- `expedition_process` — optional `disciplines_prompted` (array): discipline
+  IDs the record shows the user deployed only after a coach prompt.
+  Disciplines in neither array are simply unrecorded — absence licenses no
+  inference; a pack may have invited a discipline the user never deployed.
+- `detective_process` — optional `structures_hit_prompted` (array): the
+  subset of `structures_hit` caught only after a clue-level prompt or hint;
+  catches before any clue are the independent lane.
+
+Behavior anchors for the existing scene booleans (definitions tightened,
+values and types unchanged): `steelman` is true only when each raised frame's
+original claim was preserved AND its strongest relevant reason supplied;
+`counter_frame` only when a defeater for the primary reading was actually
+named; `camera_turn` only when the user's own reading was examined as text,
+not merely invited; `commitment` only when a position came with reasons —
+never on a bare sign-off.
+
+```
+{"schema_version":1,"ts":"2026-06-11T08:41:00Z","type":"drill_result","structure":"sample_selection","item_type":"weaken","hit":true,"elicitation":"prompted","summary":"caught survivorship after one vocabulary scaffold"}
+{"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":false,"commitment":true,"elicitation":{"steelman":"independent","counter_frame":"prompted","camera_turn":"not_elicited","commitment":"independent"},"summary":"staff-meeting scene, budget dispute"}
 ```
 
 ---

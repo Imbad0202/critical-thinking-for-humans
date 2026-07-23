@@ -331,6 +331,10 @@ raised (yes/no), whether the camera turn was completed (yes/no), whether the use
 made a closing commitment (yes/no). No score is assigned. Sensitive BYOM material
 is excluded from passport logging by default — including `commitment` events
 (see passport/SCHEMA.md Privacy Rules).
+Where the record makes it plain, an elicitation marker per move rides along —
+`not_elicited / prompted / independent` (passport/SCHEMA.md, Elicitation). A
+move this scene never gave a real opening for logs `not_elicited`, never a
+deficit.
 
 A fallacy-recognition round records process metrics too, never hit/miss: which
 lenses were examined (`fallacies_examined`) and the parallel per-lens rulings

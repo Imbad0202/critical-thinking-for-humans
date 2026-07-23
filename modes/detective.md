@@ -311,7 +311,11 @@ One `detective_process` event per completed (or `enough for today`-closed)
 case. Process metrics only — no grade. `structures_hit` records the structures
 the user caught on solved layers; it feeds per-structure exposure tracking
 (which structures the user has practised), sharing drill's per-structure record
-so practice coverage is unified across modes. For the full field list and the
+so practice coverage is unified across modes.
+`structures_hit_prompted` (optional) marks the subset caught only after a
+clue-level prompt or hint (passport/SCHEMA.md, Elicitation); catches before
+any clue are the independent lane.
+For the full field list and the
 JSON shape, see `passport/SCHEMA.md`.
 
 Raw `structures_hit` IDs are snake_case and appear only in the event, never in
