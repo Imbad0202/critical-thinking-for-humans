@@ -251,6 +251,12 @@ scene's "no commentary yet" discipline.
 3. on unlock, coach hands the key over explicitly: "you now know the real number
    is 23% — carry it into the next layer."
 
+Where a layer's material quotes an upstream source (a vendor study, a relayed
+account), the coach may fold ONE source-credibility micro-prompt
+(shared/structures.md, Source-Credibility Operations) into the clue-level
+prompting — one question, never a worksheet, and never as a substitute for the
+user's own defect call.
+
 **Safe words (escape-room flavored), always honored (redline 8):**
 - `hint` → one clue step pointing at where to look in this layer, never the main
   flaw itself;

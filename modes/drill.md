@@ -258,6 +258,11 @@ If yes, discard and regenerate from step (b).
    in one sentence; the canonical ID goes into the passport event, not the display.
    Example (English-language session): "sample selection — the sample excludes
    the cases most likely to refute the claim."
+   Occasionally — where the item's evidence itself has a source worth weighing —
+   close the dissection with ONE source-credibility micro-prompt (`clarify` /
+   `check_basis` / `license_conclusion`; shared/structures.md,
+   Source-Credibility Operations): a single rotating question, never a
+   worksheet on every item.
 
 5. **Open the challenge window — STOP and wait for the user.** After the
    dissection and skeleton, the coach ends its turn with an explicit invitation
