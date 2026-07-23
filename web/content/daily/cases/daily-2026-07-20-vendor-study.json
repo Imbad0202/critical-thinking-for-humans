@@ -1,0 +1,75 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-20-vendor-study",
+  "publishDate": "2026-07-20",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "detective",
+  "domain": "work",
+  "title": "白皮書與採購案",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/detective.js",
+    "modes/detective.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "who-funded-it",
+        "chapter": "稽核步驟 01",
+        "location": "黑棘莊園・董事書房",
+        "speaker": "奧斯卡・維爾",
+        "role": "首席調查員",
+        "characterId": "oscar_vale",
+        "backgroundAsset": "web/assets/art/backgrounds/blackthorn-manor-library.webp",
+        "briefing": "先弄清楚一份報告是誰做的、誰出的錢，再決定它在證據上該算哪一類。",
+        "evidenceTitle": "流刻白皮書與採購簡報",
+        "evidence": "採購案簡報引用「第三方研究」：導入「流刻」排程系統的企業，交件延誤平均下降三成。翻到附錄才發現：報告由流刻公司行銷部撰寫，封面印著「流刻白皮書」，受訪樣本是流刻自己挑選的客戶。",
+        "prompt": "這份被稱作「第三方研究」的報告，在證據上該歸為哪一類？",
+        "options": [
+          {
+            "id": "A",
+            "text": "獨立第三方評測，可以直接採信。"
+          },
+          {
+            "id": "B",
+            "text": "廠商自家報告：可以當參考線索，但不能當獨立驗證。"
+          },
+          {
+            "id": "C",
+            "text": "造假文件，裡面的數字必然不實。"
+          }
+        ]
+      },
+      {
+        "id": "what-would-verify",
+        "chapter": "稽核步驟 02",
+        "location": "灰橋市政廳・證物檔案庫",
+        "speaker": "艾達・貝爾",
+        "role": "檔案專家",
+        "characterId": "ada_bell",
+        "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
+        "briefing": "認出「這是廠商說法」只是前半場。後半場是：要補哪一種材料，才能把缺的那塊「獨立驗證」補上。",
+        "evidenceTitle": "委員會待調材料清單",
+        "evidence": "採購委員會還有三份材料可以調閱：甲、流刻官網上的客戶見證影片；乙、產業公會對多家同類系統做的年度比較報告；丙、流刻執行長的媒體專訪。",
+        "prompt": "要補上「獨立驗證」這塊缺口，先調哪一份？",
+        "options": [
+          {
+            "id": "A",
+            "text": "甲：客戶見證影片，有真實使用者現身說法。"
+          },
+          {
+            "id": "B",
+            "text": "乙：公會的跨廠牌比較報告，評比的人跟流刻沒有利害關係。"
+          },
+          {
+            "id": "C",
+            "text": "丙：執行長專訪，最了解產品的人說得最準。"
+          }
+        ]
+      }
+    ]
+  }
+}

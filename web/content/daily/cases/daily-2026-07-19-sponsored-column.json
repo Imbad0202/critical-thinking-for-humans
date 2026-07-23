@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-19-sponsored-column",
+  "publishDate": "2026-07-19",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "drill",
+  "domain": "health",
+  "title": "健康週刊的回春專欄",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/drill.js",
+    "modes/drill.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "sponsored-column",
+        "chapter": "推理快問 04",
+        "location": "灰橋讀書會・晨間閱覽室",
+        "speaker": "林霧華",
+        "role": "推理教練",
+        "characterId": "lin_wuhua",
+        "backgroundAsset": "web/assets/art/backgrounds/society-reading-room-dawn.webp",
+        "briefing": "這題練「先看來源再掂重量」：一篇文章能不能當證據，不只看它說了什麼，也要看誰說的、說的人跟結論有沒有利害關係。",
+        "evidenceTitle": "健康週刊的回春專欄",
+        "evidence": "《灰橋健康週刊》專欄〈銀杏素讓記憶力回春〉引述一項臨床實驗：「服用八週，記憶測驗成績進步 23%」。專欄最末一行小字寫著：本文作者是銀杏素品牌「憶康」的長期顧問；該實驗由憶康出資，沒有發表在任何期刊。",
+        "prompt": "關於這篇專欄的證據力，哪個判斷最站得住？",
+        "options": [
+          {
+            "id": "A",
+            "text": "有具體數字也有實驗，證據已經足夠，顧問身分不影響數據本身。"
+          },
+          {
+            "id": "B",
+            "text": "作者拿了廠商的錢，所以「進步 23%」一定是編出來的。"
+          },
+          {
+            "id": "C",
+            "text": "利害關係加上沒有獨立審查，這篇只能算廠商說法；要採信，需要無利益關係的一方驗證。"
+          }
+        ]
+      }
+    ]
+  }
+}

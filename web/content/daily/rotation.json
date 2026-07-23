@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "public-demo-seven-day-v1",
+  "id": "public-daily-fourteen-day-v1",
   "timeZone": "Asia/Taipei",
   "strategy": "cyclic",
   "cycleAnchorDate": "2026-07-12",
@@ -39,6 +39,41 @@
       "date": "2026-07-18",
       "caseId": "daily-2026-07-18-alternative-cause",
       "path": "cases/daily-2026-07-18-alternative-cause.json"
+    },
+    {
+      "date": "2026-07-19",
+      "caseId": "daily-2026-07-19-sponsored-column",
+      "path": "cases/daily-2026-07-19-sponsored-column.json"
+    },
+    {
+      "date": "2026-07-20",
+      "caseId": "daily-2026-07-20-vendor-study",
+      "path": "cases/daily-2026-07-20-vendor-study.json"
+    },
+    {
+      "date": "2026-07-21",
+      "caseId": "daily-2026-07-21-secondhand-chain",
+      "path": "cases/daily-2026-07-21-secondhand-chain.json"
+    },
+    {
+      "date": "2026-07-22",
+      "caseId": "daily-2026-07-22-single-source-echo",
+      "path": "cases/daily-2026-07-22-single-source-echo.json"
+    },
+    {
+      "date": "2026-07-23",
+      "caseId": "daily-2026-07-23-borrowed-authority",
+      "path": "cases/daily-2026-07-23-borrowed-authority.json"
+    },
+    {
+      "date": "2026-07-24",
+      "caseId": "daily-2026-07-24-hearsay-ladder",
+      "path": "cases/daily-2026-07-24-hearsay-ladder.json"
+    },
+    {
+      "date": "2026-07-25",
+      "caseId": "daily-2026-07-25-lone-dissenter",
+      "path": "cases/daily-2026-07-25-lone-dissenter.json"
     }
   ]
 }

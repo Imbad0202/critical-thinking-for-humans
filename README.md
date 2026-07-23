@@ -38,10 +38,12 @@ zh-TW cases through Vercel: public prompts stay in the repo while unpublished
 cases and answer records stay in Private Blob. If that API is absent, all four
 fixed excerpts keep working. [Try the current web demo](https://critical-thinking-for-humans.vercel.app/).
 
-The checked-in seven-day Daily rotation mirrors the public fixed excerpts and
-therefore demonstrates the server-response flow rather than anti-cheat
-integrity. A production scored rotation needs independent cases whose keys do
-not ship in the browser bundle or public repository.
+The checked-in Daily rotation cycles fourteen days. The first seven mirror the
+public fixed excerpts and therefore demonstrate the server-response flow rather
+than anti-cheat integrity. The second seven are an independently authored
+source-credibility case family: their public files carry prompts and choices
+only, and their answer records live solely in private storage — the production
+pattern.
 
 ```bash
 python -m http.server 4173 --directory web

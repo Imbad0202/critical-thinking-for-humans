@@ -1,0 +1,75 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-22-single-source-echo",
+  "publishDate": "2026-07-22",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "detective",
+  "domain": "public",
+  "title": "五家報導與一個來源",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/detective.js",
+    "modes/detective.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "count-the-sources",
+        "chapter": "稽核步驟 01",
+        "location": "灰橋紀事報・晚間編輯室",
+        "speaker": "程硯舟",
+        "role": "現場記者",
+        "characterId": "cheng_yanzhou",
+        "backgroundAsset": "web/assets/art/backgrounds/graybridge-chronicle-pressroom.webp",
+        "briefing": "五家都報了，就等於五個來源嗎？先數清楚：這些報導背後，到底有幾條自己的消息線。",
+        "evidenceTitle": "五篇報導的比對稿",
+        "evidence": "「碼頭倉庫走私案」共有五家媒體報導。逐段比對後發現：其中四家的內文與《夜燈快報》的獨家幾乎逐句相同，都註明「據《夜燈快報》報導」；沒有任何一家寫到自己另外取得的消息源。",
+        "prompt": "就消息來源而言，這五篇報導實際上等於幾個獨立來源？",
+        "options": [
+          {
+            "id": "A",
+            "text": "五個——五家媒體都刊出了這則新聞。"
+          },
+          {
+            "id": "B",
+            "text": "一個——其餘四家都只是轉述同一篇獨家。"
+          },
+          {
+            "id": "C",
+            "text": "零——只要是轉述過的消息，就完全不能算數。"
+          }
+        ]
+      },
+      {
+        "id": "corroborate-the-scoop",
+        "chapter": "稽核步驟 02",
+        "location": "灰橋市政廳・證物檔案庫",
+        "speaker": "艾達・貝爾",
+        "role": "檔案專家",
+        "characterId": "ada_bell",
+        "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
+        "briefing": "認出「其實只有一個來源」之後，接下來想：要印證或推翻這條獨家，該走哪一條路？",
+        "evidenceTitle": "獨家報導與可調閱紀錄",
+        "evidence": "《夜燈快報》的獨家引用「一位不願具名的港務人員」。你手上還有兩條線可以走：港務局的貨運出入紀錄可以申請調閱；碼頭工會月報提過案發當晚有一批臨時加班。",
+        "prompt": "要讓這條獨家站得更穩（或現出原形），下一步哪個動作最有效？",
+        "options": [
+          {
+            "id": "A",
+            "text": "申請調閱港務局的出入紀錄，找能獨立印證的第一手資料。"
+          },
+          {
+            "id": "B",
+            "text": "統計後續又有幾家媒體轉載了這篇獨家。"
+          },
+          {
+            "id": "C",
+            "text": "等《夜燈快報》自己刊出後續報導再說。"
+          }
+        ]
+      }
+    ]
+  }
+}

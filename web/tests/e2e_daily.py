@@ -116,7 +116,7 @@ def daily_envelope(
         "schemaVersion": 1,
         "date": date,
         "timeZone": "Asia/Taipei",
-        "rotationId": "public-demo-seven-day-v1",
+        "rotationId": "public-daily-fourteen-day-v1",
         "contentId": case["id"],
         "answerable": answerable,
         "gradingAvailable": grading_available,

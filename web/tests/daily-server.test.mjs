@@ -191,7 +191,11 @@ test('Daily service rejects a provider record for a different requested date', a
 })
 
 test('Daily service allows cyclic static cases to keep their canonical publish date', async () => {
-  const cyclicDate = '2026-07-19'
+  const rotationUrl = new URL('../content/daily/rotation.json', import.meta.url)
+  const rotation = JSON.parse(await readFile(rotationUrl, 'utf8'))
+  const wrapDay = new Date(`${rotation.cycleAnchorDate}T00:00:00Z`)
+  wrapDay.setUTCDate(wrapDay.getUTCDate() + rotation.entries.length)
+  const cyclicDate = wrapDay.toISOString().slice(0, 10)
   const { case: _embeddedCase, ...cyclicRecord } = {
     ...privateRecord,
     publishDate: cyclicDate,

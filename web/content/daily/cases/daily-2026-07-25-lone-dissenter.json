@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-25-lone-dissenter",
+  "publishDate": "2026-07-25",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "drill",
+  "domain": "science",
+  "title": "淨水劑辯論的五五波",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/drill.js",
+    "modes/drill.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "lone-dissenter",
+        "chapter": "推理快問 07",
+        "location": "鐘樓觀測台・頂層儀器室",
+        "speaker": "艾達・貝爾",
+        "role": "檔案專家",
+        "characterId": "ada_bell",
+        "backgroundAsset": "web/assets/art/backgrounds/clocktower-observatory.webp",
+        "briefing": "這題練「秤證據的分量」：兩位來賓都掛著專家頭銜。頭銜之外，先問各自把什麼東西擺上了桌面。",
+        "evidenceTitle": "淨水劑辯論的五五波",
+        "evidence": "電視節目辯論「新式淨水劑安不安全」。來賓甲代表化學學會：「學會回顧了三十多份研究，結論是常規劑量下安全。」來賓乙是一位退休教授：「依我多年的直覺，這東西遲早出事」，沒有提出新數據。主持人總結：「正反專家各執一詞，看來安全性五五波。」",
+        "prompt": "主持人的「五五波」總結，問題出在哪？",
+        "options": [
+          {
+            "id": "A",
+            "text": "把「多數研究的整理」和「單一專家的直覺」當成等重的兩邊——證據的分量不是照人頭算的。"
+          },
+          {
+            "id": "B",
+            "text": "退休教授已經沒有現職，他的發言根本不該被播出。"
+          },
+          {
+            "id": "C",
+            "text": "沒有問題：兩邊都是專家，各給五十趴才公平。"
+          }
+        ]
+      }
+    ]
+  }
+}

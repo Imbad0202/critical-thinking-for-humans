@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate browser-safe daily case fixtures.
 
-Checks the v1 schema contract, the seven-day cyclic rotation, case IDs and
+Checks the v1 schema contract, the fourteen-day cyclic rotation, case IDs and
 dates, canonical local sources, referenced background assets, and a recursive
 denylist of answer/reveal-like field names. The structural checks mirror the
 checked-in JSON Schema using only the Python standard library; when the
@@ -548,8 +548,8 @@ def check_rotation(rotation: Any, cases: dict[str, Any], errors: list[str]) -> N
     anchor = parse_date(rotation.get("cycleAnchorDate"), f"{where}.cycleAnchorDate", errors)
 
     entries = rotation.get("entries")
-    if not isinstance(entries, list) or len(entries) != 7:
-        add(errors, f"{where}.entries", "must contain exactly seven seed days")
+    if not isinstance(entries, list) or len(entries) != 14:
+        add(errors, f"{where}.entries", "must contain exactly fourteen seed days")
         return
     seen_dates: set[str] = set()
     seen_ids: set[str] = set()
@@ -600,7 +600,7 @@ def check_rotation(rotation: Any, cases: dict[str, Any], errors: list[str]) -> N
         add(
             errors,
             f"{where}.entries",
-            "seven-day fixture must cover all four modes; found "
+            "rotation fixture must cover all four modes; found "
             + ", ".join(sorted(seen_modes)),
         )
 
@@ -645,7 +645,7 @@ def main() -> int:
     print(
         "PASS [daily-cases] "
         f"{len(cases)} public cases; four-mode v1 schema; "
-        "7-day Taipei cycle; no answer/reveal fields"
+        "14-day Taipei cycle; no answer/reveal fields"
     )
     return 0
 
