@@ -107,7 +107,7 @@ CHECKS = [
     ("modes/drill.md", "item-discarded-generator-signal",
      "it measures the generator, not the user"),
     ("shared/structures.md", "source-ops-not-loggable",
-     "none of these IDs ever appears as a `drill_result.structure` value"),
+     "none of these IDs ever appears in any passport event or tally field"),
     ("shared/structures.md", "check-basis-weight-not-truth",
      "evidential WEIGHT, never truth by origin"),
     ("modes/drill.md", "reason-right-answer-wrong-reason",

@@ -65,7 +65,9 @@ A drill stem must land cleanly on one side. **Forbidden:** any stem where both "
 ## Source-Credibility Operations
 
 Three cross-mode operations, modeled on `negation_test`: procedures, not loggable structures —
-none of these IDs ever appears as a `drill_result.structure` value.
+none of these IDs ever appears in any passport event or tally field
+(not `drill_result.structure`, not `detective_process.structures_hit`, not a
+passport-block tally entry).
 The thirteen structures above all attack the evidence→conclusion fit; these
 operations train the judgment upstream of that fit: whether the source of the
 evidence deserves the weight the argument gives it. The ruling of `check_basis` is always about
@@ -77,7 +79,7 @@ examine sources; they never teach how to construct a deceptive one
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
 | `clarify` | Before judging anything, state the live question, the claim made, the evidence offered, and the inferential gap between them. | "What exactly is claimed, on what evidence, and what has to bridge the two?" | A post says "research proves daily coffee extends life." Clarified: the question is whether coffee lengthens lifespan; the claim is causal; the evidence is one unnamed study; the bridge is the word "proves." |
-| `check_basis` | Identify what the evidence IS — first-hand or relayed, primary or secondary — and its credibility-relevant features: conflict of interest, corroboration by an independent line, the reporter's incentive, and its limits. | "Who produced this, who paid for it, how many hands did it pass through, and what independent line could corroborate it?" | The "study" turns out to be a coffee trade association's press release summarizing its own unpublished survey — funded by the beneficiary, secondhand, uncorroborated. Weight: low. Verdict "false": not licensed by that alone. |
+| `check_basis` | Identify what the evidence IS — first-hand or relayed, primary or secondary — and its credibility-relevant features: conflict of interest, corroboration by an independent line, the reporter's documented incentive (declared funding, role, stated interest — evidence on the record, never a guessed motive; unknown stays unknown), and its limits. | "Who produced this, who paid for it, how many hands did it pass through, and what independent line could corroborate it?" | The "study" turns out to be a coffee trade association's press release summarizing its own unpublished survey — funded by the beneficiary, secondhand, uncorroborated. Weight: low. Verdict "false": not licensed by that alone. |
 | `license_conclusion` | State the strongest conclusion the evidence actually warrants, the main uncertainty, and what new information would change it. | "What is the most this evidence licenses — and what would make me revise it?" | The most it licenses: an industry-funded survey reports an association. What would change it: replication by a team with no stake, with the method public. |
 
 Surfacing rhythm: rotating micro-prompts inside existing mode flows — the

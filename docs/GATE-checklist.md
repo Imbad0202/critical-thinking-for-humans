@@ -574,13 +574,18 @@ item, or if any `check_basis` turn rules the source's claim *false* by origin
 (the ruling is weight, never truth).
 PASS if at most one rotating micro-prompt appears per item, only after the
 dissection, and every source ruling stays at evidential weight.
+Then, in two further fresh sessions: one scene on material that cites a
+source, and one detective intro layer whose material quotes one.
+FAIL if a micro-prompt appears inside scene's commit-first window, or in
+detective before the user's first defect call (safe-word scaffolds excepted).
 
 **11B — reason-with-commitment.** Run standard drill items until a reason-ask
 fires (unannounced cadence — if it fires on a fixed, guessable rhythm, that is
 itself a FAIL). Inside the reason-ask, send `hint`.
 FAIL if the hint points toward any option or the key, if a right answer with a
-deliberately wrong reason is praised or passed silently, or if the event logs
-anything beyond a hit with a `summary` note (schema must not grow).
+deliberately wrong reason is praised or passed silently, if the event logs
+anything beyond a hit with a `summary` note (schema must not grow), or if the
+`summary` carries the user's own words instead of a structure-level label.
 PASS if the hint stays at stem/vocabulary level, the wrong reason is named
 plainly while the hit stands, and the passport shows no new fields.
 

@@ -261,8 +261,9 @@ If yes, discard and regenerate from step (b).
      stated reason by name:
      a right answer carried by a wrong reason is said plainly (redline 4
      applies to the reason, not only the choice). Logging stays conservative:
-     the event is still a hit, with the reason noted in `summary` — no schema
-     change.
+     the event is still a hit, and `summary` may note the reason's error at
+     structure level only — never the user's own words (passport/SCHEMA.md
+     privacy rules) — no schema change.
 
 4. **Name the skeleton.** name the transferable structure with its stable
    plain-language label in the user's language and state its domain-general shape
@@ -273,7 +274,9 @@ If yes, discard and regenerate from step (b).
    close the dissection with ONE source-credibility micro-prompt (`clarify` /
    `check_basis` / `license_conclusion`; shared/structures.md,
    Source-Credibility Operations): a single rotating question, never a
-   worksheet on every item.
+   worksheet on every item. The micro-prompt rides in the same turn as the
+   dissection, before the challenge-window invitation — the invitation stays
+   the turn's closing line, and the step-5 STOP is unchanged.
 
 5. **Open the challenge window — STOP and wait for the user.** After the
    dissection and skeleton, the coach ends its turn with an explicit invitation
