@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-23-borrowed-authority",
+  "publishDate": "2026-07-23",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "drill",
+  "domain": "education",
+  "title": "星圖記憶法招生廣告",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/drill.js",
+    "modes/drill.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "borrowed-authority",
+        "chapter": "推理快問 06",
+        "location": "灰橋學院・大講堂",
+        "speaker": "林霧華",
+        "role": "推理教練",
+        "characterId": "lin_wuhua",
+        "backgroundAsset": "web/assets/art/backgrounds/graybridge-academy-lecture-hall.webp",
+        "briefing": "這題練「權威要對行」：頭銜是真的、獎也是真的，先問這份權威跟眼前的主張是不是同一回事。",
+        "evidenceTitle": "星圖記憶法招生廣告",
+        "evidence": "補習班廣告：「天文學界權威顧星瀾教授誠摯推薦：星圖記憶法，兩週背下一千個單字。」查證後：顧教授確實是知名天文學家，得過學會大獎；廣告裡除了教授的推薦語，沒有附任何學習成效的研究。",
+        "prompt": "顧教授的這則推薦，該給多少證據重量？",
+        "options": [
+          {
+            "id": "A",
+            "text": "願意替補習班掛名的教授不會可信，他說的話都該打折。"
+          },
+          {
+            "id": "B",
+            "text": "他的權威在天文學；記憶與學習不是他的領域，這則推薦的重量和一般人的使用心得差不多。"
+          },
+          {
+            "id": "C",
+            "text": "能在一個領域做到頂尖，判斷力自然跨領域通用，推薦本身就是有力證據。"
+          }
+        ]
+      }
+    ]
+  }
+}

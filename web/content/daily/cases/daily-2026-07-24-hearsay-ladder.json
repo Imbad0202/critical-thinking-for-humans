@@ -1,0 +1,75 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-24-hearsay-ladder",
+  "publishDate": "2026-07-24",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "detective",
+  "domain": "public",
+  "title": "霧港火警的三種說法",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/detective.js",
+    "modes/detective.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "rank-the-witnesses",
+        "chapter": "稽核步驟 01",
+        "location": "霧港碼頭・晨霧棧橋",
+        "speaker": "奧斯卡・維爾",
+        "role": "首席調查員",
+        "characterId": "oscar_vale",
+        "backgroundAsset": "web/assets/art/backgrounds/fog-harbor-dock.webp",
+        "briefing": "先把每份說法擺回它的位置：說的人當時在哪裡、是親眼所見還是聽來的。離事件越近的說法，起始權重越高。",
+        "evidenceTitle": "火警的三份說法",
+        "evidence": "倉庫火警起因眾說紛紜，你收到三份說法。甲、守夜人的筆錄：「我當時在東側棧橋，親眼看到配電箱先冒出火花。」乙、茶館老闆：「聽卸貨的工人說，是有人亂丟菸頭。」丙、匿名投書：「大家都在傳，是老闆自己放的火。」",
+        "prompt": "以「說的人離事件多近」來排，哪份說法的起始權重最高？",
+        "options": [
+          {
+            "id": "A",
+            "text": "甲——在場親見，而且說得出自己的位置和看到的先後順序。"
+          },
+          {
+            "id": "B",
+            "text": "乙——卸貨工人就在現場工作，轉述過一手應該還算可靠。"
+          },
+          {
+            "id": "C",
+            "text": "丙——會傳的人這麼多，總有幾分是真的。"
+          }
+        ]
+      },
+      {
+        "id": "test-the-eyewitness",
+        "chapter": "稽核步驟 02",
+        "location": "灰橋市政廳・證物檔案庫",
+        "speaker": "艾達・貝爾",
+        "role": "檔案專家",
+        "characterId": "ada_bell",
+        "backgroundAsset": "web/assets/art/backgrounds/municipal-evidence-archive.webp",
+        "briefing": "目擊說法權重高，但不是免檢。驗證有很多條路，先想哪一條最直接碰得到他說的那段經過。",
+        "evidenceTitle": "守夜人筆錄與打點鐘",
+        "evidence": "守夜人的筆錄還有一句：「火花之後大約十次呼吸的時間，警鈴才響。」檔案庫裡查得到：配電箱的檢修紀錄，以及警鈴的自動打點鐘紀錄。",
+        "prompt": "要驗證守夜人這段目擊，下面哪個做法最直接？",
+        "options": [
+          {
+            "id": "A",
+            "text": "再找一位聽守夜人講過這件事的人來作證。"
+          },
+          {
+            "id": "B",
+            "text": "打聽守夜人平時的名聲，人老實說的就可信。"
+          },
+          {
+            "id": "C",
+            "text": "調打點鐘與檢修紀錄，對時間線——目擊敘述能被獨立紀錄印證，可信度才升級。"
+          }
+        ]
+      }
+    ]
+  }
+}

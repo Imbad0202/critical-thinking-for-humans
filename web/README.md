@@ -78,17 +78,19 @@ edition must use a provider-approved OAuth/API flow or product-funded usage.
 
 ## Daily cases and Vercel
 
-The public repository includes the Daily mechanism, public schemas, a seven-day
-zh-TW example rotation, Vercel Functions, Cron configuration, and an upload CLI.
-Public prompts contain no answers, hints, or reveal text. Unpublished private
-records and credentials belong in ignored `.private/` files and Private Vercel
-Blob.
+The public repository includes the Daily mechanism, public schemas, a
+fourteen-day zh-TW example rotation, Vercel Functions, Cron configuration, and
+an upload CLI. Public prompts contain no answers, hints, or reveal text.
+Unpublished private records and credentials belong in ignored `.private/` files
+and Private Vercel Blob.
 
-The seven checked-in prompts deliberately mirror the public fixed demos, so a
-reader can infer their keys from the locale modules. They test the API's
+The first seven checked-in prompts deliberately mirror the public fixed demos,
+so a reader can infer their keys from the locale modules. They test the API's
 selected-ruling and no-payload-leak behavior; they are not an anti-cheat bank.
-A production scored rotation must use independent cases whose keys never ship
-in a client bundle or public repository.
+The second seven prompts are an independently authored source-credibility case
+family whose answer records never ship in the repository — they follow the
+production pattern: keys exist only in private records uploaded to Private
+Blob. Any production scored rotation must keep working this way.
 
 Set the Vercel Root Directory to `web` and follow
 [`docs/DAILY_DEPLOYMENT.md`](docs/DAILY_DEPLOYMENT.md). Before upload:

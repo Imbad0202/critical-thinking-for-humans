@@ -7,7 +7,7 @@
 
 | 位置 | 可以放什麼 | 不可以放什麼 |
 | --- | --- | --- |
-| `content/daily/` | 公開題面、選項、來源路徑、七日 demo rotation | 正解、評語對照、解析、密鑰 |
+| `content/daily/` | 公開題面、選項、來源路徑、14 日 rotation（七日 demo＋七日來源可信度題組） | 正解、評語對照、解析、密鑰 |
 | `.private/daily/` | 預定案件的 private record | 任何要 commit 的檔案 |
 | Private Vercel Blob | `scheduled/` 與 `published/` 的完整 private record | 公開存取權限 |
 | `/api/daily` | 已清理的公開題面與是否可作答 | 答案 record |

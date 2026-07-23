@@ -21,7 +21,9 @@ under `/content/locales/`. Daily public prompts are under `/content/daily/`.
 Unpublished Daily cases, answer records, and credentials belong only in private
 storage and never in a public API payload.
 
-The checked-in seven-day Daily fixtures mirror public offline examples, so they
-demonstrate response shaping and payload leak prevention—not anti-cheat
-secrecy. Production scored cases need independent keys that never ship to the
+The checked-in Daily rotation cycles fourteen days. The first seven fixtures
+mirror public offline examples, so they demonstrate response shaping and
+payload leak prevention—not anti-cheat secrecy. The second seven are
+independently authored cases whose answer records live only in private
+storage. Production scored cases need independent keys that never ship to the
 browser or public repository.

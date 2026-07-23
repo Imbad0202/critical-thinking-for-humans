@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/daily-case-public.v1.schema.json",
+  "schemaVersion": 1,
+  "id": "daily-2026-07-21-secondhand-chain",
+  "publishDate": "2026-07-21",
+  "locale": "zh-Hant-TW",
+  "visibility": "public",
+  "mode": "drill",
+  "domain": "science",
+  "title": "三手轉述的喝茶研究",
+  "canonicalSourcePaths": [
+    "web/content/locales/zh-TW/drill.js",
+    "modes/drill.md",
+    "shared/structures.md"
+  ],
+  "content": {
+    "kind": "choice-sequence",
+    "items": [
+      {
+        "id": "secondhand-chain",
+        "chapter": "推理快問 05",
+        "location": "霧華居・雨夜書房",
+        "speaker": "程硯舟",
+        "role": "現場記者",
+        "characterId": "cheng_yanzhou",
+        "backgroundAsset": "web/assets/art/backgrounds/society-reading-room-rain-night-home.webp",
+        "briefing": "這題練「認出第幾手」：消息每被轉述一次，結論就可能被加碼一次。判斷可不可信之前，先弄清楚你讀到的是第幾手。",
+        "evidenceTitle": "三手轉述的喝茶研究",
+        "evidence": "熱門科普帳號發文：「研究證實：每天喝茶的人智力較高」，附上《晨風日報》的報導連結；日報引的是一家國外網站的摘要。一路追回去，原始論文寫的是：「在 65 歲以上族群，觀察到喝茶習慣與認知測驗分數有微弱相關，無法排除生活型態的干擾。」",
+        "prompt": "要判斷這則貼文可不可信，最要緊的一步是哪個？",
+        "options": [
+          {
+            "id": "A",
+            "text": "查這個科普帳號的粉絲數，粉絲多代表把關嚴。"
+          },
+          {
+            "id": "B",
+            "text": "看《晨風日報》有沒有刊登更正啟事，沒有就表示報導無誤。"
+          },
+          {
+            "id": "C",
+            "text": "回到原始論文，看第一手到底寫了什麼——再比對轉述被加碼了多少。"
+          }
+        ]
+      }
+    ]
+  }
+}
