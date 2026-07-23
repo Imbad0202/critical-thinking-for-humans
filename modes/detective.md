@@ -279,6 +279,12 @@ The coach reveals each missed egg plainly and explains each confirmed false
 positive as why it is sound against the stipulated frame. Facts only, no
 extrapolation to character.
 
+**Repair-and-decide close (periodic, not per-case).** After the final key (or
+the `enough for today` tally), the user rewrites the memo's conclusion
+at the strength the surviving evidence supports, names the main limitation,
+and states what would change the decision. The coach holds the rewrite to
+redline 4 — overstatement is named plainly — and does not grade it.
+
 ---
 
 ## Difficulty Knobs

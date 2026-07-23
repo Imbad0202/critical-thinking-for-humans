@@ -244,6 +244,11 @@ If yes, discard and regenerate from step (b).
    yields one scaffold step about the stem or the structure vocabulary, never a
    pointer toward any option; `"stuck"` returns afterward to the
    still-uncommitted item.
+   At standard and above, occasionally — on an unannounced cadence the user
+   cannot predict, the same design philosophy as sound items — the commit gate
+   asks for the answer plus one sentence of reason. Safe words keep their exact
+   meaning inside the reason-ask: `"hint"` still yields one scaffold step about
+   the stem or the vocabulary, never a pointer toward any option or the key.
 
 3. **Full dissection.** After commitment:
    - State the key and whether the user's answer was right or wrong (redline 4:
@@ -252,6 +257,12 @@ If yes, discard and regenerate from step (b).
    - For every distractor (all options except the key): explain why it tempts, and name its distractor
      pattern (from the distractor menu) with its plain-language label in the user's language.
    - The dissection is held to the same standard as the user's reasoning: distractor classifications never overstate. If an option has partial merit, the dissection says so plainly instead of flattening it into its assigned pattern.
+   - When a reason was asked at the commit gate, the dissection addresses the
+     stated reason by name:
+     a right answer carried by a wrong reason is said plainly (redline 4
+     applies to the reason, not only the choice). Logging stays conservative:
+     the event is still a hit, with the reason noted in `summary` — no schema
+     change.
 
 4. **Name the skeleton.** name the transferable structure with its stable
    plain-language label in the user's language and state its domain-general shape

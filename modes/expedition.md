@@ -110,6 +110,11 @@ d. **Breakthrough stop.** At the pack's `breakthrough` step: stop. The user
 e. **Close.** Name which disciplines the user exercised unprompted — anchored
    to the record, redline 4: only ones that actually appear — and which the
    coach had to supply. Record an `expedition_process` event (passport/SCHEMA.md).
+   Periodically — not every pack — the auditor close adds repair-and-decide:
+   the user concludes
+   whether the verified chain should be trusted as presented, and names the
+   load-bearing reason; the coach corrects factual errors in the articulation
+   (redline 1) and does not grade it.
 
 ---
 
