@@ -99,8 +99,17 @@ the over-flagging tendency separately; it does NOT feed the per-structure
 miss-log weighting that step (b) of the pipeline uses to pick the next target
 structure (an over-flag is not a weak spot in any one structure).
 
+Optional `confused_with` field: the ID of the option the user actually chose —
+a pattern ID from the distractor menu (shared/structures.md) or a structure ID.
+`confused_with` carries IDs only, never option text; the privacy register is
+unchanged. Absent on events written before the field existed; derivable going
+forward only. A stable pairwise confusion (one target structure repeatedly
+answered as the same wrong pattern) is boundary-blur evidence rather than
+extra muscle weakness; step (b) weighting does not read this field.
+
 ```
 {"schema_version":1,"ts":"2026-06-11T08:45:00Z","type":"miss_log","structure":"proxy_mismatch","summary":"took a satisfaction rate as a learning outcome"}
+{"schema_version":1,"ts":"2026-06-11T08:58:00Z","type":"miss_log","structure":"sample_selection","confused_with":"hasty_generalization","summary":"read a self-selected pilot as a small-n leap"}
 ```
 
 ### `item_discarded`
