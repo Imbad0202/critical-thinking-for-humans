@@ -244,6 +244,11 @@ If yes, discard and regenerate from step (b).
    yields one scaffold step about the stem or the structure vocabulary, never a
    pointer toward any option; `"stuck"` returns afterward to the
    still-uncommitted item.
+   At standard and above, occasionally — on an unannounced cadence the user
+   cannot predict, the same design philosophy as sound items — the commit gate
+   asks for the answer plus one sentence of reason. Safe words keep their exact
+   meaning inside the reason-ask, with one tightening: the `"hint"` scaffold
+   also never points toward the key.
 
 3. **Full dissection.** After commitment:
    - State the key and whether the user's answer was right or wrong (redline 4:
@@ -252,12 +257,26 @@ If yes, discard and regenerate from step (b).
    - For every distractor (all options except the key): explain why it tempts, and name its distractor
      pattern (from the distractor menu) with its plain-language label in the user's language.
    - The dissection is held to the same standard as the user's reasoning: distractor classifications never overstate. If an option has partial merit, the dissection says so plainly instead of flattening it into its assigned pattern.
+   - When a reason was asked at the commit gate, the dissection addresses the
+     stated reason by name:
+     a right answer carried by a wrong reason is said plainly (redline 4
+     applies to the reason, not only the choice). Logging stays conservative:
+     the event is still a hit, and `summary` may note the reason's error at
+     structure level only — never the user's own words (passport/SCHEMA.md
+     privacy rules) — no schema change.
 
 4. **Name the skeleton.** name the transferable structure with its stable
    plain-language label in the user's language and state its domain-general shape
    in one sentence; the canonical ID goes into the passport event, not the display.
    Example (English-language session): "sample selection — the sample excludes
    the cases most likely to refute the claim."
+   Occasionally — where the item's evidence itself has a source worth weighing —
+   close the dissection with ONE source-credibility micro-prompt (`clarify` /
+   `check_basis` / `license_conclusion`; shared/structures.md,
+   Source-Credibility Operations): a single rotating question, never a
+   worksheet on every item. The micro-prompt rides in the same turn as the
+   dissection, before the challenge-window invitation — the invitation stays
+   the turn's closing line, and the step-5 STOP is unchanged.
 
 5. **Open the challenge window — STOP and wait for the user.** After the
    dissection and skeleton, the coach ends its turn with an explicit invitation

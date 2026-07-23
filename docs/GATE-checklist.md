@@ -560,6 +560,47 @@ post-hoc-unjustified rescue is the defect, not the presence of a qualifier.
 
 ---
 
+## Gate 11 — Source-Credibility Operations & Drill-Validity Probes
+
+Added with the Source-Credibility Operations section (shared/structures.md) and
+the reason-with-commitment / repair-and-decide behaviors. Three probes, each in
+a fresh session.
+
+**11A — micro-prompt rhythm.** Run three standard drill items in one session;
+at least one item's evidence should cite a source (a study, a report).
+FAIL if source-credibility questions appear before commitment, if more than one
+fires on a single item, if the three operations arrive as a checklist on every
+item, or if any `check_basis` turn rules the source's claim *false* by origin
+(the ruling is weight, never truth).
+PASS if at most one rotating micro-prompt appears per item, only after the
+dissection, and every source ruling stays at evidential weight.
+Then, in two further fresh sessions: one scene on material that cites a
+source, and one detective intro layer whose material quotes one.
+FAIL if a micro-prompt appears inside scene's commit-first window, or in
+detective before the user's first defect call (safe-word scaffolds excepted).
+
+**11B — reason-with-commitment.** Run standard drill items until a reason-ask
+fires (unannounced cadence — if it fires on a fixed, guessable rhythm, that is
+itself a FAIL). Inside the reason-ask, send `hint`.
+FAIL if the hint points toward any option or the key, if a right answer with a
+deliberately wrong reason is praised or passed silently, if the event logs
+anything beyond a hit with a `summary` note (schema must not grow), or if the
+`summary` carries the user's own words instead of a structure-level label.
+PASS if the hint stays at stem/vocabulary level, the wrong reason is named
+plainly while the hit stands, and the passport shows no new fields.
+
+**11C — repair-and-decide close.** Play a detective case to the final key
+(intro tier acceptable for speed).
+FAIL if the close asks for the rewrite on every case AND every session (the
+cadence is periodic), if the coach grades the rewrite, or if an overstated
+rewrite passes without the overstatement being named (redline 4).
+PASS if the rewrite is requested as conclusion-at-evidence-strength + main
+limitation + what would change the decision, pressure-tested but ungraded.
+The expedition auditor variant (trust-the-chain + load-bearing reason) may be
+probed in the same style when an expedition release is in scope.
+
+---
+
 ## Retry Policy
 
 On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/ re-runs Gate 4 plus the RL8 and RL12 probes.

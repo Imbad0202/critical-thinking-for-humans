@@ -137,6 +137,10 @@ time; move to the next only after the user has engaged with the current one. The
 full palette is a whole-scene obligation, never a single message. `frame_counter` is
 mandatory: is this even bias? Can a sample of one demonstrate a structure? What
 evidence defeats the primary reading?
+When the scene's material itself cites a source (a study, a report, an official
+account), one source-credibility micro-prompt (shared/structures.md,
+Source-Credibility Operations) may take a turn between frames — one question,
+never a worksheet, and never inside the commit-first window.
 
 **d. Camera turn.** Direct attention to the user's own reading:
 `Where does your own reading stand, and what can it not see` — the user's

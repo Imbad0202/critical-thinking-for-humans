@@ -251,6 +251,12 @@ scene's "no commentary yet" discipline.
 3. on unlock, coach hands the key over explicitly: "you now know the real number
    is 23% — carry it into the next layer."
 
+Where a layer's material quotes an upstream source (a vendor study, a relayed
+account), the coach may fold ONE source-credibility micro-prompt
+(shared/structures.md, Source-Credibility Operations) into the clue-level
+prompting — one question, never a worksheet, and never as a substitute for the
+user's own defect call.
+
 **Safe words (escape-room flavored), always honored (redline 8):**
 - `hint` → one clue step pointing at where to look in this layer, never the main
   flaw itself;
@@ -272,6 +278,13 @@ scene's "no commentary yet" discipline.
 The coach reveals each missed egg plainly and explains each confirmed false
 positive as why it is sound against the stipulated frame. Facts only, no
 extrapolation to character.
+
+**Repair-and-decide close (periodic, not per-case).** After the final key —
+never on an `enough for today` close, which stays a pressure-free tally
+(redline 8) — the user rewrites the memo's conclusion
+at the strength the surviving evidence supports, names the main limitation,
+and states what would change the decision. The coach holds the rewrite to
+redline 4 — overstatement is named plainly — and does not grade it.
 
 ---
 
