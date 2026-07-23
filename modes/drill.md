@@ -297,9 +297,9 @@ If yes, discard and regenerate from step (b).
    longitudinal stats. The `item_discarded` event from step 6 is the only
    trace a conceded item leaves; it measures the generator, not the user, and
    never feeds step-(b) weighting. On a miss, also record `confused_with` —
-   the pattern or structure ID of the option the user actually chose (ID only,
-   never option text; passport/SCHEMA.md) — so later review can tell a stable
-   pairwise confusion from scattered wrong picks.
+   the pattern, structure, or technique ID of the option the user actually
+   chose (ID only, never option text; passport/SCHEMA.md) — so later review
+   can tell a stable pairwise confusion from scattered wrong picks.
 
 ---
 

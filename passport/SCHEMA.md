@@ -100,7 +100,9 @@ miss-log weighting that step (b) of the pipeline uses to pick the next target
 structure (an over-flag is not a weak spot in any one structure).
 
 Optional `confused_with` field: the ID of the option the user actually chose —
-a pattern ID from the distractor menu (shared/structures.md) or a structure ID.
+a pattern ID from the distractor menu (shared/structures.md), a structure ID,
+or — on a `manipulation_spot` miss — a technique ID
+(shared/manipulation-taxonomy.md).
 `confused_with` carries IDs only, never option text; the privacy register is
 unchanged. Absent on events written before the field existed; derivable going
 forward only. A stable pairwise confusion (one target structure repeatedly
@@ -121,11 +123,12 @@ generation-quality signal, the drill counterpart of
 the user. The conceded item itself still writes no `drill_result` and no
 `miss_log`.
 
-Fields: `structure` (the target structure ID the discarded item was built
-against), `reason_class`
-(`key_conceded|distractor_also_defensible|frame_malformed`), `summary`
-(structure-level, same privacy register as `miss_log` — never item content,
-never the user's challenge argument).
+Fields: `structure` (the discarded item's target — the same union as
+`drill_result.structure`: a canonical structure ID, a technique ID for a
+`manipulation_spot` item, or the `argument_sound` sentinel for a sound item),
+`reason_class` (`key_conceded|distractor_also_defensible|frame_malformed`),
+`summary` (structure-level, same privacy register as `miss_log` — never item
+content, never the user's challenge argument).
 
 `item_discarded` never feeds the per-structure miss-log weighting that step (b)
 of the pipeline uses to pick the next target structure — an overturned key is
