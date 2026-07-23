@@ -247,8 +247,8 @@ If yes, discard and regenerate from step (b).
    At standard and above, occasionally — on an unannounced cadence the user
    cannot predict, the same design philosophy as sound items — the commit gate
    asks for the answer plus one sentence of reason. Safe words keep their exact
-   meaning inside the reason-ask: `"hint"` still yields one scaffold step about
-   the stem or the vocabulary, never a pointer toward any option or the key.
+   meaning inside the reason-ask, with one tightening: the `"hint"` scaffold
+   also never points toward the key.
 
 3. **Full dissection.** After commitment:
    - State the key and whether the user's answer was right or wrong (redline 4:

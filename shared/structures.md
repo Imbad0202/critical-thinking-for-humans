@@ -64,13 +64,11 @@ A drill stem must land cleanly on one side. **Forbidden:** any stem where both "
 
 ## Source-Credibility Operations
 
-Three cross-mode operations, modeled on `negation_test`: procedures, not
-loggable structures —
+Three cross-mode operations, modeled on `negation_test`: procedures, not loggable structures —
 none of these IDs ever appears as a `drill_result.structure` value.
 The thirteen structures above all attack the evidence→conclusion fit; these
 operations train the judgment upstream of that fit: whether the source of the
-evidence deserves the weight the argument gives it. The ruling of
-`check_basis` is always about
+evidence deserves the weight the argument gives it. The ruling of `check_basis` is always about
 evidential WEIGHT, never truth by origin — the same line the
 `fallacy_ad_hominem` and `fallacy_genetic` reverse-guards draw. The operations
 examine sources; they never teach how to construct a deceptive one
