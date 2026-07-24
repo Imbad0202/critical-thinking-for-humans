@@ -7,6 +7,38 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-07-24
+
+- **Feynman-register expedition discipline (#29).** Require plain-language
+  anchors to preserve every load-bearing condition: inventory the precise claim
+  first, add rather than replace technical terms, pass a domain-literate
+  back-translation, and reverify every touched factual sentence against its
+  cited primary source. Re-audit the 22-pack baseline under that protocol,
+  repair factual, scope, and register drift, and record the evidence ledger in
+  `expeditions/REGISTER-AUDIT.md`.
+- **Jacobian counterexample expedition (#28).** Add the 23rd verified pack around
+  the degree-seven map over \(\mathbb C^3\) whose Jacobian determinant is
+  identically \(-2\) and whose three displayed inputs collide. Keep the exact
+  algebra separate from the public attribution to Fable—which does not identify
+  a model version—and the unpublished discovery process, and retain the
+  date-bounded boundary that \(n=2\) remains open.
+- **Source-credibility Daily family (#30).** Extend the zh-TW Daily rotation from
+  seven to fourteen days with seven independently authored source-credibility
+  cases. Public fixtures contain prompts and choices only; their private answer
+  records stay outside the public repository.
+- **Drill-quality signals and blind probe (#31).** Add `item_discarded` records
+  for successful challenge-window concessions, IDs-only `confused_with` data on
+  misses, and a two-fresh-session blind key-agreement probe whose agreement is
+  explicitly advisory rather than proof.
+- **Source credibility and reason ownership (#32).** Add non-loggable,
+  cross-mode Source-Credibility Operations; occasionally require a one-sentence
+  reason with standard-plus drill commitments; and add repair-and-decide closes
+  that preserve safe-word exits. Gate 11 covers the new runtime behavior.
+- **Ability/support separation (#33).** Add optional `not_elicited`, `prompted`,
+  and `independent` elicitation fields without bumping `schema_version`; absence
+  or lack of opportunity never counts as a learner deficit. Show independent
+  and supported performance in separate Passport lanes, guarded by Gate 12.
+
 ## [1.3.0] - 2026-07-14
 
 - **Bilingual Web Casebook.** Add a third, no-model-call entry point with four

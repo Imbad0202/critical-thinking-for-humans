@@ -127,6 +127,7 @@ Discipline tags follow modes/expedition.md, The Six Disciplines.
   exactly when P(n) holds. Check: faithfulness is auditable by hand — the
   encoder is a short enumeration of triples, and any satisfying assignment
   IS a coloring. For n = 7824: 6,492 occurring variables, 18,930 clauses.
+  Plain anchor: a *clause* is one rule card; the formula is the whole stack.
 
 - **S3 — shrink the formula without changing its answer.**
   `small_case_probe` Integers appearing in no triple within range are
@@ -137,6 +138,8 @@ Discipline tags follow modes/expedition.md, The Six Disciplines.
   variable. Check: the symmetry argument is one line; the elimination steps
   were themselves emitted as a checkable transformation proof (see
   solution_provenance).
+  Plain anchor: blocked-clause elimination removes rule cards proved not to
+  change whether any coloring exists.
 
 - **S4 — split the summit into two independently checkable claims.**
   `milestone_rewrite` Claim A: F_7824 is satisfiable — provable by
@@ -157,6 +160,8 @@ Discipline tags follow modes/expedition.md, The Six Disciplines.
   plan to ~35,000 CPU hours before the full run was launched. Check: the
   cube partition is recorded and its covering property is part of the final
   proof artifact, not an article of faith.
+  Plain anchor: each *cube* is a sealed case box containing one partial
+  coloring. The CDCL solver is the declared black box that searches one box.
 
 - **S6 — run the search.** `lemma_decomposition` (execution) About two days
   on 800 cores of the Stampede cluster: 21,900 CPU hours for splitting,
@@ -173,6 +178,8 @@ Discipline tags follow modes/expedition.md, The Six Disciplines.
   {1, …, 7824} — was checked directly. Check: validation is a separate
   program, far simpler than the solvers, running after the fact; trust
   rests on the checker plus the published artifact, not on the search.
+  Plain anchor: a DRAT trace is a replayable receipt, and drat-trim is the
+  separate receipt checker.
 
 - **S8 — close the original question.** `milestone_rewrite` (final claim in
   the chain) The finite result plus S1's restriction argument settles the
@@ -192,6 +199,11 @@ into "proof = argument a person reads," and the solution abandoned that
 frame — split the infeasible monolith into a million independently
 conquerable lemmas and let a checkable certificate, not a human reader,
 carry the trust.
+
+The sealed-box-and-receipt metaphor has a precise break. Receipts can certify
+that every case box was covered and found impossible; they cannot certify that
+the original coloring question was encoded faithfully, and they do not explain
+why the boundary is 7825.
 
 ---
 

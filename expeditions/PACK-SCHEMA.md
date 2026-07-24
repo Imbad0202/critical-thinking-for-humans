@@ -62,6 +62,26 @@ size, which the step_graph already carries, and there is no forecast to grade.
 - First-party verification before authoring: the author has read the actual
   solution source, not a press summary of it. Press accounts of "AI solved X"
   are regularly wrong about what was solved and by what means.
+- **Plain-language rule (Feynman register).** Write for a reader with no
+  background in the problem's field. Avoid technical terms where ordinary words
+  carry the same meaning; when a term is necessary, anchor it in everyday words
+  at first use and keep the precise technical name beside the anchor. Let one
+  central metaphor carry the explanation, and name the exact point where the
+  metaphor stops working. Declare anything the reader must take on trust as a
+  black box instead of fake-teaching it. State the true prerequisites in the
+  accessibility note, in everyday terms. High difficulty must come from the
+  terrain, never from the vocabulary.
+- **Register-fidelity protocol.** Plain-language rewriting can reverse a claim,
+  not merely blur it (shared/redlines.md, redline 14, is the in-repo warning).
+  Apply all four safeguards to a new pack and to every later register rewrite:
+  1. Before rewriting, inventory every load-bearing term, condition, and
+     qualifier.
+  2. Plain-language anchors are additions, never replacements for the precise
+     technical terms they explain.
+  3. A rewrite passes only if a domain-literate reviewer can reconstruct the
+     precise original claim from the plain version alone.
+  4. Every factual sentence touched by a rewrite must be re-verified against its
+     cited first-party source.
 - Original prose throughout; cite the source, never reproduce its text
   (redline 6's principle applied to research literature).
 - Every step must survive scene mode's material pre-flight (modes/scene.md,

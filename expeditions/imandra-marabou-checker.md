@@ -19,6 +19,23 @@ whether any trust was truly eliminated rather than moved.
 
 ## problem
 
+**Read the claim before the machinery.**
+
+| question | plain answer | precise boundary |
+|---|---|---|
+| What was proved? | A receipt scanner accepts only receipts whose represented root query has no solution. | Imandra proves the Marabou **UNSAT certificate checker** sound: if it accepts a well-formed proof tree, the represented root query — tableau equations \(A\), upper and lower bounds \(u,l\), and ReLU constraints \(C\) — has no solution. |
+| What was not proved? | The fast machine that prints receipts may still be wrong. | Marabou itself is not verified; a result without an accepted UNSAT certificate does not inherit the checker theorem. |
+| What remains trusted? | The scanner still sits inside a trusted booth. | Trust moves to the formal query, the soundness theorem, and Imandra's logic and implementation; it is relocated, not eliminated. |
+
+The one central metaphor is a fast but untrusted checkout machine paired with a
+proved receipt scanner. It breaks at the shop door: a valid receipt establishes
+the formal transaction written on it, not that the shopper asked for the right
+goods. Likewise, the checker establishes the formal query, not that the query
+faithfully captures the engineer's real network and intended property. The
+Farkas lemma, the tableau/bounds/ReLU encoding, proof-tree traversal, and
+Imandra internals are declared black boxes for this expedition; their auditable
+interfaces are the accepted certificate and the stated soundness theorem.
+
 **The summit.** A deep-neural-network verifier (here, Marabou) takes a network
 and a property — for example, "no small perturbation of this input flips the
 classification" — and answers SAT (the property can be violated; here is a
@@ -35,18 +52,19 @@ which the authors call close to infeasible — the team re-implemented Marabou's
 prover: software that mechanically checks a proof step by step, here using exact
 arithmetic instead of the rounding-prone floating-point numbers a fast verifier
 runs on) and proved it sound: a machine-checked theorem stating that if the
-checker accepts a certificate, the verification query genuinely has no solution —
-the property genuinely holds. The result is real and peer-reviewed, but three
+checker accepts a certificate, the represented root constraint query genuinely
+has no solution. The result is real and peer-reviewed, but three
 headline claims each need pinning:
 - *Verified* — the *checker* is verified, not Marabou. Marabou stays untrusted and
   can be arbitrarily buggy; only individual UNSAT results *that carry a passing
   certificate* become trustworthy.
 - *Trust eliminated* — trust is *migrated*, not eliminated. It moves off a large
   floating-point C++ verifier onto (a) the checker's soundness theorem and (b)
-  Imandra's own small logical kernel. The kernel is still trusted.
-- *Property proven* — proven of the *formal query* (a system of linear
-  constraints), not yet formally connected to the engineer's original network and
-  intended property. That last link is the paper's stated future work.
+  Imandra's own logic and implementation. That trusted computing base remains.
+- *Property proven* — proven of the *formal root query* (tableau equations,
+  upper and lower bounds, and ReLU constraints), not yet formally connected to
+  the engineer's original network and intended property. That last link is the
+  paper's stated future work.
 
 **Accessibility note.** No neural-network math, no Farkas lemma, no Lean or
 Imandra syntax needed. Hold two verification tracks apart: a **machine soundness
@@ -91,10 +109,10 @@ the naive readings fail are the teaching context.
   a valid certificate for the *wrong* question.
 - **Dead end — read "verified checker" as "no more trust needed."** The proof does
   not remove trust; it concentrates it. You now trust the soundness theorem and
-  Imandra's kernel instead of Marabou's C++. That is a far smaller, more
-  scrutinized target — a genuine win — but it is a *smaller* trusted base, not an
-  empty one. Dead end because "verified" invites hearing "zero trust," and the
-  honest claim is "trust moved to a place worth trusting more."
+  Imandra's logic and implementation instead of Marabou's C++. That is a
+  different, more concentrated trust boundary — but not an empty one. Dead end
+  because "verified" invites hearing "zero trust," and the honest claim is
+  "trust moved."
 
 ## solution_provenance
 
@@ -104,6 +122,8 @@ Network Verification in Imandra," 16th International Conference on Interactive
 Theorem Proving (ITP 2025), LIPIcs Vol. 352, Article 1, pp. 1:1–1:21,
 doi:10.4230/LIPIcs.ITP.2025.1; preprint arXiv:2405.10611. The proof artifact is
 the public Imandra development at github.com/rdesmartin/imandra-marabou-proof-checking.
+The Imandra system description used to audit the prover architecture is
+arXiv:2004.10263.
 
 **How verified — two things, stated precisely.**
 - *Peer review.* This is a genuine peer-reviewed publication at ITP, the flagship
@@ -111,28 +131,30 @@ the public Imandra development at github.com/rdesmartin/imandra-marabou-proof-ch
   not an arXiv-only preprint. That establishes the result is real and vetted.
 - *Machine-checked soundness.* The core soundness theorem — if the checker accepts
   a certificate, the verification query has no solution — plus its supporting
-  lemmas are proven inside Imandra. Imandra is built so that every proof it accepts
-  is re-checked by one small, heavily-scrutinized core (the design tradition that
-  keeps the trusted part tiny is called LCF-style), so trusting its results means
-  trusting that small core rather than the whole large program. The development is
-  public and re-checkable: the paper enumerates it (~2100 lines of Imandra code,
-  hundreds of auxiliary lemmas) module by module, and the repository gives concrete
-  reproduction steps. Imandra also uses exact (arbitrary-precision) arithmetic
-  rather than floating-point, which closes the rounding-error hole that afflicts
-  the original C++ checker.
+  lemmas are proven inside Imandra. Imandra is a Boyer–Moore-style automated
+  theorem prover, not an LCF-style small-kernel architecture; trusting this
+  machine-checked result still includes Imandra's logic and implementation. The
+  development is public and re-checkable: the paper enumerates it (~2100 lines
+  of Imandra code, hundreds of auxiliary lemmas) module by module, and the
+  repository gives concrete reproduction steps. Imandra also uses exact
+  (arbitrary-precision) arithmetic rather than floating-point, which closes the
+  rounding-error hole that afflicts the original C++ checker.
 
 **Where the guarantee does and does not come from.** The rigorous correctness
 guarantee comes from the Imandra soundness proof; peer review establishes the
 result is real and the framing sound. The trusted base is (a) the soundness
-theorem's faithfulness and (b) Imandra's kernel — stated honestly, not zero.
+theorem's faithfulness and (b) Imandra's logic and implementation — stated
+honestly, not zero.
 
 **First-party check.** Read directly: the full LIPIcs PDF (all 21 pages), the
 arXiv abstract and preprint, and the GitHub repository README with its
 reproduction steps and citation file. Confirmed first-party: the soundness
 theorem's statement and its proof chain, the peer-reviewed ITP 2025 venue and
-DOI, the exact-arithmetic advantage, the ~4.5×–4.8× checking slowdown versus the
-native C++ checker (the honest cost of exact arithmetic and proof-oriented data
-structures), and the explicit scope limits below. **Could not verify
+DOI, the exact-arithmetic advantage, and the explicit scope limits below. The
+paper reports Imandra checking averages of 24.64 and 26.72 seconds where the
+native checker averages 0.003 and 0.03 seconds; its separate 4.56×–4.76× figure
+compares the **overall verification process** with Marabou's verification time,
+not checker with checker. **Could not verify
 first-party:** whether the development carries literally zero admitted lemmas
 ("0-sorry") — the paper states the theorems as proven and enumerates the code but
 prints no explicit admit-count, so this pack says "machine-checked in Imandra; no
@@ -141,8 +163,12 @@ which is unstated (the paper is CC-BY, the code's license is not declared).
 
 ## step_graph
 
+Read each step first as an everyday audit question; the exact technical label
+beside it is retained so the claim can be reconstructed without guesswork.
+
 - **S0 — Read the paper and locate the actual theorem before trusting the
-  headline** `search_first` Retrieve the ITP 2025 paper and the public Imandra
+  headline** `search_first` Start with the receipt scanner's guarantee, not the
+  checkout machine's reputation. Retrieve the ITP 2025 paper and the public Imandra
   repository before accepting "the neural-network verifier is now verified."
   Separate the distinct claims: (a) the checker's soundness theorem holds, (b) it
   makes Marabou's UNSAT results trustworthy, (c) it verifies Marabou itself, (d)
@@ -150,7 +176,8 @@ which is unstated (the paper is CC-BY, the code's license is not declared).
   and the trust-migration framing; the Imandra development is public and its scope
   is enumerated.
 - **S1 — Split the two tracks and name what each covers** `lemma_decomposition`
-  Decompose "is an UNSAT answer trustworthy?" into two guarantees that do not
+  Ask two questions: "is this receipt valid?" and "is it a receipt for the
+  right purchase?" Decompose "is an UNSAT answer trustworthy?" into two guarantees that do not
   subsume each other: the soundness proof guarantees *an accepted certificate is
   valid* (internal correctness), while a separate judgment must establish *that
   the formal query is the real problem and that a certificate exists at all*
@@ -163,16 +190,16 @@ which is unstated (the paper is CC-BY, the code's license is not declared).
   emits, and only certified results are trusted." The fast, buggy-tolerant verifier
   and the small, proven checker are different artifacts doing different jobs.
   *Check:* the paper's trust model makes Marabou the untrusted producer and the
-  Imandra checker the trusted consumer; a wrong UNSAT from Marabou either yields no
-  passing certificate or is rejected by the checker.
+  Imandra checker the trusted consumer; a Marabou UNSAT result gains the theorem's
+  guarantee only when its well-formed certificate is accepted.
 - **S3 — Audit the trusted base as the real trust boundary** `small_case_probe`
-  Probe the smallest concrete trust artifact: what is left to trust after the
-  proof? Not Marabou — but yes the soundness theorem's faithfulness and Imandra's
-  kernel. *Check:* the trust does not vanish; it lands on a small LCF-style kernel
-  reused across many proofs and on the exact-arithmetic checker, a far smaller and
-  more scrutinized target than a large floating-point C++ verifier — the honest
-  end of the regress, named rather than hidden.
-- **S4 — Pin "verified" to its exact coverage** `kill_criteria` Set the
+  Follow the trust until it stops; do not call the endpoint "nothing." Probe the
+  concrete trust artifacts left after the proof: the soundness theorem's
+  faithfulness, the exact-arithmetic checker, and Imandra's logic and
+  implementation. *Check:* trust moves off Marabou but does not vanish; the
+  remaining trusted computing base is named rather than hidden.
+- **S4 — Pin "verified" to its exact coverage** `kill_criteria`
+  Write the overclaim kill list before reading the headline. Set the
   disqualifiers for over-reading "verified": the claim is defeated if taken to mean
   Marabou is proven correct, if taken to cover the SAT branch (it is checked in the
   network, out of scope here), or if taken to cover all of Marabou's output.
@@ -180,7 +207,8 @@ which is unstated (the paper is CC-BY, the code's license is not declared).
   disabled and only certificates under a size bound were evaluated; some dynamic
   bound-tightening steps are implemented but their soundness is not yet certified —
   so "all of Marabou is verified" is the reading to kill.
-- **S5 — Which other field audits this exact shape?** `shape_question` The shape is
+- **S5 — Which other field audits this exact shape?** `shape_question`
+  Borrow the receipt pattern instead of inventing a new trust story. The shape is
   "an untrusted fast engine, a checkable certificate, and a proven checker" —
   identical to how the SAT/SMT community already trusts solvers (a solver emits a
   proof certificate; a formally-verified checker re-checks it) and how theorem
@@ -191,13 +219,14 @@ which is unstated (the paper is CC-BY, the code's license is not declared).
   covered — the same place doubt lives for verified compilers and certified SAT
   solving.
 - **S6 — Recast the summit as the sentence that survives audit** `milestone_rewrite`
-  Final defensible claim: "A proven-correct checker, machine-checked in Imandra
+  End with one sentence that names the scanner, uncovered transactions, and
+  residual trust. Final defensible claim: "A proven-correct checker, machine-checked in Imandra
   with exact arithmetic and peer-reviewed at ITP 2025, re-checks Marabou's UNSAT
   certificates, so each UNSAT result carrying a passing certificate is
   trustworthy — while Marabou stays untrusted, the SAT branch and some verifier
   output are out of scope, the formal-query-to-real-network link is open future
-  work, and trust now rests on the checker's theorem and Imandra's kernel rather
-  than on Marabou's C++." *Check:* every clause traces to a first-party source;
+  work, and trust now rests on the checker's theorem and Imandra's logic and
+  implementation rather than on Marabou's C++." *Check:* every clause traces to a first-party source;
   drop any and you either lose information or introduce an overclaim.
 
 ## breakthrough
@@ -212,8 +241,8 @@ result, and prove correct only the small checker that re-checks those
 certificates. The moment the checker's soundness is mechanical, the contestable
 claims migrate *outward* — to whether the formal query is the real problem
 (spec-fidelity), whether coverage is complete (only the UNSAT branch, only some
-output), and where trust bottoms out (the checker's theorem and Imandra's
-kernel). What makes this a milestone is not that neural-network verification is
+output), and where trust bottoms out (the checker's theorem and Imandra's logic
+and implementation). What makes this a milestone is not that neural-network verification is
 hard but that trust in an opaque, fast verifier of an opaque, learned model can be
 migrated onto a small proven artifact; and what makes it *auditable* is that the
 proof is silent on exactly the three things — fidelity, coverage, residual trust —
@@ -223,19 +252,18 @@ sound checker launder into a "verified verifier."
 ## audit_targets
 
 - **T1 — "If Imandra verified the checker, who verifies Imandra?"** *Objection:*
-  you haven't eliminated trust, you've relocated it to Imandra's kernel, which is
-  itself software and could be buggy — an infinite regress. *Resolution:* correct,
+  you haven't eliminated trust, you've relocated it to Imandra's logic and
+  implementation, which could be buggy — an infinite regress. *Resolution:* correct,
   and this is the right answer, not a defeat. Trust migration is the goal: you
   replace trust in a large, floating-point, heuristic-laden C++ verifier with
-  trust in a ~2000-line checker whose soundness is a theorem plus Imandra's small
-  LCF-style kernel — a far smaller, more scrutinized, reused-across-many-proofs
-  base. The regress bottoms out at the kernel by design, the standard structure of
-  all proof-checked verification. A good auditor names the residual trusted base
-  precisely rather than claiming "zero trust."
+  trust in a ~2000-line checker whose soundness is a theorem plus Imandra's
+  trusted computing base. A good auditor names that residual base precisely
+  rather than inventing a small LCF kernel or claiming "zero trust."
 - **T2 — "The checker is sound, so the network's real property is proven."**
   *Objection:* a machine-checked soundness theorem settles it. *Resolution:*
-  soundness is relative to the *formal query* — a system of linear constraints —
-  not to the engineer's actual network and intended property. Whether the query
+  soundness is relative to the *formal root query* — tableau equations, upper
+  and lower bounds, and ReLU constraints — not to the engineer's actual network
+  and intended property. Whether the query
   faithfully encodes that intent is a separate, load-bearing question the theorem
   does not touch, and the authors name lifting the guarantee to the real-network
   and specification-language level as explicit future work. This is the
@@ -244,8 +272,8 @@ sound checker launder into a "verified verifier."
 - **T3 — "So Marabou is now formally verified."** *Objection:* a verified checker
   for Marabou's proofs means Marabou is verified. *Resolution:* no — the checker is
   verified, Marabou is not, and it stays untrusted by design. The value is precisely
-  that Marabou can be arbitrarily buggy: a wrong UNSAT either produces no passing
-  certificate or is rejected by the proven checker. The correct claim is "each
+  that Marabou can be buggy without entering the theorem's trusted base: an
+  UNSAT result receives the guarantee only if its certificate is accepted. The correct claim is "each
   UNSAT result *with a passing certificate* is trustworthy," never "Marabou is
   correct." Conflating the two is the central overclaim to refuse.
 - **T4 — "A wrong answer from Marabou would be caught, so coverage is total."**

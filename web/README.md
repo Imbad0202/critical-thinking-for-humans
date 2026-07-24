@@ -21,7 +21,7 @@ flow instead of presenting the fixed key as authority.
 From the repository root:
 
 ```bash
-python -m http.server 4173 --directory web
+python -m http.server 4173 --bind 127.0.0.1 --directory web
 ```
 
 Open `http://127.0.0.1:4173/`.
@@ -82,7 +82,9 @@ The public repository includes the Daily mechanism, public schemas, a
 fourteen-day zh-TW example rotation, Vercel Functions, Cron configuration, and
 an upload CLI. Public prompts contain no answers, hints, or reveal text.
 Unpublished private records and credentials belong in ignored `.private/` files
-and Private Vercel Blob.
+and Private Vercel Blob. The repository `.gitignore` prevents accidental
+commits; `web/.vercelignore` independently prevents the Vercel CLI from
+uploading those local files.
 
 The first seven checked-in prompts deliberately mirror the public fixed demos,
 so a reader can infer their keys from the locale modules. They test the API's

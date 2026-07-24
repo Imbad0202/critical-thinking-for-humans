@@ -1,10 +1,10 @@
 # critical-thinking-for-humans
 
-[![Version](https://img.shields.io/badge/version-v1.3.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.3.0)
+[![Version](https://img.shields.io/badge/version-v1.4.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.4.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
-**Last Updated:** 2026-07-14
+**Last Updated:** 2026-07-24
 
 A gym for your critical thinking. The AI is the coach; you do the work.
 
@@ -16,7 +16,7 @@ different runtimes and content breadth:
 
 | Entry | Best for | What runs today |
 |---|---|---|
-| **Claude Code plugin / CLI** | Dynamic practice with an AI coach | Four canonical modes, 22 verified Expedition packs, and the on-disk Passport |
+| **Claude Code plugin / CLI** | Dynamic practice with an AI coach | Four canonical modes, 23 verified Expedition packs, and the on-disk Passport |
 | **Claude.ai Skill ZIP** | No local install; upload and chat | Four modes and the pack library, with a copy-paste Passport instead of local files |
 | **Web Casebook** | Players who do not use a CLI | Four fixed bilingual excerpts plus an optional server-backed zh-TW Daily case; no model call |
 
@@ -46,7 +46,7 @@ only, and their answer records live solely in private storage — the production
 pattern.
 
 ```bash
-python -m http.server 4173 --directory web
+python -m http.server 4173 --bind 127.0.0.1 --directory web
 # open http://127.0.0.1:4173/
 ```
 
@@ -68,16 +68,19 @@ just describe what you want to practice. (No Claude Code? A single-file [portabl
 edition](#portable-single-file-edition-any-model) runs in any frontier model's
 chat window.)
 
-## What's new in v1.3.0
+## What's new in v1.4.0
 
-This release adds the bilingual Web Casebook as a third entry point: four
-finishable fixed excerpts, a local-first browser Passport, and an optional
-server-backed zh-TW Daily Dispatch whose unpublished answers stay private. It
-also hardens Daily publication races and cache behavior, adds a focused
-Playwright gate, separates Python and Node CI, and makes releases publish the
-same checksummed immutable bytes CI verified. Expedition provenance now closes
-the remaining AlphaProof and Busy Beaver first-party checks. Full details in
-[CHANGELOG.md](CHANGELOG.md).
+This release grows the verified Expedition library to 23 packs with an
+independently checked Jacobian-conjecture counterexample, and adds a
+Feynman-register protocol plus a primary-source and back-translation audit of
+the existing library. Drill quality now records generator faults and IDs-only
+answer confusions and gains a blind two-session key-agreement probe. New
+source-credibility operations, reason-with-commitment drills, and
+repair-and-decide closes strengthen evidence handling. The Passport separately
+records independent and prompted performance without treating missing
+opportunities as deficits. The Daily rotation now spans fourteen days,
+including seven public-prompt, private-answer zh-TW source-credibility cases.
+Full details in [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
@@ -397,7 +400,7 @@ The repo is the single source of truth; the claude.ai-uploadable zip is generate
 ./scripts/build_claude_ai_zip.sh   # → dist/critical-thinking-for-humans-claude-ai.zip
 ```
 
-The build copies the canonical runtime files, including the 22 expedition
+The build copies the canonical runtime files, including the 23 expedition
 packs, and applies whole-file overlays from `platforms/claude-ai/` (SKILL.md,
 shared/redlines.md, shared/scaffolding.md, passport/SCHEMA.md). The platform
 delta is storage only: no local filesystem, so the event log becomes a session

@@ -12,6 +12,10 @@ consumer machine," and the load-bearing discipline is separating what was alread
 known (the value) from what is new (the stored oracle), and holding a preprint's
 claims to exactly what its open artifacts support.
 
+**Everyday anchors.** The opening *value* says who wins from the empty board
+under perfect play; a *strong solution* records win, draw, or loss for every
+reachable position.
+
 ## problem
 
 **Statement.** Connect Four is the standard 7-column × 6-row drop game; four in a
@@ -22,6 +26,9 @@ The 2025 result: a complete strong solution of 7×6 Connect Four in the form of 
 materialized **look-up table**, produced by symbolic Binary Decision Diagram
 (BDD) search — an 89.6 GB uncompressed oracle built in 47 hours on a single
 consumer CPU core.
+
+**Everyday anchor.** A Binary Decision Diagram is a shared-branch Boolean map
+that represents many boards at once.
 
 **What is and isn't new — the whole point of the climb.** Connect Four's *value*
 (first player wins with perfect play, by playing the center) has been known since
@@ -41,6 +48,17 @@ construction vs an *implementation* whose credibility rests on cross-checks, not
 a formal proof. Comfort with the idea that a compressed data structure can stand
 in for a set of ~4.5 trillion positions is enough; the BDD internals are
 background, the separations are the exercise.
+
+**Reading metaphor and its break.** Think of a Binary Decision Diagram (BDD) as
+a folded filing cabinet: when many board descriptions reach the same remaining
+Boolean test, their paths reuse one drawer instead of storing one file per board.
+The metaphor stops at shared storage. A BDD is a precise Boolean
+representation, not a promise that every game or larger board will fold
+compactly, and exact Boolean operations do not formally verify the C
+implementation that runs them. BDD internals and Boolean set operations are
+declared black boxes; the reader still audits weak versus strong solution,
+symbolic versus explicit search, and exact algorithm versus cross-checked
+implementation.
 
 ## history
 

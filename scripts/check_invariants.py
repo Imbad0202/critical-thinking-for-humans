@@ -394,6 +394,20 @@ CHECKS = [
      "verified solutions, never open conjectures"),
     ("expeditions/PACK-SCHEMA.md", "first-party-verification",
      "the author has read the actual\n  solution source"),
+    ("expeditions/PACK-SCHEMA.md", "feynman-terrain-not-vocabulary",
+     "High difficulty must come from the\n  terrain, never from the vocabulary"),
+    ("expeditions/PACK-SCHEMA.md", "feynman-load-bearing-inventory",
+     "Before rewriting, inventory every load-bearing term, condition, and\n"
+     "     qualifier"),
+    ("expeditions/PACK-SCHEMA.md", "feynman-add-never-replace",
+     "Plain-language anchors are additions, never replacements for the precise\n"
+     "     technical terms they explain"),
+    ("expeditions/PACK-SCHEMA.md", "feynman-back-translation",
+     "A rewrite passes only if a domain-literate reviewer can reconstruct the\n"
+     "     precise original claim from the plain version alone"),
+    ("expeditions/PACK-SCHEMA.md", "feynman-facts-return-to-source",
+     "Every factual sentence touched by a rewrite must be re-verified against its\n"
+     "     cited first-party source"),
     ("SKILL.md", "expedition-routing",
      "`expedition` / `impossible` → load `modes/expedition.md`"),
     ("passport/SCHEMA.md", "expedition-event", "expedition_process"),

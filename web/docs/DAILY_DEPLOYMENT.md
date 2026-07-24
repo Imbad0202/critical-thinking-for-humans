@@ -13,8 +13,9 @@
 | `/api/daily` | 已清理的公開題面與是否可作答 | 答案 record |
 | `/api/answer` | 單次作答結果與該次回饋 | 整份答案表 |
 
-`.private/`、`.env*` 與 `.vercel/` 已由專案 `.gitignore` 排除。上傳前仍應執行
-`git status --short`，確認沒有 private record 被追蹤。
+`.private/`、`.env*` 與 `.vercel/` 已由專案 `.gitignore` 排除；`web/.vercelignore`
+另行阻止 Vercel CLI 把本機檔案帶進 deployment。兩者是不同邊界，不能互相
+替代。上傳前仍應執行 `git status --short`，確認沒有 private record 被追蹤。
 
 ## 1. 建立 Vercel 專案
 

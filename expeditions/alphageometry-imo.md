@@ -8,6 +8,9 @@ symbolic engine proves. The audit contrast: 'human-readable + symbolically
 checked' is a different verification standard from AlphaProof's machine-formal
 Lean proofs.
 
+**Everyday anchor.** *Neuro-symbolic* here means a learned proposer paired with
+a rule-based checker.
+
 ## problem
 
 **Statement.** Can a machine produce *human-readable, checkable* proofs for olympiad-level Euclidean plane geometry — the kind of problem (incidence, concurrence, angle/length equalities, cyclic quadrilaterals) posed at the International Mathematical Olympiad — without being trained on human proof demonstrations, which barely exist in machine-usable form for geometry?
@@ -15,6 +18,15 @@ Lean proofs.
 **Answer.** Yes, for most such problems. AlphaGeometry (DeepMind) solved **25 of 30** problems on the IMO-AG-30 benchmark (latest olympiad-level geometry problems), versus **10** for the previous best automated method (Wu's method), approaching the average score of an IMO gold medallist. Crucially the proofs are emitted in classical synthetic-geometry steps (angle chasing, similar triangles, ratios) that a human coach can read and check, and every solution was verified by the symbolic engine; a selection was also reviewed by a human olympiad gold-medallist coach.
 
 **Accessibility note.** The *problems* are accessible to any strong high-schooler — they need a clever auxiliary construction (drop a perpendicular, add a midpoint, draw a circle) and then a chain of deductions. What is *not* human-reproducible is the search: the auxiliary-construction space is unbounded, and AlphaGeometry's value is that it learned to propose the right constructs from synthetic data alone. An auditor can read each individual proof step but could not have generated the construction-finding search that produced them. That gap — readable output, superhuman generator — is exactly what makes this a good auditing exercise.
+
+**Reading metaphor and its break.** Think of the language model as a scout that
+suggests an extra line, point, or circle, and the symbolic deduction engine as a
+referee that accepts only steps licensed by its geometry rules. The metaphor
+stops at that division of labour: this referee is not Lean's general
+machine-formal proof checker, and a readable checked proof does not make the
+scout's search human-reproducible. Treat the synthetic-data machinery and the
+construction search as declared black boxes; the auditable interface is the
+proposed construction followed by the symbolic engine's checkable deductions.
 
 ## history
 
@@ -56,4 +68,3 @@ Lean proofs.
 - **T3 — The named engine "DDAR/DD+AR" is not confirmed from the paper body.** *Objection:* secondary sources call the symbolic engine "DDAR" (deductive database + algebraic/arithmetic reasoning); a careless auditor will attribute that acronym to the abstract. *Resolution:* the abstract I read says only "symbolic deduction engine." The DDAR / DD+AR naming is from blog and follow-up papers. The *mechanism* (symbolic deduction engine guided by the LM) is first-party; the *acronym* is secondary.
 - **T4 — "Solves 25" ≠ "geometry is solved."** *Objection:* approaching gold-medallist average reads as superhuman/general. *Resolution:* scope is *Euclidean plane geometry* on a 30-problem benchmark of one problem type; 5 of 30 were unsolved, and the result does not extend to combinatorics, number theory, or algebra olympiad problems. The milestone (S4) is narrow by design.
 - **T5 — "Without human demonstrations" ≠ "without human knowledge."** *Objection:* the title suggests the system bootstrapped from nothing. *Resolution:* it sidesteps human *proof* demonstrations via synthetic data, but the symbolic engine encodes human-curated geometry deduction rules and the construction vocabulary; "no demonstrations" is a claim about the training corpus, not about zero human priors.
-

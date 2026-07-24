@@ -7,6 +7,8 @@ machine-checked in Lean. The auditor's load-bearing question: does the
 "silver-medal" framing survive the fact that some solutions took three days
 against a 4.5-hour human session, and the problems were hand-formalized first?
 
+**Everyday anchor.** Lean is a formal proof language with a core checker.
+
 ## problem
 
 **The summit.** At the 2024 International Mathematical Olympiad (Bath, UK, July 2024), DeepMind's combined AlphaProof + AlphaGeometry 2 system solved **4 of the 6 problems**, scoring **28 out of 42 points** — the score of a silver medallist, one point below the gold-medal cutoff of 29.
@@ -16,6 +18,16 @@ against a 4.5-hour human session, and the problems were hand-formalized first?
 **The load-bearing honesty point.** The system did not work under competition conditions. Humans had two sessions of 4.5 hours. AlphaProof solved one problem within minutes but took **up to three days** of compute on the others (AlphaGeometry 2's P4 took 19 seconds). Separately, the five non-geometry problem *statements* used in the official evaluation were **manually translated into Lean by human experts** before AlphaProof searched for proofs. The paper also reports a parallel side experiment in auto-formalization; that does not make the official evaluation an end-to-end natural-language run.
 
 **Accessibility note.** A trained human auditor does *not* need to verify the Lean proof itself (that is what Lean's kernel does, and trusting a small verified kernel is the whole point). What the auditor *can* and *must* check is the **framing**: do "machine-verified proof" and "silver-medal-equivalent performance" mean the same thing once you account for the days of compute, the human formalization of the problem statement, and the fact that two whole problem-types went unsolved? The auditable gap is between a correctness claim (airtight) and a performance/equivalence claim (contestable).
+
+**Reading metaphor and its break.** Treat Lean's kernel — its core proof
+checker — as a locked turnstile: a formal proof term, meaning the complete proof
+object submitted to Lean, either passes the checker or it does not. The metaphor
+stops at the formal statement's boundary. The turnstile does not check whether
+humans translated the original problem faithfully, whether the compute budget
+matched a human contest, or whether one method covered every problem class.
+Lean syntax, proof-search internals, and the kernel's operation are declared
+black boxes here; the expedition audits the statement, timing, score, and
+problem-by-problem framing around the checked proof.
 
 ## history
 

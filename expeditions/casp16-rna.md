@@ -25,6 +25,9 @@ all human expert predictors — not the fully-automated deep-learning servers. T
 years after AlphaFold-class methods transformed *protein* prediction, RNA had not
 had its equivalent moment.
 
+**Everyday anchor.** TM-score is a 0-to-1 3D-shape similarity score; higher means
+closer.
+
 **The two ways to get this wrong.** The celebratory framing ("AI is solving
 biology") is refuted here — that is the pack's first point. But the mirror-image
 framing ("deep learning failed at RNA / AI is overhyped and useless") is *also*
@@ -42,6 +45,17 @@ folds and functionally critical fine detail* (not across the board). Comfort wit
 the idea of a similarity score between two 3D shapes (TM-score, 0 to 1, higher =
 closer) is enough; the structural biology is background, the scope-discipline is
 the exercise.
+
+**Reading metaphor and its break.** Treat CASP as a sealed-answer-key exam:
+predictors submit before the experimental structures are public, then an
+independent assessor compares predictions with that withheld ground truth. A
+previously known look-alike structure is a *template*; *template-free* keeps
+that kind of help outside the claim being tested. The exam metaphor stops at the
+ranking: a result for these targets and this accuracy measure does not by itself
+say that every RNA failed or that AI is useless. Molecular modelling, the
+TM-score computation, and the structural-biology details are declared black
+boxes; the reader must still preserve the automated-versus-human-plus-AI,
+unseen-versus-templated, and coarse-shape-versus-fine-detail boundaries.
 
 ## history
 

@@ -120,12 +120,13 @@ geometry).
 
 ## Phase 4 — survey (2024-2026, weighted to pool gaps)
 
-The pool now has a known shape problem: 6 of the 22 authored packs teach the
-same SAT-certificate lesson, and 15 of 22 sit in the auditor role. A survey that
-just adds "the next impressive result" would deepen both skews. So this round is
-weighted deliberately AWAY from SAT-certificate verification, away from
-combinatorics/games, and toward the two under-served roles (forecaster,
-climber). Ranking below follows the ROADMAP's stated transfer-value criteria:
+At the Phase 4 survey baseline, the pool had a known shape problem: 6 of the
+then-22 authored packs taught the same SAT-certificate lesson, and 15 of 22 sat
+in the auditor role. A survey that just added "the next impressive result"
+would deepen both skews. So this round was weighted deliberately AWAY from
+SAT-certificate verification, away from combinatorics/games, and toward the two
+under-served roles (forecaster, climber). Ranking below follows the ROADMAP's
+stated transfer-value criteria:
 verification-style diversity first, then domain spread, then role spread, then
 provenance cleanliness (formally verified > peer reviewed; open primary source
 reachable). Every PASS was reached at its primary source, not a press summary.
@@ -292,3 +293,22 @@ verification track.
   heavy compute, so the "check against the released database" climb was not
   first-party checkable. NOTE the PASS above (arXiv:2510.04580) is the
   distinct, database-releasing version; do not conflate.
+
+## Phase 5 — Jacobian counterexample (DONE)
+
+- **jacobian-conjecture-counterexample** — **AUTHORED** (auditor, with a short
+  climber ridge). The exact degree-seven map over \(\mathbb C^3\), its
+  identically \(-2\) Jacobian determinant, and its three-input collision were
+  independently rerun with exact rational arithmetic. Historical and partial
+  result claims were checked against Keller, the Kraus source study, Smale,
+  Wang, Bass–Connell–Wright, Drużkowski, Moh, and the cited 2022 plane-bound
+  preprint. Tao's 2026-07-21 mathematical digestion supports the still-open
+  \(n=2\) scope.
+- The public announcement credits Fable without identifying a model version;
+  prompts, transcripts, steering, autonomy evidence, and division of labour are
+  not public. The pack therefore reports the attribution but makes no stronger
+  discovery-process claim.
+- Current pool: **23 authored packs**, **6 SAT-certificate packs**, and
+  **16 auditor-role packs**. The existing 22 were re-audited under the
+  Feynman-register and register-fidelity protocol; the evidence ledger is
+  [`REGISTER-AUDIT.md`](REGISTER-AUDIT.md).

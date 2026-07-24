@@ -16,6 +16,9 @@ reveal. You forecast which claims survive that reveal — and, harder, you hold 
 headlines ("sub-ångström," "rivals nature," "designed") to their exact scope
 before the numbers come in.
 
+**Everyday anchors.** *Sub-ångström backbone accuracy* means the designed and
+measured backbones nearly overlap; *kinetics* are rate measurements.
+
 ## problem
 
 **The summit.** Design an enzyme from scratch: invent an amino-acid sequence that
@@ -61,6 +64,16 @@ headline claims — "the fold will match," "it will really turn over," "it rival
 natural enzymes," "it was designed in one shot" — survive contact with the
 crystal structures and the kinetics, and exactly where each quietly stops being
 true.
+
+**Plain-language reading map.** Use one central metaphor: the computational
+design is a sealed blueprint, and the crystal structure plus kinetics are the
+building inspection after the commitment is fixed. The metaphor breaks because
+a close structural match does not by itself establish reaction speed, repeated
+turnover, or performance on other chemistry; those require their own
+measurements and keep their stated scope. Treat the internal reasoning of the
+diffusion model, sequence designer, and folding predictors — including why a
+particular sequence folds — as declared black boxes. Audit the advance
+commitment against the deposited structures and the reported kinetics.
 
 ## history
 

@@ -2,7 +2,7 @@
 
 Run against the same dependency-free static server used by e2e_modes.py:
 
-    python -m http.server 4173 --directory web
+    python -m http.server 4173 --bind 127.0.0.1 --directory web
     CASEBOOK_BASE_URL=http://127.0.0.1:4173/ python web/tests/e2e_daily.py
 
 The API calls are intercepted in the browser.  This keeps the tests useful for

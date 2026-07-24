@@ -15,6 +15,18 @@ You predict, before each reveal, what the result does and does NOT settle.
 
 **Accessibility note.** The *statement* is fully elementary — anyone who can colour a map understands it. The *claim to audit* ("this specific finite graph cannot be 4-coloured") is a finite, mechanically checkable assertion: a graph with a few thousand vertices either admits a proper 4-colouring or it does not, and a SAT solver settles it definitively. That is exactly why this is a forecaster pack and not a "trust the proof" pack — the hard object (the graph) is checkable, but the human's job is to forecast *what the checkable fact does and does not settle* about the open parent problem. The trap is concluding "χ = 5" from "χ ≥ 5."
 
+**Reading metaphor and its break.** Picture the finite graph as one lock and
+four colours as the available keys: a Boolean satisfiability (SAT) solver is the
+mechanical checker that asks whether any logically possible key assignment
+satisfies every colouring rule, and
+**UNSAT** means no proper 4-colouring opens that lock. The metaphor stops there:
+one locked finite graph rules out four colours for the plane, but it does not
+show that five colours can colour the entire infinite plane. The construction
+search, the solver's internals, and the graph's thousands of coordinates may be
+treated as declared black boxes in this reading; the auditable interfaces remain
+the published unit-distance graph, its non-4-colourability check, and the
+lower-bound conclusion.
+
 ## history
 
 **How long open / who.** Posed around 1950 (attributed to Edward Nelson; Hugo Hadwiger and John Isbell are also associated with the early bounds). The range "4, 5, 6, or 7" — lower bound 4 from the Moser spindle, upper bound 7 from Isbell's hexagonal 7-colouring — sat *unmoved for roughly 60+ years*. The bound 4 ≤ χ ≤ 7 is the textbook status quo that de Grey broke in April 2018. After de Grey's preprint, Terence Tao helped launch **Polymath16** (a crowd-sourced collaboration) to shrink the graphs and reduce computer reliance; per the Polymath threads the smallest 5-chromatic graphs fell well below de Grey's 1581 (e.g. a 510-vertex graph reported by Jean Parts in the project). Crucially, Polymath16 did **not** settle the exact value: χ ∈ {5,6,7} remains open in 2026.

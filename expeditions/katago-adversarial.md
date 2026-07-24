@@ -22,6 +22,13 @@ answers empirically: is a superhuman Go AI *robust*? That is, does its enormous
 average-case strength imply it has no catastrophic worst-case failure an
 adversary could reliably trigger?
 
+**Everyday anchors.** Here *robust* means reliable even against a deliberately
+chosen opponent. *Average-case* strength is how the system fares across the
+opponents used to measure ordinary strength; a *worst-case* failure is one a
+deliberately chosen opponent exposes. An *adversarial policy* is a move-choosing
+opponent trained specifically to trigger a failure, and *zero-shot transfer*
+means using it on another system without retraining it for that system.
+
 **Answer (2022–2024).** No. An adversarial policy beats KataGo at superhuman
 settings with a >97% win rate. The adversary does not win by playing Go well —
 it tricks KataGo into a catastrophic misjudgment. The attack transfers
@@ -35,6 +42,14 @@ sides pass), and the idea of a neural network trained by self-play to estimate
 "who is winning" and "what move to play." No Go skill is needed — the whole
 point is that Go skill is not what wins here. The terms "average-case" vs
 "worst-case" and "adversarial example" are explained in the step graph.
+
+**Plain-language reading map.** Keep the pack's one central metaphor: probe the
+seam instead of pushing on the system's strongest surface. The metaphor breaks
+at the evidence boundary: it tells the auditor where to look, but it does not
+show that every Go AI has the same seam or that a measured game result applies
+outside the tested settings. Treat the learned network's internal
+representation and the training run as declared black boxes. Audit the
+published games, win rates, transfer tests, and fresh-adversary defenses instead.
 
 ---
 
