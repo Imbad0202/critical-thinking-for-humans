@@ -1,6 +1,6 @@
 # Expedition Register Audit — Feynman Register
 
-Audit date: **2026-07-24**  
+Audit date: **2026-07-24**
 Baseline: commit `1f89ce9`, **22** live files discovered by the runtime
 `pack_id` rule.
 
