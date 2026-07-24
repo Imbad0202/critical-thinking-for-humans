@@ -11,7 +11,7 @@
       "source": "./",
       "description": "Four modes: drill (13 argument structures, judge stance), scene (Socratic frames + fallacy-recognition track), expedition (audit verified impossible-tier packs), detective (runtime-generated multi-layer case). Manipulation-recognition domain, fourteen redlines, local passport.",
       "skills": "./",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "license": "CC-BY-NC-4.0"
     }
   ]
