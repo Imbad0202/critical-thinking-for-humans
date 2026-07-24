@@ -17,6 +17,7 @@ import check_invariants as ci
 import check_pack_schema as cps
 import check_verbatim_blocks as cvb
 import check_version_consistency as cvc
+import check_web_content as cwc
 
 REPO = Path(__file__).resolve().parent.parent
 NEEDED_DIRS = ["shared", "modes", "passport", "platforms", "docs",
@@ -41,6 +42,70 @@ def test_baseline_green(tree, capsys):
     assert cvb.main(tree) == 0
     assert cvc.main(tree) == 0
     capsys.readouterr()
+
+
+@pytest.fixture()
+def web_boundary_tree(tmp_path):
+    web = tmp_path / "web"
+    (web / "docs").mkdir(parents=True)
+    (web / "tests").mkdir()
+    (tmp_path / "README.md").write_text(
+        (REPO / "README.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (tmp_path / ".gitignore").write_text(
+        (REPO / ".gitignore").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    for rel in [".vercelignore", "README.md", "tests/e2e_daily.py"]:
+        source = REPO / "web" / rel
+        target = web / rel
+        target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+    return web
+
+
+def test_web_deployment_boundary_green(web_boundary_tree):
+    cwc.check_deployment_boundary(web_boundary_tree)
+
+
+@pytest.mark.parametrize(("rel", "needle", "replacement"), [
+    (".vercelignore", ".private/", "private/"),
+    (".vercelignore", ".env*", ".env.local"),
+    ("../.gitignore", "web/.private/", "web/private/"),
+    ("../.gitignore", ".env*", ".env.local"),
+    ("../.gitignore", "!.env.example", "!.env.sample"),
+    (
+        "README.md",
+        " --bind 127.0.0.1",
+        "",
+    ),
+    (
+        "../README.md",
+        " --bind 127.0.0.1",
+        "",
+    ),
+])
+def test_web_deployment_boundary_mutation_fails(
+    web_boundary_tree, rel, needle, replacement
+):
+    path = web_boundary_tree / rel
+    original = path.read_text(encoding="utf-8")
+    mutated = original.replace(needle, replacement, 1)
+    assert mutated != original, f"{rel}: security needle absent, cannot mutate"
+    path.write_text(mutated, encoding="utf-8")
+    with pytest.raises(SystemExit):
+        cwc.check_deployment_boundary(web_boundary_tree)
+
+
+@pytest.mark.parametrize("rule", ["!.private/daily/", "!**"])
+def test_web_deployment_boundary_reinclude_fails(web_boundary_tree, rule):
+    path = web_boundary_tree / ".vercelignore"
+    path.write_text(
+        path.read_text(encoding="utf-8") + f"\n{rule}\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(SystemExit):
+        cwc.check_deployment_boundary(web_boundary_tree)
 
 
 def test_every_invariant_mutation_fails(tree, capsys):

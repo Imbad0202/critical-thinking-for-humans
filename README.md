@@ -46,7 +46,7 @@ only, and their answer records live solely in private storage — the production
 pattern.
 
 ```bash
-python -m http.server 4173 --directory web
+python -m http.server 4173 --bind 127.0.0.1 --directory web
 # open http://127.0.0.1:4173/
 ```
 

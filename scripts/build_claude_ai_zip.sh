@@ -18,10 +18,11 @@ rm "$DEST/passport/TEMPLATE.md"
 # Expedition packs are runtime material (modes/expedition.md discovers packs in
 # expeditions/ and refuses honestly without them). PACK-SCHEMA.md ships too:
 # expedition.md cites it as the authoring spec and it declares no pack_id.
-# ROADMAP.md is repo planning, not runtime, and stays out.
+# ROADMAP.md is repo planning and REGISTER-AUDIT.md is release evidence; neither
+# is runtime material, so both stay out.
 mkdir -p "$DEST/expeditions"
 cp "$ROOT"/expeditions/*.md "$DEST/expeditions/"
-rm "$DEST/expeditions/ROADMAP.md"
+rm "$DEST/expeditions/ROADMAP.md" "$DEST/expeditions/REGISTER-AUDIT.md"
 
 # 2. Platform overlay — whole-file replacements win over canonical.
 cp -R "$ROOT/platforms/claude-ai/." "$DEST/"
@@ -39,4 +40,8 @@ mkdir -p "$ROOT/dist"
 OUT="$ROOT/dist/critical-thinking-for-humans-claude-ai.zip"
 rm -f "$OUT"
 (cd "$STAGE" && zip -rqX "$OUT" critical-thinking-for-humans -x '*.DS_Store')
+if unzip -Z1 "$OUT" | grep -Eq '/expeditions/(ROADMAP|REGISTER-AUDIT)\.md$'; then
+  echo "repository-only expedition metadata leaked into the claude.ai build" >&2
+  exit 1
+fi
 unzip -l "$OUT"

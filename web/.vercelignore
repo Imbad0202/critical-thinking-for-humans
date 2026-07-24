@@ -1,0 +1,11 @@
+# Never upload unpublished Daily records or local credentials.
+.private/
+.env*
+
+# Local deployment state, caches, and test-only files are not runtime assets.
+.vercel/
+node_modules/
+dist/
+.DS_Store
+.impeccable/
+tests/

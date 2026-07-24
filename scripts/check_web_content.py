@@ -11,6 +11,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / "web"
+REQUIRED_VERCEL_IGNORE_RULES = {".private/", ".env*"}
+REQUIRED_GIT_IGNORE_RULES = {"web/.private/", ".env*", "!.env.example"}
 
 
 def fail(message: str) -> None:
@@ -18,8 +20,58 @@ def fail(message: str) -> None:
     raise SystemExit(1)
 
 
+def check_deployment_boundary(web: Path) -> None:
+    """Keep local-only records out of Vercel uploads and local HTTP serving."""
+    gitignore_path = web.parent / ".gitignore"
+    gitignore_rules = {
+        line.strip()
+        for line in gitignore_path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    }
+    missing_git_rules = sorted(REQUIRED_GIT_IGNORE_RULES - gitignore_rules)
+    if missing_git_rules:
+        fail(f".gitignore missing protected rules: {', '.join(missing_git_rules)}")
+
+    ignore_path = web / ".vercelignore"
+    if not ignore_path.is_file():
+        fail("missing web/.vercelignore deployment boundary")
+
+    rules = {
+        line.strip()
+        for line in ignore_path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    }
+    missing_rules = sorted(REQUIRED_VERCEL_IGNORE_RULES - rules)
+    if missing_rules:
+        fail(f"web/.vercelignore missing protected rules: {', '.join(missing_rules)}")
+    unsafe_negations = sorted(rule for rule in rules if rule.startswith("!"))
+    if unsafe_negations:
+        fail(
+            "web/.vercelignore uses re-inclusion rules that could reopen protected paths: "
+            + ", ".join(unsafe_negations)
+        )
+
+    server_docs = [
+        web.parent / "README.md",
+        web / "README.md",
+        *sorted((web / "docs").glob("*.md")),
+        *sorted((web / "tests").glob("*.py")),
+    ]
+    for path in server_docs:
+        for line_number, line in enumerate(
+            path.read_text(encoding="utf-8").splitlines(), start=1
+        ):
+            if (
+                "python -m http.server" in line
+                and "--bind 127.0.0.1" not in line
+            ):
+                rel = path.relative_to(web.parent).as_posix()
+                fail(f"{rel}:{line_number} documents an externally bound local server")
+
+
 def main() -> None:
     required = [
+        WEB / ".vercelignore",
         WEB / "index.html",
         WEB / "src/casebook.css",
         WEB / "standalone/game-app.js",
@@ -41,6 +93,8 @@ def main() -> None:
     missing = [path.relative_to(ROOT).as_posix() for path in required if not path.is_file()]
     if missing:
         fail(f"missing runtime files: {', '.join(missing)}")
+
+    check_deployment_boundary(WEB)
 
     index = (WEB / "index.html").read_text(encoding="utf-8")
     if "/dist/" in index or '"./dist/' in index:
