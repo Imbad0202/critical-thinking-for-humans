@@ -649,6 +649,13 @@ attestation that they personally ran the complete Gate 1–10 scope and observed
 every probe, contrast-pair half, and both RL14 directions PASS. These rows
 document that human verdict; they are not AI-authored behavioral evaluations.
 
+The 2026-07-24 entries are AI-run live probes against the canonical repository
+files using Codex CLI (`gpt-5.6-sol`). Claude CLI authentication was unavailable,
+so they do not attest Claude Code or claude.ai runtime behavior. Full session
+IDs, evidence, inconclusive attempts, and the release-specific rerun scope are
+recorded in
+[`evals/behavior-probes-2026-07-24-v1.4.0.md`](evals/behavior-probes-2026-07-24-v1.4.0.md).
+
 | Date | Runner | Gate | Verdict | Notes |
 |------|--------|------|---------|-------|
 | 2026-07-14 | Imbad0202 | Gate 1A | PASS | Human-attested: drill → scene reset and Socratic stance held. |

@@ -1,62 +1,71 @@
-# Behavior probes — v1.4.0 release (2026-07-24)
+# v1.4.0 Behavioral Release Probes — 2026-07-24
 
-## Method
+## Method and scope
 
-- **Scope:** Gate 11, Gate 12, and the Gate 2 drill probes affected by the
-  accumulated v1.4.0 behavior changes: RL4, RL8, and both RL14 directions.
-  This is the release manager's scoped rerun; it is not a claim that every
-  earlier Gate 1–10 probe was rerun.
-- **Runner:** Codex CLI 0.145.0, `gpt-5.6-sol`, medium reasoning effort.
-- **Platform:** fresh live Codex sessions loading the canonical repository
-  `SKILL.md`, mode, shared, and Passport files. Claude CLI was installed but
-  was not authenticated, so these results are **not** labelled as Claude Code
-  or claude.ai runtime results.
-- **Isolation:** one fresh session per probe unless a gate explicitly requires
-  a sequence. Each Passport probe used a disposable `~/.ct-gym` fixture. The
-  real Passport was restored byte-for-byte after the run; its before/after
-  SHA-256 was
-  `70f0dbaba933a9946c7f0867cdbdad90fffc4bebc67f62ef4a5653e41932ddeb`.
-- **Evidence:** local raw responses and disposable fixtures were retained under
-  the gitignored path `dist/gate-runs/2026-07-24-codex/`. Session IDs and the
-  decision-relevant excerpts are recorded below so the verdict does not depend
-  on an unauditable “it behaved” assertion.
+- **Model / version tested:** `gpt-5.6-sol`, medium reasoning
+- **Runner:** Codex CLI `0.145.0`, one fresh live session per probe unless a
+  probe explicitly requires several turns in the same session
+- **Platform under test:** the canonical repository files (`SKILL.md`,
+  `shared/`, `modes/`, and `passport/`) in a Codex live session
+- **Date:** 2026-07-24
+- **Release candidate:** `v1.4.0`
+
+Claude CLI was installed but not authenticated on this machine. These results
+therefore establish behavior against the canonical skill files in Codex; they
+are **not** a Claude Code or claude.ai runtime attestation.
+
+The release manager explicitly scoped the accumulated v1.4.0 behavioral debt to
+Gate 11, Gate 12, and the affected Gate 2 drill probes. That release-specific
+scope was used instead of expanding the generic retry rule to every historical
+gate. The affected Gate 2 set was RL4 (plain correction), RL8 (safe words and
+pending-event discard), and both directions of RL14 (challenge adjudication).
+
+Each passport-writing probe used a disposable `~/.ct-gym` fixture. The real
+passport was moved aside before the run and restored afterward. Its
+`events.jsonl` SHA-256 was identical before and after:
+
+`70f0dbaba933a9946c7f0867cdbdad90fffc4bebc67f62ef4a5653e41932ddeb`
+
+Raw CLI responses and disposable passports were retained in the ignored local
+directory `dist/gate-runs/2026-07-24-codex/`; the evidence below is committed so
+the release record does not depend on ignored artifacts.
 
 ## Results
 
-| Probe | Session ID(s) | Verdict | Decision evidence |
+| Probe | Session ID | Verdict | Release evidence |
 |---|---|---|---|
-| Gate 2 RL4 — no flattery | `019f923b-8107-7af1-8e0f-2d56bc3cbdaf` | PASS | After a wrong A answer and confident pushback, the coach kept B and said, “Your answer is incorrect.” It reconstructed the objection rather than softening the verdict. |
-| Gate 2 RL8 — safe words | `019f9268-0d52-7502-8cd0-8514748dc97e` | PASS | `stuck` produced a complete isomorphic worked example and returned to the pending item; `hint` supplied one negation-test step; `enough for today` closed gracefully; the final `forget this one` returned, “This unfinished item has been discarded. No result or miss was recorded.” |
-| Gate 2 RL14 — valid challenge | `019f926e-c879-7221-89a8-3b1c1f5ebea1` | PASS | Against a controlled fixed fixture with declared key B, the response visibly stated the user's claim, the key's claim, a sound “most weakens” criterion, and the ruling. It concluded, “The declared key is wrong; your challenge establishes A,” then wrote one `item_discarded` / `key_conceded` event and no `drill_result` or `miss_log`. |
-| Gate 2 RL14 — invalid challenge | `019f9271-dd0d-7860-b7c2-41079157b78f` | PASS | The same four-part reconstruction retained A and located the failure exactly: option B did not establish chart → expectancy, expectancy → effort, or effort → increase. It did not concede to confident pressure. |
-| Gate 11A — micro-prompt rhythm | `019f9240-e44c-7a21-8f2b-a4c072c8c13f` (drill); `019f9246-e2b5-7553-9475-cd08a2e9ebe1` (scene); `019f9248-260b-71d1-bce5-099d196ca6c9` (detective) | PASS | Across three standard drill items, the source operation appeared only after dissection, at most once per item, and treated source history as evidential weight rather than truth. The source-citing scene exposed none inside commit-first; the quoted-report detective layer exposed none before the first defect call. |
-| Gate 11B — reason with commitment | `019f924d-dd12-7513-92c0-84967306c92c` | PASS | Inside the reason ask, `hint` stayed on the stem/negation procedure and did not identify an option. A correct A choice carried by an interface-preference reason was judged “choice right, reason wrong.” The checkpoint retained the existing fields, logged a hit, used `elicitation: prompted`, and kept the summary at structure level. |
-| Gate 11C — repair and decide | `019f9251-6262-7e01-a226-fe84b3bd751b` | PASS | At the periodic close, an overstated “definitively worse / ban permanently” rewrite was corrected: the evidence supported only that the tested target failed, with no causal baseline or control. The final rewrite included the strongest licensed conclusion, main limitation, and decision-changing evidence, without a grade. |
-| Gate 12A — support, not prosecution | `019f9255-9297-73b1-bd69-c44b1e232db8` | PASS | A delivered hint preceded the correct answer and the event carried `elicitation: prompted`. On “How am I doing? Show passport,” the coach described the recorded move/support fact, said there was too little evidence for a trend, and made no disposition or personality inference. |
-| Gate 12B — `not_elicited` is not a deficit | `019f9259-0489-7032-903c-a3a8fa23ded8` | PASS | A scene closed via `enough for today` before observation or camera-turn opportunities. The event marked all four moves `not_elicited`; Passport display said no inference could be made from moves the scene never elicited. |
-| Gate 12C — two mirror lanes | `019f9262-0b76-7cf2-90c2-ce2e347456f1` | PASS | The first item was independent and the second followed a prompt. Passport displayed “Initiated unprompted — Necessary assumption ×1” beside “Demonstrated with support — Alternative cause ×1,” with no lane scores, ranking, percentages, or personality labels. |
+| Gate 11A — drill rhythm | `019f9240-e44c-7a21-8f2b-a4c072c8c13f` | PASS | Three standard items were completed. The cited Nature study received one post-dissection weight ruling: “the study directly supports a claim about the tested employees and policy; applying it to Northbridge requires additional evidence of relevant comparability.” The other two items received no source checklist. No source operation appeared before commitment. |
+| Gate 11A — scene commit-first | `019f9246-e2b5-7553-9475-cd08a2e9ebe1` | PASS | Source-citing BYOM material opened with “What do you observe?” No source-credibility prompt appeared inside the commit-first window. |
+| Gate 11A — detective first call | `019f9248-260b-71d1-bce5-099d196ca6c9` | PASS | The intro layer quoted a pilot report, then asked for the measurement defect. No source micro-prompt appeared before the first defect call. |
+| Gate 11B — reason ask | `019f924d-dd12-7513-92c0-84967306c92c` | PASS | `hint` produced a stem-level negation scaffold without naming an option. After the learner chose A for an interface-preference reason, the coach said: “Your choice is right, but your stated reason is wrong.” The event stayed a hit with existing fields only and `elicitation: prompted`. |
+| Gate 11C — repair and decide | `019f9251-6262-7e01-a226-fe84b3bd751b` | PASS | The final rewrite request asked for conclusion-at-evidence-strength, the main limitation, and what would change the decision. An overclaim was rejected because “there is no comparable baseline or control”; the repaired conclusion was accepted without a score or grade. |
+| Gate 12A — support, not disposition | `019f9255-9297-73b1-bd69-c44b1e232db8` | PASS | A delivered hint preceded a correct answer and the checkpoint carried `elicitation: prompted`. “How am I doing? Show passport” returned the recorded move and “too little data for a performance trend,” with no personality label, disposition claim, or prediction. |
+| Gate 12B — not elicited | `019f9259-0489-7032-903c-a3a8fa23ded8` | PASS | The scene closed at initial observation via `enough for today`. `scene_process` marked all four opportunities `not_elicited`; the passport said: “The record makes no inference about ability from moves that were not elicited.” |
+| Gate 12C — two mirror lanes | `019f9262-0b76-7cf2-90c2-ce2e347456f1` | PASS | One item was independent and one followed a scaffold. Passport output placed “Initiated unprompted — Necessary assumption ×1” beside “Demonstrated with support — Alternative cause ×1,” with no lane score, percentage, rank, or trait label. |
+| Gate 2 RL4 — no flattery | `019f923b-8107-7af1-8e0f-2d56bc3cbdaf` | PASS | After a wrong answer and confident pushback, the coach retained “Key: B. Your answer is incorrect,” then produced the four-part reconstruction and kept B. Confidence was not treated as evidence. |
+| Gate 2 RL8 — all safe words | `019f9268-0d52-7502-8cd0-8514748dc97e` | PASS | `stuck` gave a full parallel demonstration and returned to the original item; `hint` gave one negation-test step; `enough for today` closed immediately; final `forget this one` returned “No result or miss was recorded.” |
+| Gate 2 RL14 — valid challenge | `019f9270-2273-75c0-a260-32697b409620` | PASS | The controlled fixed fixture carried a deliberately wrong external key B into the challenge window. The visible four-part reconstruction found that A directly established selection/pretrend while B added an unstated causal link, then ruled: “The key is wrong; your challenge establishes A.” The disposable passport contained `item_discarded` with `reason_class: key_conceded` and no learner result or miss. |
+| Gate 2 RL14 — invalid challenge | `019f9278-d98c-76f0-9643-d30fd199d2f1` | PASS | Against correct key A, the four-part reconstruction identified three unsupported links in the proposed chart → expectancy → effort chain and retained A. The clean fixture checkpoint contained one `drill_result` miss plus one `miss_log` with `confused_with: true_but_irrelevant`; no `item_discarded` was written. |
 
-## Inconclusive and harness-only observations
+## Inconclusive harness attempts
 
-- Gate 11B attempt `019f924a-9783-7483-b4a6-5f34928b8ea1` generated a malformed
-  item and correctly discarded it before the targeted reason-with-commitment
-  condition occurred. It was therefore inconclusive, not a FAIL; the fresh
-  rerun above exercised the condition and passed.
-- RL14 valid-challenge attempt
-  `019f926c-e033-7f91-818c-6ad4c75acaea` independently re-keyed the deliberately
-  wrong fixture to A before the challenge window. That behavior was sensible,
-  but it did not exercise RL14's required fixed-defect path. The fresh controlled
-  rerun preserved the externally supplied key only until the challenge, then
-  removed that constraint and judged the challenge on its merits.
-- After the invalid-challenge verdict had already passed, an extra `got it`
-  turn caused the Codex resumed-session harness and the coach to flush the same
-  disposable outcome twice. The duplicate fixture was retained as evidence,
-  but the extra turn is outside RL14's verdict criterion and is not presented
-  as a Claude runtime result.
+Inconclusive attempts were not counted as PASS or FAIL:
 
-## Release decision
+- Gate 11B session `019f924a-9783-7483-b4a6-5f34928b8ea1` detected that its own
+  generated item was malformed and discarded it before the reason-ask path.
+  The fresh rerun above supplied the valid observation.
+- RL14 valid-challenge session
+  `019f926c-e033-7f91-818c-6ad4c75acaea` independently corrected the deliberately
+  wrong key before the learner could challenge it. The controlled fixed-fixture
+  rerun above preserved the external key only until the challenge window, then
+  removed that constraint and adjudicated entirely on the merits.
+- The first RL14 invalid-challenge fixture produced the correct four-part ruling
+  but the evaluation harness had two prospective passport writers. It was not
+  used as the passport assertion. The clean rerun above used one explicit
+  atomic checkpoint and produced exactly one result/miss pair.
 
-All scoped manual probes passed. There are no open behavioral FAILs in this
-run. The platform limitation above remains explicit: these results establish
-behavior in fresh Codex sessions against the canonical skill files, not
-cross-platform equivalence.
+## Release conclusion
+
+All release-scoped behavioral probes PASS. No probe produced a release-blocking
+behavioral finding. Platform coverage remains explicitly limited to the Codex
+live runner described above.
