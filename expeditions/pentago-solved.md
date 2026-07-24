@@ -14,7 +14,20 @@ rotation mechanic explodes the state space to 3x10^15 positions.
 
 **Answer.** Pentago is a first-player win, but with a precise caveat the title flattens. From the paper's Fig. 1 caption: with perfect play the first player wins with any opening move *except the corners, which tie*. So the value of the start position under best play (first player avoiding corner openings) is a win for player 1. The full game was *strongly* solved: the exact win/loss/tie value of every reachable position was computed, via parallel in-core retrograde analysis in 4 hours on 98,304 threads of NERSC's Cray Edison.
 
+Here *retrograde analysis* is the precise name for working backward from
+positions whose result is already known, and *in-core* means the working data
+are held in memory rather than relying on a disk-backed database.
+
 **Accessibility note.** The rules and the claim are trivially statable — anyone can learn Pentago in two minutes and check a single line of five. What is inaccessible to a human is the *evidence*: the value rests on exhaustively evaluating 3,009,081,623,421,558 (~3.0×10¹⁵) symmetry-reduced states. No human can hold that, and no human-playable heuristic substitutes for it. The pack trains a reader to audit *why this method yields exact values* and *why the answer has the corner-tie texture*, not to reproduce the computation.
+
+**Plain-language reading map.** Use one central metaphor: a strong solution is
+an atlas that labels every reachable board position win, loss, or tie, rather
+than one route from the opening. The metaphor breaks because this atlas is not
+a human-sized strategy and its labels do not become correct merely by being
+stored; exactness rests on the backward recurrence and the complete
+computation. Treat the machine-scale traversal and hardware execution as
+declared black boxes. The reader can still audit the rules-to-recurrence bridge,
+the symmetry reductions, and the published state accounting.
 
 ## history
 
@@ -57,4 +70,3 @@ The deeper history is methodological: which games had been solved and how. Conne
 - **T3 — The ~3×10¹⁵ figure is the raw state count.** *Objection:* one might quote 3.0×10¹⁵ as the number of Pentago positions tout court. *Resolution:* the paper's 3,009,081,623,421,558 is the count *with symmetries removed*, and all but 0.3% are reachable with valid play. The unreduced count is larger; conflating reduced/unreduced or reachable/total is the error to catch.
 - **T4 — "Solved" means a human can now play perfectly.** *Objection:* readers equate "solved game" with a memorizable strategy. *Resolution:* strong solution = a database/oracle of exact values for every position; perfect play requires *querying* it (hence perfect-pentago.net), not a human-sized rule. The deliverable is data, not a slogan.
 - **T5 — The branching/symmetry numbers are interchangeable.** *Objection:* a reader may blur 288 (first moves), 97.3 (average branching), 12.2 (rotation-abstracted branching), 8 (D4), and 2048 (full group G). *Resolution:* each has a distinct role — verify which quantity each claim depends on; e.g. the in-core feasibility argument leans on the 12.2 reduction and the 2048-element organization, not on 288.
-

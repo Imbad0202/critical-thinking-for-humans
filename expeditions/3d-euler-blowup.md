@@ -2,54 +2,66 @@
 
 `pack_id: 3d-euler-blowup`
 
-A computer-assisted proof closes a question left open since Euler wrote the
-equations in 1757 — but not the question the headline suggests. You audit what
-was actually proved (blowup for *axisymmetric* Euler in a domain *with a
-boundary*, from smooth data), how a machine computation can *certify* a proof
-rather than merely suggest one, and where the trust in a computer-assisted proof
-really sits. The load-bearing discipline is refusing to let a true, celebrated
-result be restated one scope-level too broad.
+This is a scope audit before it is a fluid-dynamics lesson. The result is a
+computer-assisted proof of blowup for a carefully delimited Euler flow, not a
+settlement of the general free-space 3D Euler problem. Your job is to keep every
+condition attached while tracing how computation changes from evidence into
+part of a proof.
 
 ## problem
 
-**Statement.** The 3D incompressible Euler equations describe an ideal
-(inviscid) fluid. A central open question since 1757: can a solution starting
-from *smooth*, finite-energy initial data develop a *finite-time singularity* —
-a point where the flow's derivatives blow up — or does it stay smooth forever?
-This pack's result: for the **axisymmetric** Euler equations in a **bounded
-domain with a solid boundary** (the Hou–Luo scenario), and for the
-closely related 2D Boussinesq system, there exist smooth finite-energy initial
-data whose solution forms a **nearly self-similar finite-time singularity**. The
-proof is computer-assisted: an analytic framework reduces blowup to a finite set
-of inequalities, and a rigorous-numerics computation certifies those
-inequalities hold.
+**Scope card — read this before the story.**
 
-**Scope — the whole point of the audit.** This is **not** a proof of blowup for
-the general free-space 3D Euler equations; that problem remains open, and the
-authors say so. The result needs three qualifiers that the celebratory framing
-tends to drop: *axisymmetric* (not general 3D), *with a boundary* (the solid
-wall does essential work), and *nearly* self-similar (the solution approaches a
-self-similar profile under controlled perturbation, it is not exactly
-self-similar). A reader who states the result without these qualifiers has
-committed the exact error this pack trains against.
+- **System:** the 3D **axisymmetric** Euler equations — rotation-symmetric flow,
+  not arbitrary 3D flow — with a companion result for the related 2D Boussinesq
+  system.
+- **Setting and data:** a **bounded domain with a solid boundary**, from
+  **smooth, finite-energy** initial data.
+- **Result:** a **nearly self-similar finite-time singularity**. "Nearly" stays:
+  a true solution remains controlled near a numerically constructed
+  self-similar profile; the profile is not asserted to be an exact closed-form
+  solution.
+- **Proof type:** analysis reduces blowup to explicit inequalities; rigorous
+  numerics verifies the required bounds with error control.
+- **Excluded claim:** this does **not** prove blowup for general smooth 3D Euler
+  flow in free space. The authors explicitly say that general problem remains
+  unresolved.
 
-**Accessibility note.** You do not need to solve a PDE. You need to hold the
-difference between "a computer *simulated* something that looks like blowup"
-(Hou–Luo, 2014) and "a computer *certified* the inequalities a proof of blowup
-requires" (this result, 2022–2025), and to track which hypotheses (axisymmetry,
-boundary) the conclusion actually rests on. Comfort with the idea of an
-*inequality with an explicit error bound* is enough; the fluid dynamics is
-background, the reasoning about certified computation is the exercise.
+**Everyday scene — video versus a certified load test.** Imagine seeing a bridge
+bend in a phone video. The video can be strong evidence, but it does not by
+itself bound the camera error or certify the load at failure. The Hou–Luo
+simulation played the evidence role. Here the later proof is like adding an
+engineering calculation whose tolerances are bounded: it proves that the
+inequalities needed for blowup hold, rather than merely displaying a flow that
+looks singular.
+
+**Precise statement beside the anchors.** The 3D incompressible Euler equations
+model an ideal (**inviscid**, or zero-viscosity) fluid. The question is whether
+smooth finite-energy data can lose smoothness in finite time — a **finite-time
+singularity**. The proved example is axisymmetric, uses a solid boundary, and is
+nearly self-similar. The boundary is not scenery: in the Hou–Luo mechanism the
+no-flow wall changes the balance between advection and vortex stretching.
+
+**Accessibility note — declared black boxes.** You do not need to solve a
+partial differential equation (**PDE**), derive the stability estimates, or
+implement validated numerics. You do need to preserve the scope card and audit
+the chain "approximate profile → sufficient inequalities → certified error
+bounds → true blowup." One inequality with an explicit error bound is enough
+mathematical background for the exercise.
+
+**Where the metaphor breaks.** A computer-assisted proof is not literally a
+physical load test, and peer review is not the same as independently rerunning
+the computation. The bridge image only separates suggestive simulation from
+certified bounds. It does not erase the proof's mathematical hypotheses:
+axisymmetric, bounded solid boundary, smooth finite-energy data, and nearly
+self-similar.
 
 ## history
 
 The smooth-data finite-time singularity question for 3D Euler is one of the
-oldest open problems in partial differential equations, entangled with the
-regularity of Navier–Stokes (a Clay Millennium problem) and with the theory of
-turbulence. For most of the 20th century, partial-regularity results and
-physical intuition leaned *against* blowup from nice data — constructing a
-singularity from smooth initial data was widely expected to be impossible or at
-least out of reach.
+oldest open problems in partial differential equations. The general free-space
+problem remains unresolved; the result here concerns the axisymmetric
+with-boundary setting that Hou and Luo first investigated numerically.
 
 - **Dead end — numerical evidence treated as proof (Hou–Luo, 2014).** A
   high-resolution simulation exhibited what looked like a boundary singularity
@@ -65,11 +77,11 @@ least out of reach.
   constructed numerically. Insisting on an exact profile is a dead end — the
   proof instead controls the *gap* between an approximate profile and a true
   solution.
-- **Dead end — expecting a short, human-surveyable proof.** The constants that
-  decide blowup (a residual ε against a stability threshold) are not obtainable
-  by hand; there is no pen-and-paper argument that closes the required
-  inequality. A search for a fully human-checkable proof of this specific result
-  is a dead end — the certification is irreducibly computational.
+- **Dead end — treating this proof as human-surveyable.** This argument closes
+  blowup by certifying numerical bounds for a residual ε and stability
+  constants. Hand-reading the analytic reduction without checking those bounds
+  does not verify this proof. That says how the published proof works; it does
+  not claim that no different pen-and-paper proof could ever exist.
 
 ## solution_provenance
 
@@ -92,20 +104,19 @@ review announcement:
   senior PDE figures (Caflisch, Gómez-Serrano, Šverák, Tao). This paper reviews
   and announces the result; it is not itself the proof.
 
-**How verified.** Peer review (Part II in SIAM MMS; the PNAS review vouched for
-by four named senior PDE mathematicians) plus the internal structure of a
-computer-assisted proof: an analytic reduction (Part I) whose sufficient
-inequalities are then certified by rigorous numerics with machine-tracked
-discretization and round-off error (Part II).
+**How verified.** Part II was peer reviewed in SIAM MMS. The proof's internal
+structure is an analytic reduction (Part I) whose sufficient inequalities are
+then certified by rigorous numerics with machine-tracked discretization and
+round-off error (Part II). The separate PNAS review names its reviewers, but a
+reviewer list is not evidence that any reviewer independently reran the
+computation.
 
 **First-party check.** Read directly: the PNAS review (open access), the arXiv
 abstracts and statements of Parts I and II, and the SIAM MMS publication record
-for Part II. **Could not confirm:** that the MATLAB / interval-arithmetic
-verification code is publicly deposited — the PNAS data-availability statement
-reads "There are no data underlying this work," and no public code repository
-was located. This pack therefore does **not** claim a downloadable
-reproducibility artifact; the checkable object is the peer-reviewed mathematical
-argument, not a runnable code drop.
+for Part II. The SIAM paper's references link the authors' public MATLAB code,
+and Jiajie Chen's author page provides the archive at
+https://jiajiechen94.github.io/codes. That gives an independent rerun path; it
+does not show that the named reviewers used it.
 
 ## step_graph
 
@@ -162,13 +173,12 @@ argument, not a runnable code drop.
   Euler as unresolved.
 - **S7 — Ask where the trust sits in a computer-assisted proof**
   `milestone_rewrite` Recast "is this proof true?" as a chain of independently
-  verifiable trust claims: (a) the analytic reduction is correct (human proof,
-  peer-reviewed); (b) the validated-numerics method soundly bounds error
-  (methodology, peer-reviewed); (c) the specific computation ran correctly
-  (machine-checkable by design, not eyeballed). Trust is distributed across all
-  three, not placed in a single human reading. Check: Part II is peer-reviewed
-  in SIAM MMS; the computation is designed to be machine-verifiable rather than
-  hand-checked.
+  verifiable trust claims: (a) the analytic reduction in the Part I preprint is
+  correct; (b) peer-reviewed Part II's validated-numerics method soundly bounds
+  error; (c) the published MATLAB computation can be rerun. Trust is distributed
+  across all three, not placed in a single reviewer name. Check: Part I remains
+  a preprint, Part II is peer-reviewed in SIAM MMS, and the authors link the
+  code; public availability does not itself prove an independent rerun occurred.
 
 ## breakthrough
 
@@ -179,12 +189,13 @@ The move that broke it was building a stability framework (Part I) proving that
 a *finite, certifiable* list of inequalities on an *approximate* profile is
 enough to force blowup of the *true* solution — converting an infinite,
 uncertifiable question into a finite, machine-certifiable one. It eluded the
-community because the natural instinct was to chase an exact self-similar profile
-or a sharper simulation; the non-obvious leap was to stop demanding exactness and
-instead rigorously control the *gap* between an approximate profile and a true
-solution, so that a computer's certified error bounds close the proof. The scope
-qualifiers (axisymmetric, with boundary, nearly self-similar) are not
-footnotes — they are the precise conditions under which this reduction closes.
+earlier numerical investigation because a simulation did not supply those
+rigorous error bounds. The published move is to control the *gap* between an
+approximate profile and a true solution so certified bounds can close the
+argument. The sources do not establish that every earlier researcher pursued a
+particular alternative. The scope qualifiers (axisymmetric, with boundary,
+nearly self-similar) are not footnotes — they are the precise conditions under
+which this reduction closes.
 
 ## audit_targets
 
@@ -224,9 +235,8 @@ footnotes — they are the precise conditions under which this reduction closes.
 - **T5 — "Peer review of a computer-assisted proof — did anyone actually check
   the computation?"** *Objection:* if the proof rests on a large computation, a
   reader may doubt reviewers verified it. *Resolution:* the verification is
-  designed to be *machine-checkable* rather than eyeballed; reviewers vouch for
-  the analytic framework and the validated-numerics methodology, and the
-  computation's correctness is a mechanical rather than a human-reading claim.
-  This is the honest place to locate trust — and the pack flags that the code
-  artifact's public availability could not be confirmed, so "independently
-  re-run it yourself" is not currently an option a reader can exercise.
+  designed for mechanical rerunning rather than line-by-line eyeballing, and
+  the authors publish the MATLAB archive linked from the SIAM paper and their
+  code page. Peer review and public reproducibility are separate evidence: the
+  named-reviewer list does not prove a rerun occurred, while the code gives
+  another reader a path to attempt one.

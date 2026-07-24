@@ -5,16 +5,38 @@
 Why formally re-prove a result everyone already believed? R(4,5)=25 was
 established by computer in 1995, but that proof rested on trusting the search
 code. The 2024 work re-derives it inside HOL4, shrinking the trust base to a
-small verified kernel. The auditor's lesson is the gap between belief and
+small HOL4 kernel. The auditor's lesson is the gap between belief and
 verification.
 
 ## problem
 
-**Statement.** The Ramsey number R(4,5) is the least *k* such that every 2-colouring (red/blue) of the edges of the complete graph on *k* vertices contains a red K4 or a blue K5. Equivalently (the paper's framing via "anticlique"): the least *k* for which no graph on *k* vertices avoids both a blue 4-clique and a red 5-clique. The claim is **R(4,5) = 25**.
+**Statement.** The Ramsey number R(4,5) is the least *k* such that every 2-colouring (red/blue) of the edges of the complete graph on *k* vertices contains a red K4 or a blue K5. The paper's graph convention calls the forbidden sets a blue 4-clique and a red 5-clique: it swaps the two colour names, and a global red↔blue relabelling leaves the Ramsey claim unchanged. In either convention, the claim is **R(4,5) = 25**.
 
-**Answer.** R(4,5) = 25. This splits into two parts: the lower bound R(4,5) > 24, witnessed by an explicit graph on 24 vertices avoiding both forbidden structures (a construction known since Kalbfleisch 1965); and the hard upper bound R(4,5) ≤ 25, i.e. *every* 2-colouring of K25 is forced to contain a red K4 or blue K5.
+**Answer.** R(4,5) = 25. This splits into two parts: the lower bound R(4,5) > 24, witnessed by an explicit graph selected from the complete 2016 list (existence of such graphs has been known since Kalbfleisch 1965); and the hard upper bound R(4,5) ≤ 25, i.e. *every* 2-colouring of K25 is forced to contain a red K4 or blue K5.
 
 **Accessibility note.** A non-expert can fully understand what is being claimed — count to 25, colour edges two colours, look for a 4-clique or 5-clique — and can verify the *lower* bound by inspecting one 24-vertex graph. The upper bound is where the wall is: a naive case check is 2^300 ≈ 10^90 graphs on 25 vertices, hopeless by hand. What the auditor is asked to grade is not "is 25 the answer" (believed since 1995) but "does this particular machine-checked argument actually establish ≤25 without trusting an opaque program." The pack trains the reader to audit a proof whose computational core (roughly a petabyte of SAT proof certificates) no human will ever read line by line.
+
+**Load-bearing map.** Think of the equality as a doorway with two locks.
+The lower lock is opened by one explicit 24-vertex graph that avoids both
+forbidden structures, proving R(4,5)>24. The upper lock is opened only after
+every possible 25-vertex counterexample has been covered: a splitting vertex
+reduces the search to the degree cases {8,10,12}, candidate neighbour graphs
+are glued, and every gluing attempt is rejected by a proof checked through the
+HOL4 kernel. MiniSat's proof files are customs receipts, while saved
+permutations are receipts for `nauty`'s isomorphism claims. The metaphor breaks
+at the human reduction and coverage argument: a valid receipt for one SAT
+instance cannot prove that the degree split is exhaustive, that the
+generalizations cover every graph, or that the final HOL4 statement joins the
+two bounds in the intended direction. Graph-isomorphism search, the
+generalization heuristic, and the derivation of the degree split are declared
+black boxes for a non-specialist reader and remain audit targets.
+
+**Back-translation test.** From the two-lock account, a domain reviewer must be
+able to reconstruct the exact claim: an explicit R(4,5,24)-graph proves the
+strict lower bound; the upper-bound proof rules out every R(4,5,25)-graph via
+the exhaustive degree set {8,10,12}, gluing and coverage lemmas, MiniSat proof
+files accepted through HOL4, and checkable witness permutations for
+isomorphisms; both bounds are needed for R(4,5)=25.
 
 ## history
 
@@ -38,14 +60,14 @@ verification.
 
 ## step_graph
 
-- **S0 — Frame what is actually being proved.** `shape_question` Separate the *value* (R(4,5)=25, believed since 1995) from the *deliverable* (a kernel-checkable proof). The question is "belief vs verification," not "what is the number." Ask: where does trust currently live, and can it be pushed entirely into a small logical kernel? Check: the final HOL4 theorem must state R(4,5)=25 with no trusted oracle beyond the kernel + axioms.
-- **S1 — Split into lower and upper bound.** `lemma_decomposition` R(4,5)=25 ⟺ (R(4,5)>24) ∧ (R(4,5)≤25). Lower bound: exhibit one R(4,5,24)-graph (Kalbfleisch 1965 construction). Upper: show no R(4,5,25)-graph exists. Check: lower bound is a single witnessed existence; upper bound carries all the difficulty.
-- **S2 — Degree-splitting reduction.** `lemma_decomposition` In any R(4,5,25)-graph, some "splitting vertex" has degree d ∈ {8,10,12}; its blue-neighbours form an R(3,5,d)-graph and its red-neighbours (antineighbours) an R(4,4,24−d)-graph. This is the human argument that collapses 2^300 graphs to finitely many structured cases. Check: prove the degree constraint forces d into that finite set, and that odd degrees can be eliminated (the d=11 argument generalizes).
-- **S3 — Reframe gluing as SAT-unsatisfiability.** `representation_shift` Instead of reasoning about graphs, enumerate candidate R(3,5,d)- and R(4,4,24−d)-graphs modulo isomorphism and encode "these two cannot be glued into a valid R(4,5,25)-graph" as a propositional unsatisfiability problem, discharged by HOL4's verified interface to MiniSat. Check: each gluing lemma is a kernel-accepted UNSAT certificate, not a claim from custom code.
-- **S4 — Generalization to make it feasible.** `milestone_rewrite` Regroup many similar concrete graphs into "generalizations" so far fewer (harder-but-fewer) SAT calls are needed; use a simplicity heuristic to prefer generalizations that yield easier gluing instances. Independently verify the generalizations *cover all cases* with a custom SAT-solver-plus-graph-isomorphism checker. Check: coverage proof — no concrete case escapes some generalization.
-- **S5 — Don't over-verify: witness-check where sound.** `kill_criteria` Not every algorithm's steps get formalized. Graph normalization via `nauty` is *not* verified step-by-step; instead the witness permutations are saved so isomorphism is checkable. Criterion: verify the *output object's properties*, not the *process*, whenever the output is independently checkable. Check: each "trusted" tool is downgraded to a checkable certificate.
-- **S6 — Push the whole thing through the kernel.** `kill_criteria` Reject the Coq/Pythagorean-triples compromise (computational core run outside the kernel as separately-proven code). Run the entire ~petabyte of MiniSat proof files through the HOL4 kernel so trust collapses to kernel + axioms. Check: nothing load-bearing remains outside the kernel; if any step needs trusting unverified code, the goal fails.
-- **S7 — Probe small / structural sanity.** `small_case_probe` The argument leans on already-formalized smaller Ramsey facts (R(3,5,d), R(4,4,·) graph enumerations) and the known 24-vertex witness; these smaller cases anchor the recursion. Check: the enumerated R(3,5,d) and R(4,4,24−d) graph sets match known small-Ramsey data before gluing.
+- **S0 — Frame what is actually being proved.** `shape_question` Name the two locks before inspecting the machinery. Precisely: separate the *value* (R(4,5)=25, believed since 1995) from the *deliverable* (a kernel-checkable proof). The question is "belief vs verification," not "what is the number." Ask: where does trust currently live, and can it be pushed entirely into a small logical kernel? Check: the final HOL4 theorem must state R(4,5)=25 with no trusted oracle beyond the kernel + axioms.
+- **S1 — Split into lower and upper bound.** `lemma_decomposition` Open the lower and upper locks separately. Precisely: R(4,5)=25 ⟺ (R(4,5)>24) ∧ (R(4,5)≤25). Lower bound: exhibit one R(4,5,24)-graph selected from the complete 2016 list; existence of such witnesses has been known since Kalbfleisch 1965. Upper: show no R(4,5,25)-graph exists. Check: lower bound is a single witnessed existence; upper bound carries all the difficulty.
+- **S2 — Degree-splitting reduction.** `lemma_decomposition` Replace the impossible whole search with three declared checkout lanes. Precisely: in any R(4,5,25)-graph, some "splitting vertex" has degree d ∈ {8,10,12}; its blue-neighbours form an R(3,5,d)-graph and its red-neighbours (antineighbours) an R(4,4,24−d)-graph. This is the human argument that collapses 2^300 graphs to finitely many structured cases. Check: prove the degree constraint forces d into that finite set, and that odd degrees can be eliminated (the d=11 argument generalizes).
+- **S3 — Reframe gluing as SAT-unsatisfiability.** `representation_shift` Turn each attempted join into a rule sheet with a checkable rejection receipt. Precisely: instead of reasoning about graphs, enumerate candidate R(3,5,d)- and R(4,4,24−d)-graphs modulo isomorphism and encode "these two cannot be glued into a valid R(4,5,25)-graph" as a propositional unsatisfiability problem, discharged by HOL4's verified interface to MiniSat. Check: each gluing lemma is a kernel-accepted UNSAT certificate, not a claim from custom code.
+- **S4 — Generalization to make it feasible.** `milestone_rewrite` Bundle similar candidates, then prove that every original case is still inside a bundle. Precisely: regroup many similar concrete graphs into "generalizations" so far fewer (harder-but-fewer) SAT calls are needed; use a simplicity heuristic to prefer generalizations that yield easier gluing instances. Independently verify the generalizations *cover all cases* with a custom SAT-solver-plus-graph-isomorphism checker. Check: coverage proof — no concrete case escapes some generalization.
+- **S5 — Don't over-verify: witness-check where sound.** `kill_criteria` Check the tool's receipt when replaying every internal move would add no assurance. Precisely: not every algorithm's steps get formalized. Graph normalization via `nauty` is *not* verified step-by-step; instead the witness permutations are saved so isomorphism is checkable. Criterion: verify the *output object's properties*, not the *process*, whenever the output is independently checkable. Check: each "trusted" tool is downgraded to a checkable certificate.
+- **S6 — Push the whole thing through the kernel.** `kill_criteria` Make the small HOL4 kernel the final customs desk. Precisely: reject the Coq/Pythagorean-triples compromise (computational core run outside the kernel as separately-proven code). Run the entire ~petabyte of MiniSat proof files through the HOL4 kernel so trust collapses to kernel + axioms. Check: nothing load-bearing remains outside the kernel; if any step needs trusting unverified code, the goal fails.
+- **S7 — Probe small / structural sanity.** `small_case_probe` Test the case catalogue against smaller known landmarks before accepting the full shipment. Precisely: the argument leans on already-formalized smaller Ramsey facts (R(3,5,d), R(4,4,·) graph enumerations) and the known 24-vertex witness; these smaller cases anchor the recursion. Check: the enumerated R(3,5,d) and R(4,4,24−d) graph sets match known small-Ramsey data before gluing.
 
 ## breakthrough
 
@@ -57,5 +79,4 @@ The breakthrough is **S6** (run the *entire* proof, ~a petabyte of MiniSat certi
 - **T2 — Do the generalizations provably COVER every concrete case?** *Objection:* regrouping graphs into "generalizations" to cut SAT calls could silently drop a concrete graph, making the gluing-impossibility argument vacuously incomplete. *Resolution:* coverage is itself checked by a custom SAT-solver extended with a graph-isomorphism checker; the audit target is that *coverage proof*, since a gap there is invisible in any individual passing gluing lemma.
 - **T3 — Is the SAT layer really kernel-checked, or just "MiniSat said UNSAT"?** *Objection:* if gluing-unsatisfiability rests on trusting MiniSat's verdict, the proof has merely swapped one trusted program for another. *Resolution:* the gluing lemmas go through the HOL4 *interface to MiniSat*, and the paper's central claim is that the full proof — ~a petabyte of proof files — passes the small HOL4 kernel; the auditor checks that trust collapses to kernel+axioms, not to MiniSat.
 - **T4 — Are the witness-only / unverified tools (nauty) actually sound shortcuts?** *Objection:* the remark that "not every algorithm needs its computation steps verified" (nauty normalization is not formally verified) reopens a trust hole. *Resolution:* nauty is downgraded to a checkable certificate — saved witness permutations prove the claimed isomorphisms — so the auditor verifies the *output property* is independently checkable rather than trusting nauty's procedure.
-- **T5 — Does the lower bound truly hold, and is the final ⟺ glue-up correct?** *Objection:* R(4,5)=25 needs BOTH R(4,5)>24 and R(4,5)≤25, stated across propositional, first-order and higher-order levels; a mismatch in stitching these logical levels could make the final theorem state something weaker. *Resolution:* the 24-vertex Kalbfleisch witness gives >24, and Section 6.1 connects the propositional/first-order/higher-order formulas so they imply each other in the intended direction — the audit target is that the kernel-proved final statement is exactly R(4,5)=25, not a near-miss.
-
+- **T5 — Does the lower bound truly hold, and is the final ⟺ glue-up correct?** *Objection:* R(4,5)=25 needs BOTH R(4,5)>24 and R(4,5)≤25, stated across propositional, first-order and higher-order levels; a mismatch in stitching these logical levels could make the final theorem state something weaker. *Resolution:* the formal proof selects an explicit 24-vertex witness from the complete 2016 list, while existence of such witnesses has been known since Kalbfleisch 1965; Section 6.1 connects the propositional/first-order/higher-order formulas so they imply each other in the intended direction. The audit target is that the kernel-proved final statement is exactly R(4,5)=25, not a near-miss.

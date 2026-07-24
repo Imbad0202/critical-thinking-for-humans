@@ -2,13 +2,43 @@
 
 `pack_id: keller-dimension-7`
 
-A 90-year-old tiling conjecture whose last open dimension fell to a SAT search
-in 2020 — and whose proof certificate was checked by a proof checker that is
+A 90-year-old tiling conjecture whose last open dimension fell in 2020 to a SAT
+search — a solver for Boolean yes/no rule sheets — and whose proof certificate
+was checked by a proof checker that is
 itself formally verified, cleaner provenance than most computer-assisted
-results. The pack trains the auditor to locate where trust actually rests: not
-in the untrusted solver, but in the machine-verified checker.
+results. The pack trains the auditor to locate where trust in the SAT search
+rests: not in the untrusted solver, but in the machine-verified checker.
 
 ## problem
+
+**Read the orientation before the graph notation.**
+
+| geometric claim | graph claim | verdict in dimension 7 |
+|---|---|---|
+| Every cube tiling has a pair sharing a whole face. | None of the required Keller graphs has a 128-vertex clique. | TRUE |
+| Some cube tiling has no such pair. | At least one required Keller graph has a 128-vertex clique. | FALSE |
+
+The exact dimension-7 target is \(G_{7,3}\), together with the paper's stronger
+check of \(G_{7,4}\) and \(G_{7,6}\). It is not \(G_{7,2}\): that graph's
+largest clique was already known to have only 124 vertices.
+
+Use one central metaphor: a 128-clique is a proposed 128-member team in which
+every pair satisfies the graph's compatibility rule. The SAT proof certifies
+that no such complete team exists. The metaphor breaks at the
+geometry-to-graph bridge: the certificate proves the encoded finite graph
+claim; it does not by itself prove that the graph reduction or SAT encoding
+faithfully represents cube tilings. Treat the notation
+\(\langle 2s\rangle^n\) and the Corrádi–Szabó/Kisielewicz reduction as declared
+black boxes whose exact theorem statements, rather than their internal proofs,
+are the interfaces this expedition audits.
+
+**Plain anchors for the certificate pipeline.** A *CNF* formula is an AND of
+Boolean rule clauses. *SAT* means some true/false assignment obeys them all;
+*UNSAT* means none does. *Symmetry breaking* keeps one representative from
+cases that differ only by relabelling. A *DNF tautology* is a checked OR-of-cases
+that covers every possibility. A *DRAT proof* is a replay log supporting an
+UNSAT result, and DRAT-trim plus ACL2check are the receipt processors named
+below. These anchors do not replace the exact formats or the coverage proof.
 
 **Keller's conjecture in dimension 7.**
 
@@ -53,6 +83,9 @@ After all this, dimension 7 was a single, sharply-posed finite question that sti
 
 ## step_graph
 
+Carry the orientation table through every step: in this pack **UNSAT / no
+128-clique means Keller's geometric statement is true**.
+
 - **S0 — Search-first: is dimension 7 actually still open, and is it a single finite question?** `search_first` Confirm via the introduction that n ≤ 6 is settled TRUE (Perron) and n ≥ 8 FALSE (Mackey/Lagarias-Shor), leaving exactly n = 7, which Kisielewicz (2017) had reduced to one clique question. Check: read the introduction's literature chain; the dimension boundaries (≤6 true, ≥8 false) are cited to named prior papers and are independently lookup-able.
 - **S1 — Representation shift: geometry → graph cliques.** `representation_shift` Recast "does every cube tiling have a facesharing pair" as "does the Keller graph Gₙ,ₛ contain a clique of size 2ⁿ" via the Corrádi-Szabó reduction. Check: the graph definition (vertices ⟨2s⟩ⁿ; adjacency = differ by exactly s in some coordinate and differ in ≥2 coordinates) is stated precisely and the equivalence is a cited theorem, so the reframing is verifiable independent of the SAT run.
 - **S2 — Milestone rewrite: pin the summit to one falsifiable clique claim.** `milestone_rewrite` Restate the summit as the concrete claim "G₇,₃ contains no clique of size 2⁷ = 128" (Kisielewicz's reduction), and the paper's stronger Theorem 1 covering G₇,₃, G₇,₄, G₇,₆. Check: each is a yes/no clique-existence statement on a named finite graph; either graph contains a 128-clique or it does not.
@@ -63,7 +96,7 @@ After all this, dimension 7 was a single, sharply-posed finite question that sti
 
 ## breakthrough
 
-**S6 is the breakthrough** — not the SAT search itself but the certified-checker pipeline (DRAT proof → DRAT-trim → ACL2check, a checker formally verified in ACL2). It eluded the community because earlier dimension-7 work could pose the clique question but could not produce a *machine-auditable* answer; the move that closes the case is recognizing that the entire trust burden can be shifted onto a formally-verified proof checker, so a 224-gigabyte certificate no human can read still constitutes a rigorous proof. The hard mathematical narrowing (S1–S3, reducing to a single 128-clique question in G₇,₃) was already done by Corrádi-Szabó, Debroni et al., and Kisielewicz; what was missing was certified exhaustive search at scale.
+**S6 is the breakthrough** — not the SAT search itself but the certified-checker pipeline (DRAT proof → DRAT-trim → ACL2check, a checker formally verified in ACL2). It eluded the community because earlier dimension-7 work could pose the clique question but could not produce a *machine-auditable* answer; the move that closes the case is recognizing that the solver-output trust burden can be shifted onto a formally-verified proof checker, so a 224-gigabyte certificate no human can read still constitutes a rigorous proof. The hard mathematical narrowing (S1–S3, reducing to a single 128-clique question in G₇,₃) was already done by Corrádi-Szabó, Debroni et al., and Kisielewicz; what was missing was certified exhaustive search at scale.
 
 ## audit_targets
 
@@ -72,4 +105,3 @@ After all this, dimension 7 was a single, sharply-posed finite question that sti
 - **T3 — The proof was formally verified, and by what.** *Objection:* "formally verified" could be loose marketing for "we ran a SAT solver"; a SAT solver is not a proof. *Resolution:* the solver (CaDiCaL) is untrusted; it emits DRAT certificates that are optimized by DRAT-trim and then certified by ACL2check, a checker the paper calls "formally-verified" (verified within ACL2). The trust is in the verified checker, not the search — that is the load-bearing distinction.
 - **T4 — The "40 computers / 30 minutes" figure must NOT be cited.** *Objection:* that vivid figure appears in reputable secondary coverage (Quanta, CMU news), so it seems safe to include. *Resolution:* it does not appear in the paper, which reports 20 cluster nodes at 24 CPUs/node and runtimes in CPU-hours; including it would import an unverifiable popular-press number, so it is omitted and flagged.
 - **T5 — The clique size and target graph (128 in G₇,₃) are exact.** *Objection:* 2⁷ might be misremembered, or the wrong graph named (G₇,₂ has max clique 124). *Resolution:* paper states the reduction is to a clique of size 2⁷ = 128 in G₇,₃; G₇,₂'s max clique is the *different* value 124, which is precisely why G₇,₂ cannot answer the question.
-

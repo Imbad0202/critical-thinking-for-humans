@@ -7,6 +7,9 @@ proof at the time — and certified by a formally-verified checker. Same family
 as the Pythagorean-triples and Keller packs, but the structure is different:
 monochromatic a+b=c, Schur/Ramsey theory, and a far larger scale.
 
+Here SAT is the precise name for Boolean constraint-solving: asking whether
+there is any yes/no assignment that obeys all the stated rules.
+
 ## problem
 
 **Statement.** A *Schur number* sits inside Ramsey theory's "you cannot avoid structure" family. Colour each integer in {1,...,n} with one of *k* colours. A colouring is *good* if no colour class contains a solution to the equation a + b = c (a and b may be equal). The Schur number S(k) is the **largest** n for which a good k-colouring of {1,...,n} exists. So S(k) marks the exact threshold where monochromatic additive triples become unavoidable no matter how cleverly you colour.
@@ -16,6 +19,18 @@ The small values were classical: S(1)=1, S(2)=4, S(3)=13, S(4)=44. The fifth had
 **Answer.** S(5) = 160. There is a good 5-colouring of {1,...,160} (in fact a palindromic one), and **every** 5-colouring of {1,...,161} is forced to contain a monochromatic a + b = c.
 
 **Accessibility note.** The *question* is stated to a bright high-schooler in one breath: split 1 through 161 into five buckets so no bucket holds x, y, x+y, and prove it cannot be done. The *lower* half of the answer is a single table any reader can check by hand — exhibit one good colouring of 1..160 and verify no bucket has a+b=c. The *upper* half — that 161 is impossible — is where humanity could not follow: the proof that no good 5-colouring of {1,...,161} exists is a two-petabyte object, and that asymmetry (trivially-stated, hand-checkable witness vs. superhuman impossibility certificate) is exactly the audit muscle this pack trains.
+
+**Plain-language reading map.** Keep the five-bucket picture as the one central
+metaphor: a satisfying assignment is one successful way to fill the buckets,
+while UNSAT is the precise term for saying no such filling exists. The metaphor
+breaks at the upper-bound proof: trying many bucket arrangements does not by
+itself certify that none was missed. The technical bridge is a DRAT certificate,
+a machine-checkable record supporting the UNSAT result, checked by a program
+formally verified in ACL2; cube-and-conquer is the precise name for splitting
+the search into many cases and solving each. Treat the solver's search
+heuristics and petabyte-scale execution as declared black boxes. Audit the SAT
+encoding, case coverage, certificate, and checker instead of trusting a bare
+solver verdict.
 
 ## history
 
@@ -67,4 +82,3 @@ The breakthrough is **S7 — closing the trust loop with a checker that is itsel
 - **T3 — "A formally verified checker means the result is certain."** *Objection:* ACL2 verification closes all doubt. *Resolution:* It reduces trust to (a) the ACL2 kernel and its verified checker, (b) the *faithfulness of the SAT encoding* (S2) and symmetry-breaking justification (S4), and (c) hardware/compiler integrity over 14+36 CPU years. The encoding-correctness gap lives outside the verified checker and is the right place to press.
 - **T4 — "Two petabytes" and "ten times the largest math proof."** *Objection:* take the size and the superlative at face value. *Resolution:* The 2 PB figure is the paper's own (stated for the compressed/produced proof); the "ten times larger than the largest math proof ever" is the paper's comparison to the ~200 TB Boolean Pythagorean Triples proof (citing Lamb 2016), not an independently audited measurement. An auditor flags these as author-stated, and notes "largest ever" is time-stamped to 2017.
 - **T5 — "Cube-and-conquer is just brute force, so there is no idea here."** *Objection:* it is only parallel search. *Resolution:* The partition's correctness rests on the cube set's disjunction being a tautology (S5) — that tiling property is what makes "solve 10.3M pieces" equal "solve the whole," and symmetry breaking (S4) is what makes it finish in CPU-years instead of decades. The audit target is the tautology/coverage claim, not the parallelism.
-

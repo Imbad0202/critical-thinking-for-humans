@@ -13,9 +13,21 @@ solve.
 
 **The summit.** Predict a protein's 3D structure from its amino-acid sequence alone, accurately enough to be useful in place of experiment. This is the "protein folding problem" in its prediction form, and CASP (Critical Assessment of Structure Prediction) is the blind, biennial tournament that scores it: organizers hold back experimentally-solved structures, teams submit predictions before the answers are public, and assessors score each prediction's backbone against the truth using GDT (Global Distance Test) and related metrics. GDT_TS runs 0–100; roughly 90+ on a domain is the neighborhood of experimental accuracy.
 
+Plain anchor: GDT_TS is a 0–100 "how closely do the overall shapes match?"
+score. CASP is a sealed-answer benchmark: the experimental shapes stay hidden
+until predictions are locked.
+
 **What happened.** At CASP14 (2020), DeepMind's AlphaFold 2 posted a **median GDT_TS of 92.4** across targets (DeepMind's own CASP14 announcement) and was scored at a **summed z-score (>2.0) of 244.0 versus 90.8 for the next-best group** (official CASP14 results, predictioncenter.org) — not an incremental win but a category break. These two figures come from the CASP tournament record and the predicting team's release, not from the Nature paper. In the companion Nature paper (Jumper et al. 2021), AlphaFold's median backbone accuracy was **0.96 Å r.m.s.d.95** (Cα RMSD at 95% residue coverage) against **2.8 Å** for the next-best method, and all-atom accuracy **1.5 Å vs 3.5 Å**. For reference the paper notes a carbon atom is ~1.4 Å wide.
 
+Plain anchors: a z-score is a standardized "how far ahead of this field?"
+measure. Ångström (Å) and RMSD are, respectively, an atom-scale unit of
+distance and a summary of position error; smaller is closer.
+
 **The answer you are asked to forecast, not derive.** This pack is a *forecaster* exercise, not an auditor one. There is no human-checkable proof chain behind a single AlphaFold prediction — the model emits coordinates, not a derivation. The load-bearing question is: *why would you trust a structure you cannot reconstruct?* The honest answer is calibration, not proof: AlphaFold ships a per-residue self-confidence (**pLDDT**) and a pairwise **predicted aligned error (PAE)**, and the case for trust rests on whether those self-estimates actually track real accuracy on held-out structure — they do (pLDDT vs true lDDT-Cα: Pearson **r = 0.76**; pTM vs true TM-score: **r = 0.85**, both on n = 10,795 chains). Trust transfers through calibration, and only within the regime where it was demonstrated.
+
+Plain anchors: pLDDT is the model's local confidence label for each residue;
+PAE is its estimated position error between pairs of regions. Neither label is
+the same thing as correctness; calibration is the tested bridge between them.
 
 **Accessibility note.** No biochemistry needed to run the audit. You need to hold three ideas: a benchmark score (GDT_TS, higher = closer to the real shape), a self-reported confidence the model attaches to its own output (pLDDT/PAE), and the difference between "the model is confident" and "the model is right." The skill being trained is forecasting calibration — predicting in advance which validation claims will survive contact with new data, and where a celebrated result silently stops generalizing.
 
@@ -50,9 +62,20 @@ solve.
 - **S5 — Ask which other field already audits "trust without derivation."** `shape_question` This is the shape of any calibrated black-box forecaster — weather models, clinical risk scores, well-calibrated classifiers. None derive the answer; all earn trust by reliability-diagram calibration on hold-out data. *Check:* the pLDDT-vs-true-accuracy plot is literally a calibration curve; importing that field's standard (is it calibrated on unseen data, and only there?) is the correct audit lens.
 - **S6 — Reframe "solved" as "solved single-chain structure, within calibration, not dynamics."** `representation_shift` Drop the binary "solved/unsolved" frame; replace with a scope-bounded statement. AlphaFold 2 predicts a *single static structure* per chain; it does not deliver multimer assembly (CASP14-era), conformational ensembles, or folding dynamics. *Check:* the paper's own limitation section defers hetero-complexes to "a future system" — verifiable text, and corroborated by the later separate release of AlphaFold-Multimer.
 
+Plain anchors for the step graph: a pre-registered hold-out test fixes the
+rules before hiding the answers; a homolog is a known close relative; a PDB
+deposition is a newly recorded experimental structure; a reliability diagram
+is a report card comparing stated confidence with observed accuracy. A multimer
+is a multi-chain assembly, a conformational ensemble is a set of possible
+shapes, and folding dynamics is the motion between them.
+
 ## breakthrough
 
 **S2 is the breakthrough step — splitting confidence from correctness and making the bridge an empirical, calibration claim.** It eluded the community for decades because the field's instinct was to chase *correctness* (better physics, better templates, better contacts) while treating a method's self-confidence as marketing rather than a first-class, separately-validated output. AlphaFold's quiet move was to ship a self-error estimate (pLDDT/PAE) and then *prove it calibrated* on held-out data, converting "trust me" into "here is where, and how reliably, you can trust me" — the only honest answer to "why believe a prediction you cannot derive."
+
+The calibration bridge has a named break: it reaches only the kinds of unseen
+cases on which calibration was demonstrated. It does not, by itself, carry
+trust across to multi-chain complexes, motion, or any other untested regime.
 
 ## audit_targets
 

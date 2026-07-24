@@ -12,9 +12,23 @@ does and does not settle, and audit who actually did what.
 
 **Statement.** A *cap set* in (Z/3Z)^n is a set of points with no three on a line — equivalently, no three distinct vectors summing to 0 mod 3. The cap-set problem asks for the maximum size c_n of such a set, and for its asymptotic growth rate (capacity) γ = lim c_n^{1/n}. FunSearch (DeepMind, Nature 2023) is an LLM-guided evolutionary search over *programs*: a frozen LLM mutates a Python `priority` function feeding a fixed greedy `solve` skeleton, scored by an `evaluate` function. It produced a **512-element cap set in dimension 8**, beating the previous best of 496 and establishing the lower bound c_8 ≥ 512. FunSearch's admissible-set construction also raised the lower bound on γ from 2.2180 to 2.2184; a subsequent human (Ellenberg) feedback loop pushed it to 2.2202.
 
+**Everyday anchors.** A point in (Z/3Z)^n is an n-slot list filled with 0, 1,
+or 2, with addition wrapping around after 2. *Capacity* is the precise term for
+how the largest possible size grows as the number of slots increases.
+
 **Answer (what was actually settled).** Two specific, directly-checkable *constructions*: an explicit 512-point cap set in dim 8, and an admissible set yielding γ ≥ 2.2184. Both are **lower bounds on an OPEN problem**. The exact value c_8 is NOT determined (the upper bound is far larger), c_n is known exactly only for n ≤ 6, and the capacity γ remains open: the best upper bound γ ≤ 2.756 (Ellenberg–Gijswijt 2017) is untouched. FunSearch did NOT solve the cap-set problem.
 
 **Accessibility note.** A 14-year-old can check the answer: print the 512 vectors, test every triple for "sums to 0 mod 3". The collinearity test is one line. What is inaccessible to a human is *generating* the construction — searching a space of 3^8 = 6561 candidate vectors via millions of LLM-mutated priority heuristics. The auditor's job here is not to re-derive but to forecast: is this bound tight, does the construction generalize, what does a better lower bound settle versus leave open?
+
+**Plain-language reading map.** Use one central metaphor: each lower bound is a
+certified floor, while an upper bound is a ceiling; raising the floor records
+progress but does not locate the ceiling. The metaphor breaks if it makes c_8
+and γ sound like two measurements of one room: c_8 is one finite-dimensional
+maximum, γ is an asymptotic capacity, and the two claims here come from
+different constructions. Treat the LLM-guided program-generation search and
+the admissible-set derivation as declared black boxes. The reader's auditable
+work is to check the explicit witness, keep the two bounds separate, and trace
+each attribution to its source.
 
 ## history
 
