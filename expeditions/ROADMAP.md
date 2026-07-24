@@ -304,9 +304,10 @@ verification track.
   Wang, Bass–Connell–Wright, Drużkowski, Moh, and the cited 2022 plane-bound
   preprint. Tao's 2026-07-21 mathematical digestion supports the still-open
   \(n=2\) scope.
-- The public announcement credits Fable 5; prompts, transcripts, steering,
-  autonomy evidence, and division of labour are not public. The pack therefore
-  reports the attribution but makes no stronger discovery-process claim.
+- The public announcement credits Fable without identifying a model version;
+  prompts, transcripts, steering, autonomy evidence, and division of labour are
+  not public. The pack therefore reports the attribution but makes no stronger
+  discovery-process claim.
 - Current pool: **23 authored packs**, **6 SAT-certificate packs**, and
   **16 auditor-role packs**. The existing 22 were re-audited under the
   Feynman-register and register-fidelity protocol; the evidence ledger is

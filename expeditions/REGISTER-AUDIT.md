@@ -111,8 +111,9 @@ headings; the exact original headings were restored before this audit closed.
 The new `jacobian-conjecture-counterexample` pack was held outside
 `expeditions/` until its separate source audit, exact SymPy rerun, schema check,
 and domain-literate back-translation all passed with **0 P1 / 0 P2**. Its
-algebraic result is kept separate from the public Fable 5 attribution and the
-unpublished discovery process.
+algebraic result is kept separate from the public attribution to Fable (whose
+model version the post does not identify) and the unpublished discovery
+process.
 
 Final register result: **22/22 baseline packs pass the Feynman-register and
 register-fidelity audit; 23/23 live packs pass structural schema lint.**

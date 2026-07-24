@@ -141,11 +141,11 @@ assert {tuple(v.subs(dict(zip((x, y, z), p))) for v in F)
 **Public announcement and process boundary.** Levent Alpöge posted the formula
 late on 2026-07-19 in the local-date convention (2026-07-20 UTC):
 https://x.com/__alpoge__/status/2079028340955197566. The post thanks a friend
-identified only as “akhil” for asking and credits **Fable 5** with working
-during the World Cup final. That public attribution does not reveal prompts,
-transcripts, intermediate attempts, steering, autonomy evidence, or a division
-of labour. No Alpöge-authored arXiv write-up was located in a
-primary-source search completed on 2026-07-24. Shaska
+identified only as “akhil” for asking and credits **Fable** with working during
+the World Cup final; the post does not identify a model version. That public
+attribution does not reveal prompts, transcripts, intermediate attempts,
+steering, autonomy evidence, or a division of labour. No Alpöge-authored arXiv
+write-up was located in a primary-source search completed on 2026-07-24. Shaska
 (https://arxiv.org/abs/2607.20210) and Long
 (https://arxiv.org/abs/2607.18186) are independent follow-ups, not discovery
 records.
@@ -217,9 +217,10 @@ are exact checks, not “as of” claims.
 - **S6 — Split result truth from discovery provenance.**
   `representation_shift` Put the evidence in three frames: the algebraic
   witness says whether the formula is a counterexample; the public post records
-  an attribution to Fable 5; and only private workflow records could show who
-  supplied which idea or how much human steering occurred. Do not use evidence
-  from one frame to answer a question in another.
+  an attribution to Fable without identifying a model version; and only private
+  workflow records could show who supplied which idea or how much human
+  steering occurred. Do not use evidence from one frame to answer a question in
+  another.
 
 - **S7 — Rewrite the surviving scope.** `milestone_rewrite` The unrestricted
   conjecture is false in dimension three and, by adjoining untouched identity
@@ -273,10 +274,10 @@ found it would go beyond the available evidence.
 - **T5 — Did Fable discover the counterexample autonomously?** *Objection:* The
   announcement proves that an identified model independently found it.
   *Resolution:* The announcement's algebra proves nothing about the private
-  workflow. It publicly credits Fable 5, but supplies no prompt, transcript,
-  failed attempts, steering record, autonomy evidence, or division of labour.
-  The attribution is reported; the mathematical counterexample is verified;
-  the stronger autonomous-process claim is not.
+  workflow. It publicly credits Fable, but supplies no model-version identifier,
+  prompt, transcript, failed attempts, steering record, autonomy evidence, or
+  division of labour. The attribution is reported; the mathematical
+  counterexample is verified; the stronger autonomous-process claim is not.
 
 Role fit: auditor first, with a climber ridge in S2–S3. Forecasting is out of
 scope, so there is no `calibration_key`.

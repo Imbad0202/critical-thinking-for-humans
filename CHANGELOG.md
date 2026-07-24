@@ -19,9 +19,9 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 - **Jacobian counterexample expedition (#28).** Add the 23rd verified pack around
   the degree-seven map over \(\mathbb C^3\) whose Jacobian determinant is
   identically \(-2\) and whose three displayed inputs collide. Keep the exact
-  algebra separate from the public attribution to Fable 5 and the unpublished
-  discovery process, and retain the date-bounded boundary that \(n=2\) remains
-  open.
+  algebra separate from the public attribution to Fable—which does not identify
+  a model version—and the unpublished discovery process, and retain the
+  date-bounded boundary that \(n=2\) remains open.
 - **Source-credibility Daily family (#30).** Extend the zh-TW Daily rotation from
   seven to fourteen days with seven independently authored source-credibility
   cases. Public fixtures contain prompts and choices only; their private answer
