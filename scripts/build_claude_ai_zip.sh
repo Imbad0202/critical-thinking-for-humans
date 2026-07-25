@@ -83,5 +83,11 @@ require_member_text \
   "critical-thinking-for-humans/modes/scene.md" "fallacy_motte_and_bailey"
 require_member_text \
   "critical-thinking-for-humans/SKILL.md" "motte-and-bailey"
+require_member_text \
+  "critical-thinking-for-humans/shared/structures.md" "fallacy_gamblers_fallacy"
+require_member_text \
+  "critical-thinking-for-humans/modes/scene.md" "fallacy_gamblers_fallacy"
+require_member_text \
+  "critical-thinking-for-humans/SKILL.md" "gambler's fallacy"
 
 unzip -l "$OUT"

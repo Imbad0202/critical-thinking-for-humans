@@ -373,6 +373,8 @@ CHECKS = [
     ("shared/structures.md", "lens-no-true-scotsman", "`fallacy_no_true_scotsman`"),
     ("shared/structures.md", "lens-motte-and-bailey",
      "`fallacy_motte_and_bailey`"),
+    ("shared/structures.md", "lens-gamblers-fallacy",
+     "`fallacy_gamblers_fallacy`"),
     ("shared/structures.md", "lens-reverse-guard-adhominem",
      "becomes circumstantial ad hominem"),
     ("shared/structures.md", "lens-reverse-guard-strawman",
@@ -399,6 +401,21 @@ CHECKS = [
     ("shared/structures.md", "lens-motte-and-bailey-known-vs-unknown",
      "Return `insufficient_context` only when the passage presents a possible "
      "stronger/narrower fallback"),
+    ("shared/structures.md", "lens-reverse-guard-gamblers-fallacy",
+     "A reversal forecast is NOT this fallacy when the available material supplies "
+     "a probability-changing bridge"),
+    ("shared/structures.md", "lens-gamblers-fallacy-direction-and-strength",
+     "resulting conditional probability changes in the claimed direction and "
+     "supports the forecast's strength"),
+    ("shared/structures.md", "lens-gamblers-fallacy-repeated-outcome-downshift",
+     "making the recently repeated or overrepresented outcome less likely"),
+    ("shared/structures.md", "lens-gamblers-fallacy-calibration-boundary",
+     "A misread rule, arithmetic mistake, or calibration error without that bridge "
+     "remains wrong but is `not_fallacy` under this lens"),
+    ("shared/structures.md", "lens-gamblers-fallacy-unknown-generator",
+     "Use `insufficient_context` for a possible compensation inference only when "
+     "a missing generator rule, replacement condition, parameter fact, horizon, "
+     "state, or actor reason could change the active-lens ruling"),
     ("modes/scene.md", "fallacy-whataboutism-defect-test",
      "unanswered-charge test", "Fallacy-Recognition Track"),
     ("modes/scene.md", "fallacy-slippery-slope-defect-test",
@@ -423,8 +440,49 @@ CHECKS = [
      "advocate never advanced or adopted the stronger claim, return\n"
      "     `not_fallacy`",
      "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-defect-test",
+     "history-dependence test", "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-hot-hand-boundary",
+     "Positive-recency continuation is not gambler's fallacy",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-legitimate-positive-recency",
+     "supported parameter learning or dependence\n"
+     "     may make continuation legitimate",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-independent-block",
+     "In known independent trials with an unchanged outcome distribution",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-compensation-bridge",
+     "The unsupported shift must be attributed to\n"
+     "     due-ness, balance, or equivalent local compensation",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-calibration-boundary",
+     "calibration\n"
+     "     overstatement without that bridge remains wrong but is `not_fallacy` under",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-rtm-model",
+     "imperfectly correlated\n"
+     "     repeats and fresh mean-zero noise around stable latent values",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-no-behavior-inference",
+     "streak with no stated reason is such a case: return\n"
+     "     `insufficient_context` and never infer the belief from behavior alone",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-gamblers-fallacy-context-can-change-ruling",
+     "actor reason\n     could change the active-lens ruling",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-track-not-whole-argument-certificate",
+     "this ruling does not certify the whole argument",
+     "Fallacy-Recognition Track"),
+    ("modes/scene.md", "fallacy-track-surviving-lens-no-endorsement",
+     "If another defect may exist, it does\n"
+     "not endorse the whole argument; it finishes this ruling before offering a\n"
+     "separate round or route",
+     "Fallacy-Recognition Track"),
     ("SKILL.md", "fallacy-motte-and-bailey-routing",
      "motte-and-bailey", "Mode Routing"),
+    ("SKILL.md", "fallacy-gamblers-fallacy-routing",
+     "gambler's fallacy", "Mode Routing"),
     ("modes/scene.md", "fallacy-track-transfer-test",
      "Name the property the conclusion", "Fallacy-Recognition Track"),
     ("modes/scene.md", "fallacy-track-submode",
@@ -731,6 +789,38 @@ CHECKS = [
      "Gate 10 — Fallacy-Track Probes"),
     ("docs/GATE-checklist.md", "gate10-motte-and-bailey-clean-strawman-verdict",
      "returns `not_fallacy` under motte-and-bailey and\noffers strawman in a separate round",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy",
+     "10M (gambler's-fallacy history-dependence test + reverse-guards)",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-verdict-matrix",
+     "The\nfifteen rulings, in order, must be `fallacy`, `not_fallacy`, `not_fallacy`,\n"
+     "`not_fallacy`, `insufficient_context`, `insufficient_context`, `fallacy`,\n"
+     "`not_fallacy`, `not_fallacy`, `fallacy`, `not_fallacy`, `not_fallacy`,\n"
+     "`not_fallacy`, `fallacy`, and `not_fallacy`",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-context-branches",
+     "forces a\nbinary verdict on the fifth; infers a compensation belief from the sixth's bet",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-per-lens-controls",
+     "coach must not silently switch lenses or issue a second verdict in the same\nround",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-likely-conclusion",
+     "accepts its due-ness\nbridge merely because blue was already likely",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-update-direction",
+     "accepts the tenth's named update without checking its direction",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-selection-collision",
+     "endpoint-conditioned\nsample selection",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-multi-outcome",
+     "requires a\nnamed contrary outcome and therefore misses the fourteenth's unsupported\n"
+     "downward shift",
+     "Gate 10 — Fallacy-Track Probes"),
+    ("docs/GATE-checklist.md", "gate10-gamblers-fallacy-calibration",
+     "calls the fifteenth gambler's fallacy merely\n"
+     "because .70 overstates the real .60",
      "Gate 10 — Fallacy-Track Probes"),
 ]
 
