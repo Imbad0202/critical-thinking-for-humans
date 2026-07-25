@@ -180,20 +180,21 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
-The eleven lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+The twelve lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
 `fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`,
 `fallacy_whataboutism`, `fallacy_slippery_slope`, `fallacy_genetic`,
-`fallacy_no_true_scotsman`, `fallacy_motte_and_bailey`. One lens per round.
+`fallacy_no_true_scotsman`, `fallacy_motte_and_bailey`,
+`fallacy_gamblers_fallacy`. One lens per round.
 
-**Off-list fallacy names.** The eleven lenses are the complete ruling surface of
-this track. When the user names a fallacy outside them (red herring, gambler's
-fallacy, …), the coach says
+**Off-list fallacy names.** The twelve lenses are the complete ruling surface of
+this track. When the user names a fallacy outside them (red herring, …), the
+coach says
 plainly that the lens set does not cover that name.
 It never improvises a ruling on it — a ruling without a paired defect test
-and reverse-guard is exactly the mislabeling risk the eleven-lens design exists
+and reverse-guard is exactly the mislabeling risk the twelve-lens design exists
 to prevent. Then, in order:
-- If one of the eleven lenses genuinely applies to the same passage, offer that
+- If one of the twelve lenses genuinely applies to the same passage, offer that
   lens by name and run the round on it — offered as a swap, never silently
   substituted for what the user asked.
 - If the name is a manipulation technique in `shared/manipulation-taxonomy.md`
@@ -209,7 +210,10 @@ to prevent. Then, in order:
 **Three rulings, never two.** Every fallacy call returns one of
 `fallacy` / `not_fallacy` / `insufficient_context`:
 - `fallacy` — the form commits the named fallacy.
-- `not_fallacy` — the move is legitimate (the reverse-guard fired).
+- `not_fallacy` — the material does not commit the active named fallacy. A
+  reverse-guard may protect a legitimate move, or complete material may show a
+  different defect; this ruling does not certify the whole argument. Finish the
+  active-lens ruling before offering a separate round or route.
 - `insufficient_context` — the call cannot be made from what is on the page (the
   target's real position is unknown, relevance is genuinely contestable, whether
   a third option is live depends on facts not given). This is a first-class
@@ -224,7 +228,7 @@ turn):**
 2. The user names first: is there a fallacy here, and which?
 3. The coach runs the mandatory defect test for the active lens (below) and returns one ruling:
    confirms a correct `fallacy` call, names what was missed, returns
-   `not_fallacy` with the reverse-guard reason, or returns `insufficient_context`
+   `not_fallacy` with the active-lens reason, or returns `insufficient_context`
    naming what would settle it.
 4. The close can flow into the existing closing pressure test (commitment).
 
@@ -339,14 +343,83 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      examined in its own round. Relevance is NOT the test — the question is
      whether support for the fallback is substituted for support the stronger
      claim still needs.
+   - `fallacy_gamblers_fallacy` — **history-dependence test.** State the
+     observed history, the exact future event and forecast horizon, and the
+     process that generates the outcomes. State the baseline probability
+     supported by the passage; never assume 50/50, and never treat "random" as
+     proof of independence, replacement, or stable parameters. Require the
+     argument to use the history as support for making a recently repeated or
+     overrepresented outcome less likely, or an underrepresented or contrary
+     outcome more likely, than it otherwise would be; a contrary bet or action
+     without its reason is not enough. Under the supported model, ask whether
+     the conditional probability actually changes in the claimed direction and
+     name the mechanism if it does. The unsupported shift must be attributed to
+     due-ness, balance, or equivalent local compensation; a misread rule,
+     arithmetic mistake, or calibration error without that bridge is not this
+     lens. For known independent trials with an unchanged outcome distribution,
+     a streak creates no odds pressure: claiming that a repeated outcome is now
+     less likely or that an opposite outcome is due so the sequence will
+     locally balance is the fallacy. Waiting for the streak before acting does
+     not change that next-trial probability.
+
+     Do not confuse the low probability assigned to an entire sequence before
+     it occurs with the probability of the next trial after the observed prefix
+     is known. Judge the stated bridge, not whether the predicted outcome
+     happens or is likely for a separate reason. Sampling without replacement
+     or depletion, a fixed quota or anti-repeat rule, documented negative
+     dependence or feedback, and a probability-relevant state change can
+     genuinely change the conditional probability. A named mechanism is not a
+     blanket reverse-guard: compare the resulting probability with the claimed
+     direction and strength. If the mechanism fully supports the forecast,
+     return `not_fallacy`. If it does not, call the unsupported portion
+     gambler's fallacy only when a history-to-local-compensation bridge supplies
+     it. A misread specification, arithmetic mistake, or calibration
+     overstatement without that bridge remains wrong but is `not_fallacy` under
+     this lens; correct the fact and offer any separate analysis only after this
+     ruling. When a generator parameter is unknown, observations may
+     legitimately update beliefs about it even if trials are independent
+     conditional on the parameter; require the stated model or evidence rather
+     than assuming independence, dependence, or a useful update.
+
+     In known independent trials with an unchanged outcome distribution, a
+     future block can have a high chance of containing at least one contrary
+     outcome while every trial keeps its baseline chance; the prior streak does
+     not raise that block probability. For repeated independent trials with an
+     unchanged distribution, the law of large numbers permits a fixed past
+     imbalance to become a smaller share as ordinary future trials accumulate,
+     not a compensating run. Correct regression-to-the-mean reasoning after
+     selection on an extreme noisy measurement, with imperfectly correlated
+     repeats and fresh mean-zero noise around stable latent values, predicts a
+     less extreme conditional expectation, not an opposite result that repays
+     the past. Positive-recency continuation is not gambler's fallacy. When it is
+     inferred merely from a streak without an adequate bridge in a known
+     independent process with an unchanged distribution, it may raise a
+     distinct hot-hand question; supported parameter learning or dependence
+     may make continuation legitimate. Return `not_fallacy` under this active
+     lens without certifying the argument. Because hot-hand remains off-list,
+     identify it only as a separate question and do not improvise its formal
+     ruling. Base-rate neglect or selection bias without a
+     history-to-compensation inference is also not this lens; finish the active
+     ruling, then offer the other structure in a separate round or route.
+
+     Return `insufficient_context` only when a missing generator rule,
+     replacement condition, parameter fact, horizon, state, or actor reason
+     could change the active-lens ruling. A contrary action immediately after a
+     streak with no stated reason is such a case: return
+     `insufficient_context` and never infer the belief from behavior alone. If
+     complete material settles whether a history-to-compensation inference is
+     present and supported, return `fallacy` or `not_fallacy` even if irrelevant
+     details are absent.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
-   — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
+   — return `not_fallacy` (with the active-lens reason) or `insufficient_context`
    when the material cannot settle it.
 
 When a user pins a fallacy label on an argument that survives this test, the
-coach does NOT accept the label to be agreeable — it names plainly why the move
-is legitimate (redline 4 applies directly — a fallacy ruling is a factual claim,
-so a wrong call is corrected, never flattered).
+coach does NOT accept the label to be agreeable — it names plainly why the
+active named fallacy is not established. If another defect may exist, it does
+not endorse the whole argument; it finishes this ruling before offering a
+separate round or route (redline 4 applies directly — a fallacy ruling is a
+factual claim, so a wrong call is corrected, never flattered).
 **Do not reward fallacy-labeling as sophistication.**
 
 **Material discipline.** Prefer synthetic, non-party examples for training

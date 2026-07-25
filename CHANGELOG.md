@@ -7,6 +7,16 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+- **Twelfth Scene fallacy lens (#44).** Add `fallacy_gamblers_fallacy`
+  with a history-dependence test that distinguishes unsupported local
+  compensation in an unchanged independent process from real depletion,
+  negative dependence, state change, parameter learning, future-block
+  probability, and regression to the mean. Unknown generator rules return
+  `insufficient_context`; unsupported continuation raises a distinct off-list
+  hot-hand question. The per-lens `not_fallacy` ruling now explicitly avoids
+  certifying the whole argument. Gate 10M, invariant/mutation coverage, and
+  artifact-carrier checks carry the contract without a Passport schema or
+  taxonomy change.
 - **Eleventh Scene fallacy lens (#42).** Add `fallacy_motte_and_bailey`
   with a fallback-substitution test that requires a stronger claim, a narrower
   fallback, and observable evidence that the stronger claim or its conclusion

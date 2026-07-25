@@ -673,6 +673,94 @@ stronger claim or the coach returns `insufficient_context` despite the complete
 record. PASS if the coach returns `not_fallacy` under motte-and-bailey and
 offers strawman in a separate round.
 
+**10M (gambler's-fallacy history-dependence test + reverse-guards):** Present
+fifteen synthetic excerpts. First, an audited spinner produces each result
+independently with P(red) = .30 and P(blue) = .70. After waiting for six
+consecutive reds, a player says, "Blue is now more than 70 percent likely on
+the next spin; the sequence has to balance," and bets blue. Second, use the
+same spinner and history, but have the player say red is now more than 30
+percent likely because the streak will continue. Third, an urn begins with ten
+red and ten blue tokens; after four red tokens are drawn without replacement,
+a speaker says blue is now 10/16 likely because that is the remaining
+composition. Fourth, a controller's documented specification says three
+high-load cycles trigger a cooldown that makes a low next cycle 80 percent
+likely; after three high cycles, an operator uses that rule to forecast low.
+
+Fifth, a shuttle has departed late five times and a speaker says an on-time
+departure is due, but the passage gives no independence, recovery-control,
+schedule-state, or transition model. Sixth, after the first excerpt's six reds,
+Ivo bets blue, but nothing says why. Seventh, before seven independent fair
+coin tosses, seven heads in a row has probability 1/128. After the first six
+heads are known, a speaker says the seventh head itself now has probability
+1/128 and tails is due. Eighth, return to the .30/.70 independent spinner. A
+speaker correctly says every future blue remains .70, the chance of at least
+one blue in the next ten is 1 - .30^10 regardless of the prior run, and the
+fixed six-red imbalance can become a smaller share over many ordinary spins
+without a blue-heavy repayment.
+
+Ninth, a coin is selected once from a documented population with varying fixed
+biases. A stated Bayesian model treats flips as independent conditional on the
+unknown coin bias; after twenty heads, the model raises the posterior predictive
+chance of another head and the analyst forecasts another head for that reason.
+Tenth, use the same model and evidence, but have a speaker claim its parameter
+update makes tails more likely because tails is now due, even though the model's
+posterior predictive change points toward heads. Eleventh, branches were
+selected for an extreme noisy first score; repeat measurements use fresh
+mean-zero noise around unchanged branch baselines and are imperfectly
+correlated, so an analyst predicts that repeat scores will be less extreme on
+average even without an intervention. Twelfth, a recorder ends every spinner
+session at its first blue and displays only positions relative to the recorded
+endpoint. Because every terminal result is blue, an analyst infers that blue's
+generating probability rises near a session's end. Thirteenth, replay
+`shared/structures.md`'s base-rate-neglect rare-screening fixture, which has no
+outcome sequence or local-compensation inference. Fourteenth, an audited fair
+37-slot roulette wheel spins independently. After 17 occurs on two consecutive
+spins, a player says 17 itself is now less than 1/37 likely merely because it
+has just repeated, without naming which other number should occur. Fifteenth,
+a different controller's documented cooldown raises P(low next) from .40 to
+.60 after three high cycles. An operator misreads the specification as .70 but
+gives no due-ness, balance, or local-compensation reason for the overstatement.
+Ask for a gambler's-fallacy ruling on all fifteen with that lens active.
+
+FAIL if the coach resets the first spinner's baseline to 50/50, treats waiting
+for the streak as changing the next independent spin, accepts its due-ness
+bridge merely because blue was already likely, or rules it `not_fallacy`. Also
+FAIL if it labels the second gambler's fallacy, formally rules it a hot-hand
+error, or calls that whole argument sound merely because the active lens
+returns `not_fallacy`; rejects the third or fourth despite mechanisms whose
+resulting probabilities support the claimed direction and strength; forces a
+binary verdict on the fifth; infers a compensation belief from the sixth's bet;
+uses 1/128 as the seventh toss's conditional probability; treats the eighth's
+future-block probability or long-run dilution as compensating odds pressure;
+calls the ninth a hot-hand error despite the supported parameter update; or
+accepts the tenth's named update without checking its direction. FAIL as well
+if it relabels correct regression-to-the-mean reasoning, endpoint-conditioned
+sample selection, or base-rate neglect as gambler's fallacy; or requires a
+named contrary outcome and therefore misses the fourteenth's unsupported
+downward shift. Also FAIL if it calls the fifteenth gambler's fallacy merely
+because .70 overstates the real .60, or leaves that factual error uncorrected.
+
+PASS if the coach names the history, forecast and horizon, preserves the stated
+baseline, and checks whether the supported generator makes the forecast
+history-sensitive in the claimed direction and to the claimed strength. The
+fifteen rulings, in order, must be `fallacy`, `not_fallacy`, `not_fallacy`,
+`not_fallacy`, `insufficient_context`, `insufficient_context`, `fallacy`,
+`not_fallacy`, `not_fallacy`, `fallacy`, `not_fallacy`, `not_fallacy`,
+`not_fallacy`, `fallacy`, and `not_fallacy`. It must name the generator or
+actor-reason evidence needed for the fifth and sixth; distinguish the seventh's
+ex-ante sequence probability from its next-event conditional probability;
+preserve the third, fourth, eighth, ninth and eleventh as explicit
+reverse-guards; and identify hot-hand, `sample_selection`, and
+`base_rate_neglect` only as separate questions or structures after completing
+the active-lens ruling. On the fifteenth it must return `not_fallacy` under the
+active lens, correct .70 to .60, and keep the calibration defect separate. The
+coach must not silently switch lenses or issue a second verdict in the same
+round; it may offer a fresh round or route. This proves the defect is
+unsupported local compensation in the stated probability model, whether
+expressed as a repeated outcome becoming less likely or a contrary outcome
+becoming more likely, not any use of history, any unlikely run, or any
+conclusion that happens to be likely.
+
 ---
 
 ## Gate 11 — Source-Credibility Operations & Drill-Validity Probes

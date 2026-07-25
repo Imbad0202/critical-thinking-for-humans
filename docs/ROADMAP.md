@@ -34,12 +34,11 @@ date.
 
 ### Scene fallacy lenses (#11)
 
-Keep the fallacy-recognition track's current eleven-lens ruling surface.
+Keep the fallacy-recognition track's current twelve-lens ruling surface.
 Additional lenses are a low-priority, one-at-a-time backlog; each needs its
 own defect test, reverse-guard, boundary text, invariant and mutation coverage,
-Gate 10 probe, and overlay synchronization. Current off-list candidates are
-red herring and gambler's fallacy. Do not batch-expand the set merely to make
-it exhaustive.
+Gate 10 probe, and overlay synchronization. The current off-list candidate is
+red herring. Do not batch-expand the set merely to make it exhaustive.
 
 ### Local Passport reliability
 
