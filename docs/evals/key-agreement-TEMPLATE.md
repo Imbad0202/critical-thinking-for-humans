@@ -9,7 +9,8 @@ reproducibility only**. For a correctness claim, use the human validity anchor
 
 - **Author model (generated items + keys):** _e.g. claude-opus-4-8, <date>_
 - **Judge models (solved cold, keys withheld):** _e.g. gpt-5.5 (xhigh), gemini-3-pro_
-- **Item count / structure coverage:** _N items; which of the 12 structures_
+- **Item count / structure coverage:** _N items; which of the 14 structures,
+  including whether `source_credibility` is represented_
 - **Tier(s):** _intro / standard / advanced_
 - **Domain(s):** _the field(s) items were generated in_
 

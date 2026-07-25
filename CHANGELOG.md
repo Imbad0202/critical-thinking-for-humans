@@ -7,6 +7,26 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+- **Source credibility becomes the 14th canonical structure (#36).** Add
+  `source_credibility` as a loggable Drill and Detective target while retaining
+  the existing cross-mode `clarify`, `check_basis`, and
+  `license_conclusion` as procedures rather than duplicate tally IDs. Existing
+  `drill_result`, `miss_log`, `item_discarded`, and
+  `detective_process.structures_hit` events carry it without a Passport schema
+  bump or a fifth Drill item type.
+- **Credibility-specific generation and behavior gates.** Require uniquely
+  defensible weight judgments across tiers, including sound interested sources;
+  refuse to invent motives, funding, independence, credentials, or records;
+  preserve the genetic- and ad-hominem-fallacy reverse guards; and protect
+  Detective's first-defect-call and answer-chain silence. New invariants,
+  mutation coverage, eval templates, and manual probes keep those boundaries
+  load-bearing.
+- **Source-family answer-cue repair (#35).** Rebalance the seven public
+  source-credibility Daily cases so the correct option is no longer revealed by
+  conspicuously greater length, tighten the 2026-07-19 prompt, and add a
+  keyless regression test for the length cue. Private answer records remain
+  local and outside version control.
+
 ## [1.4.0] - 2026-07-24
 
 - **Feynman-register expedition discipline (#29).** Require plain-language

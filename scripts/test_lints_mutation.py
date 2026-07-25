@@ -22,7 +22,7 @@ import check_web_content as cwc
 REPO = Path(__file__).resolve().parent.parent
 NEEDED_DIRS = ["shared", "modes", "passport", "platforms", "docs",
                "expeditions", ".claude-plugin"]
-NEEDED_FILES = ["SKILL.md", "README.md", "CHANGELOG.md"]
+NEEDED_FILES = ["SKILL.md", "README.md", "CHANGELOG.md", "CLAUDE.md"]
 PACK = "expeditions/boolean-pythagorean-triples.md"
 FORECASTER_PACK = "expeditions/alphafold-casp14.md"
 

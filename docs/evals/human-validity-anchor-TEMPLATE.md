@@ -7,7 +7,7 @@ human, not a language model. A model may not stand in for the human step.
 ## Method
 
 - **Author model (generated items + keys):** _e.g. claude-opus-4-8, <date>_
-- **Human judge(s):** _who; competence basis in the twelve structures_
+- **Human judge(s):** _who; competence basis in the fourteen structures_
 - **Item count / structure coverage:** _N items; ≥2 per structure_
 - **Tier(s):** _intro / standard / advanced_
 - **Blinding:** _model key hidden from the judge until after they solve_

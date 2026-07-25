@@ -16,7 +16,7 @@ Recognition, never production: redline 13 governs every use of this file.
 ## Technique Table
 
 The loggable technique IDs. Manipulation drill items log these instead of the
-thirteen reasoning-structure IDs (shared/structures.md notes the exception).
+fourteen reasoning-structure IDs (shared/structures.md notes the exception).
 Canonical IDs are snake_case English and never localized; display follows the
 shared/structures.md display rules — plain-language labels in the user's
 language, raw IDs only in passport events.
@@ -36,6 +36,15 @@ language, raw IDs only in passport events.
 | `false_dilemma` | A spectrum of options is collapsed into two, one of them intolerable. (Also a scene fallacy lens, `fallacy_false_dilemma`.) | "What third option does this framing delete?" | political, sales |
 | `whataboutism` | A critique is deflected by pointing at someone else's sin, leaving the original claim unanswered. (Also a scene fallacy lens, `fallacy_whataboutism` — same move, judged there as argument form; here trained as situational recognition.) | "Was the original claim addressed, or only relocated?" | political |
 | `identity_bait` | The pitch flatters the target into a self-image — smart people see this, real patriots act — whose price is agreement. | "Would the argument still stand if it weren't about who I am?" | political, MLM, relational |
+
+**Authority boundary:** `authority_abuse` requires borrowed, fabricated, or
+out-of-domain authority to do the persuading. Ordinary questions about whether
+a real source is first-hand or relayed, interested, independently corroborated,
+well observed, or well recorded belong to `source_credibility`; a transparent
+interested source with independent corroboration is not manipulation merely
+because it has an interest. If both IDs would be defensible, regenerate rather
+than ship an ambiguous item. This boundary changes classification only:
+recognition remains the sole permitted direction under redline 13.
 
 ---
 

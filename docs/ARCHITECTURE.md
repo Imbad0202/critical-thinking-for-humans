@@ -1,7 +1,7 @@
 # Architecture (v1.4.0)
 
 How `critical-thinking-for-humans` is put together: what loads when, how a
-session routes to one of four modes, how the thirteen reasoning structures are
+session routes to one of four modes, how the fourteen reasoning structures are
 organized, how detective generates a case without leaking its answer key, how
 the on-disk passport records longitudinal patterns, and how the three build
 targets relate.
@@ -37,7 +37,7 @@ flowchart TD
     subgraph Floor["The floor — always loaded first"]
         RL[shared/redlines.md<br/>14 redlines]
         SC[shared/scaffolding.md<br/>4-step reveal · safe words · stuck]
-        ST[shared/structures.md<br/>13 structures · frame palette]
+        ST[shared/structures.md<br/>14 structures · frame palette]
     end
 
     Floor --> Returning{Returning user?<br/>read ~/.ct-gym}
@@ -95,27 +95,33 @@ flowchart LR
 
 ---
 
-## 3. The thirteen reasoning structures (drill's keying set)
+## 3. The fourteen reasoning structures (drill's keying set)
 
-Drill keys on one of thirteen structures. They split three ways — and that split
+Drill keys on one of fourteen structures. They split four ways — and that split
 decides which fields drill can serve natively and which route to scene instead.
 
 ```mermaid
 flowchart TD
-    Structures[13 canonical structures]
+    Structures[14 canonical structures]
 
     Structures --> Causal["7 causal-inductive"]
     Structures --> Stat["3 statistical<br/>(standard+ only — numeracy gate)"]
     Structures --> Formal["3 formal / inductive"]
+    Structures --> Source["1 source-evaluation"]
 
     Causal --> C1["necessary_assumption · alternative_cause<br/>reverse_causation · coincidence_timing<br/>sample_selection · proxy_mismatch<br/>evidence_sufficiency"]
     Stat --> S1["base_rate_neglect<br/>regression_to_mean<br/>simpson_paradox"]
     Formal --> F1["circular_reasoning<br/>hasty_generalization<br/>weak_analogy"]
+    Source --> R1["source_credibility"]
 ```
 
 Each structure is a transferable shape: once you can see `sample_selection` as a
 shape, you catch it in a journal, a news story, or a contract. Naming is what
-makes the practice transfer.
+makes the practice transfer. `source_credibility` judges the evidential weight
+warranted by a source or observation report from documented features; it never
+infers truth or falsity from origin alone. The cross-mode `clarify`,
+`check_basis`, and `license_conclusion` operations are procedures for applying
+that judgment, not additional structure IDs or Passport tallies.
 
 ---
 

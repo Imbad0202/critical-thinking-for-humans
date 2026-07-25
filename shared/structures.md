@@ -11,14 +11,16 @@ Canonical IDs are snake_case English and never localized; the display layer tran
 
 ## Reasoning Structures
 
-The thirteen loggable structure IDs — every `drill_result.structure` value comes
+The fourteen loggable structure IDs — every `drill_result.structure` value comes
 from this table, with one exception: `manipulation_spot` items log technique
 IDs from `shared/manipulation-taxonomy.md`. The first seven are causal-inductive;
 three (`base_rate_neglect`, `regression_to_mean`, `simpson_paradox`) are
 statistical-reasoning structures that assume basic numeracy — prefer them at
-standard tier and above, not intro; the last three (`circular_reasoning`,
+standard tier and above, not intro; the next three (`circular_reasoning`,
 `hasty_generalization`, `weak_analogy`) are formal/inductive structures with no
-numeracy gate, drillable at every tier.
+numeracy gate, drillable at every tier; `source_credibility` is the one
+source-evaluation structure: 7 causal-inductive + 3 statistical + 3
+formal/inductive + 1 source-evaluation.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
@@ -35,6 +37,7 @@ numeracy gate, drillable at every tier.
 | `circular_reasoning` | A premise covertly presupposes the conclusion; the argument travels in a circle, treating what it must prove as already given. This is the premise being the conclusion restated — distinct from `necessary_assumption` (an external unstated condition the argument needs) and from the `premise_restatement` distractor (which paraphrases stated evidence, not the conclusion). | "Can this premise be stated or verified without already knowing the conclusion?" | "Brightline Tutoring is the most trusted name in test prep because more families trust it than any other service." — the premise (more families trust it) is the conclusion (most trusted) restated. |
 | `hasty_generalization` | There is data, but the sample is too small or too narrow to support the leap to the population. Upstream of this sits `evidence_sufficiency` (no conclusion is licensed at all — no baseline, no control); here a direction is established, but the sample is simply too small to reach the population. Unlike `sample_selection` (which systematically excludes refuting cases), this sample is just too small or too narrow, with no systematic exclusion implied. | "Is this sample large and broad enough to stand in for the whole population the conclusion is about?" | "Three of my neighbours switched to the new commuter rail and loved it, so the line will be popular across the whole metro region." — three neighbours cannot represent a metro region. |
 | `weak_analogy` | The drill-loggable twin of the `fallacy_false_analogy` lens: the two cases differ on the load-bearing property the conclusion rests on, so the transferred inference does not carry. Distinct from `irrelevant_comparison` (a distractor pattern that compares mismatched referents) — here the analogy is the argument's own engine, and the flaw is the named disanalogy on the property that matters. | "Does the analogy hold on the property the conclusion actually needs, or only on surface features?" | "A city budget is like a household budget, so a city running a deficit is as reckless as a family maxing out its credit cards." — a household cannot issue currency or bonds against future tax revenue; the analogy breaks on exactly the property (sovereign fiscal capacity) the conclusion rests on. |
+| `source_credibility` | How much evidential weight a source or observation report warrants from credibility-relevant features: first-hand vs relayed, primary vs secondary, documented interests or error history, genuinely independent corroboration, observation or record quality, and relevant limits. It never licenses "true" or "false" from origin alone; unknown funding, motives, independence, credentials, or records stay unknown. | "Given what is documented about how this report was produced and corroborated, how much weight does it warrant — and what conclusion survives that adjustment?" | Five articles repeat a safety figure, but all cite the same vendor press release and none checks the underlying record. The publication count is one relayed source, not five independent lines; its weight is limited, though that alone does not make the figure false. |
 
 **Contrast pair (hasty vs sufficiency)** — the two collapse in generation unless the stem is tightly built, so item generators anchor on this contrast, not boundary prose alone:
 
@@ -47,6 +50,39 @@ A drill stem must land cleanly on one side. **Forbidden:** any stem where both "
 
 - `weak_analogy` (the cases genuinely differ on the load-bearing property): "A vaccine trial is like a coin-flip experiment, so a run of ten healthy vaccinated people proves the vaccine works." — the load-bearing property (an independent, known base rate of the outcome) is exactly what a coin flip has and an uncontrolled vaccine observation lacks; the analogy breaks where the conclusion rests.
 - a SOUND analogy attacked only on an irrelevant difference (NOT the fallacy): "This drug trial should use a control group, just as the earlier hypertension trial did." — objecting "but that trial studied a different disease" attacks a surface difference; the control-group logic transfers regardless of disease, so the analogy holds. A stem built to key `weak_analogy` must not accidentally be this — if the only available attack is an irrelevant difference, the argument is sound and the item is mis-keyed (regenerate, do not patch).
+
+**Source-credibility boundaries** — source evaluation is about the documented
+basis and warranted WEIGHT of testimony or a report, not a shortcut from origin
+to truth:
+
+- `source_credibility` vs `evidence_sufficiency`: key the former only when a
+  source's provenance, relay distance, interests, corroboration, observation
+  quality, record quality, or limits are the designed issue. Generic missing
+  baseline, control, comparison, or enough support to license any conclusion
+  stays `evidence_sufficiency`.
+- `source_credibility` vs `sample_selection`: who entered or was excluded from
+  the sample stays a sampling defect, even when a sponsor funded the study.
+- `source_credibility` vs `frame_incentive`: an incentive may guide inquiry, but
+  only a documented credibility-relevant fact changes evidential weight. Never
+  guess a motive from role or identity.
+- `source_credibility` vs `authority_abuse` / `fallacy_appeal`: borrowed, fake,
+  irrelevant, or cross-domain authority doing the persuading belongs to the
+  applicable manipulation technique or fallacy lens. Ordinary source-basis
+  evaluation belongs here; do not build an item on which both are defensible
+  keys.
+- `source_credibility` vs `fallacy_ad_hominem` / `fallacy_genetic`: a documented
+  conflict, relay, or error record may lower weight or call for corroboration.
+  It never, by itself, proves the claim false or makes a person globally
+  untrustworthy; that truth-by-person or truth-by-origin move triggers the
+  reverse-guards instead.
+
+**Sound interested-source counterexample:** a manufacturer funds a study, but
+the protocol and data are public, the outcome measure is independently audited,
+and unaffiliated teams reproduce the result. The interest is documented and
+relevant to scrutiny, yet it does not erase the converging evidence. An item
+whose only objection is "the funder benefits" is sound against
+`source_credibility`; preserve this case in sound-item audits rather than
+manufacturing a flaw from interest alone.
 
 ---
 
@@ -64,14 +100,15 @@ A drill stem must land cleanly on one side. **Forbidden:** any stem where both "
 
 ## Source-Credibility Operations
 
-Three cross-mode operations, modeled on `negation_test`: procedures, not loggable structures —
+Three cross-mode operations, modeled on `negation_test`: procedures for applying
+`source_credibility`, not loggable structures —
 none of these IDs ever appears in any passport event or tally field
 (not `drill_result.structure`, not `detective_process.structures_hit`, not a
 passport-block tally entry).
-The thirteen structures above all attack the evidence→conclusion fit; these
-operations train the judgment upstream of that fit: whether the source of the
-evidence deserves the weight the argument gives it. The ruling of `check_basis` is always about
-evidential WEIGHT, never truth by origin — the same line the
+The loggable result of a keyed source-evaluation item or layer is
+`source_credibility`; `clarify`, `check_basis`, and `license_conclusion` describe
+how the judgment is reached and may also surface as micro-prompts when another
+structure is targeted. The ruling of `check_basis` is always about evidential WEIGHT, never truth by origin — the same line the
 `fallacy_ad_hominem` and `fallacy_genetic` reverse-guards draw. The operations
 examine sources; they never teach how to construct a deceptive one
 (redline 13).

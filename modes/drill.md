@@ -38,6 +38,10 @@ assume basic numeracy; prefer them at standard tier and above. A `weaken` item
 may also target `hasty_generalization` — the gap is an unjustified leap from too
 small or narrow a sample to a broader population — or `weak_analogy`, the gap
 being an analogy that breaks on the property the conclusion actually depends on.
+It may target `source_credibility` when a documented feature of a source or
+observation report changes the weight its evidence warrants; the key adjusts
+weight and the strongest licensed conclusion, never declares truth or falsity
+from origin.
 Name the attack after giving the answer.
 
 ### 3. `sufficiency`
@@ -46,13 +50,16 @@ Judge whether the evidence licenses the conclusion. Note:
 "cannot be determined" is a legitimate and rewarded answer — never a weak one.
 Choosing it correctly when evidence is genuinely insufficient is the skill being tested, not a fallback.
 Default structure ID for this type: `evidence_sufficiency` — log hits and misses under that ID. When the item was generated to target `hasty_generalization` (the sample-to-population leap, see its slot below), log under `hasty_generalization` instead — log under whichever structure the item was built to test.
+A `sufficiency` item may likewise target `source_credibility` when the designed
+question is what conclusion remains licensed after a source-weight adjustment,
+not generic missing evidence; log that item under `source_credibility`.
 
 ### 4. `manipulation_spot`
 
 Identify the primary manipulation technique operating in a synthetic pitch,
 message, or short transcript. Available only in the manipulation-recognition
 domain (`shared/manipulation-taxonomy.md`); items log technique IDs from that
-file's table instead of the thirteen structure IDs. The pipeline applies with
+file's table instead of the fourteen structure IDs. The pipeline applies with
 two substitutions: step (c) designs ONE primary technique in; step (f) draws
 distractors from the technique table — other technique IDs plausibly suggested
 by the surface text but not primarily operating — instead of the distractor
@@ -111,7 +118,7 @@ is correct, a muddled item is not.
 **a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
 
-**a2. Domain-fit gate.** Runs at intake and on every "switch domain", before the first item of the new domain. The reasoning structures are causal-inductive (seven of them), statistical (three of them), and formal/inductive (three of them) tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Domain families that do not natively host that shape: deductive formal systems (pure mathematics, formal logic, theoretical CS), aesthetic and interpretive judgement (music, art, literature, film, design — and ethics/aesthetics generally; redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). Note the split inside the empirical sciences: experimental and statistical reasoning DOES fit (a study's evidence vs its conclusion), while the laws/theorems themselves are deductive and do not — recast to the experimental layer rather than rejecting the field. For such a domain: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — a drill recast that keeps the structure set (e.g. mathematics → statistical and experimental reasoning), and a scene-mode path on the domain's own material (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
+**a2. Domain-fit gate.** Runs at intake and on every "switch domain", before the first item of the new domain. The reasoning structures are causal-inductive (seven of them), statistical (three of them), formal/inductive (three of them), and source-evaluation (one of them) tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Domain families that do not natively host that shape: deductive formal systems (pure mathematics, formal logic, theoretical CS), aesthetic and interpretive judgement (music, art, literature, film, design — and ethics/aesthetics generally; redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). Note the split inside the empirical sciences: experimental and statistical reasoning DOES fit (a study's evidence vs its conclusion), while the laws/theorems themselves are deductive and do not — recast to the experimental layer rather than rejecting the field. For such a domain: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — a drill recast that keeps the structure set (e.g. mathematics → statistical and experimental reasoning), and a scene-mode path on the domain's own material (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
 
 **b. Pick a target structure.**
 Weight toward the user's miss-log weak spots (highest miss rate first). On cold
@@ -160,6 +167,15 @@ domain wrapping:
   (shared/structures.md): the disanalogy must be relevant to the conclusion, not
   a surface difference, or the argument is actually sound (see the sound-argument
   items above). No numeracy gate — drillable at every tier.
+- `source_credibility` — slot: the one documented credibility-relevant feature
+  that changes warranted evidential weight, plus the strongest conclusion that
+  survives that adjustment. Use first-hand vs relayed, primary vs secondary,
+  a documented interest or error record, genuine independent corroboration,
+  observation or record quality, or a stated limit. Generated as a `weaken`- or
+  `sufficiency`-type item; never invent funding, motives, independence,
+  credentials, or records, and never make "the source is interested, therefore
+  false" the key. `clarify`, `check_basis`, and `license_conclusion` are the
+  procedures used to solve it, not additional target or passport IDs.
 
 If the material will not fit the target structure's template cleanly, pick a
 different structure or domain — never stretch the template to force a fit.
@@ -173,6 +189,10 @@ Standard stems like "Which option most weakens this conclusion?" are fine; avoid
 
 **f. Build the distractors — intro: 2; standard/advanced: 4 — from the distractor menu (shared/structures.md).**
 Assign each distractor a pattern ID from the distractor menu. Add a one-line internal note on why that distractor tempts — shown only in the post-answer dissection, never when the item is presented.
+Write the key and distractors in parallel syntax and comparable detail. If the
+key is identifiable because it alone carries extra explanation or is
+conspicuously longer than every distractor, rewrite the whole option set before
+the reverse-solve; correctness must not be encoded by length.
 
 **g. Reverse-solve check — audit the distractors.**
 Before presenting, re-solve the item with fresh eyes WITHOUT reference to the
@@ -186,11 +206,22 @@ NOT patch a borderline distractor in place: a repair usually introduces a new
 ambiguity, so regenerate rather than edit. (These lines are internal, like the
 step-f distractor notes; never shown when the item is presented.)
 
+For a `source_credibility` target, the reverse-solve must also test the strongest
+competing classifications. If the live defect is generic missing evidence, use
+`evidence_sufficiency`; if it is who entered the sample, use
+`sample_selection`; if it is borrowed, fake, or cross-domain authority, use the
+applicable manipulation or Scene fallacy-recognition path instead: discard the
+source item and reroute a newly generated exercise, never put a technique or
+fallacy-lens ID into a `weaken` or `sufficiency` result. If an option dismisses
+a claim as false from the speaker or origin alone, it is an ad-hominem or
+genetic-fallacy trap, not the source-credibility key. If two classifications
+remain defensible, discard and regenerate. Unknown source facts stay unknown.
+
 **g'. Sound-item audit (inverted reverse-solve — sound items only).**
 For a sound-argument item there is no designed gap; the claim being made is that
 the argument *holds*, so the audit inverts. Before presenting, enumerate the
 strongest candidate attack the item's target-adjacent structures could mount —
-at minimum walk the thirteen structures and, for each that could plausibly apply
+at minimum walk the fourteen structures and, for each that could plausibly apply
 to this argument, write one hidden line naming the attack it would make and why
 that attack does NOT land on this argument (out of scope, or aimed at a point the
 conclusion does not rest on). Release the item ONLY if every walked structure
@@ -201,6 +232,11 @@ item) or discard and regenerate. "I could not find an attack" is weaker evidence
 than "here is the attack," so this audit is held to a higher bar than step (g);
 when in doubt, the item is not sound. The offered options are then written so
 each is a real-looking objection that the audit has already shown does not bite.
+The sound pool must preserve interested-source counterexamples: when methods and
+data are transparent and an independent line corroborates the result, a
+documented interest alone does not make the argument unsound. In that audit,
+the `source_credibility` candidate attack ends in "does not land"; do not turn
+interest into a global untrusted label or a truth-by-origin shortcut.
 
 **g2. Weak-model fallback ladder.**
 If steps (c)–(g) fail the audit twice in a row for the same target structure,
@@ -249,6 +285,9 @@ If yes, discard and regenerate from step (b).
    asks for the answer plus one sentence of reason. Safe words keep their exact
    meaning inside the reason-ask, with one tightening: the `"hint"` scaffold
    also never points toward the key.
+   This applies unchanged to `source_credibility`: do not visibly run
+   `clarify`, `check_basis`, or `license_conclusion`, reveal a weight ruling, or
+   comment on a source before the user's commitment.
 
 3. **Full dissection.** After commitment:
    - State the key and whether the user's answer was right or wrong (redline 4:
@@ -264,6 +303,10 @@ If yes, discard and regenerate from step (b).
      the event is still a hit, and `summary` may note the reason's error at
      structure level only — never the user's own words (passport/SCHEMA.md
      privacy rules) — no schema change.
+   - For `source_credibility`, name the documented basis for the weight change
+     and the strongest conclusion that remains licensed. Say explicitly that
+     the ruling does not establish truth or falsity from origin; do not assign a
+     global credibility score or blacklist to a person or institution.
 
 4. **Name the skeleton.** name the transferable structure with its stable
    plain-language label in the user's language and state its domain-general shape
@@ -324,6 +367,10 @@ If yes, discard and regenerate from step (b).
    commitment on this item, else `independent` (passport/SCHEMA.md,
    Elicitation) — an ability-support fact about the item, never a disposition
    read from the safe word itself.
+   A keyed source-evaluation item uses the existing events unchanged and logs
+   `source_credibility` as its one structure ID. Never log `clarify`,
+   `check_basis`, or `license_conclusion`; they are procedures, and this adds no
+   fifth item type or passport schema version.
 
 ---
 

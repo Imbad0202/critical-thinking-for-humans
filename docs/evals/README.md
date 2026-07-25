@@ -13,7 +13,7 @@ and 2:
 | Layer | Tool | What it checks | Strength |
 |-------|------|----------------|----------|
 | 1 | `scripts/check_invariants.py` | Rule sentences exist in source | Weakest — text presence only |
-| **1.5** | **This directory** | **Keyed answers are reproducible across independent models (stability, not correctness); adversarial prompts do not breach redlines; a human anchor for correctness is specified but unrun** | **Cross-model + human-anchor protocol** |
+| **1.5** | **This directory** | **Keyed answers are reproducible across independent models (stability, not correctness); one release-scoped adversarial run is recorded; a human anchor for correctness is specified but unrun** | **Cross-model + behavioral-sample + human-anchor protocol** |
 | 2 | `docs/GATE-checklist.md` | A human, in a fresh session, sees the skill uphold rules | Behavioral |
 | 3 | Real-world usage | Edge cases no controlled probe anticipates | Strongest |
 
@@ -21,11 +21,11 @@ Layer 1.5 exists because of one specific gap. drill keys an answer and rules
 the user right or wrong against it, but that key is written and audited by **one
 model in one session** (the step-(g) reverse-solve in `modes/drill.md` is
 self-audit, not independent verification). Nothing else signs off. An eval that
-asks the *same* model whether its own keys are correct measures nothing — it is
-the correlated self-evaluation `GATE-RUN-2026-06-13.md` already warns against.
-So every protocol here puts the key in front of an **independent judge**: another
-model for stability, or a human for validity. What an independent judge cannot
-be is the author model grading itself.
+asks the *same* model, inside the authoring session, whether its own keys are
+correct measures correlated self-evaluation rather than independent evidence.
+So every protocol here puts the key in front of an **independent judge**:
+another model for stability, or a human for validity. What an independent judge
+cannot be is the author model grading itself.
 
 ### What cross-model agreement is and is not
 
@@ -41,7 +41,7 @@ model gets wrong the same way). So:
   directory can produce today. Frame it as "how reproducible is the key,"
   never as "the key is right."
 - **Validity (not reportable yet):** whether the key is actually correct. This
-  needs a **non-LLM anchor** — a human, competent in the twelve structures,
+  needs a **non-LLM anchor** — a human, competent in the fourteen structures,
   who cold-solves a sample and judges whether each item even has a single
   defensible answer. The result is a *human-agreement* rate, reported as the
   primary validity number with cross-model agreement demoted to a secondary
@@ -93,11 +93,11 @@ The only protocol here that can speak to whether a key is *correct* rather than
 `expedition` packs already pay (first-party verification of a real solution);
 this protocol asks whether `drill` can pay it too.
 
-1. **Freeze a sample.** Generate 30–50 drill items across all twelve structures
+1. **Freeze a sample.** Generate 30–50 drill items across all fourteen structures
    (≥2 per structure, mixed tiers). Store each item with the model's own key,
    key hidden from the human judge.
 2. **Human cold-solve (the anchor — not automatable).** A person competent in
-   the twelve structures solves each item seeing only stem and options, and for
+   the fourteen structures solves each item seeing only stem and options, and for
    each records: their answer, and whether the item even *has* a single
    defensible answer or is a double-key / ambiguous-distractor item. No model
    may stand in for this step; a model judging the key is back to correlated
@@ -115,9 +115,11 @@ none. Cross-model stability does not substitute for it.
 
 ### 2. Adversarial behavior probes (`behavior-probes-TEMPLATE.md`)
 
-Fresh sessions (per `GATE-RUN` discipline — self-evaluation inside the authoring
-session does not count). Each probe tries to make the skill break a redline or
-stance commitment; record PASS/FAIL and a verbatim excerpt. Minimum coverage:
+Fresh sessions (per the session-boundary discipline in
+[`docs/GATE-checklist.md`](../GATE-checklist.md#session-boundaries);
+self-evaluation inside the authoring session does not count). Each probe tries
+to make the skill break a redline or stance commitment; record PASS/FAIL and a
+verbatim excerpt. Minimum coverage:
 
 - **Key authority** (`modes/drill.md` "honor a challenge to the key"): challenge a
   correct key and a deliberately-wrong key; the coach must engage on the merits,
@@ -157,13 +159,22 @@ Both are a **stability ceiling, not a validity result.** Run B rules out author
 bias as the explanation, which makes the reproducibility finding stronger and the
 validity gap no smaller: rotating which LLM writes adds no non-LLM judge, and
 items seeded with tempting near-miss distractors still did not split the judges.
-Neither run claims any key is correct.
+Both runs cover the then-current twelve-structure set; they predate
+`weak_analogy` and `source_credibility` and are not evidence for either. Neither
+run claims any key is correct.
 
 **Protocol 1b (human validity anchor):** no run. This is the only protocol that
 could speak to key *correctness*; until it has a result file, the directory makes
 no validity claim, and the stability number above does not substitute for one.
 
-**Protocols 2 (behavior probes) and 3 (localization):** no runs yet.
+**Protocol 2 (behavior probes):** one release-scoped partial run exists:
+`behavior-probes-2026-07-24-v1.4.0.md`. It covers Gates 11 and 12 plus the
+affected RL4, RL8, and RL14 probes against canonical files in a Codex live
+runner. It is not a complete run of the generic protocol, predates the
+loggable `source_credibility` target, and does not attest Claude Code,
+claude.ai, or the portable build.
+
+**Protocol 3 (localization):** no run yet.
 
 Until a protocol-1b result file exists, the README makes no empirical
 effectiveness or correctness claim and should not be read as if it did.
