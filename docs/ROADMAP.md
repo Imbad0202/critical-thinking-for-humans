@@ -8,27 +8,30 @@ There is no active feature milestone. Keep `main` tested and open fresh,
 scoped issues only when a concrete defect, user observation, or external
 evidence justifies the work.
 
-Three changes have landed since v1.4.0 and are not released yet:
+The v1.5.0 release consolidates these changes since v1.4.0:
 
 - the source-case option-length cue repair (PR #35);
 - promotion of `source_credibility` to the fourteenth loggable structure
-  (issue #36, PR #37);
-- serialized local Passport checkpoint writes (issue #38, PR #39).
+  plus credibility-specific generation and behavior gates (issue #36,
+  PR #37);
+- serialized local Passport checkpoint writes (issue #38, PR #39);
+- the motte-and-bailey Scene lens (issue #42, PR #43);
+- the gambler's-fallacy Scene lens (issue #44, PR #45);
+- strict steelman-before-correction ordering for caricatured Scene positions,
+  added after the v1.5.0 release gate exposed an ordering failure.
 
-## Before the next release
+## v1.5.0 release evidence
 
-- Run and record the full behavioral Gate 1–13 suite against the release
-  candidate. Gate 13A–13E are new and have no release attestation yet; 13D must
-  inspect the local Passport events for a source-credibility hit, miss, and
-  valid challenge.
-- Include the Passport-triggered Gate 4, RL8, RL12, and Gate 12 cases required
-  by the retry policy after changes to the checkpoint helper and caller
-  contract.
-- Re-run the automated test, invariant, mutation, build, archive-integrity,
-  public-boundary, and release checks on the exact candidate bytes.
-
-These are release gates, not a commitment to cut a release on a particular
-date.
+- The complete behavioral Gate 1–13 run is recorded in
+  [`evals/behavior-probes-2026-07-25-v1.5.0.md`](evals/behavior-probes-2026-07-25-v1.5.0.md).
+  It includes Gate 13A–13E, disposable Passport traces, the Scene
+  steelman-ordering failure found during the run, its fix, and the required
+  final-candidate retests.
+- The exact release commit must still pass the automated test, invariant,
+  mutation, build, archive-integrity, public-boundary, and version/tag checks
+  in local and remote CI before the signed tag is pushed.
+- The run is behavioral evidence in Codex, not a human-validity anchor or an
+  attestation for Claude Code, claude.ai, or the portable artifact.
 
 ## Standing, evidence-gated work
 
