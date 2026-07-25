@@ -168,7 +168,7 @@ need () { grep -q "$1" "$OUT" || { echo "portable build missing: $1" >&2; rm -f 
 need "circular_reasoning"          # formal/inductive structure proof
 need "source_credibility"          # 14th source-evaluation structure landed
 need "Fallacy-Recognition"         # scene fallacy track present
-need "fallacy_equivocation"        # all 5 lenses present
+need "fallacy_motte_and_bailey"    # 11th fallacy lens present
 need "Redlines (hard rules)"       # floor present
 
 # 7. Prove the canonical sources were not mutated by this build (the portable
