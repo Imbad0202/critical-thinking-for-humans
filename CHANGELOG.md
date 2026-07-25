@@ -7,6 +7,8 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-25
+
 - **Twelfth Scene fallacy lens (#44).** Add `fallacy_gamblers_fallacy`
   with a history-dependence test that distinguishes unsupported local
   compensation in an unchanged independent process from real depletion,
@@ -58,6 +60,11 @@ and the latest versioned heading must equal the git tag being cut (enforced by
   conspicuously greater length, tighten the 2026-07-19 prompt, and add a
   keyless regression test for the length cue. Private answer records remain
   local and outside version control.
+- **Scene steelman ordering.** Require the coach to reconstruct a caricatured
+  position as a complete claim with its strongest stated reason before
+  correcting the caricature; merely listing objection fragments no longer
+  satisfies the steelman duty. An invariant and mutation check keep the
+  ordering load-bearing.
 
 ## [1.4.0] - 2026-07-24
 

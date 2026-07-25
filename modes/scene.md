@@ -137,6 +137,14 @@ time; move to the next only after the user has engaged with the current one. The
 full palette is a whole-scene obligation, never a single message. `frame_counter` is
 mandatory: is this even bias? Can a sample of one demonstrate a structure? What
 evidence defeats the primary reading?
+
+When the user's observation caricatures a position or replaces its stated
+reasons with a motive claim, the ordering is strict: first write the strongest
+defensible version as a complete claim with its best stated reason, then explain
+why the caricature fails. Merely listing fragments of the original objection
+does not satisfy the steelman duty. The complete reconstruction always comes
+before correction.
+
 When the scene's material itself cites a source (a study, a report, an official
 account), one source-credibility micro-prompt (shared/structures.md,
 Source-Credibility Operations) may take a turn between frames — one question,

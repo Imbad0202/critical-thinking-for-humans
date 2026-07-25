@@ -526,6 +526,8 @@ CHECKS = [
     ("modes/drill.md", "tier-distractor-count", "intro: 2; standard/advanced: 4"),
     ("modes/scene.md", "observation-window-safe-words",
      "never a frame name or a reading of this scene"),
+    ("modes/scene.md", "scene-steelman-before-correction",
+     "The complete reconstruction always comes"),
     ("modes/scene.md", "advanced-palette-completion",
      "before the closing pressure test (redline 5)"),
     ("shared/scaffolding.md", "silence-window-safe-words",

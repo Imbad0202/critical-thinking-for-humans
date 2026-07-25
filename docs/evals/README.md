@@ -167,12 +167,18 @@ run claims any key is correct.
 could speak to key *correctness*; until it has a result file, the directory makes
 no validity claim, and the stability number above does not substitute for one.
 
-**Protocol 2 (behavior probes):** one release-scoped partial run exists:
-`behavior-probes-2026-07-24-v1.4.0.md`. It covers Gates 11 and 12 plus the
-affected RL4, RL8, and RL14 probes against canonical files in a Codex live
-runner. It is not a complete run of the generic protocol, predates the
-loggable `source_credibility` target, and does not attest Claude Code,
-claude.ai, or the portable build.
+**Protocol 2 (behavior probes):** two release-scoped runs exist.
+
+- `behavior-probes-2026-07-24-v1.4.0.md` is a partial run covering Gates 11
+  and 12 plus affected RL4, RL8, and RL14 probes.
+- `behavior-probes-2026-07-25-v1.5.0.md` records the complete Gate 1–13
+  release run, including `source_credibility`, motte-and-bailey, gambler's
+  fallacy, disposable Passport traces, the steelman-ordering failure found
+  during the run, its fix, and the required final-candidate retests.
+
+Both runs exercise the canonical files through Codex runners. They do not
+attest Claude Code, claude.ai, or the portable build; build and archive gates
+are separate. Neither run is a human-validity anchor.
 
 **Protocol 3 (localization):** no run yet.
 

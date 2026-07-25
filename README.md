@@ -1,10 +1,10 @@
 # critical-thinking-for-humans
 
-[![Version](https://img.shields.io/badge/version-v1.4.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.4.0)
+[![Version](https://img.shields.io/badge/version-v1.5.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.5.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
-**Last Updated:** 2026-07-24
+**Last Updated:** 2026-07-25
 
 A gym for your critical thinking. The AI is the coach; you do the work.
 
@@ -76,18 +76,17 @@ the skill pauses local Passport recording, says why, and never falls back to an
 unsafe direct write. The claude.ai and portable editions have no on-disk
 Passport and do not need Node.js.
 
-## What's new in v1.4.0
+## What's new in v1.5.0
 
-This release grows the verified Expedition library to 23 packs with an
-independently checked Jacobian-conjecture counterexample, and adds a
-Feynman-register protocol plus a primary-source and back-translation audit of
-the existing library. Drill quality now records generator faults and IDs-only
-answer confusions and gains a blind two-session key-agreement probe. New
-source-credibility operations, reason-with-commitment drills, and
-repair-and-decide closes strengthen evidence handling. The Passport separately
-records independent and prompted performance without treating missing
-opportunities as deficits. The Daily rotation now spans fourteen days,
-including seven public-prompt, private-answer zh-TW source-credibility cases.
+This release promotes source credibility to the fourteenth canonical reasoning
+structure and adds credibility-specific generation and behavior gates. Scene
+grows from ten to twelve fallacy lenses with motte-and-bailey and gambler's
+fallacy, including reverse guards for legitimate narrowing, dependence,
+parameter learning, future-block probability, and regression to the mean; it
+also makes complete steelman-before-correction ordering explicit. The local
+Passport writer now serializes concurrent checkpoints and fails closed on unsafe
+paths or a missing Node.js 22+ runtime. The seven Daily source cases also remove
+option-length answer cues. No Passport schema or manipulation-taxonomy bump.
 Full details in [CHANGELOG.md](CHANGELOG.md).
 
 ---
