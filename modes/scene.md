@@ -180,20 +180,20 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
-The ten lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
+The eleven lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
 `fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`,
 `fallacy_whataboutism`, `fallacy_slippery_slope`, `fallacy_genetic`,
-`fallacy_no_true_scotsman`. One lens per round.
+`fallacy_no_true_scotsman`, `fallacy_motte_and_bailey`. One lens per round.
 
-**Off-list fallacy names.** The ten lenses are the complete ruling surface of
-this track. When the user names a fallacy outside them (motte-and-bailey,
-red herring, gambler's fallacy, …), the coach says
+**Off-list fallacy names.** The eleven lenses are the complete ruling surface of
+this track. When the user names a fallacy outside them (red herring, gambler's
+fallacy, …), the coach says
 plainly that the lens set does not cover that name.
 It never improvises a ruling on it — a ruling without a paired defect test
-and reverse-guard is exactly the mislabeling risk the ten-lens design exists
+and reverse-guard is exactly the mislabeling risk the eleven-lens design exists
 to prevent. Then, in order:
-- If one of the ten lenses genuinely applies to the same passage, offer that
+- If one of the eleven lenses genuinely applies to the same passage, offer that
   lens by name and run the round on it — offered as a swap, never silently
   substituted for what the user asked.
 - If the name is a manipulation technique in `shared/manipulation-taxonomy.md`
@@ -302,6 +302,43 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      independent reason beyond dodging it, is. Tightening a genuinely vague term
      for a principled reason is legitimate — the defect is the *post-hoc,
      unjustified* rescue, not the act of qualifying as such.
+   - `fallacy_motte_and_bailey` — **fallback-substitution test.** State the
+     stronger claim and the conclusion or action it was used to support; then
+     state the narrower claim defended after the challenge. Confirm both belong
+     to the same speaker or author, or that the text explicitly attributes both
+     to one accountable advocate; a shared group label alone is not enough.
+     Ask whether the narrower claim, even if true, establishes the stronger
+     claim or its conclusion. Then require observable evidence that the stronger
+     claim remains in force: it is reasserted, said to have survived, or its
+     stronger conclusion is retained. If the stronger claim is explicitly
+     withdrawn and its stronger conclusion is abandoned or materially weakened
+     so it no longer asserts or depends on that claim, that observable revision
+     is not the fallacy. Nor is retaining the conclusion when an independently
+     adequate new bridge supports it without substituting the fallback for the
+     stronger claim. A synonymous rewording is not a material revision.
+     Withdrawing the claim while retaining its stronger conclusion without an
+     independently adequate new bridge, and relying on the narrower claim
+     instead, still meets the test. The reverse-guard stops applying if the
+     available passage later reasserts the stronger claim or resumes its
+     stronger conclusion without such a bridge; do not demand proof about an
+     unobserved future. If the passage shows the fallback but not whether the
+     stronger claim remains in play, return `insufficient_context`; never infer
+     motive. A critic's paraphrase cannot supply the stronger claim. If the
+     passage otherwise presents a possible stronger/narrower fallback but the
+     target's original position or adoption is missing, return
+     `insufficient_context` for this lens and name that missing material. If no
+     fallback sequence appears, or if the complete material shows that the
+     advocate never advanced or adopted the stronger claim, return
+     `not_fallacy` for this lens and offer a separate strawman round.
+     If the only defect is a term shift, return `not_fallacy` for this lens and
+     offer `fallacy_equivocation` in a separate round. If the only defect is a
+     post-hoc category restriction that replaces the original scope, return
+     `not_fallacy` for this lens and offer `fallacy_no_true_scotsman` in a
+     separate round. Never silently switch the active lens. More than one lens
+     applies only when each complete defect is independently present and
+     examined in its own round. Relevance is NOT the test — the question is
+     whether support for the fallback is substituted for support the stronger
+     claim still needs.
 4. If the active lens's test does NOT find its defect, do NOT label it a fallacy
    — return `not_fallacy` (with the reverse-guard reason) or `insufficient_context`
    when the material cannot settle it.

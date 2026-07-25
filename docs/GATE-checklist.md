@@ -604,6 +604,75 @@ reason), and rules the practicing-Buddhist case `not_fallacy` (the precept was
 part of the term's meaning before the counterexample) — proving that
 post-hoc-unjustified rescue is the defect, not the presence of a qualifier.
 
+**10L (motte-and-bailey fallback-substitution test + reverse-guard):** Present
+eight excerpts from the fictional Northbridge Career Academy. First, the
+academy says, "Every graduate is guaranteed a paid job within 30 days, so our
+ads may promise guaranteed employment." An auditor answers that its records
+show only 62 percent employed within 30 days. The academy replies, "Every
+graduate does get access to our job board. That answers the objection; the
+guaranteed-employment claim and ad should stand." Second, use the same opening
+and challenge, but have the academy answer, "You are right; the records do not
+support the guarantee. We withdraw it. Our revised claim is that every graduate
+receives job-board access, and the ads will be changed accordingly." Third,
+use the same opening and challenge, then end the excerpt immediately after,
+"Every graduate receives access to our job board," without saying whether the
+guarantee or ad is withdrawn. Fourth, a Northbridge recruiter makes the
+guarantee while an instructor later mentions job-board access, but the excerpt
+does not show either speaker adopting the other's claim or attribute both to
+one accountable advocate. Fifth, start with the second excerpt's explicit
+withdrawal and revised ad, then add a later statement that the guarantee and
+original ad should stand, with no new evidence connecting job-board access to
+employment. Sixth, use the same opening and challenge, then have the academy
+say, "We withdraw the guarantee; only job-board access is supported. Therefore
+the original guaranteed-employment ad should still stand," without giving any
+independent new reason for retaining that ad. Seventh, change the opening
+conclusion to "the city should renew our contract." After the same employment
+challenge, have the academy withdraw the guarantee and acknowledge only
+job-board access, but add a separately audited comparison showing an
+18-percentage-point placement improvement over the next-best bidder at lower
+cost; the city's published procurement rule makes that evidence independently
+adequate for renewal. Eighth, use the original opening and challenge, then have
+the academy withdraw the guarantee, defend only job-board access, and say the
+ads will replace "guaranteed employment within 30 days" with "employment
+assured within 30 days," with no new support. Ask for a ruling on all eight.
+FAIL if the coach rules the first excerpt `not_fallacy` because job-board access
+is true (it does not establish the guarantee); rules the second `fallacy` merely
+because criticism caused a narrower claim; rules the third `fallacy` by
+inventing continued commitment; attributes deception or strategic intent; or
+uses Northbridge's shared group label to splice the fourth excerpt's speakers
+into one advocate. Also FAIL if the explicit withdrawal makes the fifth
+`not_fallacy` despite the stronger claim's observable later return, makes the
+sixth `not_fallacy` despite its retained stronger conclusion, rules the seventh
+`fallacy` merely because its conclusion is retained, or treats the eighth's
+synonymous rewording as a material weakening.
+PASS if the coach states both claims, checks whether the fallback establishes
+the stronger conclusion, and rules the first three excerpts `fallacy`,
+`not_fallacy`, and `insufficient_context`, then returns `insufficient_context`
+on the fourth pending explicit attribution, `fallacy` on both the fifth and
+sixth, `not_fallacy` on the seventh, and `fallacy` on the eighth — proving that
+observable fallback substitution while the stronger claim or conclusion
+remains in force is the defect. Explicit withdrawal controls when its stronger
+conclusion is abandoned, materially weakened so it no longer depends on the
+withdrawn claim, or independently supported by a new bridge rather than by the
+fallback; changing only its wording does not.
+Finally replay 10B's missing-target strawman, 10E's equivocation, and 10K's
+no-true-Scotsman fixtures with motte-and-bailey as the active lens. FAIL if the
+coach silently switches lenses, relabels any as motte-and-bailey without both
+unequal claims, fallback substitution, and continued reliance on the stronger
+one, or returns `insufficient_context` merely to avoid distinguishing the three
+complete non-motte cases. PASS if it returns `not_fallacy` on 10B under the
+active lens because no fallback sequence appears, then offers a separate
+strawman round whose ruling remains `insufficient_context` until the opponent's
+actual position is supplied; returns `not_fallacy` on 10E under the active
+lens, then offers equivocation in a separate round; and returns `not_fallacy`
+on 10K under the active lens, then offers no true Scotsman in a separate round.
+Then present a complete official statement that advances only the narrower
+claim, followed by a critic who distorts it into the stronger claim and attacks
+that distortion. FAIL if the critic's version is treated as the advocate's
+stronger claim or the coach returns `insufficient_context` despite the complete
+record. PASS if the coach returns `not_fallacy` under motte-and-bailey and
+offers strawman in a separate round.
+
 ---
 
 ## Gate 11 — Source-Credibility Operations & Drill-Validity Probes

@@ -77,5 +77,11 @@ require_member_text \
   "critical-thinking-for-humans/modes/drill.md" "source_credibility"
 require_member_text \
   "critical-thinking-for-humans/modes/detective.md" "source_credibility"
+require_member_text \
+  "critical-thinking-for-humans/shared/structures.md" "fallacy_motte_and_bailey"
+require_member_text \
+  "critical-thinking-for-humans/modes/scene.md" "fallacy_motte_and_bailey"
+require_member_text \
+  "critical-thinking-for-humans/SKILL.md" "motte-and-bailey"
 
 unzip -l "$OUT"

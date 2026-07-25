@@ -7,6 +7,16 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+- **Eleventh Scene fallacy lens (#42).** Add `fallacy_motte_and_bailey`
+  with a fallback-substitution test that requires a stronger claim, a narrower
+  fallback, and observable evidence that the stronger claim or its conclusion
+  remains in force. Explicit narrowing or withdrawal is legitimate when the
+  stronger conclusion is abandoned, materially weakened, or independently
+  supported without substituting the fallback; a later unsupported return still
+  triggers the lens. Incomplete passages return `insufficient_context`.
+  Nearby-lens boundaries plus no-motive and accountable-advocate guards prevent
+  overreach. Gate 10L and invariant/mutation coverage carry the contract without
+  a Passport schema change.
 - **Concurrent local Passport checkpoints (#38).** Route every Claude Code
   checkpoint and deletion through one bundled writer with an exclusive sidecar
   lock, lock-before-reread ordering, whole-batch atomic replacement, and
