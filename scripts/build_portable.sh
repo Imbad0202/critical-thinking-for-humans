@@ -11,6 +11,14 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/dist/critical-thinking-for-humans-portable.md"
+SOURCE_DIFF_BEFORE="$(mktemp)"
+SOURCE_DIFF_AFTER="$(mktemp)"
+trap 'rm -f "$SOURCE_DIFF_BEFORE" "$SOURCE_DIFF_AFTER"' EXIT
+
+# Preserve the caller's exact tracked source state. A build may start from an
+# intentionally dirty worktree, but it must leave that pre-existing diff
+# byte-identical.
+git -C "$ROOT" diff --binary -- shared modes SKILL.md > "$SOURCE_DIFF_BEFORE"
 
 # Gate: invariants must hold on the canonical sources before we assemble.
 python3 "$ROOT/scripts/check_invariants.py" >/dev/null || {
@@ -156,17 +164,19 @@ fi
 
 # 5. Sanity: the load-bearing content actually made it in.
 need () { grep -q "$1" "$OUT" || { echo "portable build missing: $1" >&2; rm -f "$OUT"; exit 1; }; }
-need "circular_reasoning"          # 12th-structure proof (fallacy completion landed)
+need "circular_reasoning"          # formal/inductive structure proof
+need "source_credibility"          # 14th source-evaluation structure landed
 need "Fallacy-Recognition"         # scene fallacy track present
 need "fallacy_equivocation"        # all 5 lenses present
 need "Redlines (hard rules)"       # floor present
 
 # 7. Prove the canonical sources were not mutated by this build (the portable
-#    edition must never alter what the Claude editions ship). A dirty working
-#    tree under shared/ or modes/ here would mean a sed pass leaked onto a source.
-if ! git -C "$ROOT" diff --quiet -- shared modes SKILL.md; then
-  echo "build_portable mutated a canonical source — it must only write to dist/" >&2
-  git -C "$ROOT" diff --stat -- shared modes SKILL.md >&2
+#    edition must never alter what the Claude editions ship). Compare against
+#    the entry snapshot so a caller's intentional pre-existing changes are not
+#    misreported as build mutations.
+git -C "$ROOT" diff --binary -- shared modes SKILL.md > "$SOURCE_DIFF_AFTER"
+if ! cmp -s "$SOURCE_DIFF_BEFORE" "$SOURCE_DIFF_AFTER"; then
+  echo "build_portable changed canonical source state — it must only write to dist/" >&2
   exit 1
 fi
 

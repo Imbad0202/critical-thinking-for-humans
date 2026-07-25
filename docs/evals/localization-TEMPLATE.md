@@ -15,8 +15,9 @@ Copy to `localization-<date>-<lang>.md` and fill.
 |---|------|--------------|----------------------|-------------------|-------------------------------|-------------|
 | 1 | _ | _ | _ | _ | _ | _ |
 
-Expected: plain-language structure labels localize into the session language;
-canonical structure IDs (`sample_selection`, etc.) stay English in the passport
+Expected: plain-language structure labels, including source credibility,
+localize into the session language; canonical structure IDs
+(`sample_selection`, `source_credibility`, etc.) stay English in the passport
 event, never in the display (`modes/drill.md` name-the-skeleton).
 
 ## Issues found + fixes

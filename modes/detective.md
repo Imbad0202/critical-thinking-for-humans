@@ -48,7 +48,7 @@ parallel case, but the user states the defect.
 
 A case is 4 layers at standard and advanced, 2 at intro. In v1 each layer has
 **exactly one main flaw per layer** — one keyed reasoning structure from
-shared/structures.md (the thirteen-structure set). It must be caught to unlock the
+shared/structures.md (the fourteen-structure set). It must be caught to unlock the
 layer. (Multi-flaw layers are a v2 extension; the v1 constraint exists because
 multi-main-flaw layers are the largest generation-reliability risk.)
 
@@ -62,6 +62,14 @@ layer's lock consumes — a number, name, date, definition, or threshold. "Key" 
 never "this helps interpret the next layer"; it is a concrete variable the next
 lock needs. The key chain stays a single line — no branching. The final layer's
 key is the case's final truth.
+
+`source_credibility` may be a layer's keyed main flaw. Its unlock is never a
+label such as "low credibility," "trustworthy source," or a person-level score:
+solving the weight problem must expose one concrete record fact consumed by the
+next lock — for example, the identity of the single primary report behind five
+relay stories, the date of the first-hand observation, or the audited figure
+that replaces an unverified quotation. The conclusion may gain or lose weight,
+but origin alone never settles its truth.
 
 **Material is per-layer, not one omnibus document.** Each layer is its own short
 document section (one memo page, one report excerpt), revealed as that layer
@@ -116,6 +124,11 @@ standard/advanced, 2 for intro. For each layer write: (i) its single main flaw
 (which structure), (ii) the key its solution reveals (one concrete value), (iii)
 exactly which variable of the next layer's lock that key supplies. The final
 layer's key is the final truth.
+For a `source_credibility` layer, record which documented basis changes weight
+and the concrete downstream variable the resulting key supplies. Reject a
+skeleton whose only payoff is "this source is biased" or whose defect is really
+generic insufficiency, sample selection, guessed incentive, borrowed/fake
+authority, ad hominem, or genetic fallacy.
 
 **G2. Key-chain ablation test (hard gate, before prose). A procedure, not an
 assertion.** For each layer N+1: **hide layer N's key entirely** and ask — from
@@ -163,6 +176,15 @@ checkbox):
 6. **[mechanical]** material is synthetic and de-identified — no real
    institution/person/event (redline 10; same discipline as drill's novel
    anchors).
+7. **[mechanical, source-credibility layers]** every fact used to adjust source
+   weight is present in the material or a prior revealed key; no funding,
+   motive, independence, credential, observation, or record is inferred from
+   silence, and the unlock is a concrete downstream key rather than a
+   credibility label.
+8. **[soft, source-credibility layers]** the source-weight defect is uniquely
+   primary against `evidence_sufficiency`, `sample_selection`, incentive,
+   authority, ad-hominem, and genetic alternatives; if two keys remain
+   defensible, regenerate the whole case.
 
 **G6. Answer key recorded:** the G0 frame + each layer's main flaw + each
 layer's key (and which next-layer variable it supplies) + egg list + a white-list
@@ -237,6 +259,9 @@ facts and layer 1's document section. Then run a **first-defect-call silence
 window**: after Open, the coach adds no hints, analysis, or structure names until
 the user states a defect call, except safe-word scaffolds (redline 8), mirroring
 scene's "no commentary yet" discipline.
+This first-call gate also binds a `source_credibility` opening: source provenance,
+weight, and the three source-operation prompts remain unspoken until the user
+makes the first defect call (unless the user invokes a safe word).
 
 **Per-layer loop:**
 1. user states a defect call (in structure language or plain words);
@@ -256,6 +281,9 @@ account), the coach may fold ONE source-credibility micro-prompt
 (shared/structures.md, Source-Credibility Operations) into the clue-level
 prompting — one question, never a worksheet, and never as a substitute for the
 user's own defect call.
+If `source_credibility` is itself the keyed main flaw, these operations may
+scaffold after the first call, but they never replace the user's defect call and
+their IDs never enter `structures_hit`.
 
 **Safe words (escape-room flavored), always honored (redline 8):**
 - `hint` → one clue step pointing at where to look in this layer, never the main
@@ -321,3 +349,6 @@ JSON shape, see `passport/SCHEMA.md`.
 Raw `structures_hit` IDs are snake_case and appear only in the event, never in
 display text. Recording is subject to redline 12 — pause-recording and deletion
 are always available; see passport/SCHEMA.md Privacy Rules.
+`source_credibility` uses this existing field when the user catches that keyed
+layer. `clarify`, `check_basis`, and `license_conclusion` remain procedures and
+are never logged; no new detective event or schema version is introduced.

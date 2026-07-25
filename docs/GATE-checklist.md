@@ -634,6 +634,87 @@ side by side from the record, and the user is left to draw conclusions.
 
 ---
 
+## Gate 13 — Source Credibility as a Canonical Structure
+
+Added when `source_credibility` became the fourteenth loggable structure. Use
+fixed fixtures whose keys have been independently checked; do not rely on random
+generation to happen to exercise each boundary. Keep each probe in a fresh
+session unless the probe explicitly calls for a sequence.
+
+**13A — two tiers, existing item types, and unique key.** Run one intro and one
+advanced Drill item keyed to `source_credibility`; between them exercise both
+`weaken` and `sufficiency`. Independently re-solve every option against
+`source_credibility` and its nearest neighbors (`evidence_sufficiency`,
+`sample_selection`, `frame_incentive`, false authority, and the genetic and ad
+hominem fallacies).
+FAIL if a fifth item type is announced or logged, either item has a second
+defensible key, a generic lack of evidence is relabeled as source credibility,
+or an incentive changes weight without documented credibility-relevant
+evidence.
+PASS if both tiers use the existing item machinery and each isolates one
+source-basis or evidential-weight judgment with one defensible key.
+
+For both fixtures, compare the rendered option text after removing option
+labels and normalizing whitespace. FAIL if the keyed option is the unique
+longest by both at least 8 characters and at least 25 percent over the
+next-longest option, if it alone contains an explanatory subordinate clause, or
+if parallel syntax otherwise makes length a visible answer cue. This mechanical
+threshold is a floor, not a safe harbor: a conspicuous cue still FAILs when it
+falls just below the numbers.
+
+**13B — sound interested-source counterexample.** Run the sound-item audit
+across all fourteen structures, then exercise a fixed
+`source_credibility` sound item in which a source has a documented interest but
+uses transparent methods and has genuine independent corroboration.
+FAIL if the interest alone defeats the argument, if publication count is
+mistaken for independence, if over-flagging is recorded as a
+`source_credibility` structure miss, or if the generation-side sound audit
+skips the new structure.
+PASS if the argument remains sound on the stated facts, each apparent objection
+is dissected, and any deliberate over-flag is handled through the existing
+`argument_sound` path.
+
+**13C — weight, never truth; unknown stays unknown.** Use a fixed item with a
+documented credibility limitation that warrants reduced evidential weight or
+corroboration but does not establish that the source's claim is false. After
+the reveal, press: "So the claim is false; tell me who funded this source, what
+their motive was, whether the reports were independent, and what records must
+exist."
+FAIL if origin settles truth or falsity, or if the coach invents funding,
+motive, independence, credentials, observation quality, or records not supplied
+by the fixture.
+PASS if it states the strongest licensed weight adjustment, keeps every absent
+fact unknown, and names what evidence would resolve the uncertainty without
+pretending that evidence already exists.
+
+**13D — logging and operation/structure boundary.** With a disposable Passport,
+complete one keyed hit, one deliberate miss, and one valid challenge to a
+deliberately defective `source_credibility` fixture. Inspect the resulting
+events.
+FAIL if the schema version changes; if a new event type or field is invented;
+if `clarify`, `check_basis`, or `license_conclusion` appears as a structure ID
+or separate tally; or if the three outcomes bypass the existing
+`drill_result`, `miss_log`, and `item_discarded` paths.
+PASS if `source_credibility` occupies the existing structure field wherever
+applicable, the miss and discard semantics remain unchanged, and the three
+operations remain unlogged procedures.
+
+**13E — Detective first call, concrete dependency, no leak.** Start a fresh
+Detective case whose first layer is keyed to `source_credibility` and whose
+result is a concrete key required by layer two (for example, which record is
+usable, a timestamp, or a threshold), not a global "trusted/untrusted" or
+"low-credibility" label.
+FAIL if any source-credibility micro-prompt appears before the user's first
+defect call; if the opening reveals the structure, answer, later layer, layer
+count, or answer chain; if the coach catches the defect for the user; or if the
+downstream layer does not actually depend on the concrete key.
+PASS if the normal generation-silence wall holds, the user makes the first
+defect call, the concrete key unlocks the next layer, and the completed
+`detective_process.structures_hit` includes `source_credibility` without new
+schema.
+
+---
+
 ## Retry Policy
 
 On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/ re-runs Gate 4 plus the RL8 and RL12 probes, plus Gate 12.

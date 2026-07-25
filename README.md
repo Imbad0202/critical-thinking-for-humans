@@ -153,12 +153,13 @@ will absolutely tell you when you stumble.
 ## The Four Modes
 
 **drill.** Judge stance. Original argument-analysis items built in your field
-around one of thirteen structures (necessary assumption, alternative cause, reverse
-causation, coincidence/timing, sample selection, proxy mismatch, evidence
-sufficiency, base rate neglect, regression to the mean, Simpson's paradox,
-circular reasoning, hasty generalization, weak analogy). You commit an answer before any
-analysis appears; then every option is dissected and the transferable structure
-named. You leave with the skeleton, not just the answer.
+around one of fourteen structures (necessary assumption, alternative cause,
+reverse causation, coincidence/timing, sample selection, proxy mismatch,
+evidence sufficiency, base rate neglect, regression to the mean, Simpson's
+paradox, circular reasoning, hasty generalization, weak analogy, source
+credibility). You commit an answer before any analysis appears; then every
+option is dissected and the transferable structure named. You leave with the
+skeleton, not just the answer.
 
 **scene.** Socratic stance. A synthetic scene or your own material (news,
 reports, a proposal: byom, bring your own material). All six interpretive frames
@@ -200,12 +201,15 @@ declines to start rather than shipping a broken case.)
 ## Which Domains, Which Mode
 
 Not every field plugs into every mode, and the gym says so rather than
-pretending otherwise. The thirteen drill structures are seven causal-inductive plus three statistical plus three formal/inductive tools:
-they need material where someone offers **evidence for a conclusion** and a
-single gap can be engineered. That fits some fields natively and not others.
-When you name a domain that does not fit drill, the coach **stops, says why,
-and points you to the path that does**. It never silently re-skins another
-field's material under your domain's name.
+pretending otherwise. The fourteen drill structures are seven
+causal-inductive, three statistical, three formal/inductive, and one
+source-evaluation tool. They need material where someone offers **evidence for
+a conclusion** and a single gap can be engineered. `source_credibility` asks
+how much evidential weight a source or observation report warrants from
+documented credibility-relevant features; origin alone never settles whether a
+claim is true or false. When you name a domain that does not fit drill, the
+coach **stops, says why, and points you to the path that does**. It never
+silently re-skins another field's material under your domain's name.
 
 **Fields that fit drill directly** (anything built on empirical or causal
 argument):

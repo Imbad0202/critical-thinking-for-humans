@@ -44,4 +44,22 @@ if unzip -Z1 "$OUT" | grep -Eq '/expeditions/(ROADMAP|REGISTER-AUDIT)\.md$'; the
   echo "repository-only expedition metadata leaked into the claude.ai build" >&2
   exit 1
 fi
+
+# The source tree passing invariants is not enough: assert that each runtime
+# carrier in the assembled artifact actually contains the 14th structure.
+require_member_text () {
+  member="$1"
+  needle="$2"
+  if ! unzip -p "$OUT" "$member" | grep -F "$needle" >/dev/null; then
+    echo "claude.ai build missing '$needle' in $member" >&2
+    exit 1
+  fi
+}
+require_member_text \
+  "critical-thinking-for-humans/shared/structures.md" "source_credibility"
+require_member_text \
+  "critical-thinking-for-humans/modes/drill.md" "source_credibility"
+require_member_text \
+  "critical-thinking-for-humans/modes/detective.md" "source_credibility"
+
 unzip -l "$OUT"
