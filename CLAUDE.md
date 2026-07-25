@@ -7,9 +7,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A Claude Code skill that trains a human user's critical thinking. The product is
 the Markdown itself: `SKILL.md`, `modes/`, and `shared/` are prompt files that
 program model behavior at runtime, so editing their prose is a behavior change,
-not a docs change. The only conventional code is the lint/build tooling under
-`scripts/` (Python stdlib + bash; PyYAML for `check_manifests.py`, pytest for
-the test suite).
+not a docs change. Conventional code lives under `scripts/`: lint/build tooling
+plus the thin `passport_checkpoint.sh` entry point and Node.js-stdlib worker
+used by the local Claude Code runtime (Node.js 22+; Python stdlib for linters;
+PyYAML for `check_manifests.py`, pytest for the test suite).
 
 ## Commands
 
@@ -53,8 +54,10 @@ routes to exactly one mode file: `modes/drill.md` (judge stance),
 `modes/scene.md` (Socratic), `modes/expedition.md` (guide; runs only from
 verified packs in `expeditions/`), or `modes/detective.md` (guide-and-judge).
 User progress lives in a local passport at `~/.ct-gym/` (spec:
-`passport/SCHEMA.md`). `docs/ARCHITECTURE.md` is the visual map; where it and a
-runtime file disagree, the runtime file wins.
+`passport/SCHEMA.md`); every local checkpoint and deletion goes through
+`scripts/passport_checkpoint.sh` so concurrent sessions serialize their writes.
+`docs/ARCHITECTURE.md` is the visual map; where it and a runtime file disagree,
+the runtime file wins.
 
 **Three build targets, one source of truth.** The repo runs directly as the
 Claude Code skill. `build_claude_ai_zip.sh` assembles the claude.ai zip by

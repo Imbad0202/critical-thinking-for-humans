@@ -170,6 +170,44 @@ CHECKS = [
     ("passport/SCHEMA.md", "schema-version", "schema_version"),
     ("passport/SCHEMA.md", "append-only", "append-only"),
     ("passport/SCHEMA.md", "atomic-write", "atomic"),
+    ("passport/SCHEMA.md", "passport-helper-only",
+     "Every canonical local Passport event-log read, append, generation read/create,\n"
+     "and deletion goes through the bundled helper"),
+    ("passport/SCHEMA.md", "passport-node-preflight",
+     "The local helper requires Node.js 22 or newer on `PATH`"),
+    ("passport/SCHEMA.md", "passport-node-failure-off-ramp",
+     "On exit 69, pause recording for the session"),
+    ("passport/SCHEMA.md", "passport-generation-at-startup",
+     "At the beginning of every local session, before reading `events.jsonl`, invoke"),
+    ("passport/SCHEMA.md", "passport-read-through-helper",
+     "obtain the event-log snapshot through that locked `read` command; never read\n"
+     "`events.jsonl` directly"),
+    ("passport/SCHEMA.md", "passport-lock-before-reread",
+     "acquires the exclusive sidecar lock before it rereads"),
+    ("passport/SCHEMA.md", "passport-checkpoint-batch",
+     "as one ordered checkpoint batch"),
+    ("passport/SCHEMA.md", "passport-batch-json-validation",
+     "validates the whole stdin batch as UTF-8 JSON objects before taking\n"
+     "the lock"),
+    ("passport/SCHEMA.md", "passport-events-stdin-only",
+     "never place event\ncontent in command-line arguments or interpolate raw user text into shell code"),
+    ("passport/SCHEMA.md", "passport-fail-closed",
+     "never fall back to direct or unlocked\nfilesystem access"),
+    ("passport/SCHEMA.md", "passport-pending-until-success",
+     "Clear the in-session pending buffer only after the helper exits zero"),
+    ("passport/SCHEMA.md", "passport-generation-mismatch-discards-stale",
+     "exit 76 (`PASSPORT_GENERATION_MISMATCH`). That code means the on-disk generation\n"
+     "was rotated or reset"),
+    ("passport/SCHEMA.md", "passport-orphan-temp-cleanup",
+     "Exact helper-owned orphan temp files are removed under the\nlock"),
+    ("passport/SCHEMA.md", "passport-delete-same-lock",
+     "The helper uses the same\nexclusive lock as an append, rotates the generation before removing"),
+    ("passport/SCHEMA.md", "passport-delete-no-resurrection",
+     "a pre-deletion pending batch\ncannot recreate deleted Passport data"),
+    ("passport/SCHEMA.md", "passport-show-not-persisted",
+     "The current runtime does not persist `~/.ct-gym/passport.md`"),
+    ("passport/SCHEMA.md", "passport-show-locked-read",
+     "invokes the helper's locked `read --generation TOKEN` command"),
     ("passport/SCHEMA.md", "no-raw-text",
      "structure tags and short summaries, never raw user text"),
     # --- new scope/consumer checks ---
@@ -655,6 +693,51 @@ CHECKS += [
     if entry[0] in _OVERLAY_MAP
 ]
 
+# Canonical-only local-filesystem contracts are added after overlay expansion:
+# the claude.ai SKILL intentionally has no helper or on-disk Passport.
+CHECKS += [
+    ("SKILL.md", "local-passport-helper-routing",
+     "Every local checkpoint and `delete passport` operation must invoke",
+     "Passport Contract"),
+    ("SKILL.md", "local-passport-generation-startup",
+     "At local session startup, before checking for a returning user or reading the\n"
+     "event log, invoke `<skill-root>/scripts/passport_checkpoint.sh generation`",
+     "Passport Contract"),
+    ("SKILL.md", "local-passport-node-off-ramp",
+     "If it exits 69, pause recording for this session",
+     "Passport Contract"),
+    ("SKILL.md", "local-passport-read-helper",
+     "Returning-user and \"show passport\" reads must invoke the helper's\n"
+     "`read --generation TOKEN` command; never use a direct filesystem read",
+     "Passport Contract"),
+    ("SKILL.md", "local-passport-generation-mismatch",
+     "On exit 76, discard the stale\n"
+     "batch or read snapshot and invoke the helper's `generation` command again",
+     "Passport Contract"),
+    ("docs/GATE-checklist.md", "gate4-concurrent-checkpoints",
+     "4B (real concurrent checkpoints)",
+     "Gate 4 — Passport Durability and Corruption Recovery"),
+    ("docs/GATE-checklist.md", "gate4-generation-invalidation",
+     "delete serialization and generation invalidation",
+     "Gate 4 — Passport Durability and Corruption Recovery"),
+    ("docs/GATE-checklist.md", "gate4-locked-read",
+     "`read --generation TOKEN` command",
+     "Gate 4 — Passport Durability and Corruption Recovery"),
+    ("docs/GATE-checklist.md", "gate4-node-off-ramp",
+     "A simulated exit 69 must pause recording",
+     "Gate 4 — Passport Durability and Corruption Recovery"),
+    ("docs/GATE-checklist.md", "gate4-runtime-helper",
+     "4C (runtime uses the one writer)",
+     "Gate 4 — Passport Durability and Corruption Recovery"),
+    ("CLAUDE.md", "claude-local-passport-helper",
+     "every local checkpoint and deletion goes through\n"
+     "`scripts/passport_checkpoint.sh`"),
+    ("CLAUDE.md", "claude-passport-node-worker",
+     "thin `passport_checkpoint.sh` entry point and Node.js-stdlib worker"),
+    ("README.md", "readme-passport-node-prerequisite",
+     "**Local Passport prerequisite:**"),
+]
+
 # (file, label, substring that must be ABSENT)
 FORBIDDEN = [
     # No local-filesystem passport vocabulary may leak into the claude.ai build.
@@ -663,6 +746,10 @@ FORBIDDEN = [
     ("platforms/claude-ai/passport/SCHEMA.md", "claude-ai-no-jsonl-schema", "events.jsonl"),
     ("platforms/claude-ai/shared/redlines.md", "claude-ai-no-on-disk", "stay on disk"),
     ("platforms/claude-ai/shared/scaffolding.md", "claude-ai-no-on-disk-scaffolding", "on disk"),
+    ("passport/SCHEMA.md", "no-unsafe-concurrent-passport-limitation",
+     "Known limitation — run one session at a time."),
+    ("passport/SCHEMA.md", "no-post-delete-passport-resurrection-warning",
+     "An already-open second session can later create a fresh log"),
     # Guard against the stale three-mode phrasing returning to either SKILL file.
     ("SKILL.md", "no-stale-three-modes", "through three modes"),
     ("SKILL.md", "no-stale-three-modes-body", "Three modes with deliberately"),

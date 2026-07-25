@@ -30,8 +30,19 @@ cp -R "$ROOT/platforms/claude-ai/." "$DEST/"
 # 3. Invariant gate, then forbid local-filesystem vocabulary anywhere in the build.
 python3 "$ROOT/scripts/check_invariants.py" >/dev/null || {
   echo "check_invariants.py failed — fix invariants before building" >&2; exit 1; }
-if grep -rn -e '~/.ct-gym' -e 'events\.jsonl' -e 'on disk' "$DEST"; then
-  echo "local-filesystem vocabulary leaked into the claude.ai build (lines above)" >&2
+if grep -rn \
+  -e '~/.ct-gym' \
+  -e 'events\.jsonl' \
+  -e 'on disk' \
+  -e 'PASSPORT_GENERATION_MISMATCH' \
+  -e 'passport_checkpoint\.sh' \
+  -e 'passport_checkpoint\.mjs' \
+  -e 'Node\.js 22' \
+  -e 'exclusive sidecar lock' \
+  -e 'lock-before-reread' \
+  "$DEST"
+then
+  echo "local Passport writer contract leaked into the claude.ai build (lines above)" >&2
   exit 1
 fi
 
@@ -40,8 +51,13 @@ mkdir -p "$ROOT/dist"
 OUT="$ROOT/dist/critical-thinking-for-humans-claude-ai.zip"
 rm -f "$OUT"
 (cd "$STAGE" && zip -rqX "$OUT" critical-thinking-for-humans -x '*.DS_Store')
-if unzip -Z1 "$OUT" | grep -Eq '/expeditions/(ROADMAP|REGISTER-AUDIT)\.md$'; then
+unzip -Z1 "$OUT" > "$STAGE/zip-members.txt"
+if grep -Eq '/expeditions/(ROADMAP|REGISTER-AUDIT)\.md$' "$STAGE/zip-members.txt"; then
   echo "repository-only expedition metadata leaked into the claude.ai build" >&2
+  exit 1
+fi
+if grep -Eq '(^|/)scripts/|passport_checkpoint\.(sh|mjs)' "$STAGE/zip-members.txt"; then
+  echo "local Passport writer leaked into the claude.ai build" >&2
   exit 1
 fi
 

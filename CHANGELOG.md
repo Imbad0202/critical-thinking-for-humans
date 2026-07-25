@@ -7,6 +7,18 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+- **Concurrent local Passport checkpoints (#38).** Route every Claude Code
+  checkpoint and deletion through one bundled writer with an exclusive sidecar
+  lock, lock-before-reread ordering, whole-batch atomic replacement, and
+  fail-closed pending-event retention. A deletion-generation token prevents old
+  sessions from restoring pre-deletion batches; strict JSON validation,
+  no-follow regular-file checks, and locked orphan-temp cleanup harden the local
+  privacy boundary. Real multi-process tests cover simultaneous writers, cold
+  start, malformed input and tails, lock contention, deletion and SIGKILL
+  recovery, permissions, and failed replacement without changing the event
+  schema. The local writer explicitly requires Node.js 22+; its preflight exits
+  before touching Passport data when that runtime is unavailable, while the
+  coaching session continues with recording paused.
 - **Source credibility becomes the 14th canonical structure (#36).** Add
   `source_credibility` as a loggable Drill and Detective target while retaining
   the existing cross-mode `clarify`, `check_basis`, and

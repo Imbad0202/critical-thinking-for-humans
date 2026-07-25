@@ -169,9 +169,17 @@ inspection must tilt against the key, not against the user), reinforcing redline
 ## 5. Passport data flow (local-only)
 
 The passport at `~/.ct-gym/events.jsonl` records process, not grades. Each mode
-writes its own process event (drill also emits a `miss_log`), alongside
+produces its own process event (drill also emits a `miss_log`), alongside
 session-level `profile_set` and `commitment` events; structure hits feed a shared
-per-structure record so coverage is unified across modes.
+per-structure record so coverage is unified across modes. A bundled checkpoint
+helper serializes local writers with one sidecar lock. It acquires the lock
+before checking the session's deletion-generation token and rereading the log,
+then atomically commits each checkpoint batch, so two cooperating sessions
+cannot replace one another's events. `delete passport` rotates that generation
+under the same lock before removing data; an already-open session therefore
+cannot restore its pre-deletion pending batch. Returning-user and
+`show passport` reads use the same helper, lock, generation check, and
+no-follow regular-file guard rather than opening the log directly.
 
 ```mermaid
 flowchart LR
@@ -187,19 +195,29 @@ flowchart LR
     E --> EV3["expedition_process: role,<br/>disciplines fired, breakthrough"]
     DT --> EV4["detective_process: layers solved,<br/>eggs found, false positives,<br/>structures_hit"]
 
-    EV1 --> Log[(~/.ct-gym/events.jsonl)]
-    EV2 --> Log
-    EV3 --> Log
-    EV4 --> Log
+    EV1 --> Batch["pending checkpoint batch"]
+    EV2 --> Batch
+    EV3 --> Batch
+    EV4 --> Batch
+    Epoch["session-start generation token"] --> Writer
+    Batch --> Writer["passport_checkpoint.sh<br/>exclusive sidecar lock · generation check<br/>reread · atomic replace"]
+    Writer --> Log[(~/.ct-gym/events.jsonl)]
+    Writer <--> Generation[(~/.ct-gym/generation)]
+    Epoch --> Reader["passport_checkpoint.sh read<br/>lock · generation check · no-follow"]
+    Log --> Reader
     EV4 -. "structures_hit" .-> EV1
 
-    Log --> Mirror["Longitudinal mirror<br/>'4 of your last 5 misses<br/>are sample_selection'<br/>— shown in summary, cited,<br/>never an unprompted callout"]
+    Reader --> Mirror["Longitudinal mirror<br/>'4 of your last 5 misses<br/>are sample_selection'<br/>— shown in summary, cited,<br/>never an unprompted callout"]
 
-    Log -. "always available" .-> Controls["show passport ·<br/>delete passport ·<br/>pause recording"]
+    Reader -. "show from fresh snapshot" .-> Controls["show passport ·<br/>delete passport ·<br/>pause recording"]
+    Controls -. "delete via same writer" .-> Writer
 ```
 
 Redline 12 keeps this honest: relevant passport content enters the model context
 only when used; a sensitive BYOM session writes no events at all unless you ask.
+`events.jsonl` is canonical. `show passport` renders a regenerable chat view
+from a fresh read; the current runtime does not persist `passport.md` or trust a
+summary as write input.
 
 ---
 

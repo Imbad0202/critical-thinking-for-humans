@@ -68,6 +68,14 @@ just describe what you want to practice. (No Claude Code? A single-file [portabl
 edition](#portable-single-file-edition-any-model) runs in any frontier model's
 chat window.)
 
+**Local Passport prerequisite:** the concurrency-safe on-disk Passport writer
+requires a supported Node.js release, version 22 or newer, on `PATH`
+(`node --version`). Current native Claude Code installations do not provide that
+system runtime themselves. Without it, all four coaching modes still work, but
+the skill pauses local Passport recording, says why, and never falls back to an
+unsafe direct write. The claude.ai and portable editions have no on-disk
+Passport and do not need Node.js.
+
 ## What's new in v1.4.0
 
 This release grows the verified Expedition library to 23 packs with an
@@ -327,6 +335,15 @@ The passport lives at `~/.ct-gym/` on your machine. It records:
 The passport's relevant content enters the model context when used. You can
 run `show passport`, `delete passport`, or `pause recording` at any time.
 A sensitive BYOM session writes no passport events at all, not even your closing commitment, unless you explicitly ask.
+Current Claude Code sessions serialize checkpoint batches through the bundled
+local writer, so simultaneous sessions on the same machine do not overwrite one
+another's events. A lock or write failure is fail-closed: the session keeps the
+checkpoint pending and tells you it was not saved. Each session also carries a
+local deletion-generation token: `delete passport` rotates it before removing
+the record, so an older session cannot silently recreate pre-deletion events
+from its pending buffer. Returning-user and `show passport` reads go through
+the same locked helper and reject symlinks and non-regular files instead of
+opening the event log directly.
 
 ---
 
