@@ -1,8 +1,10 @@
 # Passport
 
-> This file is a view; events.jsonl is the record. Safe to delete — it will be rebuilt.
-> Every value below is sample data illustrating the format — regenerate all
-> values from `events.jsonl`, never copy them.
+> This is the rendering template for `show passport`; `events.jsonl` is the
+> record. The current runtime renders the view directly into chat and does not
+> persist this file. Every value below is sample data illustrating the format —
+> regenerate all values from a fresh helper-provided `events.jsonl` snapshot,
+> never copy them or read the file directly.
 
 ---
 
@@ -71,6 +73,6 @@ Stated, never prosecuted.)*
 
 ---
 
-The passport lives on your machine (`~/.ct-gym/`). Its relevant content enters
+The event log lives on your machine (`~/.ct-gym/`). Its relevant content enters
 the model context when used. **show passport** / **delete passport** /
 **pause recording** always available (redline 12).

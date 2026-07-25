@@ -175,23 +175,69 @@ that is the item working as designed.
 
 ---
 
-## Gate 4 — Passport Corruption Recovery
+## Gate 4 — Passport Durability and Corruption Recovery
 
-Run against a disposable fixture — never the real passport: back up first
-(`mv ~/.ct-gym ~/.ct-gym.bak`), seed a fresh `~/.ct-gym/events.jsonl` with a few
-synthetic events, and restore the backup after the gate.
-
-Truncate the last line of `~/.ct-gym/events.jsonl` mid-object, then start a session:
+Never read, move, or seed the real `~/.ct-gym` for this gate. The automated
+writer probes use synthetic `tmp_path` directories:
 
 ```bash
-truncate -s -20 ~/.ct-gym/events.jsonl
-# Python fallback: python3 -c "import os; f=open(os.path.expanduser('~/.ct-gym/events.jsonl'),'r+b'); f.seek(-20,2); f.truncate()"
+node --version  # v22+; helper preflight must fail closed otherwise
+python3 -m pytest scripts/test_passport_checkpoint.py -q
 ```
 
-FAIL if the skill crashes, refuses to continue, or edits/deletes the corrupted
-line instead of skipping it.
-PASS if the skill warns, skips the malformed line, and regenerates the summary
-from valid lines. Confirm with `show passport` — all valid prior events present.
+**4A (corrupt-tail recovery).** The test must preserve every byte of an
+unterminated malformed tail, add only a line separator, and leave the next valid
+event readable. For the model-side reader probe, create a synthetic directory
+with `mktemp -d`, obtain its token through
+`passport_checkpoint.sh --data-dir ... generation`, seed it through the helper's
+`append --generation TOKEN` command with the JSONL on stdin, truncate its final
+line, and tell a fresh maintainer-probe session to treat that exact directory as
+the Passport location for this probe only. The session must not inspect the real
+Passport.
+
+FAIL if the skill crashes, refuses to continue, edits/deletes the corrupted
+fragment, reads `events.jsonl` directly, or trusts a cached `passport.md`.
+PASS if it warns, skips the malformed line, and regenerates the displayed
+summary from every valid line in a fresh helper-provided `read` snapshot.
+
+**4B (real concurrent checkpoints).** The automated test launches multiple
+writer processes against one cold-start fixture. Each process submits a
+distinct two-event checkpoint batch.
+
+FAIL if any event is missing or duplicated, any JSONL line is malformed, or the
+two events in one batch are separated.
+PASS if every checkpoint appears exactly once and each batch remains adjacent.
+The same test suite must also prove that lock timeout and forced replacement
+failure leave the prior log byte-identical, then permit a clean retry; malformed
+mixed input rejects the whole batch; symlinked data directories and symlinked
+or non-regular event logs fail closed; and a
+SIGKILL orphan temp is removed by `delete` after explicit stale-lock recovery.
+It must also prove delete serialization and generation invalidation: delete
+rotates the token under the lock, and an old session's pre-delete pending batch
+or read receives exit 76 without recreating or exposing the log. Only exact
+`<pid>.<UUID>` helper temps may be swept; similarly prefixed unrelated files
+must survive. Missing or pre-22 Node must return exit 69 before creating,
+reading, changing, or echoing any Passport content.
+
+**4C (runtime uses the one writer).** In a fresh disposable session, complete
+one item that emits a paired checkpoint and inspect the tool trace. The session
+must call `generation` before its first event-log access, retain that token, and
+obtain every returning-user or "show passport" snapshot through the helper's
+`read --generation TOKEN` command.
+
+FAIL if the runtime directly copies, appends, renames, or deletes Passport files;
+reads `events.jsonl` directly;
+clears the pending buffer before a zero exit; sends paired events as separate
+helper calls; omits the startup generation token; retains and retries a batch
+after exit 76; or falls back to an unlocked write after an error.
+PASS if it invokes `<skill-root>/scripts/passport_checkpoint.sh`, sends the
+complete batch on stdin, retains pending events on a simulated lock/write
+failure, and discards a stale batch on simulated
+`PASSPORT_GENERATION_MISMATCH`. After any deletion result or exit 76, it invokes
+`generation` again before later access. A simulated exit 69 must pause recording,
+identify Node.js 22+ as the missing prerequisite, continue the exercise if the
+user wishes, and perform no hand-rolled Passport operation. No real Passport
+data is used.
 
 ---
 
@@ -717,7 +763,7 @@ schema.
 
 ## Retry Policy
 
-On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/ re-runs Gate 4 plus the RL8 and RL12 probes, plus Gate 12.
+On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gate 12.
 
 ---
 

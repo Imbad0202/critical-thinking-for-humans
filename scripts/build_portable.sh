@@ -137,6 +137,7 @@ check_absent 'no mode file is loaded' "narrative no-mode-loaded survived"
 check_absent 'Loaded alongside' "narrative co-load survived"
 # Passport-on-disk vocabulary: the portable edition has no local file.
 check_absent '~/\.ct-gym|events\.jsonl' "on-disk passport vocabulary survived"
+check_absent 'passport_checkpoint\.(sh|mjs)|events\.write-lock|PASSPORT_GENERATION_MISMATCH|Node\.js 22|exclusive sidecar lock|lock-before-reread' "local Passport writer survived"
 # Any surviving canonical file path means a cross-reference slipped the rewrite.
 check_absent '(shared|modes|passport)/[A-Za-z._-]+\.md' "unrewritten cross-file path survived"
 # SKILL.md / router are multi-file-architecture artifacts; no router in a chat.

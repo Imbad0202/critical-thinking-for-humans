@@ -109,7 +109,11 @@ Standing commands — available any time: "switch domain", "switch difficulty", 
 
 ## Returning User
 
-Read `~/.ct-gym/events.jsonl` (per `passport/SCHEMA.md`). Confirm in one line built from the latest `profile_set`, e.g.: "Last time: education domain, standard, direct — continue?" Tier: user's choice only (redline 7).
+After initializing the session's Passport generation as specified below, obtain
+the event log through the helper's locked `read` command (per
+`passport/SCHEMA.md`); never read `~/.ct-gym/events.jsonl` directly. Confirm in
+one line built from the latest `profile_set`, e.g.: "Last time: education
+domain, standard, direct — continue?" Tier: user's choice only (redline 7).
 
 If the user declines, override field by field — re-ask only the fields they want changed, not the whole intake.
 
@@ -119,7 +123,32 @@ If the user declines, override field by field — re-ask only the fields they wa
 
 Files live at `~/.ct-gym/`. Events buffer in session context and are appended at checkpoints (end of an item; end of a scene — a scene's commitment and process record flush together at scene end). Commands always available: **show passport** / **delete passport** / **pause recording** (redline 12 applies).
 
-Write protocol, privacy rules, and cold start: see passport/SCHEMA.md.
+The local Passport helper requires Node.js 22 or newer on `PATH` and checks that
+before touching `~/.ct-gym/`. If it exits 69, pause recording for this session,
+state that local Passport operations need Node.js 22+, and continue the training
+if the user wishes. Do not read, write, or delete Passport files directly;
+`show passport` and `delete passport` must report the unavailable prerequisite
+rather than pretend they succeeded.
+
+At local session startup, before checking for a returning user or reading the
+event log, invoke `<skill-root>/scripts/passport_checkpoint.sh generation` and
+retain its token in session context. Every local checkpoint and `delete passport` operation must invoke that helper exactly as specified in
+passport/SCHEMA.md; never hand-roll a copy/rename fallback. Feed the complete
+checkpoint batch on stdin and pass the startup token with `--generation`.
+Returning-user and "show passport" reads must invoke the helper's
+`read --generation TOKEN` command; never use a direct filesystem read. Clear
+pending events only after a zero append exit. On exit 76, discard the stale
+batch or read snapshot and invoke the helper's `generation` command again; a
+generation rotation, normally from a deletion attempt, invalidated the old
+operation but does not prove deletion completed. On every other append failure,
+keep the batch pending and warn explicitly. `delete passport` discards this
+session's pending events, invokes the helper's `delete`, and invokes
+`generation` again after either result; report deletion complete only after a
+zero delete exit. "Show passport" renders directly from the helper-provided
+snapshot; the current runtime does not persist a cached markdown view.
+
+Write protocol, privacy rules, lock recovery, and cold start: see
+passport/SCHEMA.md.
 
 ---
 

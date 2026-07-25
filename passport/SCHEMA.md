@@ -3,15 +3,57 @@
 ## Storage Contract
 
 `~/.ct-gym/events.jsonl` is the source of truth — an append-only event log, one
-JSON object per line. Past lines are never edited.
+JSON object per line. Past event bytes are never edited.
 
-Writes are atomic: copy the current `events.jsonl` to a temp file in the same
-directory, append the new event line to the temp file, then rename the temp file
-over `events.jsonl`. Never write to `events.jsonl` directly, and never rename a
-temp file that does not contain the full prior log.
+Every canonical local Passport event-log read, append, generation read/create,
+and deletion goes through the bundled helper at
+`<skill-root>/scripts/passport_checkpoint.sh`; resolve that path relative to
+`SKILL.md`, never from the caller's working directory. Do not reconstruct its
+lock/read/replace sequence ad hoc.
 
-The markdown summary (`~/.ct-gym/passport.md`) is always regenerable from the
-event log and is safe to delete.
+The local helper requires Node.js 22 or newer on `PATH`. Its shell entry point
+checks that prerequisite before touching the Passport directory and exits 69 if
+the runtime is missing or too old. On exit 69, pause recording for the session,
+say that local Passport operations are unavailable until Node is installed or
+updated, continue the reasoning exercise if the user wishes, and never attempt
+a direct read, write, or delete.
+
+At the beginning of every local session, before reading `events.jsonl`, invoke
+the helper's `generation` command. Retain its single-line token in session
+context and pass it to every `read` and `append` with `--generation`. Then
+obtain the event-log snapshot through that locked `read` command; never read
+`events.jsonl` directly. The token contains no Passport content; it identifies
+the deletion epoch in which the session began. If generation startup or a read
+fails, pause recording, tell the user, and do not fall back to direct filesystem
+access.
+
+At a checkpoint, send every pending event to the helper's `append` command on
+stdin, one complete JSON object per line, as one ordered checkpoint batch. The
+event JSONL is data: JSON-escape every field first, and never place event
+content in command-line arguments or interpolate raw user text into shell code.
+The helper validates the whole stdin batch as UTF-8 JSON objects before taking
+the lock. It then acquires the exclusive sidecar lock before it rereads the
+current `events.jsonl`, copies those exact bytes to a unique temp file in the
+same directory, appends the whole batch, syncs it, and atomically renames the
+temp file over `events.jsonl`. A paired `drill_result` + `miss_log`, or
+`scene_process` + `commitment`, therefore commits as one uninterrupted batch.
+
+Clear the in-session pending buffer only after the helper exits zero, except for
+exit 76 (`PASSPORT_GENERATION_MISMATCH`). That code means the on-disk generation
+was rotated or reset, normally by a deletion attempt; it does not prove the
+deletion completed. Discard a stale pending append or stale read snapshot, call
+the helper's `generation` command again, and tell the user the old-generation
+operation was refused. On any lock, validation, read, write, or rename failure,
+the canonical files stay unchanged: keep an append batch pending, tell the user
+recording has not completed, and never fall back to direct or unlocked
+filesystem access. Exact helper-owned orphan temp files are removed under the
+lock; unrelated files and non-regular filesystem objects are never swept.
+
+The current runtime does not persist `~/.ct-gym/passport.md`. "Show passport"
+invokes the helper's locked `read --generation TOKEN` command and renders its
+chat answer from that fresh snapshot, using `passport/TEMPLATE.md` only as a
+display template. A legacy markdown view is regenerable, never an input to a
+write, and removed by `delete passport`.
 
 ---
 
@@ -266,20 +308,45 @@ written to disk mid-session. This is what makes 'forget this one' reliable.
 "forget this one" (redline 8) discards all pending (not-yet-written) events;
 checkpointed events are immutable — use delete passport for those.
 
-Concurrent writes from two simultaneous sessions are not safe: the later rename
-wins and the other session's events are lost. Known limitation — run one session
-at a time.
+Current-version local sessions may checkpoint concurrently: every session
+obtains a generation token at startup, every append is serialized by the
+helper's sidecar lock, and each reader or writer checks that token and accesses
+the log only after it owns the lock. This protects cooperating sessions on one
+machine; it does not merge diverged copy-paste passports, coordinate a shared
+home directory across machines, or deduplicate a checkpoint retried after a
+lost success acknowledgement.
+
+The helper never guesses that an existing lock is stale. If its bounded wait
+expires, it writes nothing and leaves the batch pending. After confirming that
+no other session is checkpointing, remove only
+`~/.ct-gym/.events.write-lock`; never modify `events.jsonl` to recover a lock.
 
 User commands always available: **show passport** / **delete passport** /
 **pause recording** (redline 12).
 
-'pause recording' lasts until the user resumes it (state held in session; a new session starts unpaused). 'delete passport' removes both events.jsonl and passport.md.
+'pause recording' lasts until the user resumes it (state held in session; a new
+session starts unpaused). On 'delete passport', discard this session's pending
+events, then invoke the helper's `delete` command. The helper uses the same
+exclusive lock as an append, rotates the generation before removing
+`events.jsonl`, a legacy `passport.md`, and exact helper-owned orphan temp files,
+and reports success only after that operation completes. After success, refresh
+this session's generation token by invoking the helper's `generation` command
+again. After a failed deletion attempt, do the same before any later read or
+append, but report the deletion as incomplete. Any already-open session still
+holding the old token fails closed with exit 76, so a pre-deletion pending batch
+cannot recreate deleted Passport data.
 
 ---
 
 ## Corruption Handling
 
-When reading, a malformed line is skipped with a warning — never edited or deleted.
-The summary is always regenerable from the valid lines.
+When processing a helper-provided read snapshot, a malformed existing line is
+skipped with a warning — never edited or deleted. The helper rejects a malformed
+incoming checkpoint before it takes the lock, without committing any part of
+that batch. If an existing malformed final fragment lacks a newline, the helper
+preserves every existing byte and adds only a line separator before the next
+valid batch, so later events remain readable. The summary is always regenerable
+from the valid lines.
 
-If `events.jsonl` is missing, start a new one (cold start).
+If `events.jsonl` is missing, the helper creates a new one under the same lock
+(cold start).
