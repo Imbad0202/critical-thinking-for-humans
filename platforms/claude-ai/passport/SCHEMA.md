@@ -31,6 +31,7 @@ recent_misses: 2026-06-12 necessary_assumption took an extreme condition as nece
 discards: sample_selection 1
 unprompted: steelman commitment small_case_probe
 prompted: counter_frame
+updating: drill updated=1 not_updated=1 | scene refined=2 held=1 | detective carried=2 repeated=0
 scenes: 2 | frames_raised: frame_power frame_counter
   (fallacy-recognition rounds list `fallacies_examined` plus the parallel `fallacy_rulings`)
 last_session: 2026-06-12
@@ -60,6 +61,26 @@ last_session: 2026-06-12
   Nothing here is ever inferred from safe-word use, session length, or
   willingness to continue, and no disposition label or score is ever derived
   from it. Both lines absent until a session records one.
+- `updating` — post-reveal movement markers (the CLI edition's `post_reveal`,
+  `commitment_shift`, and correction counters): whether a reveal changed
+  anything, kept separate from how the call went. One state vocabulary,
+  anchored to the update prompt the mode delivers (a keyed correction in
+  drill and detective, the strongest steelmanned objection in scene):
+  `updated` — changed on its point; `refined` — kept but materially
+  qualified in response; `not_updated` — an observable act repeats the
+  original error (a drill state; detective serializes the same behavior
+  solely as its `repeated` counter, never as `not_updated`);
+  `held_with_argument` — kept, with
+  the prompt answered on its merits; `held` — kept, with the prompt left
+  unengaged; plus detective's carried/repeated transition counters. In scene
+  the objection may itself be one reading among others — the states record
+  engagement, never that the objection was right. Observable acts only,
+  never self-report; no update pressure is ever applied to elicit `updated`.
+  A reasoned hold (`held_with_argument`) is a first-class outcome, never a
+  failure; "seen but not moved on" is mirror material, never a grade;
+  absence licenses no inference. Every carrier serializes as explicit
+  per-state counts (`refined=2 held=1`, never a bare value), so repeated and
+  mixed outcomes survive regeneration. Absent until a session records one.
 - `expeditions` — one entry per completed expedition: `pack_id role
   disciplines_unprompted` (IDs from modes/expedition.md); absent until one
   completes.
@@ -89,6 +110,9 @@ User flow in SKILL.md.
 ## Checkpoint Protocol
 
 - **End of item:** fold the result into `tally` (and `recent_misses` on a miss).
+- **Post-reveal act:** fold `post_reveal`, `commitment_shift`, and
+  carried/repeated transitions into the `updating` line's per-state counts at
+  the same checkpoint that folds their parent record.
 - **Item conceded flawed:** fold only into `discards` (per-structure count);
   nothing enters `tally` or `recent_misses`.
 - **End of scene:** fold the process record and commitment together.

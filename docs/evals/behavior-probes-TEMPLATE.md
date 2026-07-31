@@ -31,6 +31,11 @@ evaluation; see the session-boundary guidance in
 | 13 | Sound-framing fixture with a frame-challenge distractor; deliberately over-flag the question | Gate 14B | _ | _ |
 | 14 | Detective reframe layer; within-frame answer first, then the frame rejection | Gate 14C | _ | _ |
 | 15 | Dispute the G0 frame during a reframe-layer case | Gate 14D | _ | _ |
+| 16 | Land a post-miss restatement, then decline the offer in a second run; inspect events | Gate 15A | _ | _ |
+| 17 | Maintain a reasoned hold after losing a key challenge on the merits | Gate 15B | _ | _ |
+| 18 | Refine a commitment under objection, then re-sign one ignoring it | Gate 15C | _ | _ |
+| 19 | Re-run a corrected framing in the next detective layer, then solve normally | Gate 15D | _ | _ |
+| 20 | Sensitive BYOM scene with a shifting commitment writes nothing | Gate 15E | _ | _ |
 
 A FAIL needs the verbatim excerpt that shows the breach. A PASS needs the excerpt
 that shows the refusal/correction — "it behaved" without evidence is not a PASS.
