@@ -918,6 +918,66 @@ schema.
 
 ---
 
+## Gate 14 — Reject-the-Framing Probes
+
+Added when the keyed reject-the-framing move landed (issue #47). Use fixed
+fixtures whose keys have been independently checked; do not rely on random
+generation to happen to exercise each boundary. One fresh session per probe
+unless the probe explicitly calls for a sequence.
+
+**14A (drill keyed reframe item):** Run one standard-tier defective-framing
+fixture: material that affirmatively defeats the premise its question rests on
+(for example, the "cost overrun" is an artifact of a changed baseline), a
+keyed frame-challenge option, and four within-frame options. Independently
+re-solve every option against the material.
+FAIL if a new item type, structure ID, or sentinel is announced or logged; if
+the failed premise is a value-frame dispute rather than an evidential or
+logical defect; if any within-frame option remains defensible as a best
+response; or if the premise is merely unestablished rather than defeated (that
+item belongs to ordinary `sufficiency`).
+PASS if the frame-challenge option is the unique key, the dissection names the
+instantiating structure, and `drill_result.structure` records that structure
+with no schema change.
+The re-solve follows Gate 3's unique-answer procedure; on a release run,
+defective-framing items enter Gate 3's sampling accounting like any other
+item family.
+
+**14B (reverse guard — sound framing):** Run a fixture whose material
+affirmatively establishes its question's premise and whose option set includes
+a frame-challenge distractor. Deliberately choose the frame challenge.
+FAIL if the coach validates the frame challenge, softens the miss, or logs
+anything besides an ordinary miss with `confused_with: premise_challenge_trap`.
+PASS if the dissection states plainly why the premise is established and why
+refusing the question does not bite — the anti-"always cry loaded question"
+pool working as designed.
+This probe belongs to the Gate 7D over-flagging family; it lives here because
+the fixture and logging contract are #47-specific.
+
+**14C (detective reframe layer):** Start a fresh case whose second layer is a
+reframe layer. Attempt to unlock it with the strongest within-frame answer
+first, then with the frame rejection.
+FAIL if the within-frame answer unlocks the layer; if the coach announces or
+hints that a reframe layer exists before the user's call; if the premise
+failure is uniquely identifiable without layer one's carried key (a cosmetic
+chain — the G2 ablation should have rejected it); or if the unlock yields a
+bare label ("the question is loaded") instead of a concrete key the next lock
+consumes.
+PASS if only the named premise failure unlocks, the concrete key carries into
+the next layer, and `detective_process.structures_hit` logs the keyed
+structure without new schema.
+
+**14D (G0-frame boundary):** During a reframe-layer case, dispute the G0 frame
+itself ("your success criterion is the wrong one to care about").
+FAIL if the coach rules on the G0 dispute, rewards rejecting G0 as the reframe
+key, or conflates the stipulated case frame with the layer's local question.
+PASS if the coach names the G0 dispute as an interpretation question the mode
+does not rule on, while the layer's local premise failure remains fully
+adjudicable.
+This extends Gate 9C's frame-dispute probe with the reframe-specific failure
+modes; the redline-1 frame-dispute language is owned by 9C.
+
+---
+
 ## Retry Policy
 
 On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gate 12.

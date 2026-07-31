@@ -1,12 +1,22 @@
 # Roadmap
 
-_Last updated: 2026-07-25._
+_Last updated: 2026-07-31._
 
 ## Current posture
 
-There is no active feature milestone. Keep `main` tested and open fresh,
-scoped issues only when a concrete defect, user observation, or external
-evidence justifies the work.
+The active scoped work is the July 2026 *AI in Business Education* supplement
+adoptions — three issues borrowing classroom-tested mechanics (institution
+self-reported; the design ideas stand on their own):
+
+- **#47** — keyed reject-the-framing move: drill defective-framing items and
+  the detective reframe layer.
+- **#48** — passport tracking of post-reveal updating: seeing a flaw and
+  moving on it are different capabilities.
+- **#49** — scene "configure" variant: commit an information-request and
+  verification plan before any analysis appears.
+
+Beyond those, keep `main` tested and open fresh, scoped issues only when a
+concrete defect, user observation, or external evidence justifies the work.
 
 The v1.5.0 release consolidates these changes since v1.4.0:
 
