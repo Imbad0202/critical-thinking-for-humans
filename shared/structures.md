@@ -165,7 +165,9 @@ These are the nine wrong-answer patterns used to build drill items.
 
 ## Frame Palette
 
-Scene mode must cycle through all six frames across each scene.
+Scene mode must cycle through all six frames across each scene (frame-palette
+rounds; the fallacy-recognition and configure tracks are separate submodes —
+modes/scene.md).
 
 | ID | Lens |
 |----|------|
@@ -210,5 +212,7 @@ Lens IDs are not loggable structure IDs — they never appear in `drill_result.s
 ## Metrics Note
 
 Drill records hit/miss per structure ID — that is how the gym tracks which muscles
-are undertrained. Scene records which frames were exercised each round — process
-metrics, no grading.
+are undertrained. Scene's frame and fallacy rounds record which frames or
+lenses were exercised — process
+metrics, no grading; scene's configure track is the bounded exception, whose
+keyed reveal logs per-structure misses (modes/scene.md, Configure Track).

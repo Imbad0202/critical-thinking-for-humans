@@ -108,7 +108,10 @@ per-structure miss log — "you invented a flaw on N of your last M sound items"
 
 ### `scene_process`
 
-One record per completed scene session. Process metrics only — no hit/miss grade.
+One record per completed scene session. Frame and fallacy rounds record
+process metrics only — no hit/miss grade; a configure round is the bounded
+exception, grading committed asks against a designed information key
+(modes/scene.md, Configure Track).
 
 Fields: `frames_raised` (array of frame IDs), `fallacies_examined` (array of
 fallacy-lens IDs the fallacy-recognition track exercised this round; absent on
@@ -119,17 +122,41 @@ frame-palette rounds),
 `steelman` (bool — true only if every raised frame was steelmanned),
 `counter_frame` (bool), `camera_turn` (bool), `commitment` (bool),
 `summary` (short context label — no raw user text, no proper names). The rulings
-are process metrics recorded in this same event, never a score. A round is a
-frame-palette round XOR a fallacy round (one submode per round, modes/scene.md),
-so `frames_raised`/`steelman`/`counter_frame`/`camera_turn` and
-`fallacies_examined`/`fallacy_rulings` are mutually exclusive — the absent set is
+are process metrics recorded in this same event, never a score. A configure
+round (modes/scene.md, Configure Track) instead carries `configure_caught` and
+`configure_missed` (arrays of structure IDs — the key's items, plus any
+unkeyed ask confirmed load-bearing and keyed to its structure at inspection),
+`configure_noise` (int — committed requests ruled noise, generic-checklist
+asks included), optional `configure_unverified` (int — catches whose
+committed verification line was missing or hollow; the catch stands, the
+verification gap is the recorded fact), and optional
+`configure_unkeyed` (int — inspection-confirmed generator omissions of
+three kinds: pre-reveal committed asks that were uniquely keyable, which
+also enter `configure_caught`; confirmed asks with no unique structure,
+which enter no ID array; and dependencies first named after the reveal,
+which earn no catch credit. The counter marks the
+generator's omission — a generation-quality signal, never a user stat, never
+read for weighting; the ID arrays carry only uniquely keyed items). A configure key conceded on challenge writes the same
+`item_discarded` event as a drill overturn (structure = the conceded item's
+keyed structure, `reason_class` `key_conceded`) — see `item_discarded`.
+A configure round carries neither the `commitment` boolean nor a
+`commitment` event: its committed plan is an exercise input, not an
+authored position, and its close is a tally, not a pressure-tested
+commitment. A round is exactly one of a
+frame-palette round, a fallacy round, or a configure round (one submode per
+round, modes/scene.md),
+so `frames_raised`/`steelman`/`counter_frame`/`camera_turn`,
+`fallacies_examined`/`fallacy_rulings`, and the `configure_*` set are mutually
+exclusive — the absent sets are
 omitted, not empty-arrayed. Optional per-move elicitation carrier
 `elicitation` — see Elicitation, which also holds the four booleans' behavior
-anchors. Optional `commitment_shift` — see Post-Reveal Updating.
+anchors. Optional `commitment_shift` — see Post-Reveal Updating, whose
+carrier list also records the configure-round deferral.
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"summary":"staff-meeting scene, budget dispute"}
 {"schema_version":1,"ts":"2026-06-11T09:14:00Z","type":"scene_process","fallacies_examined":["fallacy_false_dilemma","fallacy_strawman"],"fallacy_rulings":["fallacy","insufficient_context"],"commitment":false,"summary":"op-ed argument, two lenses"}
+{"schema_version":1,"ts":"2026-06-11T09:30:00Z","type":"scene_process","configure_caught":["sample_selection","proxy_mismatch"],"configure_missed":["evidence_sufficiency"],"configure_noise":2,"configure_unverified":1,"summary":"program-effectiveness case, menu tier"}
 ```
 
 ### `miss_log`
@@ -137,6 +164,16 @@ anchors. Optional `commitment_shift` — see Post-Reveal Updating.
 Explicit miss record written alongside `drill_result` when `hit` is `false`; derivable from drill_result if absent. A `miss_log` must be
 written for every `drill_result` whose `hit` is false; `drill_result` is ground
 truth — if a `miss_log` is missing, regeneration derives it.
+A configure round (modes/scene.md, Configure Track) also writes one standalone
+`miss_log` per missed load-bearing structure — no paired `drill_result`; the
+pairing-and-derivation rule above binds drill items only. A configure miss
+feeds the same per-structure weighting drill's step (b) reads, with a
+denominator: each ID in that round's `configure_caught` and
+`configure_missed` counts as one attempt for its structure in the rate
+calculation, so nine catches and one miss read as one miss in ten attempts,
+exactly as the claude.ai edition's `by_structure` pairs encode. A key
+conceded
+on challenge writes no `miss_log` at all.
 
 Fields: `structure` (canonical ID, or a technique ID for `manipulation_spot`
 misses, or the `argument_sound` sentinel for an over-flagged sound item),
@@ -163,7 +200,8 @@ extra muscle weakness; step (b) weighting does not read this field.
 ### `item_discarded`
 
 Written at the moment a challenge in the drill challenge window succeeds — the
-coach concedes the item flawed (modes/drill.md step 6). This is a
+coach concedes the item flawed (modes/drill.md step 6) — or a configure-round
+key is conceded on challenge (modes/scene.md, Configure Track). This is a
 generation-quality signal, the drill counterpart of
 `detective_process.unregistered_flaws_found`: it measures the generator, not
 the user. The conceded item itself still writes no `drill_result` and no
@@ -269,7 +307,10 @@ Per-event carriers:
   `steelman|counter_frame|camera_turn|commitment`, values from the three
   states. A move the scene never gave a real opening for is `not_elicited`.
   Consistency: `prompted|independent` accompany a `true` boolean;
-  `not_elicited` only a `false` one.
+  `not_elicited` only a `false` one. Configure rounds carry no elicitation
+  surface in v1 — the map's keys are frame-round moves; a
+  committed-after-scaffold marker for the configure commit gate is deferred
+  deliberately, not overlooked.
 - `expedition_process` — optional `disciplines_prompted` (array): discipline
   IDs the record shows the user deployed only after a coach prompt.
   Disciplines in neither array are simply unrecorded — absence licenses no
@@ -341,6 +382,12 @@ Per-event carriers:
   fails; `corrections_repeated` marks that subset's cause, and the close
   states the two together rather than reporting one act as two
   independent facts.
+- a configure round (modes/scene.md, Configure Track) — deliberately carries
+  none of these fields in v1, `commitment_shift` included (its close is a
+  tally, not a pressure-tested commitment). Its reveal IS a keyed
+  correction — drill's anchor — so a post-reveal carrier for the
+  plan-restatement act is a natural future extension, deferred rather than
+  overlooked.
 - `expedition_process` — deliberately carries none of these fields: #48
   scoped the dimension to the modes where a reveal corrects the user's own
   move mid-session. Wiring expedition's forecaster loop (predict → reveal →

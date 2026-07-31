@@ -172,6 +172,8 @@ need "fallacy_motte_and_bailey"    # 11th fallacy lens present
 need "fallacy_gamblers_fallacy"    # 12th fallacy lens present
 need "Defective-framing items"     # #47 drill reject-the-framing family
 need "reframe layer"               # #47 detective reframe layer
+need "Configure Track"             # #49 scene configure track (mode section)
+need "configure track\*\*"          # #49 header routes + stances the track
 need "Redlines (hard rules)"       # floor present
 
 # 7. Prove the canonical sources were not mutated by this build (the portable

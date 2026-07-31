@@ -7,8 +7,11 @@ layers:
 
 1. **Session tally** — authoritative within one conversation. Events buffer in
    session context and are folded into a running tally at checkpoints (end of an
-   item; end of a scene — a scene's commitment and process record flush
-   together). Nothing exists outside the conversation; this is what makes
+   item; end of a scene — a frame or fallacy round's commitment and process
+   record flush
+   together; a configure round folds its process record alone, with no
+   commitment carrier, after its challenge window closes). Nothing exists
+   outside the conversation; this is what makes
    "forget this one" reliable.
 2. **Passport block** — the only carrier across conversations: a compact
    copy-paste text block the user saves anywhere durable (Project knowledge, a
@@ -34,6 +37,7 @@ prompted: counter_frame
 updating: drill updated=1 not_updated=1 | scene refined=2 held=1 | detective carried=2 repeated=0
 scenes: 2 | frames_raised: frame_power frame_counter
   (fallacy-recognition rounds list `fallacies_examined` plus the parallel `fallacy_rulings`)
+configure: caught=2 missed=1 noise=2 unverified=1 unkeyed=0 | by_structure: sample_selection 1/1 proxy_mismatch 1/1 evidence_sufficiency 0/1
 last_session: 2026-06-12
 ```
 
@@ -46,8 +50,9 @@ last_session: 2026-06-12
   `(as <id>)` after its structure tag — the pattern, structure, or technique
   ID of the option the user chose instead
   (the CLI edition's `confused_with`); IDs only, never option text.
-- `discards` — per-target counts of drill items conceded flawed in the
-  challenge window (the CLI edition's `item_discarded`; the target carries the
+- `discards` — per-target counts of drill items and configure keyed items
+  conceded flawed on challenge (the CLI edition's `item_discarded`; the
+  target carries the
   same union as `tally` entries — structure, technique, or `argument_sound`).
   A generation-quality signal about the coach's items,
   not a user stat: never read for item-weighting. Absent until a concession
@@ -61,6 +66,27 @@ last_session: 2026-06-12
   Nothing here is ever inferred from safe-word use, session length, or
   willingness to continue, and no disposition label or score is ever derived
   from it. Both lines absent until a session records one.
+- `configure` — running per-state counts from scene's configure track
+  (caught / missed / noise / unverified / unkeyed across rounds; the CLI
+  edition's
+  `configure_caught` / `configure_missed` / `configure_noise` /
+  `configure_unverified` / `configure_unkeyed`; `unverified` counts catches
+  whose committed verification line was missing or hollow — the catch
+  stands, the gap is the fact). A
+  pre-reveal committed ask the key missed, when uniquely keyable, counts as
+  caught (with its `by_structure` pair)
+  AND increments `unkeyed`; a confirmed ask with no unique structure, or a
+  dependency first named after the reveal, increments `unkeyed` only — no
+  catch, no `by_structure` entry — the generator's omission, never a user
+  stat; a
+  configure key conceded on challenge folds
+  into `discards`, not into any user stat. The line also carries
+  `by_structure:` — cumulative per-structure `caught/attempts` pairs for
+  keyed items — so configure exposure keeps feeding per-structure weighting
+  (miss rate is derivable from each pair) after entries age out of the
+  bounded `recent_misses` list; `tally` stays drill-only. Absent until a
+  configure round
+  completes.
 - `updating` — post-reveal movement markers (the CLI edition's `post_reveal`,
   `commitment_shift`, and correction counters): whether a reveal changed
   anything, kept separate from how the call went. One state vocabulary,
@@ -115,7 +141,14 @@ User flow in SKILL.md.
   the same checkpoint that folds their parent record.
 - **Item conceded flawed:** fold only into `discards` (per-structure count);
   nothing enters `tally` or `recent_misses`.
-- **End of scene:** fold the process record and commitment together.
+- **End of scene:** fold the process record and commitment together. A
+  configure round folds its caught/missed/noise/unverified/unkeyed counts
+  and each
+  keyed structure's caught/attempts pair (`by_structure:`) into the
+  `configure`
+  line, and each missed structure into `recent_misses`, at the same
+  checkpoint — after its challenge window closes, and with no commitment
+  carrier.
 - **"forget this one":** discards events buffered since the last checkpoint;
   everything already folded into the tally stays.
 - **"delete passport":** clear the session tally, then tell the user that saved

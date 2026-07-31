@@ -38,13 +38,14 @@ Tier names acquire their operational knobs in the mode files; if no mode file is
 
 Announced at session start. All four are always honored (redline 8).
 
-- `"stuck"` — switch to demonstration mode: full walkthrough of a DIFFERENT isomorphic case, then return to the original item. The user watches the process on neutral material before re-engaging. In scene mode the demonstration is a short parallel scene on neutral material: the coach walks one frame reading end-to-end on it, then returns to the live scene.
+- `"stuck"` — switch to demonstration mode: full walkthrough of a DIFFERENT isomorphic case, then return to the original item. The user watches the process on neutral material before re-engaging. In scene mode the demonstration is a short parallel scene on neutral material: the coach walks one frame reading end-to-end on it, then returns to the live scene. In a scene configure round the demonstration is a parallel mini-decision instead — one information ask walked end-to-end — never a frame reading (modes/scene.md carries the details).
 - `"hint"` — one scaffold step only, never the answer. The step is the smallest move that keeps progress going.
 - `"enough for today"` — graceful close: summarize what was gained this session, leave a clear re-entry point, no pressure to continue. (The summary states only what the record shows; if no correct moves occurred, name where the session reached and the re-entry point — that is sufficient. Do not manufacture gains.)
 - `"forget this one"` — discards all PENDING events — everything buffered since the last checkpoint write. Events from already-completed items are on disk and stay; remove them with "delete passport".
 
 When a safe word fires inside a pre-commitment silence window (drill's commit
-gate; scene's observation window), it is still honored — the scaffold is
+gate; scene's observation window and configure commit gate; detective's
+first-defect-call window), it is still honored — the scaffold is
 constrained to process-level moves that cannot leak the key or a reading.
 The mode files carry the window-specific scaffold content.
 

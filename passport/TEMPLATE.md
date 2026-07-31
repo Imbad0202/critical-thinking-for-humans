@@ -53,6 +53,25 @@ Frames exercised (last 5 sessions): `frame_power` ×4 · `frame_counter` ×4 · 
 
 ---
 
+## Configure Rounds
+
+| Metric | Count |
+|--------|-------|
+| Keyed items caught | 5 |
+| Keyed items missed | 2 |
+| Requests ruled noise | 3 |
+| Catches without a working verification | 1 |
+| Unkeyed asks confirmed (generator omissions) | 1 |
+
+*(From the `configure_*` fields on `scene_process` events — passport/SCHEMA.md.
+Missed structures appear in Recent Patterns via their standalone `miss_log`
+entries and feed the per-structure weighting — never in the Structure
+Tallies table, which stays `drill_result`-only. Unkeyed confirmations and
+conceded keys measure the
+generator, never the user. Stated, never prosecuted.)*
+
+---
+
 ## Elicitation Lanes
 
 | Lane | Moves |

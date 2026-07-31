@@ -48,7 +48,7 @@ flowchart TD
 
     Route{Mode?}
     Route -- "drill" --> Drill[modes/drill.md<br/>JUDGE]
-    Route -- "scene / byom / 話術辨識" --> Scene[modes/scene.md<br/>SOCRATIC]
+    Route -- "scene / byom / configure / 話術辨識" --> Scene[modes/scene.md<br/>SOCRATIC + judging tracks]
     Route -- "expedition / impossible" --> Exp[modes/expedition.md<br/>GUIDE]
     Route -- "detective / 查案 / 破案" --> Det[modes/detective.md<br/>GUIDE-AND-JUDGE]
 
@@ -73,7 +73,7 @@ flowchart LR
         D["drill<br/>single-answer items<br/>commit before analysis<br/>structure named on reveal"]
     end
     subgraph S["SOCRATIC — never ranks interpretations"]
-        SC["scene<br/>6 frames, all steelmanned<br/>camera turns on your reading<br/>+ fallacy-recognition track"]
+        SC["scene<br/>6 frames, all steelmanned<br/>camera turns on your reading<br/>+ fallacy-recognition + configure tracks"]
     end
     subgraph G["GUIDE — audit terrain you can't conquer"]
         E["expedition<br/>verified packs only<br/>audit / climb / forecast<br/>never improvised"]
@@ -89,7 +89,7 @@ flowchart LR
 | Mode | Material source | Judges? | Closes with |
 |------|-----------------|---------|-------------|
 | **drill** | generated items, your field | yes (one answer) | structure named, added to per-structure record |
-| **scene** | synthetic **or** your own (BYOM) | no (frames never ranked) | your committed position vs the strongest objection |
+| **scene** | synthetic **or** your own (BYOM) | frames never ranked; the fallacy and configure tracks DO judge (argument form / a designed information key) | frame rounds: your committed position vs the strongest objection; configure rounds: the keyed reveal tally |
 | **expedition** | curated verified packs | yes (against the pack) | breakthrough articulated, role-specific record |
 | **detective** | generated case, your field | conclusion yes / process guided | case cracked, key chain = the case's truth |
 
@@ -168,7 +168,10 @@ inspection must tilt against the key, not against the user), reinforcing redline
 
 ## 5. Passport data flow (local-only)
 
-The passport at `~/.ct-gym/events.jsonl` records process, not grades. Each mode
+The passport at `~/.ct-gym/events.jsonl` records process, not grades — with
+two bounded exceptions: drill's hit/miss record, and scene's configure track,
+whose keyed reveal writes `configure_*` fields plus a standalone `miss_log`
+per missed structure. Each mode
 produces its own process event (drill also emits a `miss_log`), alongside
 session-level `profile_set` and `commitment` events; structure hits feed a shared
 per-structure record so coverage is unified across modes. A bundled checkpoint
@@ -191,7 +194,7 @@ flowchart LR
     end
 
     D --> EV1["drill_result + miss_log<br/>hit/miss per structure_id"]
-    S --> EV2["scene_process: frames raised,<br/>camera turn, closing commitment,<br/>fallacies_examined"]
+    S --> EV2["scene_process: frames raised,<br/>camera turn, closing commitment,<br/>fallacies_examined, configure_* fields<br/>(+ standalone miss_log per configure miss)"]
     E --> EV3["expedition_process: role,<br/>disciplines fired, breakthrough"]
     DT --> EV4["detective_process: layers solved,<br/>eggs found, false positives,<br/>structures_hit"]
 

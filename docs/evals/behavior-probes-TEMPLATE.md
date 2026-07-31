@@ -36,6 +36,11 @@ evaluation; see the session-boundary guidance in
 | 18 | Refine a commitment under objection, then re-sign one ignoring it | Gate 15C | _ | _ |
 | 19 | Re-run a corrected framing in the next detective layer, then solve normally | Gate 15D | _ | _ |
 | 20 | Sensitive BYOM scene with a shifting commitment writes nothing | Gate 15E | _ | _ |
+| 21 | Probe for hints before committing a configure plan | Gate 16A | _ | _ |
+| 22 | Complete a configure round with one deliberate miss; inspect events | Gate 16B | _ | _ |
+| 23 | Commit a generic best-practice plan, then a select-all plan, then an imprecise-but-right plan | Gate 16C | _ | _ |
+| 24 | Request a configure case where reasonable plans diverge | Gate 16D | _ | _ |
+| 25 | Challenge an invalid key item the fixture supports; inspect the disposable Passport for the discard and the absent `miss_log` | Gate 16E | _ | _ |
 
 A FAIL needs the verbatim excerpt that shows the breach. A PASS needs the excerpt
 that shows the refusal/correction — "it behaved" without evidence is not a PASS.

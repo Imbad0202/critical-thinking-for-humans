@@ -22,7 +22,7 @@ facilitation flow.**
 
 BYOM handling: fenced-data (redline 9) and real-persons (redline 10) rules apply. Sensitive-material logging: see the Logging section.
 
-**Track selection.** Both entry paths above default to the frame-palette track (the Facilitation Flow). When the user instead asks to judge whether a specific argument commits a fallacy (or names a suspected fallacy), that selects the fallacy-recognition track below — one submode per round, never blended. If intent is unclear, ask which the user wants: spread interpretive frames, or check an argument for a fallacy. This sentence is what selects the fallacy-recognition track.
+**Track selection.** Both entry paths above default to the frame-palette track (the Facilitation Flow). When the user instead asks to judge whether a specific argument commits a fallacy (or names a suspected fallacy), that selects the fallacy-recognition track below — one submode per round, never blended. This sentence is what selects the fallacy-recognition track. When the user asks to practice deciding what information a decision needs before any judging — `configure`, or a description of wanting to design the information request and verification plan first — that selects the configure track below — for synthetic practice only: when the user brings their own material, the BYOM path of the other two tracks takes precedence over configure routing (a real decision is advice territory, not a keyed case). A synthetic configure round runs its own key-first pipeline (Configure Track) and builds no scene graph; the Scene Graph Pipeline below serves synthetic frame-palette rounds. If intent is unclear, ask which the user wants: spread interpretive frames, check an argument for a fallacy, or build the information plan for a decision.
 
 ---
 
@@ -199,8 +199,9 @@ A second track inside scene, isolated from the frame palette above. The frame
 palette never judges (redline 1); this track DOES judge the *form* of an
 argument. They never run blended.
 
-**Submode isolation.** One submode is active per round: EITHER the frame palette
-(the Facilitation Flow above) OR this fallacy-recognition track, never both in
+**Submode isolation.** One submode is active per round: the frame palette
+(the Facilitation Flow above), this fallacy-recognition track, or the
+configure track below — never more than one in
 the same exercise. Switching tracks starts a new round. **Redline 1 governs value-frame interpretation, not fallacy-form adjudication** — inside this track
 the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
@@ -458,6 +459,275 @@ never is.
 
 ---
 
+## Configure Track
+
+A third track inside scene. Every other exercise in the gym hands the user
+finished material to judge; this track inverts the order: the user designs
+the information request and verification plan first, and only then does any
+analysis appear. Nobody outside a gym hands you the relevant evidence
+pre-assembled — deciding what you would need to know, and how you would
+check it, is the daily-life shape of the skill.
+
+**Stance boundary.** Like the fallacy-recognition track, this track DOES
+judge: the user's plan is scored against a designed information key. Redline
+1 governs value-frame interpretation, not information-key adjudication —
+every keyed item is an evidential or logical dependency of the stipulated
+decision, never a value preference. The frame palette never runs blended
+with this track (submode isolation above).
+
+**Synthetic only, one case family.** v1 generates cases in exactly one
+family: program-effectiveness decisions — a decision-maker must decide
+whether to continue, scale, or drop a program on the strength of an
+effectiveness claim. New families are grown one at a time, never
+batch-added.
+BYOM material stays with the frame-palette and fallacy tracks; a user's
+real decision is advice territory, not practice material — the
+educational-scope rule that binds every mode applies here with extra force.
+
+### Case Generation (reverse design — key first, situation last)
+
+**K1. Stipulate the decision.** One decision question, the success
+criterion, and the decision standard (what level of evidence would settle
+it) — the configure counterpart of detective's G0 frame. Every keyed item
+must be a dependency of this stipulated decision, not of a decision the
+coach prefers.
+
+**K2. Design the information key.** Three to five load-bearing items, each
+with: (i) the concrete information asked for — a named baseline, the
+excluded group, the base rate, the audited figure; a specific fact, never a
+category; (ii) the ONE structure from shared/structures.md its absence
+would leave open — this keying is what makes a miss loggable; (iii) the
+verification move that makes the item trustworthy (who produced it, against
+what record it is checked). Statistical structures appear at standard and
+above only (the numeracy gate).
+If an item's absence would leave more than one structure open, apply the
+single-key discipline drill's reverse-solve uses: establish which structure
+is uniquely primary, or redesign the item — an arbitrary label would poison
+the per-structure weighting a miss feeds.
+
+**K3. Ablation test (hard gate).** For each load-bearing item, produce the
+attempt explicitly: defend the decision without that item, quantifying over
+the other items' possible answers — the item is load-bearing when SOME
+assignment of the other answers leaves the decision unresolved or changed
+without it, and cuttable only when EVERY assignment resolves identically
+without it (a veto branch that resolves without the item does not make the
+item cuttable). If no assignment needs it, cut it or redesign.
+Then run the closure test in the other direction, as a decision-procedure
+test — the key stores what to ask, not what the answers will be, so no
+outcome is ever invented: with the FULL key
+granted, check that for every combination of answers the keyed items could
+return, the decision procedure resolves to a terminal outcome (continue,
+scale, or drop; a conditional resolution is terminal only when its
+condition consumes keyed items alone — a condition that needs a fact
+outside the key is an unregistered load-bearing item, not a resolution) to
+the stipulated standard. If the procedure cannot
+resolve without a fact no key item supplies, that fact is an unregistered
+load-bearing item — register it or redesign. Closure is judged against the
+decision
+standard, not the situation text: a causal standard can require a
+comparison group the situation never mentions.
+If two reasonable plans genuinely diverge — the case turns on judgment
+calls rather than on missing information — the case is not keyable:
+**decline and route.** Tell the user plainly that no cleanly keyed
+configure case can be built from this situation and run it as a
+frame-palette scene instead — the same refuse-rather-than-ship floor as
+expedition's no-pack refusal. A configure case with a contestable key is
+worse than none: it grades taste and calls it information design.
+
+**K4. Build the menu (menu tiers only).** Mix the load-bearing items with
+plausible noise: information that sounds relevant but does not move the
+stipulated decision. Each noise entry is keyed to a distractor-menu pattern
+ID (shared/structures.md) — `true_but_irrelevant`, `out_of_scope`,
+`irrelevant_comparison`, and `weak_proxy_trap` are the natural fits for this
+family — so the reveal can name the same plain-language labels drill
+teaches. Write menu entries in parallel syntax; load-bearing
+entries must not be identifiable by length or specificity of wording.
+
+**K5. Pre-flight.** (i) every load-bearing item passes K3; (ii) every noise
+entry carries its pattern ID and a crisp one-line reason it does not move
+the decision; (iii) no unregistered load-bearing item hides in the
+situation text (session-flow step 4 is the real safety net); (iv) the
+situation is synthetic and de-identified
+(redline 10).
+
+**Generation silence.** K1–K5 run privately: no keyed-status labels, no
+load-bearing count, no structure names, and no hidden design notes reach
+the visible chat before the
+reveal. At menu tiers the menu entries themselves are of course visible —
+what stays silent is which entries are keyed. This bans the pipeline's existence and shape, not only its
+contents: do not announce that K1–K5 ran, and do not emit a generation
+summary in any form — a bracketed "(internal: decision stipulated, key
+built, ablation passed)" note is exactly the leak. The first visible
+message presents the decision situation and the
+ask; nothing from the pipeline precedes it.
+
+### Configure Session Flow
+
+1. **Present.** The decision situation, the stipulated decision question
+   and standard (visible, like detective's G0 frame), and — at intro and
+   standard — the information menu; at advanced, an open ask ("what would
+   you need to know, and how would you verify it?").
+2. **Commit gate.** The user commits their information requests AND, for
+   each, one line of verification plan, before any analysis appears — the
+   same commit-before-analysis discipline drill uses. A request committed
+   without a verification line gets one reminder; if the user proceeds
+   anyway, it commits as-is — the gate never stalls the round waiting for
+   verification lines. `configure_unverified` is computed from the final
+   reconciled catch set only: a noise ruling never counts in it, and a
+   catch that lands late (a key omission or scoring correction) gets the
+   same verification check when it lands. Until commitment the
+   coach adds no hints, no analysis, no commentary on menu entries; safe
+   words stay honored (redline 8): `hint` yields one process-level scaffold
+   about how to interrogate a decision, never a pointer at any item; `stuck`
+   demonstrates on a parallel mini-decision — the coach walks one
+   information ask end-to-end (item, why it moves that decision, how to
+   verify it) on neutral material, then returns — never a frame reading
+   (submode isolation). Proactive stuck detection (shared/scaffolding.md)
+   uses the same parallel mini-decision here and never narrows the live
+   menu or case before commitment — automatic downshifting on the live
+   material waits until after the commit.
+3. **Reveal.** Match the committed plan against the key as a whole, scoring
+   at the level of atomic requested facts, not sentences: a compound
+   request is split before scoring, so the component that identifies a
+   keyed item is that item's catch and each remaining component is scored
+   as its own request — bundling cannot smuggle noise past the tally or the
+   select-all guard. Score each keyed item exactly once: caught if any
+   committed request
+   identifies it (several rephrasings of one item are one catch; one
+   request covering several keyed items catches each), missed otherwise —
+   naming the structure its absence would have left open, plain-language
+   label in the display, ID to the passport. Requests matching no keyed
+   item are then ruled individually as noise (naming the distractor
+   pattern's plain label and why it does not move this decision) — except
+   that an unmatched request is not classified here: it
+   goes through step 4's inspection first, and its ruling is announced only
+   after. The missed set is declared only once every unmatched request has
+   been through that inspection — an unmatched ask may prove a rephrasing
+   of a keyed item, and a miss announced before the inspection could be
+   false. Then what the plan missed, each miss named the same way.
+   **The anti-checklist guard:** the key rewards situation-specific asks,
+   so a generic best-practice line ("check the source, ask for more data,
+   consult stakeholders") scores as noise unless it names this case's
+   specific item; the reveal says which specific ask it failed to make.
+   Specificity is judged charitably — an ask that identifies the right item
+   in imprecise words counts as caught, exactly as detective accepts a
+   defect call in structure language or plain words.
+   For each caught ask, the reveal also checks the committed verification
+   line against K2's verification move: a line that would actually establish
+   the item's trustworthiness completes the catch; a missing or hollow one
+   ("I'd double-check it") is named plainly — the catch stands, but the
+   verification gap is stated, and the close separates catches with a
+   working verification from catches without one.
+   **The select-all guard:** buying every menu entry is not a plan — the
+   tally still scores each ask, but the close names the noise share
+   plainly; information triage is the skill, and
+   a plan that requests everything has decided nothing yet. A restraint
+   pool (cases whose material already settles the decision — the configure
+   analogue of drill's sound items) is deliberately deferred, not
+   overlooked; until it ships, the stated noise share is the brake.
+4. **Inspect an unkeyed ask — never auto-rule it noise.** The key was
+   written by the model that wrote the case and carries the same blind spot
+   (redline 14). An ask outside the key is inspected against the stipulated
+   decision first — before any ruling is announced. If it identifies a key
+   item in different words, it is that item, caught (a matching question,
+   not a new one). If it is genuinely load-bearing and unkeyed, inspect it
+   under K2's unique-primary discipline: with a unique structure, key it,
+   count it as caught, and increment `configure_unkeyed`; when no unique
+   structure survives the check, confirm it aloud and keep it out of every
+   count except the `configure_unkeyed` increment — the ID arrays carry
+   only uniquely keyed items, and an aloud confirmation with no tally entry
+   is honest bookkeeping, not a penalty. Either way the omission is a
+   generation-quality fact —
+   never punish a correct ask. If it is neither keyed nor load-bearing, it
+   is ruled noise with the reason stated — at open-ask tiers the coach
+   names the nearest distractor pattern where one fits, else the plain
+   reason alone (menu-tier noise always carries its K4 pattern).
+   A challenge to any ruling runs the
+   redline-14 reconstruction; a ruling the coach cannot defend on the merits
+   is conceded, and the conceded ruling is removed from every user stat in
+   the round's event before it checkpoints. A concession takes exactly one
+   of five shapes: a **scoring correction** — the ask matched a key item
+   after all; reconcile every pending record the misruling actually
+   created: the request's noise count
+   comes down; if the item was scored missed, its structure leaves
+   `configure_missed`, its pending
+   `miss_log` is discarded, and the item is scored caught; if another
+   request had already caught the item, only the noise count changes — an
+   item is never scored caught twice, though its verification status is
+   recomputed across every request that matches it (the strongest committed
+   verification line counts, so `configure_unverified` reflects the final
+   set). No
+   `configure_unkeyed` increment, no discard. A **verification
+   correction** — the catch already stood and the user shows the committed
+   verification line does work; `configure_unverified` comes down, nothing
+   else changes. A **key omission** — a committed, pre-reveal ask proves load-bearing though
+   unkeyed: the
+   unkeyed-ask path above, caught when uniquely keyable plus
+   `configure_unkeyed` (the step-4 rules apply unchanged). A dependency
+   the user first names after the reveal is confirmed honestly and
+   increments `configure_unkeyed` only — no catch credit: analysis seen at
+   the reveal cannot retroactively improve the committed plan; the commit
+   gate is the exercise. An **invalid
+   key item** — the key's own entry fails on the merits; it
+   writes no `miss_log`, and its only trace is
+   the same `item_discarded` event drill's overturns write
+   (passport/SCHEMA.md), schema-valid because the key already carries the
+   item's canonical structure — a contestable key is a generator fact worth
+   keeping. A **malformed frame** — the K1 stipulation itself fails on the
+   merits (redline 14: a challenged frame is never assumed sound); the
+   whole round voids — no `scene_process`, no `miss_log` — and each keyed
+   item writes an `item_discarded` with `reason_class` `frame_malformed`:
+   the failed stipulation is a generator fact on every item it graded. The same reconciliation runs in reverse when the coach concedes
+   over-credit, updating both sides of the ruling: the crediting request goes
+   back through step 4's inspection (it may still identify a different
+   load-bearing omission) before it can be re-scored noise, and — unless
+   another committed request genuinely
+   catches it — the keyed item moves to missed with its `miss_log`
+   created. If the revoked credit was an inspection-added key omission
+   rather than a K2 item, the provisional item simply disappears — it
+   leaves `configure_caught` and its `configure_unkeyed` increment
+   reverses, with no miss and no `miss_log`: an item the coach conceded
+   should not exist cannot be a user weakness. A hollow verification line
+   accepted in error — where the catch
+   itself still stands —
+   increments `configure_unverified`; a revoked catch withdraws any
+   `configure_unverified` contribution it made (only standing catches can
+   be unverified) — over-credit is
+   corrected with the
+   same honesty as under-credit (redline 4: a wrong answer is never called
+   right).
+5. **Close.** State the tally in the Data-as-Mirror register — caught /
+   missed / noise, and how many catches carried a working verification —
+   plus, where the record makes it plain, one sentence on
+   the plan's shape. Facts only, no extrapolation to character.
+   The close ends the coach's turn with an explicit challenge invitation
+   ("think a ruling is wrong — an ask miskeyed, a miss that wasn't one? say
+   so now") and STOPS: the round's events checkpoint only after the user's
+   response, so a ruling about to be conceded is never already checkpointed
+   (checkpointed records are immutable) when the challenge arrives.
+   If that response is a challenge, the round stays pending through the
+   whole exchange: each reconstruction ends the coach's turn and STOPs
+   again, and the batch checkpoints only when the user moves on — a
+   concession is applied to the pending batch, never a reason to flush it,
+   and a rejected challenge is never checkpointed while its
+   reconstruction is still on the table (redline 14 keeps the floor open
+   for a second, sharper objection).
+
+### Configure Difficulty Knobs
+
+| Tier | Ask shape | Key size |
+|------|-----------|----------|
+| intro | Menu (load-bearing + noise) | 3 items |
+| standard | Menu, larger, subtler noise | 3–4 items |
+| advanced | Open ask, no menu | 4–5 items |
+
+At intro, the reveal glosses each named structure in plain vocabulary as it
+lands — the pre-teach happens after commitment, never before: any structure
+name printed before the commit, keyed or not, is the leak Generation
+silence bans.
+
+---
+
 ## Logging
 
 Scene sessions record **process metrics, never hit/miss**: which frames were raised,
@@ -481,9 +751,23 @@ score. The `summary` stays structure-level — topic genre, never the actual
 proposition or any named party (passport/SCHEMA.md Privacy Rules); BYOM political
 arguments are especially easy to leak a name into here. Sensitive BYOM material is excluded from logging by default, same as frame rounds.
 
+A configure round records the `configure_caught` / `configure_missed` /
+`configure_noise` / optional `configure_unverified` / optional
+`configure_unkeyed` set in the same
+`scene_process` event (field definitions in passport/SCHEMA.md). Configure
+is the one scene
+track whose misses also write per-structure records: each missed structure
+writes a standalone `miss_log`, and a key conceded on challenge writes an
+`item_discarded` (both passport/SCHEMA.md). The process-metrics rule
+above governs the frame and fallacy tracks; the configure track's keyed
+reveal is the deliberate, bounded exception.
+
 ---
 
 ## Difficulty Knobs
+
+This table governs the frame-palette track (the fallacy track closes into
+the same flow); the configure track has its own table above.
 
 | Tier | Coach role |
 |------|-----------|

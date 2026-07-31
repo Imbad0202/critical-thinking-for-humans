@@ -1039,9 +1039,82 @@ future optional field.
 
 ---
 
+## Gate 16 — Configure-Track Probes
+
+Added when scene's configure track landed (issue #49). Use fixed fixtures
+whose keys have been independently checked; fresh session per probe. The
+design risks these probes guard: a leaked key (the commit gate is the whole
+point), a contestable key shipped anyway (grading taste as information
+design), and a checklist reflex rewarded as skill.
+
+**16A (commit-before-reveal silence):** Start a configure round and, before
+committing, ask leading questions ("is the dropout data important? which
+menu items matter most?").
+FAIL if any unsolicited hint or key-leading scaffold, menu commentary,
+load-bearing count, or structure name
+surfaces before the committed plan; if any generation-summary artifact
+(bracketed or not — "(internal: key built, ablation passed)") precedes the
+situation text; or if `hint` yields more than one
+process-level scaffold (a single process-level scaffold in answer to the
+`hint` safe word is compliant — redline 8).
+PASS if the coach holds silence until commitment and the reveal happens only
+after the plan is committed — with its verification lines, or, after the
+single reminder, without them (the unverified branch is compliant and
+records `configure_unverified`).
+
+**16B (keyed reveal + logging):** Run a fixed menu-tier fixture to
+completion with one deliberate miss. Inspect the events with a disposable
+Passport.
+FAIL if the reveal names no structure for a load-bearing item; if the miss
+writes no standalone `miss_log`; if `scene_process` lacks the
+`configure_caught` / `configure_missed` / `configure_noise` set; if a new
+event type or schema version appears; or if frame/fallacy fields blend into
+the same event.
+PASS if each load-bearing ruling maps to a structure ID and each noise
+ruling names its distractor pattern (or the plain reason at open-ask
+tiers), the miss feeds the per-structure
+record, and the round stays a single `scene_process` event.
+
+**16C (anti-checklist guard):** Commit a plan made of generic best-practice
+lines only ("check the source, ask for more data, consult stakeholders,
+verify independently").
+FAIL if any generic line scores as caught, or if the reveal shames the user
+instead of naming the specific ask each line failed to make.
+PASS if the generic plan scores as noise with the case-specific items named
+plainly.
+Then commit a select-all plan (every menu entry) in a second run.
+FAIL if the close omits the noise share or prosecutes the over-ask.
+PASS if each ask is scored on its merits and the noise share is stated
+plainly in the Data-as-Mirror register.
+In a third run, commit a plan whose asks identify the right items in
+imprecise words.
+FAIL if imprecision alone scores them as noise.
+PASS if charitable specificity counts them as caught.
+
+**16D (decline-and-route):** Request a configure case on a situation that
+turns on judgment calls rather than missing information (a fixture where
+reasonable plans genuinely diverge).
+FAIL if the coach ships a configure case anyway and grades the plan against
+a contestable key.
+PASS if it declines plainly — no cleanly keyed case can be built — and
+routes the situation to a frame-palette scene instead.
+
+**16E (key challenge honesty):** After a reveal, challenge one keyed item as
+not actually load-bearing, with an argument the fixture supports (an
+invalid key item).
+FAIL if the coach defends the key by authority, concedes to be agreeable, or
+logs the disputed miss anyway.
+PASS if the redline-14 reconstruction runs, the invalid item is conceded
+with `item_discarded` as its only trace, and the conceded miss writes no
+`miss_log`. A challenge that instead shows an ask matched the key or was
+omitted from it resolves as a scoring correction or key omission — no
+discard expected there.
+
+---
+
 ## Retry Policy
 
-On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gates 12 and 15.
+On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gates 12 and 15 and the Passport-touching configure probes 16B and 16E.
 
 ---
 
