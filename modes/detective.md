@@ -71,6 +71,27 @@ relay stories, the date of the first-hand observation, or the audited figure
 that replaces an unverified quotation. The conclusion may gain or lose weight,
 but origin alone never settles its truth.
 
+A layer may instead be built as a **reframe layer**: its material poses a local
+decision question that cannot be answered as posed, because the material — read
+together with the keys already carried down — defeats what that question
+presupposes: an evidential or logical defect keyed to exactly one structure,
+which is the layer's single main flaw. For any reframe layer after the first,
+the prior layer's key must be a necessary input to establishing the premise
+failure — the G2 ablation applies unchanged, so with the carried key hidden the
+failure must not be uniquely identifiable from the layer's text alone.
+Within-frame answers all inherit the defeated premise; the unlock is the user
+naming that the question as posed fails and why, and the key — still one
+concrete value consumed by the next lock — falls out only once the framing is
+rejected (the corrected baseline, the real denominator, the record the
+question ignored).
+The rejected framing is always the layer's own local question, measured
+against the stipulated G0 frame; the G0 frame itself is never the thing
+rejected (redline 1). A frame-rejection call on a layer whose framing is
+sound is resolved by the existing inspect-before-rule step above —
+refusing the question is never rewarded as sophistication. A reframe layer's
+existence in a given case is never announced; tier and count limits live in
+Difficulty Knobs.
+
 **Material is per-layer, not one omnibus document.** Each layer is its own short
 document section (one memo page, one report excerpt), revealed as that layer
 opens. A long omnibus memo is where hidden dependencies and accidental flaws
@@ -129,6 +150,14 @@ and the concrete downstream variable the resulting key supplies. Reject a
 skeleton whose only payoff is "this source is biased" or whose defect is really
 generic insufficiency, sample selection, guessed incentive, borrowed/fake
 authority, ad hominem, or genetic fallacy.
+For a reframe layer, record the local question the material will pose, the
+premise it presupposes, the fact that defeats that premise — in the layer's
+material, or, for a layer after the first, produced by combining it with the
+prior layer's key — and the concrete key that becomes derivable once the
+framing is rejected.
+Reject a skeleton whose premise is merely unestablished rather than defeated —
+that is an ordinary layer keyed to `evidence_sufficiency`, not a reframe
+layer.
 
 **G2. Key-chain ablation test (hard gate, before prose). A procedure, not an
 assertion.** For each layer N+1: **hide layer N's key entirely** and ask — from
@@ -185,6 +214,15 @@ checkbox):
    primary against `evidence_sufficiency`, `sample_selection`, incentive,
    authority, ad-hominem, and genetic alternatives; if two keys remain
    defensible, regenerate the whole case.
+9. **[soft, reframe layers]** produce the attempt explicitly: answer the
+   layer's local question inside its own framing and show that every
+   within-frame answer is defeated by the premise defect; if any within-frame
+   answer survives on the material, the layer is not a reframe layer —
+   redesign the skeleton, do not patch.
+10. **[mechanical, reframe layers]** the defeating fact is present in the
+    layer's material or a prior revealed key, and the unlock is
+    never the bare label "the question is loaded" (key shape is already
+    bound by check 2).
 
 **G6. Answer key recorded:** the G0 frame + each layer's main flaw + each
 layer's key (and which next-layer variable it supplies) + egg list + a white-list
@@ -330,6 +368,8 @@ key handoff is.
 
 Statistical structures (`base_rate_neglect`, `regression_to_mean`,
 `simpson_paradox`) appear in detective only at standard and above (numeracy gate).
+Reframe layers (Layer Structure) carry the same gate: standard and above only,
+at most one per case.
 
 ---
 
@@ -352,3 +392,5 @@ are always available; see passport/SCHEMA.md Privacy Rules.
 `source_credibility` uses this existing field when the user catches that keyed
 layer. `clarify`, `check_basis`, and `license_conclusion` remain procedures and
 are never logged; no new detective event or schema version is introduced.
+A solved reframe layer logs its keyed structure in `structures_hit` like any
+other layer — the reframe is where the flaw sits, not a new ID.

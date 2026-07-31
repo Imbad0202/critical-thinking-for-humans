@@ -106,6 +106,48 @@ do not collapse them.
   same over-flagging discipline scene trains ungraded via the `not_fallacy`
   ruling and its reverse-guards (modes/scene.md).
 
+### Defective-framing items (a keyed challenge to the question as posed)
+
+Not a fifth item type — hosted in the existing `weaken` and `sufficiency`
+stems. In every other item the user analyzes inside the frame the item
+supplies. A defective-framing item inverts that: the situation poses a
+decision question, the material affirmatively defeats what that question
+presupposes, every within-frame option accepts the defeated premise, and the
+keyed option is the one that challenges it — "the question cannot be answered
+as posed, because X." Nobody outside a gym hands you a well-posed question;
+deciding whether the question deserves an answer is the daily-life shape of
+the skill.
+
+- **The defect is structural, never ideological.** The failed premise must be
+  an evidential or logical defect keyed to exactly one of the fourteen
+  structures — never a value-frame dispute (redline 1: the gym never rules
+  between worldviews). "Which vendor caused the cost overrun?" when the
+  material shows the overrun is an artifact of a changed baseline is a
+  defective framing; "which policy is fairer?" is not drillable material at
+  all.
+- **Defeated, not merely unestablished.** A premise the material merely fails
+  to establish keys an ordinary `sufficiency` item ("cannot be determined"),
+  not this family — anchor generation on the contrast pair
+  (shared/structures.md); that boundary is what keeps the key unique.
+- **Silent possibility.** As with sound items: the user must know
+  frame-rejection keys *exist* (Session Flow step 0) but
+  never which item carries one — the stem reads exactly like an ordinary
+  `weaken` or `sufficiency` item.
+- **Reverse guard (the anti-"always cry loaded question" pool).** Ordinary
+  items may occasionally include a premise-challenge option where the
+  material affirmatively establishes the premise; there the challenge is a
+  distractor (`premise_challenge_trap`, shared/structures.md) and choosing it
+  is the miss. Without this pool the family trains reflexive
+  question-refusal — the mirror image of the over-flagging the sound-argument
+  pool guards against.
+- **Distractors and logging.** Within-frame options are built from the
+  ordinary distractor menu — each carries a normal tempting pattern in
+  addition to the shared defeated premise, which the dissection names once,
+  plainly. No new item type, structure ID, or sentinel — the one addition is
+  the `premise_challenge_trap` distractor pattern; the logging rule lives in
+  Session Flow step 7.
+- **Mix rate: low, tier-scaled, never fixed** (see Difficulty Knobs).
+
 ---
 
 ## Item Generation Pipeline
@@ -238,6 +280,29 @@ documented interest alone does not make the argument unsound. In that audit,
 the `source_credibility` candidate attack ends in "does not land"; do not turn
 interest into a global untrusted label or a truth-by-origin shortcut.
 
+**g''. Defective-framing audit (defective-framing items and any item carrying
+a premise-challenge reverse guard).**
+Two mutually exclusive branches; run exactly the one that matches the item.
+For a defective-framing item, verify the two Item Types boundaries hold: the
+failed premise is an evidential or logical defect instantiating the step-(b)
+target structure, never a value-frame dispute (redline 1); and the material
+affirmatively defeats the premise, with the defeating fact present in the
+stem — a merely unestablished premise is rekeyed as an ordinary `sufficiency`
+item or regenerated (the contrast pair in shared/structures.md draws the
+line). Then re-run step (g) with the premise defect in view: release the item
+ONLY if no within-frame option remains defensible as a best response — a
+within-frame option with partial merit means two keys, and step (g)'s rule
+holds: regenerate, never patch.
+For a reverse-guard instance (an ordinary item whose option set carries a
+`premise_challenge_trap` distractor) the audit inverts:
+verify the material affirmatively establishes the premise, so the
+premise-challenge option ends in a crisp disqualifier like any other
+distractor.
+The framing family never rides the g2 ladder into intro: if the fallback
+would drop a defective-framing item or a reverse-guard instance below
+standard tier, abandon the family for this item and generate an ordinary item
+instead.
+
 **g2. Weak-model fallback ladder.**
 If steps (c)–(g) fail the audit twice in a row for the same target structure,
 do not keep retrying at the same complexity — degrade by one rung and try
@@ -262,13 +327,17 @@ If yes, discard and regenerate from step (b).
 
 ## Session Flow
 
-0. **One-time soundness notice (once per session, standard and advanced only).**
-   Before the first item, state once: "Not every item has a flaw — some
-   arguments are sound, and calling a sound one 'flawed' is itself an error."
-   Then never flag which item is which. The user must know sound items exist so
-   "it holds" is a live answer, but never which item is one (announcing the
+0. **One-time soundness-and-framing notice (once per session, standard and
+   advanced only).** Before the first item, state once: "Not every item has a
+   flaw — some arguments are sound, and calling a sound one 'flawed' is itself
+   an error. And not every question deserves an answer — when the material
+   defeats what a question presupposes, the option that challenges the premise
+   is the right one." Then never flag which item is which. The user must know
+   sound items and frame-rejection keys exist so "it holds" and "the question
+   fails" are live answers, but never which item is one (announcing the
    instance defeats the discrimination being trained). At intro tier the notice
-   is omitted along with sound items themselves (Difficulty Knobs).
+   is omitted along with sound items and defective-framing items themselves
+   (Difficulty Knobs).
 
 1. **Present item.** Show situation, evidence, conclusion, and the tier's
    option set (per the Difficulty Knobs table). At intro, pre-teach the target
@@ -371,6 +440,11 @@ If yes, discard and regenerate from step (b).
    `source_credibility` as its one structure ID. Never log `clarify`,
    `check_basis`, or `license_conclusion`; they are procedures, and this adds no
    fifth item type or passport schema version.
+   A defective-framing item likewise uses the existing events unchanged:
+   `drill_result.structure` records the structure the defective premise
+   instantiates, and a reverse-guard miss logs the item's ordinary target with
+   `confused_with: premise_challenge_trap`. No new item type, no new sentinel,
+   no passport schema version.
 
 ---
 
@@ -393,8 +467,12 @@ anchor correct move, state the error as a reasoning-move fact, stop). Then state
 
 Sound-item rate is never announced to the user and never fixed to a guessable
 cadence (not "every Nth item") — a predictable rhythm leaks the answer as badly
-as a per-item label. Flaw-hunting stays the core workout at every tier; sound
-items keep vigilance honest, they do not become the main event.
+as a per-item label. Defective-framing items and their reverse-guard pool run
+at standard and advanced only and follow the sound-item column exactly: none
+at intro, a low minority at standard, a larger-but-still-minority share at
+advanced, never announced, never a guessable cadence. Flaw-hunting stays the
+core workout at every tier; sound items and frame-rejection keys keep
+vigilance honest, they do not become the main event.
 
 At **advanced**: compound flaws means two structure IDs are both active in the same item — name both in the post-answer dissection. Logging stays singular: the step-(b) target structure is the `drill_result.structure`; the secondary ID is named in the dissection and may appear in `summary`, never as a second event.
 

@@ -7,6 +7,21 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+- **Keyed reject-the-framing move (#47).** Drill gains a defective-framing
+  item family hosted in the existing `weaken`/`sufficiency` machinery: the
+  material affirmatively defeats what the item's question presupposes (a new
+  contrast pair in shared/structures.md draws the line against ordinary
+  `sufficiency`), the unique key is the option that challenges the premise,
+  and the result logs under the structure the defect instantiates — no new
+  item type, structure ID, sentinel, or Passport schema. A `premise_challenge_trap`
+  reverse-guard pool trains against reflexive question-refusal the same way
+  sound items train against over-flagging. Detective gains the reframe layer:
+  a local question whose premise the material defeats, unlocked only by
+  naming that failure, with the concrete key falling out of the rejected
+  framing; the stipulated G0 frame itself is never the thing rejected
+  (redline 1 boundary). Gate 14 probes, invariant needles with mutation
+  coverage, and build-carrier checks land with it.
+
 ## [1.5.0] - 2026-07-25
 
 - **Twelfth Scene fallacy lens (#44).** Add `fallacy_gamblers_fallacy`

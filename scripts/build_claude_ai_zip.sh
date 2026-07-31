@@ -89,5 +89,11 @@ require_member_text \
   "critical-thinking-for-humans/modes/scene.md" "fallacy_gamblers_fallacy"
 require_member_text \
   "critical-thinking-for-humans/SKILL.md" "gambler's fallacy"
+require_member_text \
+  "critical-thinking-for-humans/modes/drill.md" "Defective-framing items"
+require_member_text \
+  "critical-thinking-for-humans/modes/detective.md" "reframe layer"
+require_member_text \
+  "critical-thinking-for-humans/shared/structures.md" "premise_challenge_trap"
 
 unzip -l "$OUT"

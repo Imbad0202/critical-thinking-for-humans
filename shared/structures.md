@@ -51,6 +51,26 @@ A drill stem must land cleanly on one side. **Forbidden:** any stem where both "
 - `weak_analogy` (the cases genuinely differ on the load-bearing property): "A vaccine trial is like a coin-flip experiment, so a run of ten healthy vaccinated people proves the vaccine works." — the load-bearing property (an independent, known base rate of the outcome) is exactly what a coin flip has and an uncontrolled vaccine observation lacks; the analogy breaks where the conclusion rests.
 - a SOUND analogy attacked only on an irrelevant difference (NOT the fallacy): "This drug trial should use a control group, just as the earlier hypertension trial did." — objecting "but that trial studied a different disease" attacks a surface difference; the control-group logic transfers regardless of disease, so the analogy holds. A stem built to key `weak_analogy` must not accidentally be this — if the only available attack is an irrelevant difference, the argument is sound and the item is mis-keyed (regenerate, do not patch).
 
+**Contrast pair (defeated premise vs unestablished premise)** — the boundary
+that keeps a defective-framing key (modes/drill.md) unique against
+`evidence_sufficiency`:
+
+- a DEFEATED premise (the defective-framing key): "Which vendor caused the
+  cost overrun?" when the material shows the March figures were restated
+  against a changed baseline and spend is flat under the original one — the
+  material affirmatively defeats the premise that an overrun exists, so
+  challenging the question is the key.
+- a merely UNESTABLISHED premise (ordinary `sufficiency`, "cannot be
+  determined"): "Which vendor caused the cost overrun?" when the material
+  offers one quarter of spend with no baseline — nothing shows an overrun
+  exists, but nothing defeats it either; the flaw is missing evidence, not a
+  false framing.
+
+A stem must land cleanly on one side. **Forbidden:** any stem where both "the
+question rests on a defeated premise" and "cannot be determined" are
+simultaneously defensible — if a generated stem reads as both, regenerate (do
+not patch), per the drill pipeline's step-g'' audit (modes/drill.md).
+
 **Source-credibility boundaries** — source evaluation is about the documented
 basis and warranted WEIGHT of testimony or a report, not a shortcut from origin
 to truth:
@@ -127,7 +147,7 @@ one question where the material invites it, never a worksheet on every turn.
 
 ## Distractor Menu
 
-These are the eight wrong-answer patterns used to build drill items.
+These are the nine wrong-answer patterns used to build drill items.
 
 | ID | What makes it tempting |
 |----|----------------------|
@@ -139,6 +159,7 @@ These are the eight wrong-answer patterns used to build drill items.
 | `too_extreme` | Uses always / only / never — goes further than the argument needs and is therefore not required for the conclusion to hold. |
 | `irrelevant_comparison` | Compares the wrong groups, time periods, or tasks — looks like a parallel case but the referent is mismatched. |
 | `weak_proxy_trap` | An option offering an activity count or satisfaction score that sounds like outcome evidence; it exploits `proxy_mismatch` confusion by answering the wrong question convincingly — tempting because the metric is real, just not the one that matters. |
+| `premise_challenge_trap` | Rejects the question's premise as defective when the material actually establishes it — tempting because refusing the question feels like the sophisticated move. The reverse-guard pattern for defective-framing items (modes/drill.md); choosing it is the over-flagging miss. |
 
 ---
 
