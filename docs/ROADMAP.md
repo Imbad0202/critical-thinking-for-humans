@@ -45,6 +45,16 @@ The v1.5.0 release consolidates these changes since v1.4.0:
 
 ## Standing, evidence-gated work
 
+### Configure case families (#49)
+
+The configure track ships with exactly one case family
+(program-effectiveness decisions). Additional families are a low-priority,
+one-at-a-time backlog mirroring the fallacy-lens discipline: each needs its
+own issue, keying evidence, invariant and mutation coverage, and a focused
+Gate 16 probe before any breadth claim. The deferred restraint pool (cases
+whose material already settles the decision — the configure analogue of
+drill's sound items) is the standing first candidate.
+
 ### Scene fallacy lenses (#11)
 
 Keep the fallacy-recognition track's current twelve-lens ruling surface.

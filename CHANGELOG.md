@@ -7,6 +7,34 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+- **Scene configure track (#49).** A third scene track inverts the gym's
+  default order: the user designs the information request and verification
+  plan for a synthetic decision before any analysis appears, then the case
+  reveals which asks were load-bearing (each keyed to one of the fourteen
+  structures), which were noise, and what the plan missed — with each miss
+  writing a standalone `miss_log` that feeds drill's per-structure
+  weighting. Reverse-designed cases (decision stipulated first, information
+  key with ablation test, menu or open ask by tier), with noise entries
+  keyed to the existing distractor-menu patterns so the reveal re-invokes
+  drill's vocabulary; a decline-and-route
+  floor when reasonable plans genuinely diverge (a contestable key grades
+  taste and calls it information design); an anti-checklist guard that
+  scores generic best-practice lines as noise while judging specificity
+  charitably; a select-all guard naming the noise share of an
+  ask-for-everything plan; an unkeyed-ask inspection rule mirroring
+  detective's unregistered-flaw honesty, with a conceded key writing the
+  same `item_discarded` event as a drill overturn. v1 ships exactly one
+  case family
+  (program-effectiveness decisions) under the one-at-a-time backlog
+  discipline (docs/ROADMAP.md); the restraint pool (cases already settled
+  by the material on the table) and the post-reveal and elicitation
+  carriers for configure are recorded as explicit deferrals.
+  `scene_process` gains a third mutually exclusive field set
+  (`configure_caught` / `configure_missed` / `configure_noise` /
+  `configure_unkeyed`), additive, `schema_version` unchanged. `configure`
+  routing keyword, Gate 16 probes, claude.ai block `configure` line, and
+  invariant needles with mutation coverage land with it.
+
 - **Post-reveal updating (#48).** Seeing a flaw and moving on it are different
   capabilities; the Passport now keeps them separate, under one shared state
   vocabulary. Drill adds a post-miss update rep (restate the skeleton,

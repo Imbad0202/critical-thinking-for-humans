@@ -95,5 +95,9 @@ require_member_text \
   "critical-thinking-for-humans/modes/detective.md" "reframe layer"
 require_member_text \
   "critical-thinking-for-humans/shared/structures.md" "premise_challenge_trap"
+require_member_text \
+  "critical-thinking-for-humans/modes/scene.md" "Configure Track"
+require_member_text \
+  "critical-thinking-for-humans/SKILL.md" "configure track"
 
 unzip -l "$OUT"

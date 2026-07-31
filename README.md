@@ -177,7 +177,12 @@ Scene also runs a separate **fallacy-recognition track**: bring an argument and
 the coach helps you judge whether it commits a named fallacy (false dilemma, ad
 hominem, strawman, a fallacious appeal, equivocation, false analogy, whataboutism, slippery slope, genetic fallacy, no true scotsman, motte-and-bailey, gambler's fallacy) with three honest rulings
 (it is a fallacy, it is not, or there is not enough context to say), and a guard
-against the opposite mistake of crying "fallacy" at a sound argument. One track
+against the opposite mistake of crying "fallacy" at a sound argument. A third
+**configure track** inverts the whole exercise: before any analysis appears, you
+design the information request and verification plan for a decision, then the
+case reveals which asks were load-bearing, which were noise, and what your plan
+missed — because outside a gym, nobody hands you the relevant evidence
+pre-assembled. One track
 runs at a time; frames are never ranked, but a fallacy in the form of an argument
 is named plainly.
 

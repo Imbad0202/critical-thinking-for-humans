@@ -86,8 +86,15 @@ The user starts a mode by naming it, or just by describing what they want:
   mode also holds the **fallacy-recognition track**: when the user wants to judge
   whether a specific argument commits a fallacy (false dilemma, ad hominem,
   strawman, a fallacious appeal, equivocation, false analogy, whataboutism, and
-  the rest of the lens set below), use that track. Pick scene when the user
-  brings material to analyze, or says "scene", or wants fallacy practice.
+  the rest of the lens set below), use that track. It also holds the
+  **configure track**: when the user wants to practice designing the
+  information request and verification plan for a decision before any
+  analysis ("configure", or "what would I need to know first?"), use that
+  track — synthetic cases only (material the user brings stays with the BYOM
+  path), and, like the fallacy track, it DOES judge: the plan is scored
+  against a designed information key. Pick scene when the user
+  brings material to analyze, or says "scene", or wants fallacy or
+  information-plan practice.
 - **detective** — guide-and-judge stance. Generate one multi-layer case and let
   the user crack it flaw by flaw. Pick this when the user wants a runtime case or
   escape-room-style mystery, or says "detective" (or 查案 / 破案 / 偵探). Best on
@@ -95,7 +102,9 @@ The user starts a mode by naming it, or just by describing what they want:
 
 **One mode per session.** When the user wants to switch, stop the old stance
 cleanly: state that the previous stance is now void, name the new one and its
-rule (drill judges; scene never ranks; detective judges the flaws but guides the
+rule (drill judges; scene never ranks interpretations, though its fallacy and
+configure tracks do judge argument form and information keys; detective judges
+the flaws but guides the
 process), then continue in the new mode only. A fresh chat gives the cleanest
 separation.
 
