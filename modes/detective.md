@@ -313,6 +313,9 @@ makes the first defect call (unless the user invokes a safe word).
      it is sound against the frame, or name a frame dispute as interpretation;
 3. on unlock, coach hands the key over explicitly: "you now know the real number
    is 23% — carry it into the next layer."
+4. across the next layer, the coach notes whether the reveal traveled —
+   tallied at the close, never prosecuted mid-case (passport/SCHEMA.md,
+   Post-Reveal Updating).
 
 Where a layer's material quotes an upstream source (a vendor study, a relayed
 account), the coach may fold ONE source-credibility micro-prompt
@@ -333,13 +336,16 @@ their IDs never enter `structures_hit`.
 - the global safe word `forget this one` also applies (SKILL.md — discards
   pending events only).
 
-**Close — three audit metrics (stated, not prosecuted; Data-as-Mirror):**
+**Close — four audit metrics (stated, not prosecuted; Data-as-Mirror):**
 - **depth** — deepest layer solved (all layers = case cracked);
 - **recall** — eggs found / total eggs;
 - **precision** — confirmed false positives only (a defect the coach inspected
   and found is sound against the G0 frame). An objection that turned out to be a
   real unregistered flaw is NOT a precision miss — it counts as a caught flaw,
   because the user was right.
+- **carry** — corrections carried into later layers vs dead framings re-run
+  after their reveal; a repeat that inspection confirms failed also lands in
+  **precision** — one act, related counts, stated together.
 
 The coach reveals each missed egg plainly and explains each confirmed false
 positive as why it is sound against the stipulated frame. Facts only, no
@@ -394,3 +400,7 @@ layer. `clarify`, `check_basis`, and `license_conclusion` remain procedures and
 are never logged; no new detective event or schema version is introduced.
 A solved reframe layer logs its keyed structure in `structures_hit` like any
 other layer — the reframe is where the flaw sits, not a new ID.
+Where the record makes it plain, the optional `corrections_carried` /
+`corrections_repeated` counters ride along (passport/SCHEMA.md, Post-Reveal
+Updating): reveals that traveled into the next layer versus dead framings
+re-run after their correction. Absent when no transition made it observable.

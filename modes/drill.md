@@ -393,7 +393,8 @@ If yes, discard and regenerate from step (b).
 5. **Open the challenge window — STOP and wait for the user.** After the
    dissection and skeleton, the coach ends its turn with an explicit invitation
    to challenge the key ("disagree with the key, or think a distractor is also
-   defensible? say so now") and STOPS. The passport is not written in the same
+   defensible? say so now") and STOPS. On a miss item this same closing
+   invitation also carries the step-6b update offer. The passport is not written in the same
    turn as the dissection. The next step does not run until the user has taken a
    turn — either a challenge, or any signal to move on ("next", "got it", a new
    item request). This pause is the whole safeguard: without a user turn between
@@ -420,6 +421,44 @@ If yes, discard and regenerate from step (b).
    structure-level summary — passport/SCHEMA.md): the overturn is a
    generation-quality fact worth keeping even though the item's grade is not.
 
+6b. **Post-miss update rep (miss items only; never a deference test).** After
+   the dissection and any challenge resolve, and before the passport write,
+   offer one small move: restate the argument's skeleton, corrected, in your
+   own words. Seeing a flaw and moving on it are different capabilities; this
+   step is where the second one gets its rep. No fresh sibling stem is
+   generated here — the step-(b) miss-log weighting already brings the
+   structure back as a future, fully audited item. Declining is free — the
+   offer is a rep,
+   not a loyalty check — and a user who instead keeps their position and
+   answers the correction on its merits is making a first-class move
+   (redline 14), never a failed one. On a miss item the offer rides the
+   step-5 challenge-window invitation — one STOP serves both — and the flow
+   stays stopped: step 7's write happens only after the user's next turn, so
+   an accepted restatement or a maintained, reasoned challenge is on the
+   record before the item's events are checkpointed. A "next" or a new-item
+   request declines the offer — the item's `drill_result` and `miss_log`
+   still write at step 7; only the optional `post_reveal` field is omitted.
+   On a `manipulation_spot`
+   miss the rep is recognition-shaped instead: name the technique and the
+   cue that marks it, in your own words (redline 13 — recognition, never
+   production). On an `argument_sound` miss the rep inverts: state, in your
+   own words, why the objection you chose does not actually bite. A
+   restatement that repeats the error gets the correction stated plainly
+   once more (the four-step reveal, shared/scaffolding.md) before the write —
+   the marker stays `not_updated`; the correction is never withheld to keep
+   the record clean. If the user's turn was a
+   challenge and it fails on the merits, the resolution again ends the
+   coach's turn — STOP once more: only the user's following move settles the
+   marker. Producing the corrected restatement can still record `updated` —
+   a bare assent ("okay, I accept") is not an observable act and writes no
+   marker; a maintained
+   argument is itself a fresh challenge and goes back through step 6's
+   merits check first — a challenge that succeeds discards the item (no
+   `drill_result` at all, redline 14 keeps the floor open), while one that
+   fails on the merits settles the marker on the spot: record
+   `held_with_argument` and proceed to step 7 with no further stop.
+   Recording happens at step 7, observable acts only.
+
 7. **Log to passport.** Record hit or miss for the target structure ID — only
    for an item that survived the challenge window. An item conceded flawed is
    discarded via the pending-event buffer (it was never checkpointed; see
@@ -445,6 +484,11 @@ If yes, discard and regenerate from step (b).
    instantiates, and a reverse-guard miss logs the item's ordinary target with
    `confused_with: premise_challenge_trap`. No new item type, no new sentinel,
    no passport schema version.
+   When step 6b produced an observable act, record `post_reveal` on the same
+   `drill_result` (passport/SCHEMA.md, Post-Reveal Updating): a corrected
+   restatement records `updated`; a restatement that repeats the original
+   error records `not_updated`; a maintained, reasoned challenge records
+   `held_with_argument`; no act writes nothing.
 
 ---
 

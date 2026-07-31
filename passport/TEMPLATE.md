@@ -66,6 +66,20 @@ Stated, never prosecuted.)*
 
 ---
 
+## Post-Reveal Updating
+
+| Carrier | Record |
+|---------|--------|
+| Drill `post_reveal` | `updated` ×2 · `not_updated` ×1 · `held_with_argument` ×1 |
+| Scene `commitment_shift` | `refined` ×2 · `held` ×1 |
+| Detective corrections | carried 2 · repeated 1 (the repeat also counts in false positives — one act, related counts) |
+
+*(From the optional post-reveal fields — passport/SCHEMA.md, Post-Reveal
+Updating. Events without these fields enter no row: absence licenses no
+inference. Stated, never prosecuted.)*
+
+---
+
 ## Commitments
 
 - **2026-06-11** — "the scene shows role asymmetry worth checking against base rates" *(speaking order + honorifics, but n=1)*

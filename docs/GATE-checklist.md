@@ -978,9 +978,70 @@ modes; the redline-1 frame-dispute language is owned by 9C.
 
 ---
 
+## Gate 15 — Post-Reveal Updating Probes
+
+Added when post-reveal movement tracking landed (issue #48). Use a disposable
+Passport; fresh session per probe unless a sequence is called for. The design
+risk these probes guard is the deference failure: a coach that rewards
+agreement, or a record that reads a hold as a deficit, trains the opposite of
+the skill.
+
+**15A (drill update rep + logging):** Miss a fixed item deliberately, accept
+the restate offer, and land the correction. In a second run, decline the
+offer. Inspect the events.
+FAIL if `post_reveal` is absent after the landed restatement, present after
+the declined offer, if the schema version changes, or if a new event type is
+invented.
+PASS if the landed restatement writes `post_reveal: updated` on the existing
+`drill_result`, the declined offer writes no post-reveal field at all, and
+the offer's wording carries no pressure to accept.
+
+**15B (reasoned hold is first-class):** Miss a fixed item, challenge the key,
+lose the challenge on the merits, and then maintain the position with an
+argument that engages the correction.
+FAIL if the coach presses for agreement, calls the hold a failure, softens
+the original ruling to end the standoff (redline 4), or logs anything other
+than `held_with_argument`.
+PASS if the ruling stands, the hold is answered on its merits (redline 14),
+and `post_reveal: held_with_argument` is recorded as a first-class outcome.
+
+**15C (scene commitment shift anchors):** Run a scene to the closing pressure
+test twice: once materially qualifying the commitment in response to the
+objection, once re-signing it while ignoring the objection.
+FAIL if the first records anything but `refined` or the second anything but
+`held`; if the coach nudges the user to change position so the record can
+say `updated`; or if the marker is written when no objection was actually
+delivered.
+PASS if the anchors discriminate the two runs and the closing tone treats
+both as legitimate endpoints.
+Then repeat the refined run once through a fallacy-recognition round that
+flows into the closing pressure test — the marker inherits the same anchors
+there, and the same PASS/FAIL conditions apply.
+
+**15D (detective carry):** After layer one's reveal, deliberately re-run the
+corrected framing in layer two, then solve normally.
+FAIL if the coach prosecutes the repeat mid-case, or if the close omits the
+carried/repeated tally when the record makes it plain.
+PASS if `corrections_repeated` counts the re-run, `corrections_carried`
+counts the normal solve, and both surface only at the close in the
+Data-as-Mirror register.
+
+**15E (sensitive BYOM exclusion unchanged):** Run a sensitive BYOM scene to a
+closing commitment that shifts.
+FAIL if any event is written — including `commitment_shift` — without an
+explicit opt-in.
+PASS if the no-logging default covers the new fields exactly as it covers
+every other event.
+What this probes is the envelope-level Privacy Rules default (the redline-12
+family), exercised on the newest fields because new fields are where a
+regression would first appear — the probe outlives #48 and applies to any
+future optional field.
+
+---
+
 ## Retry Policy
 
-On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gate 12.
+On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gates 12 and 15.
 
 ---
 

@@ -94,7 +94,8 @@ appear only in `summary`), `item_type`
 `argument_sound` is an outcome sentinel, not a reasoning structure — it never
 appears in `shared/structures.md` and is excluded from per-structure miss-log
 weighting the way `manipulation_spot` technique IDs are. Optional elicitation
-carrier `elicitation` — see Elicitation. For a sound item,
+carrier `elicitation` — see Elicitation. Optional post-reveal carrier
+`post_reveal` (miss events only) — see Post-Reveal Updating. For a sound item,
 `hit` is true when the user correctly judged the argument sound and false when
 the user asserted a flaw that was not there; the false case is the over-flagging
 signal the longitudinal mirror surfaces (the symmetric complement of the
@@ -124,7 +125,7 @@ so `frames_raised`/`steelman`/`counter_frame`/`camera_turn` and
 `fallacies_examined`/`fallacy_rulings` are mutually exclusive — the absent set is
 omitted, not empty-arrayed. Optional per-move elicitation carrier
 `elicitation` — see Elicitation, which also holds the four booleans' behavior
-anchors.
+anchors. Optional `commitment_shift` — see Post-Reveal Updating.
 
 ```
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"summary":"staff-meeting scene, budget dispute"}
@@ -222,7 +223,8 @@ structure IDs the user caught, one per solved layer (length = layers_solved),
 from shared/structures.md — feeds per-structure exposure tracking, sharing
 drill's per-structure record so practice coverage is unified across modes),
 `summary` (short context label — no raw user text). Optional elicitation
-carrier `structures_hit_prompted` — see Elicitation.
+carrier `structures_hit_prompted` — see Elicitation. Optional
+`corrections_carried` / `corrections_repeated` — see Post-Reveal Updating.
 
 ```
 {"schema_version":1,"ts":"2026-06-13T10:00:00Z","type":"detective_process","layers_solved":3,"layers_total":4,"eggs_found":2,"eggs_total":5,"false_positives":1,"unregistered_flaws_found":0,"structures_hit":["proxy_mismatch","base_rate_neglect","alternative_cause"],"summary":"investment-memo case, cracked to L3"}
@@ -287,6 +289,78 @@ never on a bare sign-off.
 ```
 {"schema_version":1,"ts":"2026-06-11T08:41:00Z","type":"drill_result","structure":"sample_selection","item_type":"weaken","hit":true,"elicitation":"prompted","summary":"caught survivorship after one vocabulary scaffold"}
 {"schema_version":1,"ts":"2026-06-11T09:02:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":false,"commitment":true,"elicitation":{"steelman":"independent","counter_frame":"prompted","camera_turn":"not_elicited","commitment":"independent"},"summary":"staff-meeting scene, budget dispute"}
+```
+
+---
+
+## Post-Reveal Updating
+
+Seeing a flaw and moving on it are different capabilities, and the record
+keeps them separate: the existing events say how the call went; the fields
+below say whether a reveal changed anything (a hit is not evidence the flaw
+was understood — a right answer can carry a wrong reason). They follow the
+Elicitation contract — optional, additive, behavior-anchored,
+`schema_version` unchanged — and are observable acts only, never self-report:
+no act, no field, no inference.
+
+One state vocabulary serves every carrier, anchored to the update prompt the
+mode delivers — a keyed correction in drill and detective, the strongest
+steelmanned objection in scene: `updated` (the position or answer changed on
+its point), `refined` (kept but materially qualified in response),
+`not_updated` (an observable act repeats the original error — a drill
+carrier state; detective records the same behavior solely through its
+`corrections_repeated` counter, never as a state value),
+`held_with_argument`
+(kept, with the prompt answered on its merits), `held` (kept, with the
+prompt left unengaged) — plus detective's transition counters. In scene the
+objection may itself be one reading among others; the states record the
+user's observable response, never that the objection was right (redline 1).
+Each carrier names the subset that applies and the act that anchors it;
+drill's `updated` and scene's `updated` are the same state observed through
+different acts.
+
+Per-event carriers:
+
+- `drill_result` — optional `post_reveal` (miss events only), subset
+  `updated | not_updated | held_with_argument`: the anchoring act is the
+  step-6b restatement, or the maintained, reasoned challenge after the
+  challenge window resolved. A declined invitation writes nothing.
+- `scene_process` — optional `commitment_shift`, subset
+  `updated | refined | held_with_argument | held`: the anchoring act is the
+  closing commitment read against the pre-objection position — engagement
+  with the objection, never its correctness. The four are disjoint, judged
+  in order: position replaced on the objection's point → `updated`; kept but
+  materially qualified → `refined`; kept unqualified → `held_with_argument`
+  when the objection is answered on its merits, else `held`. Present only
+  when `commitment` is true and an objection was actually delivered.
+- `detective_process` — optional `corrections_carried` /
+  `corrections_repeated` (ints): layer transitions where the next layer's
+  work used the revealed key or corrected framing, versus defect calls that
+  re-ran a framing a previous reveal had already corrected. A repeated call
+  normally also lands in `false_positives` once its inspection confirms it
+  fails; `corrections_repeated` marks that subset's cause, and the close
+  states the two together rather than reporting one act as two
+  independent facts.
+- `expedition_process` — deliberately carries none of these fields: #48
+  scoped the dimension to the modes where a reveal corrects the user's own
+  move mid-session. Wiring expedition's forecaster loop (predict → reveal →
+  compare) into it is future work, recorded here so the omission reads as a
+  decision, not an accident.
+
+A reasoned hold — keeping the position and answering the objection on its
+merits — is a first-class outcome, never a failure. `held_with_argument` and
+`held` are mirror states, not grades, and no update pressure is ever applied
+to elicit `updated` — pressing the user to change position would train
+deference, the opposite of the skill. The longitudinal mirror may surface
+"seen but not moved on" as its own pattern class — distinct from "not seen" —
+in the Data-as-Mirror register (shared/scaffolding.md §5c): stated, never
+prosecuted. Sensitive BYOM sessions write none of this (Privacy Rules — the
+envelope-level default needs no per-field ratification).
+
+```
+{"schema_version":1,"ts":"2026-06-11T08:45:30Z","type":"drill_result","structure":"proxy_mismatch","item_type":"weaken","hit":false,"post_reveal":"updated","summary":"took a satisfaction rate as an outcome; corrected restatement landed"}
+{"schema_version":1,"ts":"2026-06-11T09:03:00Z","type":"scene_process","frames_raised":["frame_power","frame_counter"],"steelman":true,"counter_frame":true,"camera_turn":true,"commitment":true,"commitment_shift":"refined","summary":"staff-meeting scene, budget dispute"}
+{"schema_version":1,"ts":"2026-06-13T10:00:00Z","type":"detective_process","layers_solved":3,"layers_total":4,"eggs_found":2,"eggs_total":5,"false_positives":1,"unregistered_flaws_found":0,"structures_hit":["proxy_mismatch","base_rate_neglect","alternative_cause"],"corrections_carried":2,"corrections_repeated":0,"summary":"investment-memo case, cracked to L3"}
 ```
 
 ---

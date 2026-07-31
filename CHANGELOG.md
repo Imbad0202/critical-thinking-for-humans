@@ -7,6 +7,26 @@ and the latest versioned heading must equal the git tag being cut (enforced by
 
 ## [Unreleased]
 
+- **Post-reveal updating (#48).** Seeing a flaw and moving on it are different
+  capabilities; the Passport now keeps them separate, under one shared state
+  vocabulary. Drill adds a post-miss update rep (restate the skeleton,
+  corrected, in your own words — no throwaway sibling stem; the miss-log
+  weighting already brings the structure back as a fully audited item) logged
+  as an optional `post_reveal` marker; scene's closing pressure test records
+  where the commitment landed relative to the pre-objection position
+  (`updated / refined / held_with_argument / held`); detective counts
+  corrections carried into the next layer versus dead framings re-run after
+  their reveal, stated together with the related `false_positives` count.
+  Expedition is deliberately deferred, with the reason recorded in the
+  schema. All markers are behavior-anchored observable acts, never
+  self-report; a reasoned hold is a first-class outcome, never a failure, and
+  no update pressure is ever applied. Fields are optional and additive in the
+  Elicitation style, so `schema_version` stays 1 (the issue's "schema bump"
+  is realized as additive fields per the #26 precedent, not a version
+  change). Sensitive BYOM stays excluded by default. Gate 15 probes, the
+  claude.ai block's `updating` line, template display, and invariant needles
+  with mutation coverage land with it.
+
 - **Keyed reject-the-framing move (#47).** Drill gains a defective-framing
   item family hosted in the existing `weaken`/`sufficiency` machinery: the
   material affirmatively defeats what the item's question presupposes (a new

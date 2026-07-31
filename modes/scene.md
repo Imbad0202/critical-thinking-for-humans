@@ -156,7 +156,25 @@ interpretation becomes the next text to examine. Same steelman duty applies.
 
 **e. Closing pressure test.** Invite the user to commit to a position with reasons.
 The coach responds with the strongest steelmanned objection. Endpoint: a defensible
-commitment, not neutrality.
+commitment, not neutrality. The objection ends the coach's turn — STOP and
+wait; the scene's events flush only after the user's response, so the
+post-objection position that anchors the marker below is on the record before
+the checkpoint.
+
+After the objection, the record notes where the commitment landed relative to
+the pre-objection position — `updated / refined / held_with_argument / held`:
+changed on the objection's point / kept but materially qualified in response /
+kept with the objection answered on its merits / re-signed with the objection
+left unengaged (recorded as `commitment_shift` — passport/SCHEMA.md,
+Post-Reveal Updating). The four are disjoint, judged in order: position
+replaced on the objection's point → `updated`; position kept but materially
+qualified → `refined`; position kept unqualified → `held_with_argument` when
+the objection is answered on its merits, else `held`.
+The objection may itself be one reading among others;
+the states record engagement, never that the objection was right (redline 1).
+A reasoned hold is a first-class outcome, and none of the four is a grade;
+the coach never presses the user to
+change position so the record can say `updated`.
 
 **f. Graph share** (optional, synthetic only): per Graph Silence rules above.
 
@@ -452,7 +470,9 @@ is excluded from passport logging by default — including `commitment` events
 Where the record makes it plain, an elicitation marker per move rides along —
 `not_elicited / prompted / independent` (passport/SCHEMA.md, Elicitation). A
 move this scene never gave a real opening for logs `not_elicited`, never a
-deficit.
+deficit. Where the closing pressure test ran, the optional `commitment_shift`
+marker rides along too (passport/SCHEMA.md, Post-Reveal Updating); absent
+when no objection was actually delivered.
 
 A fallacy-recognition round records process metrics too, never hit/miss: which
 lenses were examined (`fallacies_examined`) and the parallel per-lens rulings
