@@ -163,6 +163,53 @@ def test_pack_lint_catches(tree, capsys, mutate):
     capsys.readouterr()
 
 
+@pytest.mark.parametrize("mutate,message", [
+    (
+        lambda t: t.replace("- **S1", "- **S0", 1),
+        "duplicate step ID S0",
+    ),
+    (
+        lambda t: re.sub(
+            r"(?m)^- \*\*S[01]\b",
+            lambda m: m.group(0)[:-1] + str(1 - int(m.group(0)[-1])),
+            t,
+        ),
+        "strictly increasing numeric order",
+    ),
+])
+def test_pack_lint_rejects_ambiguous_step_order(tree, mutate, message):
+    pack = tree / PACK
+    original = pack.read_text(encoding="utf-8")
+    mutated = mutate(original)
+    assert mutated != original
+    pack.write_text(mutated, encoding="utf-8")
+    assert any(message in error for error in cps.check_pack(pack))
+
+
+@pytest.mark.parametrize("section", [
+    "step_graph", "breakthrough", "audit_targets", "calibration_key",
+])
+def test_pack_lint_rejects_dangling_step_reference(tree, section):
+    pack = tree / (FORECASTER_PACK if section == "calibration_key" else PACK)
+    original = pack.read_text(encoding="utf-8")
+    body = cps.h2_sections(original)[section]
+    # Preserve the existing valid references: one real step must not mask a
+    # second, dangling reference in the same runtime section.
+    mutated = original.replace(body, body + "\nRefer to S999 for this step.\n", 1)
+    assert mutated != original
+    pack.write_text(mutated, encoding="utf-8")
+    assert f"{section} references unknown step S999" in cps.check_pack(pack)
+
+
+def test_pack_lint_does_not_treat_provenance_identifier_as_step(tree):
+    pack = tree / PACK
+    original = pack.read_text(encoding="utf-8")
+    body = cps.h2_sections(original)["solution_provenance"]
+    mutated = original.replace(body, body + "\nSource: https://example.org/S999\n", 1)
+    pack.write_text(mutated, encoding="utf-8")
+    assert cps.check_pack(pack) == []
+
+
 @pytest.mark.parametrize("mutate", [
     # drop the whole calibration_key section from a forecaster pack
     lambda t: t.split("## calibration_key")[0],

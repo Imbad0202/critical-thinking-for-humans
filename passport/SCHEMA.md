@@ -18,6 +18,14 @@ say that local Passport operations are unavailable until Node is installed or
 updated, continue the reasoning exercise if the user wishes, and never attempt
 a direct read, write, or delete.
 
+The exit-69 pause is sticky and has the same semantics as **pause recording**
+below. A later request to "continue", "continue normally", or start another item
+resumes training only; it does not resume recording, emit buffered or new events,
+or trigger a checkpoint. Recording may resume in that session only after the
+user explicitly asks to resume it and a fresh helper `generation` call succeeds
+with Node.js 22+ available. Until both conditions hold, every later checkpoint
+is suppressed.
+
 At the beginning of every local session, before reading `events.jsonl`, invoke
 the helper's `generation` command. Retain its single-line token in session
 context and pass it to every `read` and `append` with `--generation`. Then

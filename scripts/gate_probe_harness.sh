@@ -19,7 +19,10 @@
 # key withheld) blind-solves it. DISAGREE means the item would likely have died
 # in a real challenge window; a pattern of disagreement on one structure is a
 # generation weakness (pairs with the passport's `item_discarded` signal).
-# AGREE is NOT proof the key is right — two models can share a blind spot.
+# Both invocations use the same selected model: AGREE measures repeatability,
+# not independent cross-model agreement or proof that the key is right.
+# Session persistence and tool access are restricted below, but shared CLI
+# context/configuration and the model's own blind spots can still affect both.
 # Token cost: every item spends TWO fresh sessions, and Session A loads the
 # full skill and runs the whole reverse-design pipeline; expect a multiple of
 # the default probes' cost per item. --items N (default 1) repeats the pair.
@@ -66,8 +69,10 @@ if [ "$PROBE" = "key-agreement" ]; then
     echo "Session A generates a drill item; Session B blind-solves it with the"
     echo "key withheld. DISAGREE means the item would likely have died in a real"
     echo "challenge window; a pattern of disagreement on one structure is a"
-    echo "generation weakness. AGREE is NOT proof the key is right — two models"
-    echo "can share a blind spot. Advisory only; the manual protocol stays"
+    echo "generation weakness. Both sessions use the same selected model: AGREE"
+    echo "measures repeatability, not independent cross-model agreement or validity."
+    echo "CLI context/configuration and model blind spots can still be shared."
+    echo "Advisory only; the manual protocol stays"
     echo "docs/GATE-checklist.md."
     echo
     echo "| Item | Key | Blind | Key match | Structure A | Structure B | Structure match |"
@@ -90,10 +95,29 @@ else
 fi
 
 run_claude () {
-  # $1 prompt · $2 allowed tools — the one place --model is forwarded.
-  local args=(-p "$1" --allowedTools "$2")
+  # --allowedTools controls permission grants, not tool availability. Restrict
+  # the built-in set with --tools and exclude configured MCP servers too.
+  # A new invocation without persistence is not proof of context isolation.
+  # $1 prompt · $2 available tools — the one place --model is forwarded.
+  local args=(-p "$1" --no-session-persistence --tools "$2"
+    --strict-mcp-config --mcp-config '{"mcpServers":{}}')
+  if [ -n "$2" ]; then
+    args+=(--allowedTools "$2")
+  else
+    args+=(--disable-slash-commands)
+  fi
   [ -n "$MODEL" ] && args+=(--model "$MODEL")
   claude "${args[@]}" 2>&1
+}
+
+parse_field () {
+  # Parse exactly one whole machine-readable field, never a prefix or the
+  # last of conflicting answers. Field names and patterns are fixed below.
+  local field="$1" pattern="$2" transcript="$3" lines count
+  lines="$(printf '%s\n' "$transcript" | grep -E "^${field}:" || true)"
+  count="$(printf '%s\n' "$lines" | { grep -cE "^${field}:" || true; })"
+  [ "$count" = "1" ] || return 0
+  printf '%s\n' "$lines" | sed -nE "s/^${field}:[[:blank:]]*(${pattern})[[:space:]]*$/\\1/p"
 }
 
 run_probe () {
@@ -144,18 +168,21 @@ if [ "$PROBE" = "key-agreement" ]; then
   IDS="$(sed -n '/^## Reasoning Structures/,/^## /p' "$ROOT/shared/structures.md" \
     | { grep -oE '^\| `[a-z_0-9]+`' || true; } | tr -d '`| ' | paste -sd' ' -)"
   [ -n "$IDS" ] || { echo "IDS extraction came back empty — shared/structures.md heading or table format changed" >&2; exit 2; }
+  # Standard weaken items can legitimately be sound. This is an outcome
+  # sentinel, not a fifteenth structure, and both sessions must accept it.
+  IDS="$IDS argument_sound"
 
   for i in $(seq 1 "$ITEMS"); do
     echo "── key-agreement item $i ──"
     out_a="$RUN/key-agreement-$i-generate.md"
     out_b="$RUN/key-agreement-$i-blindsolve.md"
 
-    prompt_a='drill. Intake answers: domain "workplace analytics", difficulty standard, feedback direct. MAINTAINER GENERATION-QUALITY PROBE — not a learner session, no learner is present, write no passport events. Generate ONE weaken item through the full reverse-design pipeline, then output exactly this machine-readable block and stop (no challenge window, no dissection):
+    prompt_a='drill. Intake answers: domain "workplace analytics", difficulty standard, feedback direct. MAINTAINER GENERATION-QUALITY PROBE — not a learner session, no learner is present, write no passport events. Generate ONE weaken item through the full reverse-design pipeline, preserving the ordinary mixture including sound arguments and defective-framing items. Use exactly five options labeled A through E. Then output exactly this machine-readable block and stop (no challenge window, no dissection):
 PROBE-ITEM-START
 <the argument, the question stem, and the lettered options>
 PROBE-ITEM-END
-PROBE-KEY: <single option letter>
-PROBE-STRUCTURE: <the canonical target structure ID>'
+PROBE-KEY: <single option letter A-E>
+PROBE-STRUCTURE: <the canonical target structure ID, or argument_sound when no offered objection undermines the sound argument>'
 
     if ! transcript_a="$(run_claude "$prompt_a" "Skill,Read,Glob,Grep")"; then
       printf '# key-agreement item %s — ERROR (session A)\n\n%s\n' "$i" "$transcript_a" > "$out_a"
@@ -164,8 +191,8 @@ PROBE-STRUCTURE: <the canonical target structure ID>'
     fi
 
     item="$(printf '%s\n' "$transcript_a" | sed -n '/PROBE-ITEM-START/,/PROBE-ITEM-END/p' | sed '1d;$d')"
-    key="$(printf '%s\n' "$transcript_a" | grep -oE 'PROBE-KEY: *[A-Z]' | tail -1 | grep -oE '[A-Z]$' || true)"
-    struct_a="$(printf '%s\n' "$transcript_a" | grep -oE 'PROBE-STRUCTURE: *[a-z_0-9]+' | tail -1 | awk '{print $2}' || true)"
+    key="$(parse_field 'PROBE-KEY' '[A-E]' "$transcript_a")"
+    struct_a="$(parse_field 'PROBE-STRUCTURE' '[a-z_0-9]+' "$transcript_a")"
     # The block is trusted only if both markers appear exactly once and the
     # key stayed outside it — a missing PROBE-ITEM-END makes sed run to EOF
     # and would otherwise hand the key to the blind solver (a fake AGREE).
@@ -183,18 +210,19 @@ PROBE-STRUCTURE: <the canonical target structure ID>'
       echo "   ERROR-unparsed (session A block malformed, key leaked into item, or structure off-list)"; continue
     fi
 
-    prompt_b="You are blind-solving a critical-thinking multiple-choice item. Independently determine which option most weakens the argument, and name the reasoning flaw the argument commits. Choose the flaw ID from this list only: $IDS
+    prompt_b="You are blind-solving a critical-thinking multiple-choice item. Independently answer the item's stated question from its argument and options. Do not assume the argument is flawed or that the question's premise holds: a sound argument or a defective framing is possible. Choose the best option A-E. Classify the primary reasoning structure tested, or use argument_sound if none of the offered objections undermines a sound argument. Choose the ID from this list only: $IDS
 
 $item
 
 Reply with exactly two lines and nothing else:
-ANSWER: <option letter>
+ANSWER: <single option letter A-E>
 STRUCTURE: <one ID from the list>"
 
-    # Session A's transcript (which contains the key) is deliberately NOT on
-    # disk yet: it is written only after session B returns, so the blind
-    # solver's Read tool has no oracle to find even in principle.
-    if ! transcript_b="$(run_claude "$prompt_b" "Read")"; then
+    # Do not write this harness's answer-bearing artifact until B returns.
+    # Disable B's tools and skill invocation; A's key is absent from B's
+    # prompt. These controls reduce contamination without claiming that CLI
+    # supplied context, prior training, or configuration is fully isolated.
+    if ! transcript_b="$(run_claude "$prompt_b" "")"; then
       printf '# key-agreement item %s — generation transcript\n\n%s\n' "$i" "$transcript_a" > "$out_a"
       printf '# key-agreement item %s — ERROR (session B)\n\n%s\n' "$i" "$transcript_b" > "$out_b"
       echo "| $i | $key | — | ERROR | $struct_a | — | — |" >> "$SUMMARY"
@@ -204,11 +232,11 @@ STRUCTURE: <one ID from the list>"
     printf '# key-agreement item %s — blind-solve transcript\n\n## Prompt\n\n%s\n\n## Transcript\n\n%s\n' \
       "$i" "$prompt_b" "$transcript_b" > "$out_b"
 
-    ans_b="$(printf '%s\n' "$transcript_b" | grep -oE 'ANSWER: *[A-Z]' | tail -1 | grep -oE '[A-Z]$' || true)"
-    struct_b="$(printf '%s\n' "$transcript_b" | grep -oE 'STRUCTURE: *[a-z_0-9]+' | tail -1 | awk '{print $2}' || true)"
+    ans_b="$(parse_field 'ANSWER' '[A-E]' "$transcript_b")"
+    struct_b="$(parse_field 'STRUCTURE' '[a-z_0-9]+' "$transcript_b")"
     if [ -z "$ans_b" ]; then
       echo "| $i | $key | ? | ERROR-unparsed | $struct_a | ${struct_b:-?} | — |" >> "$SUMMARY"
-      echo "   ERROR-unparsed (session B emitted no ANSWER line)"; continue
+      echo "   ERROR-unparsed (session B needs exactly one ANSWER line with A-E)"; continue
     fi
 
     key_match="DISAGREE"; [ "$key" = "$ans_b" ] && key_match="AGREE"

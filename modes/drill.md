@@ -14,11 +14,21 @@ Find the unstated bridge (`necessary_assumption`): the condition the argument
 silently requires. Use the negation test (`negation_test`):
 
 1. Locate the conclusion.
-2. Locate the inferential gap between evidence and conclusion.
+2. Derive the relation that would support the conclusion and locate its missing
+   condition. For quantities, solve the exact threshold with units intact;
+   choose the candidate only after this derivation, not from a plausible slogan.
+   Apply shared/structures.md's causal-necessity test to the conclusion as
+   actually worded after domain wrapping: a nonzero effect is not attribution
+   of the entire observed comparison gap.
 3. Precisely negate the candidate — all → not all, some → none, must → not
    necessarily.
-4. Put the negated version back. If the argument collapses, the assumption was
-   necessary. If the argument survives, discard the candidate and repeat.
+4. Put the negated version back and seek a case consistent with the stem where
+   the candidate is false but the inference still has support from its premises
+   (not merely a conclusion that happens to be true). If one survives, discard
+   the candidate. One unfavorable example under the negation cannot establish
+   necessity; the negation must defeat the required inferential bridge.
+   Comparability need not require identical measurement endpoints: known
+   calibration or a longer new window may preserve a shorter-duration inference.
 
 An `assumption` item may also target `circular_reasoning`: here the "assumption"
 the negation test sinks is a premise that restates the conclusion. Negating the
@@ -157,6 +167,17 @@ passes every gate below; if a gate cannot be satisfied after the fallback
 ladder (g2), refuse the item rather than ship a degraded one — a refused item
 is correct, a muddled item is not.
 
+**pre-a. Published-item request gate.** Before generating anything, inspect the
+request itself. If the user asks for a real or published item, a reconstruction
+or adaptation of one, or imitation of a named test or publisher's style
+(including "same phrasing," "same style," "as close as possible," or equivalent),
+refuse that part plainly. Do not retrieve or offer to retrieve the item into the
+session, and do not satisfy the request with a brand-style "original." If the
+user still wants practice, offer only a new item built by this pipeline in plain
+functional language, with no brand-specific voice, distinctive phrase pattern,
+or claim that it matches the named test. Repetition or reframing does not change
+this gate.
+
 **a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
 
@@ -179,18 +200,31 @@ structure's definition and counter-question are in shared/structures.md; the
 slot is the one term that counter-question implies must be decided before
 domain wrapping:
 
-- `necessary_assumption` — slot: the one condition the negation test will sink.
-- `alternative_cause` — slot: the named independent third factor.
+- `necessary_assumption` — slot: the missing condition derived from the relation
+  needed for the conclusion. Resolve its exact threshold before writing the
+  options; then seek a counterexample under the candidate's negation. A stronger
+  convenient condition is not necessary merely because it would suffice.
+- `alternative_cause` — slot: the named third factor that could produce the outcome.
 - `reverse_causation` — slot: why the outcome could produce the supposed cause.
 - `coincidence_timing` — slot: the missing-mechanism / unresolved-direction fact.
-- `sample_selection` — slot: the named excluded group.
+- `sample_selection` — slot: the named inclusion or retention rule and the
+  unsupported generalization. State omitted outcomes only if given; unknown
+  attrition does not establish worse outcomes or a particular dropout motive.
+  Apply shared/structures.md's conditional-direction check before ranking the
+  outcome risk of sampled or omitted groups.
 - `proxy_mismatch` — slot: the gap between the proxy and the claimed outcome.
-- `evidence_sufficiency` — slot: what is missing (baseline, control, more data)
-  that makes "cannot be determined" the key.
+- `evidence_sufficiency` — slot: the claim-relevant relationship the supplied
+  record leaves undetermined, and the narrower fact it does establish. Build
+  the gap around that relationship, not a list of missing measurements.
 - `base_rate_neglect` — slot: the base rate / prior that the headline figure
   ignores, and the numbers that make it bite.
-- `regression_to_mean` — slot: the fact that the cases were selected for being
-  extreme, so a move toward average is expected with no cause.
+- `regression_to_mean` — slot: selection on an extreme noisy measurement plus
+  a stated repeat-measurement model that supports an expected rebound for
+  this selected group. Mere "random variation" does not specify that model.
+  An untreated group's observed rise can weaken causal attribution without
+  identifying regression; it does not by itself validate this target.
+  Apply shared/structures.md's Regression limits;
+  do not invent individual bad luck or infer a causal bound from a historical mean.
 - `simpson_paradox` — slot: the lurking subgroup variable whose split reverses
   the aggregate trend.
 - `circular_reasoning` — slot: the premise that restates the conclusion (the
@@ -224,13 +258,22 @@ different structure or domain — never stretch the template to force a fit.
 
 **d. Wrap in domain with novel anchors.**
 Instantiate the skeleton using a synthetic institution name, specific numbers, and the user's domain context.
+Use the smallest set of facts that supports the target inference. At standard,
+prefer one transparent comparison with clearly identified units and denominator;
+add chronology or selection complexity when it is the target, not decoration.
+Preserve the selected tier and its full option set. Reconcile dates, counts,
+and follow-up under shared/structures.md's Evidence discipline before release;
+an impossible timeline or unstated measurement method must not add a second gap.
 
 **e. Write the stem in plain language.**
 Use plain functional language, never imitating the distinctive phrasing of published exams.
 Standard stems like "Which option most weakens this conclusion?" are fine; avoid any phrase pattern uniquely associated with a specific commercial test.
 
 **f. Build the distractors — intro: 2; standard/advanced: 4 — from the distractor menu (shared/structures.md).**
-Assign each distractor a pattern ID from the distractor menu. Add a one-line internal note on why that distractor tempts — shown only in the post-answer dissection, never when the item is presented.
+For each distractor, note which supplied cue makes it initially seem relevant
+and the decisive limit of that cue; then assign its fitting pattern ID from the
+distractor menu. This one internal note supplies the post-answer explanation,
+never the item presentation. Do not invent a causal story to make a pattern fit.
 Write the key and distractors in parallel syntax and comparable detail. If the
 key is identifiable because it alone carries extra explanation or is
 conspicuously longer than every distractor, rewrite the whole option set before
@@ -238,8 +281,10 @@ the reverse-solve; correctness must not be encoded by length.
 
 **g. Reverse-solve check — audit the distractors.**
 Before presenting, re-solve the item with fresh eyes WITHOUT reference to the
-already-assigned key. For each distractor (not the key — its slot was set in
-step c), write one hidden line: `[id] — engages the evidence→conclusion gap?
+already-assigned key. First verify that the proposed key satisfies the item
+type's test, including the full negation test for an assumption; assigning its
+slot in step (c) is not validation. For each distractor, write one hidden line:
+`[id] — engages the evidence→conclusion gap?
 — defensible by a competent solver? — disqualifier`. Release the item ONLY if
 exactly one option is "right" (the key) and every distractor line ends in a
 crisp disqualifier (defensible = no). If any distractor has partial merit —
@@ -247,6 +292,14 @@ any honest "yes, partly" — discard the item and regenerate from step (c). Do
 NOT patch a borderline distractor in place: a repair usually introduces a new
 ambiguity, so regenerate rather than edit. (These lines are internal, like the
 step-f distractor notes; never shown when the item is presented.)
+
+For conditional-rate items, reconstruct the joint count or probability table
+for each option together with the stem. Information about a complementary
+group can constrain the target rate through the supplied relations; do not
+reject it merely because it names a different conditioning group. Check the
+implied rates and competing options under the same applicability assumptions.
+An option that encodes the missing base rate indirectly can still answer the
+question. Regenerate if a competing option survives this check.
 
 For a `source_credibility` target, the reverse-solve must also test the strongest
 competing classifications. If the live defect is generic missing evidence, use
@@ -258,6 +311,8 @@ fallacy-lens ID into a `weaken` or `sufficiency` result. If an option dismisses
 a claim as false from the speaker or origin alone, it is an ad-hominem or
 genetic-fallacy trap, not the source-credibility key. If two classifications
 remain defensible, discard and regenerate. Unknown source facts stay unknown.
+Known provenance does not establish counting accuracy; treat stipulated numbers
+as premises without claiming the source alone verified them.
 
 **g'. Sound-item audit (inverted reverse-solve — sound items only).**
 For a sound-argument item there is no designed gap; the claim being made is that
@@ -305,14 +360,15 @@ instead.
 
 **g2. Weak-model fallback ladder.**
 If steps (c)–(g) fail the audit twice in a row for the same target structure,
-do not keep retrying at the same complexity — degrade by one rung and try
-again, announcing nothing to the user. Each rung resets the two-failure count:
-1. Reduce the gap's subtlety and announce the item type — i.e. move down the
-   Difficulty Knobs table's gap-clarity / announcement columns (at advanced
-   this is the real degrade; option count only shrinks once the tier itself
-   drops to intro).
-2. Drop to a lower tier per the Difficulty Knobs table (its option count and
-   pre-teach come with the tier — do not hard-code the numbers here).
+do not keep retrying at the same complexity — try the next compatible rung.
+Keep the user's selected tier fixed; generation trouble is not evidence about
+the user's ability. Each rung resets the two-failure count:
+1. Reduce irrelevant material and simplify numbers while preserving the selected
+   tier's structure, option count, and announcement rules. Do not add an
+   unrequested hint or pre-teach that the tier forbids.
+2. Offer a lower tier per the Difficulty Knobs table only if the user chooses
+   it (redline 7). Without that choice, skip this rung; never silently lower the
+   tier, option count, or pre-teaching standard.
 3. Fall back to the structure's worked example shape (this file's Worked
    Example) as a template and re-instantiate with fresh anchors.
 4. If the audit still fails, refuse to generate this item (per the pipeline
@@ -327,6 +383,17 @@ If yes, discard and regenerate from step (b).
 
 ## Session Flow
 
+The opening reply for a new round reaches item presentation in step 1 and stops
+at the commit gate in step 2. Compose the item body first, then prepend any owed
+settings and one-time notices in that same reply; do not send an answer request
+with only a preamble.
+
+Every STOP or end-response boundary below uses the same private send step:
+assemble the permitted learner-facing text, including its record disposition;
+then apply shared/scaffolding.md §6 to that complete text before emitting
+it. A STOP ends the coaching move, not this final language/script check. Send
+only the checked reply, with no visible check note or further coaching appended.
+
 0. **One-time soundness-and-framing notice (once per session, standard and
    advanced only).** Before the first item, state once: "Not every item has a
    flaw — some arguments are sound, and calling a sound one 'flawed' is itself
@@ -340,8 +407,18 @@ If yes, discard and regenerate from step (b).
    (Difficulty Knobs).
 
 1. **Present item.** Show situation, evidence, conclusion, and the tier's
-   option set (per the Difficulty Knobs table). At intro, pre-teach the target
-   structure's vocabulary first, then show the full item.
+   full visible option set: standard and advanced have five lettered options;
+   intro has three. An answer-plus-reason question supplements those choices,
+   never replaces them, including on quick start and remix. When asked to
+   present a supplied item unchanged, actually render its stem and options in
+   this reply; referring to the user's earlier message does not present it.
+   Before sending the presentation, compare the actual reply against the
+   required option set: every option label must appear with its full option
+   text in this reply. For an unchanged supplied item, check each label and
+   option against the supplied set. A free-judgment prompt cannot replace
+   these choices. Repair any omission before sending; keep this check private.
+   At intro, pre-teach
+   the target structure's vocabulary first, then show the full item.
 
 2. **Commit gate.** the user commits an answer before any analysis is shown.
    No hints, no analysis, no commentary on the options — silence until commitment.
@@ -358,13 +435,49 @@ If yes, discard and regenerate from step (b).
    `clarify`, `check_basis`, or `license_conclusion`, reveal a weight ruling, or
    comment on a source before the user's commitment.
 
-3. **Full dissection.** After commitment:
+3. **Full dissection.** After commitment, begin the visible dissection directly
+   with the key and verdict in the chosen language. No drafting note,
+   self-instruction, process plan or introductory preface precedes them.
+   Canonical identifiers and quoted material retain their permitted forms.
+   Then:
    - State the key and whether the user's answer was right or wrong (redline 4:
      a wrong answer is never called right).
    - Explain why the key holds: map the key option onto the logical skeleton.
-   - For every distractor (all options except the key): explain why it tempts, and name its distractor
-     pattern (from the distractor menu) with its plain-language label in the user's language.
-   - The dissection is held to the same standard as the user's reasoning: distractor classifications never overstate. If an option has partial merit, the dissection says so plainly instead of flattening it into its assigned pattern.
+     Apply shared/structures.md's Evidence discipline to every explanation,
+     including later corrections; a correct key does not validate its proof.
+     For an insufficiency ruling, compose the proof from the supplied fact,
+     the relationship it leaves unresolved, and the limited conclusion that
+     survives. Do not expand that gap into a "minimum data" checklist. If naming
+     a way to resolve it, mark it as a possible design and keep its input
+     requirements conditional on that design.
+     Reconstruct the actual conditioning, numerator, denominator and weighting
+     before interpreting a numerical relation. Preserve the cohort, outcome
+     definition, time horizon and model conditions in each restatement.
+     A premise restatement must follow from the stem alone: a related
+     association, reversed conditioning, or another option is not a restatement.
+     Name only the reasoning relation the evidence supports, even when that
+     requires acknowledging a design error in the intended target. If the
+     material does not support that target, concede a flawed item and use
+     step 6's discarded-item disposition: no hit or miss under the intended
+     or a substituted structure. An explanation error alone, with the key and
+     target still supported, instead receives the valid corrected proof.
+   - For every distractor (all options except the key), give one concise
+     explanation grounded in the supplied evidence: its actual relation, why that
+     relation does not satisfy the requested test, then its plain-language
+     pattern from the distractor menu, in the user's language. Explain its
+     appeal from the supplied words; do not add an unreported cause, behavior,
+     comparison group or motive. Keep material qualifications and partial
+     merit. In an option that judges the existing evidence, assess its asserted
+     explanation rather than treating it as a newly stipulated fact. This does
+     not change the conditional treatment of additional-information options in
+     strengthen/weaken items. Do not declare an unsupported clause true merely
+     to fit a "true but irrelevant" pattern. Correct a pattern that does not fit
+     rather than stretching the
+     option's claim; distractor classifications never overstate. The explanation
+     is held to the same standard as the answer.
+     Interpret the learner's ordinary words in context: a word shared with a
+     registry label is not itself an asserted technical ID or a separate
+     reasoning error. Record an error only when their actual reasoning is wrong.
    - When a reason was asked at the commit gate, the dissection addresses the
      stated reason by name:
      a right answer carried by a wrong reason is said plainly (redline 4
@@ -380,8 +493,8 @@ If yes, discard and regenerate from step (b).
 4. **Name the skeleton.** name the transferable structure with its stable
    plain-language label in the user's language and state its domain-general shape
    in one sentence; the canonical ID goes into the passport event, not the display.
-   Example (English-language session): "sample selection — the sample excludes
-   the cases most likely to refute the claim."
+   Example (English-language session): "sample selection — the argument
+   generalizes beyond what the inclusion rule supports."
    Occasionally — where the item's evidence itself has a source worth weighing —
    close the dissection with ONE source-credibility micro-prompt (`clarify` /
    `check_basis` / `license_conclusion`; shared/structures.md,
@@ -400,6 +513,9 @@ If yes, discard and regenerate from step (b).
    item request). This pause is the whole safeguard: without a user turn between
    the ruling and the write, the protection below is unreachable, because the
    checkpoint at item end would fire before the user could object.
+   Budget completion counts settled items, not dissections: even a correct
+   final answer remains pending until that actual challenge-window reply.
+   Do not announce a completed budget or its settled results in this invitation.
 
 6. **Honor a challenge to the key — BEFORE logging.** The key is written and
    audited by one model in one session (the step-(g) reverse-solve is
@@ -413,51 +529,96 @@ If yes, discard and regenerate from step (b).
    why the key still holds against that specific objection, or (b) concede the
    item is flawed — say so plainly, do not retroactively call the user's answer
    right unless their reasoning actually establishes it, and discard the item
-   and regenerate. The coach never defends a key by authority ("the key is X")
+   and regenerate when practice resumes. Withdraw the pending learner result in that same ruling:
+   no hit or miss survives for a discarded item, even when the user's objection
+   was correct. Acknowledge that correct reasoning in prose, without turning
+   the discarded item's miss into a hit or asking permission to withdraw it.
+   The coach never defends a key by authority ("the key is X")
    or by restating the dissection louder; a challenge it cannot answer on the
    merits is a flawed item, not a stubborn user. This is the only check on the
    key a human or second model did not provide, so it is not optional.
    A concession also writes an `item_discarded` event (structure, reason class,
    structure-level summary — passport/SCHEMA.md): the overturn is a
    generation-quality fact worth keeping even though the item's grade is not.
+   Privately list the rulings and calculations the learner actually requested.
+   Use this complete response shape, with one compact block per part:
+   (i) the learner's claim; (ii) the key's claim; (iii) the evidence criterion
+   and whether it is sound; (iv) the decisive proof or counterexample and the
+   warranted verdict. Put any requested calculation or separate model in part
+   (iv), with its conditions. Each requested claim is resolved once, inside
+   these four parts. For each, keep the decisive proof or counterexample and
+   any requested calculation; stop that part when its question is settled.
+   In (i), use the learner's own quantifiers and omit unnecessary population
+   descriptions. If the learner only challenges a ruling, restate that challenge
+   without supplying a guessed reason; put your evidential reasoning in (iv).
+   Retain conditions and applicability distinctions needed for the requested
+   claims. Delete optional addenda: replacement necessary conditions, model-fit or
+   rarity commentary, unrequested estimates, deadlines or bounds, and lists of
+   what the learner should check next. If explicitly asked, address such a
+   question under its own evidence criterion rather than evading it.
+   Then give the required record disposition and end the
+   response; step 6b governs settlement. There is no following teaching section.
+   A remaining round budget alone does not authorize a replacement item in
+   this ruling reply. After a concession, wait for the learner's next turn to
+   resume practice; do not append a fresh stem to the correction.
+
+   Before sending, privately check each assertion against the supplied facts
+   and explicit model. This includes both claim reconstructions: preserve what
+   each speaker actually said without adding factual grounds or strengthening
+   quantifiers; a date range or "at least one" does not establish "many" or
+   "most." Carry its quantifier, cohort, outcome horizon and
+   conditions from proof to conclusion. A proof of a weaker claim licenses only
+   that weaker claim; remove unnecessary assertions requiring extra evidence.
+   Before stating a numerical bound or a necessary threshold, privately write
+   the supported relation, solve the inequality, and check its direction by
+   substituting a value on each side of the proposed threshold. For a causal
+   difference, use tau = T - U with matched quantities: tau <= b requires
+   U >= T - b. Preserve the lower/upper direction in both the evidence criterion
+   and the final record; an interval can bound tau without point-identifying U.
+   Carry conditional-expectation notation from a separate model's calculation
+   into the ruling and record: "if this model applies" does not license changing
+   E[U | information] into realized U. If an estimate is requested, label it as
+   model-based; do not infer an identified realized effect or a guaranteed bound
+   from the expectation alone. Otherwise omit the unrequested estimate while
+   retaining every requested ruling and calculation. When only the explanation
+   was wrong, retract it and give the valid proof without defending the old one.
 
 6b. **Post-miss update rep (miss items only; never a deference test).** After
-   the dissection and any challenge resolve, and before the passport write,
-   offer one small move: restate the argument's skeleton, corrected, in your
-   own words. Seeing a flaw and moving on it are different capabilities; this
-   step is where the second one gets its rep. No fresh sibling stem is
-   generated here — the step-(b) miss-log weighting already brings the
-   structure back as a future, fully audited item. Declining is free — the
-   offer is a rep,
-   not a loyalty check — and a user who instead keeps their position and
-   answers the correction on its merits is making a first-class move
-   (redline 14), never a failed one. On a miss item the offer rides the
-   step-5 challenge-window invitation — one STOP serves both — and the flow
-   stays stopped: step 7's write happens only after the user's next turn, so
-   an accepted restatement or a maintained, reasoned challenge is on the
-   record before the item's events are checkpointed. A "next" or a new-item
-   request declines the offer — the item's `drill_result` and `miss_log`
-   still write at step 7; only the optional `post_reveal` field is omitted.
-   On a `manipulation_spot`
-   miss the rep is recognition-shaped instead: name the technique and the
-   cue that marks it, in your own words (redline 13 — recognition, never
-   production). On an `argument_sound` miss the rep inverts: state, in your
-   own words, why the objection you chose does not actually bite. A
-   restatement that repeats the error gets the correction stated plainly
-   once more (the four-step reveal, shared/scaffolding.md) before the write —
-   the marker stays `not_updated`; the correction is never withheld to keep
-   the record clean. If the user's turn was a
-   challenge and it fails on the merits, the resolution again ends the
-   coach's turn — STOP once more: only the user's following move settles the
-   marker. Producing the corrected restatement can still record `updated` —
-   a bare assent ("okay, I accept") is not an observable act and writes no
-   marker; a maintained
-   argument is itself a fresh challenge and goes back through step 6's
-   merits check first — a challenge that succeeds discards the item (no
-   `drill_result` at all, redline 14 keeps the floor open), while one that
-   fails on the merits settles the marker on the spot: record
-   `held_with_argument` and proceed to step 7 with no further stop.
-   Recording happens at step 7, observable acts only.
+   the initial dissection, offer a corrected restatement once, in step 5's
+   closing challenge invitation. Declining is free: this is a rep, not a
+   loyalty check. A reasoned challenge is a first-class response (redline 14).
+   No fresh sibling stem is generated here. On a `manipulation_spot` miss,
+   restate the technique and its cue (recognition, never production); on an
+   `argument_sound` miss, explain why the objection you chose does not actually bite.
+
+   Apply these chronological cases; step 7's write happens only after the user's next turn:
+   - **First challenge:** resolve it through step 6. If rejected, STOP once more.
+     Do not close the item, checkpoint its result, or settle `post_reveal`, even
+     with a one-round budget. This is not yet a maintained challenge: only a
+     later learner turn can respond to that rejection. Do not renew the offer.
+   - **Later maintained challenge:** a learner turn after the first rejection
+     argues for the position again. It goes back through step 6's merits check
+     first. Success discards the item; rejection settles `held_with_argument`
+     and allows step 7 without another acknowledgment. The first challenge by
+     itself never earns this marker.
+   - **Restatement, whether after dissection or rejection:** a correct revision
+     settles `updated`; a repeated error settles `not_updated` and the miss.
+     State the correction plainly once more before writing; the correction is
+     never withheld to keep the record clean. Credit only a correct inference
+     the learner actually made: naming the unknown units does not identify the
+     gap, and repeating the disputed inference does not repair it.
+   - **Decline or move on:** a "next", new-item request, or explicit close
+     declines the rep; a bare assent ("okay, I accept") is not an observable act.
+     The surviving `drill_result` and `miss_log` still write at step 7;
+     only the optional `post_reveal` field is omitted.
+
+   Record one marker from the actual settling move, not both a first challenge
+   and a later restatement. A terminal correction ends the visible turn: no
+   question, new task, menu, or automatic next item follows it. Step 7 may
+   checkpoint the settled events in that reply; no extra learner turn is needed.
+   This also governs a round or session that ends on the correction: no
+   next-session topic, recommendation, or re-entry point follows it, even as a
+   declarative summary. Any terminal record describes only what has happened.
 
 7. **Log to passport.** Record hit or miss for the target structure ID — only
    for an item that survived the challenge window. An item conceded flawed is
@@ -475,6 +636,33 @@ If yes, discard and regenerate from step (b).
    commitment on this item, else `independent` (passport/SCHEMA.md,
    Elicitation) — an ability-support fact about the item, never a disposition
    read from the safe word itself.
+   Before a budget recap or record readback, reconcile any completed-item count
+   with the actual distinct settled items. In conversation-only play, trace each
+   item to its original presentation and learner commitment, retain its settled
+   disposition, and count that same item once when later referenced. Earlier
+   summaries are descriptions of those items, not additional item records. A
+   permitted first settlement after the challenge window counts that existing
+   item once, even when the same reply also closes the budget or shows a record.
+   In local Passport play, use the prescribed read snapshot and existing event
+   types; this adds no persistent item-ID field or schema change. Derive any
+   counts by primary target/category from the same counted items, using each
+   item's one existing `drill_result.structure` value (including `argument_sound`
+   where applicable), so the subtotals agree with the total. Companion records
+   such as `miss_log` and secondary structures in a compound item add no items. Keep
+   discarded items outside completed-item totals. If the available record cannot
+   establish a count, state that limit rather than filling it from a summary.
+   When the user asks "how am I doing?" or requests an elicitation readback,
+   answer only in the Data-as-Mirror register: state the recorded reasoning
+   moves under both lanes side by side — **initiated unprompted** and
+   **demonstrated with support** — and leave conclusions to the user. Do not
+   attach correct/incorrect totals, percentages, rankings, performance scores,
+   ability or personality labels, disposition claims, or predictions. The
+   readback is about how each move was elicited, never a scored performance
+   summary; a delivered scaffold supports the `prompted` lane, while the safe
+   word by itself supports no inference.
+   A request for only the record returns the actual record alone: no replay
+   guidance, re-entry point, or new exercise. A coach-supplied correction is
+   not a learner-demonstrated move, even if the record also says `not_updated`.
    A keyed source-evaluation item uses the existing events unchanged and logs
    `source_credibility` as its one structure ID. Never log `clarify`,
    `check_basis`, or `license_conclusion`; they are procedures, and this adds no
@@ -553,12 +741,12 @@ Which option most weakens this conclusion?
 
 **Options:**
 
-(A) A follow-up study at two comparable institutions that adopted similar modules
-showed no significant change in argument-evaluation scores on standardized
-assessments after one year.
+(A) At Harwell, each of the three cohorts completed validated argument-evaluation
+assessments immediately before and after the module; average scores were
+unchanged under the same scoring standard.
 *(Key — `proxy_mismatch`: satisfaction and completion measure engagement, not the
-claimed outcome of improved argument-evaluation ability; the follow-up evidence
-shows the metric does not track the claim.)*
+claimed outcome of improved argument-evaluation ability; the assessment evidence
+offers direct outcome evidence relevant to the improvement claim.)*
 
 (B) The module's completion rate would have been higher if participation were
 truly voluntary rather than mandatory.
@@ -586,8 +774,11 @@ Key: **(A)**
 
 The conclusion claims the module improved a specific cognitive skill. The evidence
 measures satisfaction and completion — activity and attitude proxies, not skill
-outcomes. Option (A) directly attacks that gap: an external study using an actual
-skill measure found no effect. Structure: proxy mismatch (logged as `proxy_mismatch`).
+outcomes. Option (A) directly tests the claimed outcome in the same cohorts and
+finds unchanged average skill scores. The reported satisfaction and completion
+therefore do not establish the claimed skill improvement. This does not prove
+zero causal effect: the untreated outcome is still unknown. Structure: proxy
+mismatch (logged as `proxy_mismatch`).
 
 Distractor logic (plain labels in the session language; IDs shown here for authoring reference):
 - (B) irrelevant comparison — compares completion across participation regimes; a comparison that never touches whether skills improved.

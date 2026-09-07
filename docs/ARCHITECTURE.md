@@ -1,4 +1,4 @@
-# Architecture (v1.5.0)
+# Architecture (v1.6.0)
 
 How `critical-thinking-for-humans` is put together: what loads when, how a
 session routes to one of four modes, how the fourteen reasoning structures are
@@ -27,8 +27,10 @@ file wins.
 
 ## 1. Session bootstrap & mode routing
 
-Every session loads the same floor first, then routes. Only one mode file is
-loaded per session.
+Every session loads the same floor first, then routes. Only one mode is active
+at a time; a soft-switch deactivates the prior stance without erasing the
+transcript. The shared scaffolding also owns quick start, round budgets, remix,
+and the human-turn boundary for both target models (see [model guide](MODEL_GUIDE.md)).
 
 ```mermaid
 flowchart TD
@@ -36,15 +38,17 @@ flowchart TD
 
     subgraph Floor["The floor — always loaded first"]
         RL[shared/redlines.md<br/>14 redlines]
-        SC[shared/scaffolding.md<br/>4-step reveal · safe words · stuck]
+        SC[shared/scaffolding.md<br/>play rhythm · reveal · safe words]
         ST[shared/structures.md<br/>14 structures · frame palette]
     end
 
-    Floor --> Returning{Returning user?<br/>read ~/.ct-gym}
+    Floor --> Returning{Returning user?<br/>locked Passport helper read}
     Returning -- "no" --> Intake[Intake — 3 choices:<br/>field · support level · feedback style]
     Returning -- "yes" --> Confirm[One-line profile confirm]
     Intake --> Route
     Confirm --> Route
+    Returning -- "explicit start" --> Fast[Keep settings · fill missing defaults]
+    Fast --> Route
 
     Route{Mode?}
     Route -- "drill" --> Drill[modes/drill.md<br/>JUDGE]
@@ -57,7 +61,9 @@ flowchart TD
 ```
 
 Safe words (`stuck`, `hint`, `enough for today`, `forget this one`) are
-announced once at start and honored in every mode (redline 8).
+announced once at start and honored in every mode (redline 8). An immediate
+Detective Open defers unannounced setup controls to the reply after the first
+defect call or safe word; the case opening itself stays sealed.
 
 ---
 

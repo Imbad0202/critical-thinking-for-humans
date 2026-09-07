@@ -64,7 +64,8 @@ cp scripts/templates/daily-private-record.template.json .private/daily/2099-01-0
 
 Private record 有兩種合法關聯方式：
 
-- `contentId` 對應 `content/daily/cases/` 內已 commit 的公開題面；record 只保存
+- `contentId` 必須對應 rotation 為 record 的發布日期選中的已 commit 公開題面，
+  不是題庫中任意一題；上傳工具的 dry-run 與 API 使用相同日期選擇。record 只保存
   `answers`。
 - 新題面尚未存在於 repo 時，在 record 內加上 `case`，格式與
   `daily-case-public.v1.schema.json` 相同。案件發布時 `/api/daily` 只送出這個

@@ -338,7 +338,7 @@ def assert_daily_degrades_but_modes_remain(browser, install_route, page_errors) 
     context = browser.new_context(viewport={"width": 1100, "height": 800})
     page = context.new_page()
     page.on("pageerror", lambda error: page_errors.append(str(error)))
-    install_route(page)
+    cleanup = install_route(page)
     open_home(page)
     wait_daily(page, "unavailable")
     assert page.locator('[data-action="start-daily"]').is_disabled()
@@ -346,6 +346,8 @@ def assert_daily_degrades_but_modes_remain(browser, install_route, page_errors) 
     # A failed Daily request must not block the original four-mode router.
     choose_mode(page, "drill")
     assert page.locator('.mode-play[data-mode="drill"]').count() == 1
+    if cleanup:
+        cleanup()
     context.close()
 
 
@@ -371,9 +373,11 @@ def test_failure_states(browser, page_errors: list[str]) -> None:
 
     assert_daily_degrades_but_modes_remain(browser, invalid_payload, page_errors)
 
-    def never_resolves(page: Page) -> None:
+    def never_resolves(page: Page):
         # Leaving the route unresolved exercises the frontend AbortController.
-        page.route("**/api/daily", lambda _route: None)
+        stalled_routes = []
+        page.route("**/api/daily", lambda route: stalled_routes.append(route))
+        return lambda: [route.abort("timedout") for route in stalled_routes]
 
     assert_daily_degrades_but_modes_remain(browser, never_resolves, page_errors)
 
@@ -487,6 +491,34 @@ def test_double_submit_and_stale_response(browser, page_errors: list[str]) -> No
     stale_context.close()
 
 
+def test_answer_timeout_keeps_the_choice_and_allows_retry(browser, page_errors: list[str]) -> None:
+    context = browser.new_context(viewport={"width": 1100, "height": 800})
+    page = context.new_page()
+    page.on("pageerror", lambda error: page_errors.append(str(error)))
+    envelope = daily_envelope("2031-02-03")
+    page.route("**/api/daily", lambda route: fulfill_json(route, envelope))
+    stalled_routes = []
+    page.route("**/api/answer", lambda route: stalled_routes.append(route))
+    open_home(page)
+    start_daily_question(page, envelope)
+    page.locator('[data-daily-answer="C"]').click()
+    page.locator('[data-action="lock-daily-answer"]').click()
+    page.wait_for_selector('.daily-inline-error', timeout=15_000)
+    assert page.locator('[data-daily-answer="C"]').get_attribute('aria-pressed') == 'true'
+    assert page.locator('[data-action="lock-daily-answer"]').is_enabled()
+    assert page.locator('.daily-ruling').count() == 0
+
+    for stalled in stalled_routes:
+        stalled.abort("timedout")
+    page.unroute("**/api/answer")
+    page.route("**/api/answer", lambda route: fulfill_json(
+        route, answer_response(route.request.post_data_json, envelope["date"])
+    ))
+    page.locator('[data-action="lock-daily-answer"]').click()
+    page.wait_for_selector('.daily-ruling[data-result="hit"]')
+    context.close()
+
+
 assert_public_case_has_no_reveal_fields(PUBLIC_CASE)
 
 with sync_playwright() as playwright:
@@ -497,6 +529,7 @@ with sync_playwright() as playwright:
     test_authoritative_date_rollover(browser, page_errors)
     test_daily_scene_is_neutral_and_never_posts_an_answer(browser, page_errors)
     test_double_submit_and_stale_response(browser, page_errors)
+    test_answer_timeout_keeps_the_choice_and_allows_retry(browser, page_errors)
     browser.close()
 
 if page_errors:

@@ -2,10 +2,109 @@
 
 All notable changes to critical-thinking-for-humans are documented here. Changes
 land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
-and the latest versioned heading must equal the git tag being cut (enforced by
-`scripts/check_version_consistency.py`).
 
 ## [Unreleased]
+
+- Tighten correction proofs, fixed-window outcome handling, ranked-group
+  inference, conditional-rate distractor audits, localized dissection starts
+  and evidence-based learner notes. The r7 revision also binds coach claims
+  to the shared factual standard, preserves STOP without repeated invitations,
+  distinguishes independent from correlated regression models, and separates
+  visible-evidence confirmation from newly earned records. Full paired testing
+  is ongoing; earlier failures remain in their frozen candidate records.
+  The r8 candidate checks complete rendered option sets and Traditional Chinese
+  notices, and preserves metric definitions through explanations and supported
+  conversions instead of equating ratings, time and output volume.
+  The r9 revision checks trailing factual clauses, preserves aggregation and
+  speaker quantifiers, assesses judgment-option claims, and ends Detective
+  corrections after a sufficient supported argument.
+  The r10 revision distinguishes expressed service needs from established
+  conditions, checks earned calls against the learner's actual words, separates
+  source records from analytical work, verifies inequality direction, and keeps
+  unknown distributions out of likelihood assertions.
+  The r11 revision makes causal-bound direction and interval identification
+  explicit, keeps completed follow-up separate from ascertainable outcomes,
+  preserves unspecified metric rules, and removes self-instructions from
+  learner-facing closes in both the canonical manual and Claude.ai overlay.
+
+- **Actual paired behavior tests.** Preserve the 20-conversation, 84-reply
+  baseline and subsequent versioned regressions on exact Fable 5.1 and
+  GPT-6-Astra models in English and Traditional Chinese. Each candidate keeps
+  its own manual, prompts, hashes, actual replies, failures and reviewer
+  limitations; results are not pooled across artifacts. The [r11 full rerun](docs/evals/paired-2026-09-06-r11/RESULTS.md)
+  completed 24 primary conversations and 127 primary replies plus one retained
+  partial reply: 58 PASS, one FAIL, one INCONCLUSIVE, four additional substantive
+  errors and one specification finding. All quota errors and repairs remain.
+  The [r12 full rerun](docs/evals/paired-2026-09-06-r12/RESULTS.md) completed
+  24 conversations and 130 replies: 60 primary PASS with ten additional
+  substantive errors. Actual repairs and the discarded item remain in its evidence.
+  The [r13 full rerun](docs/evals/paired-2026-09-06-r13/RESULTS.md) completed
+  24 conversations and 125 replies: 60 primary PASS with four additional
+  substantive errors. All 149 commands finished; the original driver exited.
+  The [r14 full rerun](docs/evals/paired-2026-09-06-r14/RESULTS.md) completed
+  24 conversations and 126 replies: 60 primary PASS with three additional
+  substantive errors. Both actual explanation repairs remain; all 150 commands
+  finished and the original driver exited.
+  The [r15 full rerun](docs/evals/paired-2026-09-06-r15/RESULTS.md) completed
+  24 conversations and 126 replies: 59 primary PASS, one FAIL and five additional
+  substantive errors. Actual repairs and all initial failures remain; all 150
+  commands finished and the original driver exited.
+  The [r16 candidate](docs/evals/paired-2026-09-06-r16/RESULTS.md) separates
+  conditional probability direction, obligation from actual category membership,
+  and descriptive comparisons from causal contributions. Advanced earned facts
+  omit usage cues, and final language checks separately remove internal narration
+  and inspect each authored word occurrence. Local checks pass: 83 tests in
+  47.60s, 743 invariants, 6 verbatim checks, 23 packs, both builds and 34 ZIP
+  members. The initial invariant failure and paragraph relocation remain;
+  no test was relaxed. Its execution retained 94 replies across 24 initiated
+  conversations: 44 PASS, one FAIL, 15 INCONCLUSIVE and one additional script
+  regression. Eight Fable usage-credit errors left nine partial sessions; all
+  117 commands are terminal and the original driver exited.
+  The [r17 candidate](docs/evals/paired-2026-09-06-r17/RESULTS.md) checks the
+  assembled advanced handoff for usage bridges and scans final language by
+  sentence, list entry and table cell. Its local checks pass (83 tests in
+  47.46s, all 743 invariants and 34 ZIP members); the frozen candidate has zero
+  provider calls and awaits restored exact Fable usage credits for a full fresh
+  rerun. See the [evaluation index](docs/evals/README.md).
+- **Reasoning and feedback repairs.** Derive necessary conditions before
+  writing options; distinguish conditional regression from observed change,
+  selected samples from unknown omitted outcomes, and missing evidence from
+  events known not to have happened. Supplied Scene material stays intact.
+  Drill settles results after the actual challenge-window response, discards
+  defective keys or unsupported target structures without a score, and credits
+  only demonstrated learner moves. Challenge replies end after their complete
+  proof and record disposition; the worked example uses same-cohort outcome
+  measurements without claiming a zero causal effect.
+  Portable record summaries retain the host's chat-storage boundary.
+  Further paired regressions distinguish aggregate means from individual
+  outcomes, necessary-condition direction from an unfilled premise, and a
+  supported regression model from an untreated group's observed gain. Remove
+  optional post-ruling diagnostics, visible drafting notes and future coaching
+  after terminal corrections. Detective checks planned reveals against prior
+  stipulated records and separates shared data origin from independent checks.
+
+- **Play rhythm and model compatibility.** Quick start preserves supplied
+  preferences; one-round and three-round sessions, Traditional Chinese controls,
+  and audited remix share one coaching contract across Fable 5.1 and GPT-6-Astra.
+  The coach stops at the human's turn. A source-backed model guide distinguishes
+  setup compatibility from observed behavior.
+- **Runtime consistency.** Resolve Detective's sealed opening versus first-run
+  notices and soft-switch resets, preserve intro's first defect call, and make
+  advanced earned facts explicit without revealing their use. Drill generation
+  fallback no longer silently changes the player's tier. Clarify direct user
+  controls versus imported data and portable progress/deletion limits.
+- **Browser play and resilience.** Add missed-question practice and a direct
+  next-mode choice, recover malformed or unavailable browser storage, retain
+  keyboard focus and selected-option state, fix Scene progress, bound Daily
+  submission waits, and stop hidden/reduced-motion background rendering.
+- **Checks and Daily correctness.** Validate Expedition step references and
+  ordering; restrict advisory probe tools/session persistence, accept sound
+  items, and reject malformed answer fields. Enforce streaming body limits and
+  reuse the dated public provider in uploads, including uncached race checks.
+  Tag builds now require browser smoke on the exact tagged commit as well.
+  Regression tests cover these failures; see the [repository review](docs/REPO_REVIEW_2026-09-06.md).
+
+## [1.6.0] - 2026-08-01
 
 - **Scene configure track (#49).** A third scene track inverts the gym's
   default order: the user designs the information request and verification

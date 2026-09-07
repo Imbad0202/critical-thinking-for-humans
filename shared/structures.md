@@ -24,20 +24,208 @@ formal/inductive + 1 source-evaluation.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
-| `necessary_assumption` | The unstated condition the argument depends on; if it is false, the evidence no longer supports the conclusion. | "What must be true for this evidence to carry that conclusion?" | Riverdale College raised tuition 15% and enrollment held steady, so demand for its programs is inelastic — assumes no offsetting scholarships were introduced. |
-| `alternative_cause` | A THIRD, independent factor explains the outcome instead of the stated cause; the two stated variables may still be related, but something else is driving both. | "Could something else have produced this result?" | Greenbrook City's crime rate fell the year a new precinct opened — but a concurrent economic upturn may account for the drop. |
-| `reverse_causation` | NO third factor needed — the two stated variables are genuinely related, but the causal arrow runs the other way: the outcome produced the supposed cause. | "Could the outcome have produced the supposed cause?" | Firms with high employee satisfaction also show high profits — but profitable firms may simply have more resources to invest in working conditions. |
+| `necessary_assumption` | The unstated condition the argument depends on; if it is false, the evidence no longer supports the conclusion. | "What must be true for this evidence to carry that conclusion?" | A task takes 12 hours now; automation takes 7 hours plus new review time, with other work unchanged. To reduce total hours, review must take less than 5 hours. |
+| `alternative_cause` | A THIRD factor could produce the outcome, weakening attribution to the stated cause. It may affect the outcome alone or both variables, and may coexist with the proposed cause. | "Could something else have produced this result?" | Greenbrook City's crime rate fell the year a new precinct opened — but a concurrent economic upturn may account for the drop. |
+| `reverse_causation` | NO third factor needed — the outcome could produce the supposed cause, so the observed relationship does not establish the claimed direction. Both directions may operate; a reverse pathway alone does not rule out a forward effect. | "Could the outcome have produced the supposed cause?" | Firms with high employee satisfaction also show high profits — but profitable firms may simply have more resources to invest in working conditions. |
 | `coincidence_timing` | NO verified mechanism and direction unresolved — the two events merely co-occur or follow each other; nothing yet shows that either causes the other. | "Does the sequence prove mechanism, or just proximity?" | Northvale Hospital introduced a new triage protocol in March; patient wait times fell in April — but a reduction in emergency admissions began in February. |
-| `sample_selection` | The sample excludes cases most able to refute the claim; survivorship is a common variant. | "Where are the dropouts, the non-participants, the failures?" | A survey of students who completed the Westmoor tutoring program found 90% improved their grades — students who dropped out were not included. |
+| `sample_selection` | The argument generalizes beyond what the sample's documented inclusion or retention rule supports. Survivorship and outcome-based selection are variants; selection alone does not identify omitted outcomes or the direction or size of bias. | "Who was included or excluded, by what rule, and what is known about the omitted outcomes?" | A survey of Westmoor tutoring completers found 90% improved; dropouts were omitted and their outcomes are unknown. The completers' result alone does not establish the result for all entrants. |
 | `proxy_mismatch` | The metric measured is not the outcome actually claimed; activity, satisfaction, or paperwork is dressed up as the real result. | "Is this measuring activity, satisfaction, or the thing actually claimed?" | Eastfield Foundation reports 400 mentoring sessions delivered as evidence of career advancement — sessions attended ≠ careers advanced. |
-| `evidence_sufficiency` | Whether the evidence licenses ANY conclusion yet; the discipline of saying "cannot be determined." | "Does this evidence license any conclusion yet, or only that more data is needed?" | Two quarters of rising sales after a rebranding do not yet establish that the rebranding caused growth — no baseline trend, no control group. |
-| `base_rate_neglect` | A conclusion drawn from a conditional or salient figure while ignoring the underlying prior / base rate; the numerator is read without its denominator. | "What is the base rate, and does the headline figure survive once it is included?" | A screening test flags 90% of a rare condition, so a positive result is treated as near-certain — but at a 0.1% base rate most positives are false alarms. |
-| `regression_to_mean` | An extreme measurement is followed by a less extreme one, and the ordinary statistical return toward the average is misattributed to an intervention. | "Were the cases selected for being extreme, so a move toward average is expected with no cause at all?" | The worst-performing branches got a new training program and improved the next quarter — but branches picked for an extreme low tend to rebound regardless. |
+| `evidence_sufficiency` | Whether the evidence licenses the live conclusion; distinguish what cannot be determined from the more limited facts the evidence does establish. | "Does this evidence license the claimed inference, and what can still be said if it does not?" | Two quarters of rising sales after a rebranding establish that sales rose, but do not establish that rebranding caused the growth — no baseline trend, no control group. |
+| `base_rate_neglect` | A conclusion drawn from a conditional or salient figure while ignoring the underlying prior / base rate; the numerator is read without its denominator. | "What is the base rate, and does the headline figure survive once it is included?" | A screening test has 90% sensitivity and a 5% false-positive rate. A positive result is treated as near-certain evidence of the condition — but at a 0.1% prevalence most positives are false alarms. |
+| `regression_to_mean` | Improvement after selection on an extreme noisy measurement is attributed to an intervention, although the supported repeat-measurement model predicts less extreme results without it. | "Does the stated repeat-measurement model support an expected rebound for this selected group?" | Every branch has true performance 80; each quarterly score adds an independent error of +8 or -8 with equal probability. Branches selected at 72 have expected next score 80 without training; a post-training rebound alone cannot identify the training effect. |
 | `simpson_paradox` | A trend that holds in aggregated data reverses (or vanishes) once the data is split by a lurking subgroup variable; the merged numbers mislead. | "Does the aggregate trend survive when the data is broken out by the relevant subgroup?" | A hospital shows higher overall survival than a rival, but once cases are split by severity the rival does better in every severity tier — the mix of cases drove the aggregate. |
 | `circular_reasoning` | A premise covertly presupposes the conclusion; the argument travels in a circle, treating what it must prove as already given. This is the premise being the conclusion restated — distinct from `necessary_assumption` (an external unstated condition the argument needs) and from the `premise_restatement` distractor (which paraphrases stated evidence, not the conclusion). | "Can this premise be stated or verified without already knowing the conclusion?" | "Brightline Tutoring is the most trusted name in test prep because more families trust it than any other service." — the premise (more families trust it) is the conclusion (most trusted) restated. |
-| `hasty_generalization` | There is data, but the sample is too small or too narrow to support the leap to the population. Upstream of this sits `evidence_sufficiency` (no conclusion is licensed at all — no baseline, no control); here a direction is established, but the sample is simply too small to reach the population. Unlike `sample_selection` (which systematically excludes refuting cases), this sample is just too small or too narrow, with no systematic exclusion implied. | "Is this sample large and broad enough to stand in for the whole population the conclusion is about?" | "Three of my neighbours switched to the new commuter rail and loved it, so the line will be popular across the whole metro region." — three neighbours cannot represent a metro region. |
-| `weak_analogy` | The drill-loggable twin of the `fallacy_false_analogy` lens: the two cases differ on the load-bearing property the conclusion rests on, so the transferred inference does not carry. Distinct from `irrelevant_comparison` (a distractor pattern that compares mismatched referents) — here the analogy is the argument's own engine, and the flaw is the named disanalogy on the property that matters. | "Does the analogy hold on the property the conclusion actually needs, or only on surface features?" | "A city budget is like a household budget, so a city running a deficit is as reckless as a family maxing out its credit cards." — a household cannot issue currency or bonds against future tax revenue; the analogy breaks on exactly the property (sovereign fiscal capacity) the conclusion rests on. |
+| `hasty_generalization` | There is data, but the sample is too small or too narrow to support the leap to the population. Unlike an `evidence_sufficiency` item where the claimed relationship is not established even for the observed cases, here a direction is established in the sample but its wider reach is unsupported. Unlike `sample_selection` (which identifies an inclusion or retention rule), no systematic exclusion is implied. | "Is this sample large and broad enough to stand in for the whole population the conclusion is about?" | "Three of my neighbours switched to the new commuter rail and loved it, so the line will be popular across the whole metro region." — three neighbours cannot represent a metro region. |
+| `weak_analogy` | The drill-loggable twin of the `fallacy_false_analogy` lens: the two cases differ on the load-bearing property the conclusion rests on, so the transferred inference does not carry. Distinct from `irrelevant_comparison` (a distractor pattern that compares mismatched referents) — here the analogy is the argument's own engine, and the flaw is the named disanalogy on the property that matters. | "Does the analogy hold on the property the conclusion actually needs, or only on surface features?" | "A spelling checker is like a fact checker: if it finds no misspelled words, the document's claims must be true." — spelling correctness and factual accuracy test different properties; checking one does not establish the other. |
 | `source_credibility` | How much evidential weight a source or observation report warrants from credibility-relevant features: first-hand vs relayed, primary vs secondary, documented interests or error history, genuinely independent corroboration, observation or record quality, and relevant limits. It never licenses "true" or "false" from origin alone; unknown funding, motives, independence, credentials, or records stay unknown. | "Given what is documented about how this report was produced and corroborated, how much weight does it warrant — and what conclusion survives that adjustment?" | Five articles repeat a safety figure, but all cite the same vendor press release and none checks the underlying record. The publication count is one relayed source, not five independent lines; its weight is limited, though that alone does not make the figure false. |
+
+**Evidence discipline (generation, explanations, and corrections).** Answer
+the live claim with its criterion, the decisive evidence or counterexample,
+and the warranted ruling; end once the requested claims are settled. Separate
+stated facts, justified consequences, and what remains undetermined before
+writing the proof. Mark any additional assumption as conditional. For missing
+information, say "not supplied here"; a categorical absence needs an explicit
+fact or a proof of absence. An unreported action is not an action known not to
+have happened. Required item dissections still cover every option; they do not
+need additional causal stories, estimates, or replacement rules.
+Merely weakening the evidence for a conclusion does not by itself establish
+its negation or a zero effect; state the loss of support without claiming more
+than the proof shows.
+For an aggregate change, separate the contribution of a cause from the total
+observed change. A positive total can coexist with a negative contribution when
+other contributions offset it; the total's sign alone does not identify each
+component's sign. Short duration or a small number of events does not bound
+impact without the relevant weights and magnitudes. When rejecting a weak
+option, state what its facts fail to establish rather than inventing the sign
+or size of its effect. Any illustrative decomposition must be explicitly
+conditional, use the same outcome and denominator, and preserve the observed
+total; it is a compatible possibility, not an estimate of actual contributions.
+State an information gap as the relationship still unidentified, not a checklist
+of every absent measurement. Before calling an input necessary, check whether
+another sound design could identify that relationship without it; inputs needed
+by one route are not universally required. For example, random assignment to
+treatment and control with comparable post-treatment outcome measurement for the
+assigned groups can support causal inference without any pre-period measurement.
+
+Keep metric definitions as supplied, including selection criteria. Do not fill
+an unspecified qualifying event, threshold, or counting unit from a familiar
+metric name. If alternative operational rules fit the material but change the
+proposed inference, keep that rule unknown and retain the supplied measure.
+A performance rating is not automatically output volume; hours and durations
+are not automatically units produced. A more relevant proxy is not a direct outcome
+measure merely by contrast with a weaker proxy. Before presenting a comparison
+as a direct outcome comparison, verify that its evidence measures the stated
+outcome or makes it comparable through an explicitly supported conversion.
+Without a supported bridge, report the observed indicators, their evidential
+bearing and remaining uncertainty; do not invent equivalence between measures
+or definite unobserved outcomes.
+
+Keep each quantity tied to its units, denominator, cohort, and observation
+window. Preserve paired comparisons of the same units; changes in another
+group's membership cannot explain that paired change. When restating a count,
+retain what it counts: members per group do not state the number of groups or
+periods. Preserve the aggregation
+level through arithmetic: subtracting a common per-member offset from a mean
+produces an adjusted mean; it does not establish that every member has that
+value. Distinguish an absolute level from a change, and an unknown outcome from
+a known failure. Reconcile
+which exclusions a count already reflects before combining or subtracting
+counts. Derive bounds over all admissible unknown outcomes, not one assumed
+completion. Unspecified counts and shares remain unquantified, including
+qualitative claims about their magnitude; adding "likely" does not supply
+missing evidence. Preserve supported bounds without appending a favored
+location within them unless a distribution, prior or other supplied evidence
+supports that likelihood. A known selection rule does not reveal the missing
+cases' outcomes or reasons for leaving.
+Keep group composition among events, P(group | event), distinct from
+risk within a group, P(event | group). A group's large share of events alone
+does not establish its higher event rate. Use the population at risk or relevant
+exposure as the rate's denominator. Supplied joint counts, relative base rates
+or bounds may support conversion or comparison without absolute group counts;
+derive what they allow. For example, P(event | group) =
+P(group | event) * P(event) / P(group) when these conditional probabilities are
+defined and P(group) > 0. Otherwise retain the composition statement and leave unsupported
+risk rankings unknown.
+Keep when an inclusion rule was specified separate from the information used
+to determine membership. A rule fixed in advance can still classify members
+by later behavior or outcomes. Advance specification alone does not repair
+outcome-based selection; outcome-based membership alone does not show that
+the rule was devised afterward. Keep unspecified rule timing unknown.
+An inclusion or status label licenses an outcome or probability ranking only
+when its stated definition or a supplied relationship supports that ranking.
+Resignation, dropout, or a performance-plan label may identify who was omitted
+without identifying a different outcome such as engagement. Without that bridge,
+state selection risk or a conditional compatible pattern, not a favored ranking
+of missing outcomes. A plausible story about why members have the label is not
+that bridge.
+A required or mandatory procedure states an obligation, not observed compliance
+or complete coverage. Keep its actual response/completion rate unknown unless
+the material supplies that coverage or an operational definition and evidence
+that entail it. For an obligation-to-category inference, distinguish the
+obligation, the observed behavior, and the group's operational definition,
+including any threshold and time window. Compliance with an unspecified or
+weaker obligation does not establish crossing that category boundary. State
+membership or group overlap only when the supplied facts entail it. Behavior
+plus the definition, or a requirement together with compliance sufficient to
+meet that definition, are possible supporting routes, not exhaustive evidence
+requirements. Otherwise keep membership unknown and describe a possible
+selection route conditionally. Do not import an unchosen option's added facts
+to complete the chosen option's proof.
+Reconstruct the groups and quantifiers before carrying a fact across them.
+A property reported for one group does not by itself establish its absence in
+another, even when the groups are logical complements. An association observed
+for one ranked subgroup does not by itself establish the ordering of another;
+"not high" is not necessarily "low," and top and bottom quartiles are not
+logical complements. Different entity identities do not by themselves establish
+differences in the properties the inference depends on. If relevant comparability
+is not supplied or entailed, call it unestablished rather than inventing a
+specific difference.
+A predominant approval pattern is not an exclusive eligibility rule: "mainly
+approves X" remains compatible with non-X approvals; it does not establish their
+exclusion. Preserve that qualifier when explaining or summarizing selection. A
+stated intention records what someone reports planning, not a guaranteed outcome.
+An unchanged measure in another group does not by itself rule out a common
+shock: exposure, response or offsetting changes may differ. Reporting treatment
+in one group does not establish another group's treatment status.
+Matching calendar periods aligns their position in the year; it does not alone
+establish equal seasonal exposure, patterns or effects across years.
+A smaller or absent net change in a prior matched period likewise does not by
+itself rule out a seasonal contribution now: apply the component/total
+distinction above to historical changes too. Retain the history's comparative
+relevance, but do not treat its net change as a bound on the current seasonal
+contribution without a supported cross-period relationship.
+
+Observed outcomes must be ascertainable by the reporting date. First fix the
+outcome definition, its window and each member's horizon; then apply these
+branches in order:
+
+- If the horizon has been reached, classify success or failure from the known
+  facts about that defined window, not from status at a later reporting date.
+  Missing relevant history remains unknown. For retention to a fixed tenure horizon,
+  employment through that horizon is success even if departure occurs later.
+- If the horizon has not been reached, an outcome is settled only when supplied
+  facts already make it final under its definition. A known failure
+  can settle an outcome early if the outcome definition makes that failure final;
+  a still-at-risk participant with shorter follow-up remains unresolved.
+  A qualifying early departure can settle retention failure; continued employment
+  before the required horizon cannot settle retention success.
+
+Later events cannot change a correctly established outcome for that window;
+later discovery or correction of facts within the window can change the record.
+An estimate from incomplete follow-up needs its method and assumptions. Neither
+invent completed follow-up nor require it for an already settled outcome.
+A cutoff for completing full follow-up does not bound everyone whose outcome
+is ascertainable: qualifying early failures can occur outside that cutoff.
+Keep these populations separate in summaries and records. Reaching the horizon
+alone does not supply missing individual outcome history.
+A last possible follow-up date is not necessarily the earliest date all outcomes
+could settle. Missing exact counts may still permit bounds; an explicitly
+unresolved member already rules out every cohort member being settled.
+
+**Regression limits.** Extreme selection alone does not establish a rebound:
+repeat measurements must have a supported noise/dependence model. The independent-
+error worked model below is a sufficient special case, not a necessary condition;
+correlated errors can also yield a less extreme conditional expectation. Historical
+rebound documents change, not its mechanism; it does not identify measurement
+noise or establish expected regression for the current group. A historical
+average is neither that group's known untreated outcome nor a bound on it.
+Subtracting it from observed change does not identify or bound an effect.
+For a causal difference, use matched quantities: effect tau = treated outcome T
+minus untreated outcome U, for the same group, horizon and units. With T known,
+tau <= b is equivalent to U >= T - b: an effect upper bound needs an untreated
+lower bound, not an untreated upper bound. If U is only known to lie in [L, H],
+then tau lies in [T - H, T - L]; this bounds the effect without identifying one
+value. Changes from the same baseline obey the same relation, but a gain is
+not a final outcome level. An interval restriction need not establish exact
+equality between the historical average and this group's untreated outcome.
+Keep a separately stipulated model's conclusions conditional on that model.
+Preserve the quantity's kind as well as its model condition: if the model gives
+E[U | information] = m, carry that expectation through the conclusion and record,
+not U = m. Even a model that applies exactly can allow realized U different from
+m. If an effect estimate is requested, T - m can be labeled a model-based estimate;
+the expectation alone does not identify the realized effect T - U or a
+guaranteed bound.
+An expectation is not a realized value, a range of possible values, or a
+probability: judge compatibility from the model's permitted outcomes, and
+rarity only from an adequate distribution and sampling/selection specification.
+Never invent which individual was "unlucky." Do not infer that every member
+has the aggregate mean's sign without a premise that establishes it: errors
+of -2, 4, and 4 average +2 while one error is negative.
+For a requested conditional expectation, give the conditioning and decisive
+derivation. Do not append claims about selected observations' error signs,
+realized changes or rarity unless the question requires them and the supplied
+model separately supports them.
+
+**Worked model:** every true score is 80; each test adds an independent error
+of +8 or −8 with equal probability. A group selected by first-test scores has
+an expected second mean of 80. Conditional on an observed first mean of 72,
+its expected gain is 8; realized second scores and gains still vary. Fixed
+true scores do not remove fresh measurement variation or preclude a rebound.
+A correlated counterpart has true scores 80, first errors +8 or -8 equally
+likely, and second errors retaining the first sign with probability 0.75 and
+flipping it with probability 0.25. Both error marginals remain mean-zero with
+the same variance, but they are dependent. A first score of 72 has expected
+second score 0.75 * 72 + 0.25 * 88 = 76: regression without independent errors.
 
 **Contrast pair (hasty vs sufficiency)** — the two collapse in generation unless the stem is tightly built, so item generators anchor on this contrast, not boundary prose alone:
 
@@ -78,7 +266,7 @@ to truth:
 - `source_credibility` vs `evidence_sufficiency`: key the former only when a
   source's provenance, relay distance, interests, corroboration, observation
   quality, record quality, or limits are the designed issue. Generic missing
-  baseline, control, comparison, or enough support to license any conclusion
+  baseline, control, comparison, or enough support to license the live conclusion
   stays `evidence_sufficiency`.
 - `source_credibility` vs `sample_selection`: who entered or was excluded from
   the sample stays a sampling defect, even when a sponsor funded the study.
@@ -114,7 +302,33 @@ manufacturing a flaw from interest alone.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
-| `negation_test` | The technique for testing necessity: precisely negate the candidate assumption (all→not all, some→none, must→not necessarily), put it back into the argument, and see whether the argument collapses. | "Does negating this candidate sink the argument, or does the argument survive?" | Negate "participants did not already have stronger résumés" → if they did, the placement-rate argument collapses; the assumption was necessary. |
+| `negation_test` | Precisely negate the candidate (all→not all, some→none, must→not necessarily), then check whether the same premises can still support the inference. A surviving inference disproves necessity; one unfavorable example under the negation does not prove necessity. | "Can this candidate be false while the inference still has support, rather than its conclusion merely happening to be true?" | Negate "review takes less than 5 hours" in the task above: 7 hours plus at least 5 cannot reduce the old 12-hour total. The negated condition defeats this inference. |
+
+Derive the required relation before choosing a candidate. In the task above,
+`7 + review < 12` gives the exact condition `review < 5`. The stronger condition
+`review <= 2` is not necessary: review of 4 hours still supports a reduced
+total of 11. For a quantitative comparison, establish its units and relation,
+solve the threshold, then test boundary cases before verbalizing an option.
+
+For causal necessity, match T (the treated outcome) and U (the same group's
+untreated outcome). A claim of any decrease requires U > T; any increase
+requires U < T. This differs from attributing the entire gap between T and a
+comparison value C to treatment. Equality with C, or no initial advantage
+relative to C, can be stronger than the directional threshold. Under the
+candidate's precise negation, test any admissible U between T and C: a smaller
+supported effect can survive despite some baseline difference. Such a value
+is a conditional counterexample, not supplied outcome data.
+
+Comparability need not mean identical measurement definitions: a known
+calibration, or a changed window that makes the claimed improvement harder to
+show, may preserve the inference. Test that possibility before keying literal
+identity of endpoints as a necessary assumption. Apply the same test to every
+"must," "only," or replacement necessary condition in an explanation, not just
+the proposed key. State a sufficient condition as sufficient; after refuting
+necessity, stop at the decisive counterexample unless a further claim is asked.
+"Conclusion implies condition" is the necessary-condition direction, not its
+reversal. Whether asserting that relation fills the missing bridge is a separate
+question: a relation already entailed by the premises adds no missing fact.
 
 ---
 
@@ -132,6 +346,10 @@ structure is targeted. The ruling of `check_basis` is always about evidential WE
 `fallacy_ad_hominem` and `fallacy_genetic` reverse-guards draw. The operations
 examine sources; they never teach how to construct a deceptive one
 (redline 13).
+
+An identified source does not guarantee correct counts or interpretation.
+Treat a synthetic number as stipulated evidence when appropriate; do not claim
+that its known source, form, or platform proves its accuracy.
 
 | ID | Definition | Counter-question | Example |
 |----|-----------|-----------------|---------|
@@ -171,8 +389,8 @@ modes/scene.md).
 
 | ID | Lens |
 |----|------|
-| `frame_power` | Who holds power, who speaks, who is silent, whose account shapes the official record. |
-| `frame_institution` | What rules, roles, and structures produce this scene independent of any individual's intent. |
+| `frame_power` | Which voices and authority relations the excerpt represents, and what it establishes about whose account carries influence. Representation in the text is distinct from actual attendance, participation, or identity; where those are unestablished, the lens identifies that evidence limit. |
+| `frame_institution` | Which stated rules and roles constrain the available actions, and what remains unknown about their effects or origin. |
 | `frame_incentive` | What incentives — financial, reputational, relational — shape the behavior on display. |
 | `frame_charitable` | The most benign coherent reading of everyone's conduct; good faith until evidence rules it out. |
 | `frame_info_limits` | What this scene cannot tell us; what would need to be known before any stronger claim is warranted. |

@@ -107,6 +107,14 @@ d. **Breakthrough stop.** At the pack's `breakthrough` step: stop. The user
    articulates, in their own words, why this step was the breakthrough and
    which discipline it embodies. The coach corrects factual errors in the
    articulation (redline 1) and only then supplies the pack's annotation.
+   This is a hard reveal gate, not a request the user may waive: repeated
+   demands, refusals to articulate, or requests for the answer or annotation
+   leave it closed. Before the user's own articulation, do not reveal,
+   paraphrase, summarize, confirm, or otherwise expose any part of the pack's
+   annotation. A `hint` remains process-level; only the `stuck` protocol may
+   detour through a different parallel mini-case, after which the coach returns
+   to the same unanswered stop without supplying the annotation. `enough for
+   today` closes gracefully without supplying it.
 e. **Close.** Name which disciplines the user exercised unprompted — anchored
    to the record, redline 4: only ones that actually appear — and which the
    coach had to supply. Record an `expedition_process` event (passport/SCHEMA.md);

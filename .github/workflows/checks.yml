@@ -75,9 +75,8 @@ jobs:
 
   browser-smoke:
     name: Playwright smoke
-    # Pull requests and main pushes exercise the browser once. A tag-triggered
-    # reusable call skips it because the same commit already passed on main.
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    # Check the exact commit on tags too: a tag is not proof that this commit
+    # previously passed the browser gate on main.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -112,7 +111,7 @@ jobs:
 
   release_artifacts:
     name: Build verified release artifacts
-    needs: [python-compat, node]
+    needs: [python-compat, node, browser-smoke]
     runs-on: ubuntu-latest
     outputs:
       artifact_id: ${{ steps.upload.outputs.artifact-id }}

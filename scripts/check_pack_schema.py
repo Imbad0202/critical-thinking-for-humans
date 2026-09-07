@@ -33,7 +33,8 @@ VALID_DISCIPLINES = {
     "search_first",
 }
 SNAKE_TOKEN = re.compile(r"`([a-z]+(?:_[a-z]+)+)`")
-STEP_BULLET = re.compile(r"^- \*\*S\d+", re.MULTILINE)
+STEP_BULLET = re.compile(r"^- \*\*(S\d+)\b", re.MULTILINE)
+STEP_REFERENCE = re.compile(r"\bS\d+\b")
 AUDIT_BULLET = re.compile(r"^- \*\*T\d+", re.MULTILINE)
 FORECAST_BULLET = re.compile(r"^- \*\*F\d+", re.MULTILINE)
 PROVENANCE_MARKER = re.compile(r"arXiv|doi|https?://|LNCS|ISBN", re.IGNORECASE)
@@ -119,10 +120,21 @@ def check_pack(path: Path) -> list[str]:
                       "was verified")
 
     steps = sections["step_graph"]
-    n_steps = len(STEP_BULLET.findall(steps))
+    step_ids = STEP_BULLET.findall(steps)
+    n_steps = len(step_ids)
     if n_steps < 2:
         errors.append(f"step_graph has {n_steps} step bullet(s) (- **S<n>); "
                       "expected an ordered decomposition")
+    seen_steps = set()
+    for step_id in step_ids:
+        if step_id in seen_steps:
+            errors.append(f"step_graph has duplicate step ID {step_id}")
+        seen_steps.add(step_id)
+    step_numbers = [int(step_id[1:]) for step_id in step_ids]
+    if any(left >= right for left, right in
+           zip(step_numbers, step_numbers[1:])):
+        errors.append("step_graph step IDs must be in strictly increasing "
+                      "numeric order")
     for token in SNAKE_TOKEN.findall(steps):
         if token not in VALID_DISCIPLINES:
             errors.append(f"step_graph carries unknown discipline tag "
@@ -133,8 +145,18 @@ def check_pack(path: Path) -> list[str]:
                           for t in SNAKE_TOKEN.findall(bullet)):
             errors.append(f"step {sm.group(1)} carries no discipline tag")
 
-    if not re.search(r"S\d+", sections["breakthrough"]):
+    if not STEP_REFERENCE.search(sections["breakthrough"]):
         errors.append("breakthrough names no step (S<n>) from the step_graph")
+    # Check references where the runtime follows the solution. Scanning the
+    # entire pack would mistake publication identifiers such as S0273 in a
+    # provenance URL for step references. Several breakthrough annotations
+    # name multiple steps, so validate every reference, not only the first.
+    for name in ("step_graph", "breakthrough", "audit_targets",
+                 "calibration_key"):
+        references = set(STEP_REFERENCE.findall(sections.get(name, "")))
+        for missing in sorted(references - seen_steps,
+                              key=lambda value: int(value[1:])):
+            errors.append(f"{name} references unknown step {missing}")
 
     n_targets = len(AUDIT_BULLET.findall(sections["audit_targets"]))
     if not 3 <= n_targets <= 5:

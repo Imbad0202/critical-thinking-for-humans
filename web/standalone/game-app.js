@@ -59,20 +59,40 @@ const emptyProfile = () => ({
   musicVolume: 0.34,
 })
 
+const isRecord = (value) => value !== null && typeof value === 'object' && !Array.isArray(value)
+const profileCount = (value) => Number.isSafeInteger(value) && value >= 0 ? value : 0
+const profileList = (value) => Array.isArray(value) ? value.filter((entry) => typeof entry === 'string') : []
+const profileHistory = (value, allowed = null) => !isRecord(value) ? {} : Object.fromEntries(
+  Object.entries(value)
+    .filter(([date]) => /^\d{4}-\d{2}-\d{2}$/.test(date))
+    .map(([date, entries]) => [date, [...new Set(profileList(entries).filter((entry) => !allowed || allowed.includes(entry)))]]),
+)
+
 const migrateProfile = (parsed) => {
-  if (!parsed || typeof parsed !== 'object') return emptyProfile()
-  if (parsed.version === 3) return {
-    ...emptyProfile(), ...parsed,
-    modeCompletions: { ...emptyProfile().modeCompletions, ...parsed.modeCompletions },
-  }
-  if (parsed.version === 2) return {
-    ...emptyProfile(),
-    xp: Number(parsed.xp) || 0,
-    clues: Number(parsed.clues) || 0,
-    streak: Number(parsed.streak) || 0,
-    lastCompleted: parsed.lastCompleted || null,
-    structures: Array.isArray(parsed.structures) ? parsed.structures : [],
+  if (!isRecord(parsed)) return emptyProfile()
+  if (parsed.version === 2) return migrateProfile({
+    ...parsed,
+    version: 3,
+    xp: Number(parsed.xp),
+    clues: Number(parsed.clues),
+    streak: Number(parsed.streak),
     sfx: parsed.sound !== false,
+  })
+  if (parsed.version === 3) return {
+    ...emptyProfile(),
+    xp: profileCount(parsed.xp),
+    clues: profileCount(parsed.clues),
+    streak: profileCount(parsed.streak),
+    lastCompleted: typeof parsed.lastCompleted === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(parsed.lastCompleted) ? parsed.lastCompleted : null,
+    dailyModes: profileHistory(parsed.dailyModes, modeIds),
+    dailyCases: profileHistory(parsed.dailyCases),
+    completedSessions: Array.isArray(parsed.completedSessions) ? parsed.completedSessions.filter(isRecord).slice(-100) : [],
+    modeCompletions: Object.fromEntries(modeIds.map((mode) => [mode, profileCount(parsed.modeCompletions?.[mode])])),
+    structures: [...new Set(profileList(parsed.structures))],
+    sfx: parsed.sfx !== false,
+    music: parsed.music !== false,
+    musicVolume: typeof parsed.musicVolume === 'number' && Number.isFinite(parsed.musicVolume)
+      ? Math.min(1, Math.max(0, parsed.musicVolume)) : emptyProfile().musicVolume,
   }
   return emptyProfile()
 }
@@ -92,12 +112,14 @@ const state = {
   screen: 'select',
   modal: null,
   selectedMode: null,
+  practiceItemIds: null,
   phase: 'briefing',
   step: 0,
   answer: null,
   results: [],
   earnedXp: 0,
   profile: readProfile(),
+  storageAvailable: true,
   sceneObservation: '',
   scenePosition: null,
   sceneBlindspot: '',
@@ -187,7 +209,13 @@ const characterFolders = {
 }
 
 const writeProfile = () => {
-  localStorage.setItem(passportKey, JSON.stringify(state.profile))
+  try {
+    localStorage.setItem(passportKey, JSON.stringify(state.profile))
+    state.storageAvailable = true
+  } catch {
+    // Storage is optional: keep the completed run and settings in this tab.
+    state.storageAvailable = false
+  }
 }
 
 const escapeHtml = (value) => String(value ?? '')
@@ -203,7 +231,6 @@ const forbiddenDailyFields = new Set([
   'explanation', 'feedback', 'hint', 'key', 'miss', 'rationale', 'reveal', 'reward',
   'score', 'solution', 'success', 'verdict', 'verdicts',
 ])
-const isRecord = (value) => value !== null && typeof value === 'object' && !Array.isArray(value)
 const isDailyText = (value, max = 50_000) => typeof value === 'string' && value.length > 0 && value.length <= max
 const hasExactDailyKeys = (value, keys) => isRecord(value)
   && Object.keys(value).length === keys.length
@@ -314,7 +341,11 @@ const formatDailyDate = (dateKey) => {
 const completedToday = () => state.profile.dailyModes[todayKey()] || []
 const rank = () => Math.max(1, Math.floor(state.profile.xp / 120) + 1)
 const xpInRank = () => state.profile.xp % 120
-const currentMode = () => scopedGameModes()[state.selectedMode] || null
+const currentMode = () => {
+  const mode = scopedGameModes()[state.selectedMode] || null
+  if (mode?.id !== 'drill' || !state.practiceItemIds) return mode
+  return { ...mode, items: mode.items.filter((item) => state.practiceItemIds.includes(item.id)) }
+}
 const dailyLocaleMatches = () => {
   const locale = state.daily.envelope?.case?.locale
   return !locale || resolveLocale(locale) === state.locale
@@ -616,8 +647,8 @@ const renderDissection = (item) => {
 const playHeader = (mode, step, total) => `
   <header class="play-hud">
     <button class="round-icon round-icon--dark" type="button" data-action="exit-play" aria-label="${copy().common.exitMode}"><span aria-hidden="true">←</span></button>
-    <div class="play-hud__title"><span>${mode.label} · ${mode.topic}</span><strong>${modeTitle(mode)}</strong></div>
-    <div class="play-progress" aria-label="${copy().common.progress} ${step + 1} / ${total}">${Array.from({ length: total }, (_, index) => `<i${index < step ? ' data-done' : index === step ? ' data-current' : ''}>${index < step ? '✓' : index + 1}</i>`).join('')}</div>
+    <div class="play-hud__title"><span>${mode.label} · ${state.practiceItemIds ? copy().completion.retryCode : mode.topic}</span><strong>${modeTitle(mode)}</strong></div>
+    <div class="play-progress" aria-label="${copy().common.progress} ${Math.min(step + 1, total)} / ${total}">${Array.from({ length: total }, (_, index) => `<i${index < step ? ' data-done' : index === step ? ' data-current' : ''}>${index < step ? '✓' : index + 1}</i>`).join('')}</div>
     <div class="play-hud__reward"><span>+${state.earnedXp} XP</span></div>
     ${languageToggle(true)}
     ${audioButtons(true)}
@@ -668,7 +699,7 @@ const renderGradedPlay = () => {
             <div class="play-actions"><span>${strings.play.sealed}</span><button class="dialogue-next" type="button" data-action="inspect">${strings.play.inspect} <i aria-hidden="true">→</i></button></div>
           ` : state.phase === 'question' ? `
             <p class="play-prompt">${escapeHtml(item.prompt)}</p>
-            <div class="play-choices">${item.options.map(([id, optionCopy]) => `<button type="button" data-answer="${id}"${state.answer === id ? ' data-selected' : ''}><span>${id}</span><strong>${escapeHtml(optionCopy)}</strong><i aria-hidden="true">${state.answer === id ? '●' : '○'}</i></button>`).join('')}</div>
+            <div class="play-choices">${item.options.map(([id, optionCopy]) => `<button type="button" data-answer="${id}" aria-pressed="${state.answer === id}"${state.answer === id ? ' data-selected' : ''}><span>${id}</span><strong>${escapeHtml(optionCopy)}</strong><i aria-hidden="true">${state.answer === id ? '●' : '○'}</i></button>`).join('')}</div>
             <div class="play-actions"><button class="hint-link" type="button" data-action="hint">${strings.play.hint}</button><button class="dialogue-next" type="button" data-action="lock-answer"${state.answer ? '' : ' disabled'}>${mode.id === 'expedition' ? strings.play.lockPrediction : strings.play.lockAnswer} <i aria-hidden="true">→</i></button></div>
           ` : renderGradedReveal(mode, item)}
         </div>
@@ -677,8 +708,8 @@ const renderGradedPlay = () => {
   if (reveal) requestAnimationFrame(() => {
     const target = document.querySelector('.play-ruling')
     if (mode.id === 'expedition') feedback.cue.clue(target, { stamp: item.verdicts?.[state.answer], count: 8 })
-    else if (hit) feedback.cue.success(target)
-    else feedback.cue.wrong(target)
+    else if (hit) feedback.cue.success(target, { stamp: strings.play.hit })
+    else feedback.cue.wrong(target, { stamp: strings.play.review })
   })
 }
 
@@ -708,7 +739,7 @@ const renderSceneLens = (mode, scene) => {
       <h2>${escapeHtml(lens.label)}</h2>
       <p class="scene-lens__reading">${escapeHtml(lens.reading)}</p>
       <p class="play-prompt">${escapeHtml(lens.prompt)}</p>
-      <div class="play-choices play-choices--scene">${lens.options.map((optionCopy, index) => `<button type="button" data-answer="${index}"${state.answer === String(index) ? ' data-selected' : ''}${reveal ? ' disabled' : ''}><span>${index + 1}</span><strong>${escapeHtml(optionCopy)}</strong><i aria-hidden="true">${state.answer === String(index) ? '●' : '○'}</i></button>`).join('')}</div>
+      <div class="play-choices play-choices--scene">${lens.options.map((optionCopy, index) => `<button type="button" data-answer="${index}" aria-pressed="${state.answer === String(index)}"${state.answer === String(index) ? ' data-selected' : ''}${reveal ? ' disabled' : ''}><span>${index + 1}</span><strong>${escapeHtml(optionCopy)}</strong><i aria-hidden="true">${state.answer === String(index) ? '●' : '○'}</i></button>`).join('')}</div>
       ${reveal ? `<div class="scene-neutral-feedback"><span aria-hidden="true">◉</span><p><strong>${strings.scene.reviewed}</strong>${escapeHtml(selectedFeedback)}</p></div><div class="play-actions"><span>${strings.scene.noPreferred}</span><button class="dialogue-next" type="button" data-action="next-lens">${state.step === 5 ? strings.scene.nextSelf : strings.scene.nextAngle} <i aria-hidden="true">→</i></button></div>` : `<div class="play-actions"><button class="hint-link" type="button" data-action="scene-hint">${strings.scene.angleHint}</button><button class="dialogue-next" type="button" data-action="lock-lens"${state.answer === null ? ' disabled' : ''}>${strings.scene.reviewAngle} <i aria-hidden="true">→</i></button></div>`}
     </div>`
 }
@@ -718,7 +749,7 @@ const renderSceneCamera = (scene) => {
   return `
   <div class="scene-camera">
     <span class="section-code">${strings.scene.cameraCode}</span><h2>${strings.scene.cameraTitle}</h2><p>${escapeHtml(scene.positionPrompt || strings.scene.cameraBody)}</p>
-    <div class="play-choices">${scene.positions.map((position, index) => `<button type="button" data-position="${index}"${state.scenePosition === index ? ' data-selected' : ''}><span>${index + 1}</span><strong>${escapeHtml(position)}</strong><i aria-hidden="true">${state.scenePosition === index ? '●' : '○'}</i></button>`).join('')}</div>
+    <div class="play-choices">${scene.positions.map((position, index) => `<button type="button" data-position="${index}" aria-pressed="${state.scenePosition === index}"${state.scenePosition === index ? ' data-selected' : ''}><span>${index + 1}</span><strong>${escapeHtml(position)}</strong><i aria-hidden="true">${state.scenePosition === index ? '●' : '○'}</i></button>`).join('')}</div>
     <label for="scene-blindspot">${strings.scene.blindspotLabel}</label><textarea id="scene-blindspot" rows="2" maxlength="300" placeholder="${strings.scene.blindspotPlaceholder}">${escapeHtml(state.sceneBlindspot)}</textarea>
     <div class="play-actions"><span>${strings.scene.revisable}</span><button class="dialogue-next" type="button" data-action="submit-camera"${state.scenePosition === null || !state.sceneBlindspot.trim() ? ' disabled' : ''}>${strings.scene.savePosition} <i aria-hidden="true">→</i></button></div>
   </div>`
@@ -729,7 +760,7 @@ const renderSceneCommitment = (scene) => {
   return `
   <div class="scene-commitment">
     <span class="section-code">${strings.scene.commitmentCode}</span><h2>${strings.scene.commitmentTitle}</h2><p>${escapeHtml(scene.commitmentPrompt || strings.scene.commitmentBody)}</p>
-    <div class="play-choices">${scene.commitments.map((commitment, index) => `<button type="button" data-commitment="${index}"${state.sceneCommitment === index ? ' data-selected' : ''}><span>${index + 1}</span><strong>${escapeHtml(commitment.text)}</strong><i aria-hidden="true">${state.sceneCommitment === index ? '●' : '○'}</i></button>`).join('')}</div>
+    <div class="play-choices">${scene.commitments.map((commitment, index) => `<button type="button" data-commitment="${index}" aria-pressed="${state.sceneCommitment === index}"${state.sceneCommitment === index ? ' data-selected' : ''}><span>${index + 1}</span><strong>${escapeHtml(commitment.text)}</strong><i aria-hidden="true">${state.sceneCommitment === index ? '●' : '○'}</i></button>`).join('')}</div>
     <label for="scene-decision-reason">${strings.scene.reasonLabel}</label><textarea id="scene-decision-reason" rows="2" maxlength="400" placeholder="${strings.scene.reasonPlaceholder}">${escapeHtml(state.sceneDecisionReason)}</textarea>
     <div class="play-actions"><span>${strings.scene.noPreference}</span><button class="dialogue-next" type="button" data-action="pressure-test"${state.sceneCommitment === null || !state.sceneDecisionReason.trim() ? ' disabled' : ''}>${strings.scene.pressure} <i aria-hidden="true">→</i></button></div>
   </div>`
@@ -818,7 +849,7 @@ const renderDailyChoicePlay = (envelope) => {
             <div class="play-actions"><span>${strings.play.sealed}</span><button class="dialogue-next" type="button" data-action="inspect-daily">${strings.play.inspect} <i aria-hidden="true">→</i></button></div>
           ` : daily.phase === 'question' || daily.phase === 'submitting' ? `
             <p class="play-prompt">${escapeHtml(item.prompt)}</p>
-            <div class="play-choices">${item.options.map((option) => `<button type="button" data-daily-answer="${option.id}"${daily.answer === option.id ? ' data-selected' : ''}${daily.submitting ? ' disabled' : ''}><span>${option.id}</span><strong>${escapeHtml(option.text)}</strong><i aria-hidden="true">${daily.answer === option.id ? '●' : '○'}</i></button>`).join('')}</div>
+            <div class="play-choices">${item.options.map((option) => `<button type="button" data-daily-answer="${option.id}" aria-pressed="${daily.answer === option.id}"${daily.answer === option.id ? ' data-selected' : ''}${daily.submitting ? ' disabled' : ''}><span>${option.id}</span><strong>${escapeHtml(option.text)}</strong><i aria-hidden="true">${daily.answer === option.id ? '●' : '○'}</i></button>`).join('')}</div>
             ${daily.error ? `<p class="daily-inline-error" role="alert">${escapeHtml(daily.error)}</p>` : ''}
             <div class="play-actions"><span>${strings.daily.answerOnly}</span><button class="dialogue-next" type="button" data-action="lock-daily-answer"${daily.answer && !daily.submitting ? '' : ' disabled'}>${daily.submitting ? strings.daily.checking : strings.play.lockAnswer} <i aria-hidden="true">→</i></button></div>
           ` : renderDailyRuling(result, daily.step === items.length - 1)}
@@ -843,7 +874,7 @@ const renderDailyScenePlay = (envelope) => {
       <section class="scene-stage daily-scene-stage" aria-labelledby="daily-scene-title">
         <aside class="scene-case-card"><span class="section-code">${strings.daily.sceneExcerpt}</span><h1 id="daily-scene-title">${escapeHtml(dailyCase.title)}</h1><p>${escapeHtml(scene.location)}</p><div class="scene-lamps" aria-label="${interpolate(strings.scene.lampLabel, { count: daily.step + (daily.phase === 'reveal' ? 1 : 0) })}">${content.lenses.map((item, index) => `<i${index < daily.step || (index === daily.step && daily.phase === 'reveal') ? ' data-lit' : ''} title="${escapeHtml(item.label)}">${index + 1}</i>`).join('')}</div><small>${strings.scene.lampNote}</small></aside>
         <div class="scene-workbench daily-scene-workbench">
-          ${daily.phase === 'briefing' ? `<div class="scene-observation"><span class="section-code">${strings.scene.observeCode}</span><h2>${strings.daily.sceneRead}</h2><blockquote>${escapeHtml(scene.text)}</blockquote><div class="play-actions"><span>${strings.daily.sceneNoText}</span><button class="dialogue-next" type="button" data-action="inspect-daily">${strings.daily.firstAngle} <i aria-hidden="true">→</i></button></div></div>` : daily.phase === 'question' ? `<div class="scene-lens"><div class="scene-lens__counter"><span>${String(daily.step + 1).padStart(2, '0')}</span><small>/ ${String(content.lenses.length).padStart(2, '0')}</small></div><span class="section-code">${strings.scene.angleCode} ${String(daily.step + 1).padStart(2, '0')}</span><h2>${escapeHtml(lens.label)}</h2><p class="scene-lens__reading">${escapeHtml(lens.reading)}</p><p class="play-prompt">${escapeHtml(lens.prompt)}</p><div class="play-choices play-choices--scene">${lens.options.map((option, index) => `<button type="button" data-daily-answer="${index}"${daily.answer === String(index) ? ' data-selected' : ''}><span>${index + 1}</span><strong>${escapeHtml(option)}</strong><i aria-hidden="true">${daily.answer === String(index) ? '●' : '○'}</i></button>`).join('')}</div><div class="play-actions"><span>${strings.scene.noPreferred}</span><button class="dialogue-next" type="button" data-action="lock-daily-answer"${daily.answer === null ? ' disabled' : ''}>${strings.scene.reviewAngle} <i aria-hidden="true">→</i></button></div></div>` : renderDailyRuling(result, daily.step === content.lenses.length - 1)}
+          ${daily.phase === 'briefing' ? `<div class="scene-observation"><span class="section-code">${strings.scene.observeCode}</span><h2>${strings.daily.sceneRead}</h2><blockquote>${escapeHtml(scene.text)}</blockquote><div class="play-actions"><span>${strings.daily.sceneNoText}</span><button class="dialogue-next" type="button" data-action="inspect-daily">${strings.daily.firstAngle} <i aria-hidden="true">→</i></button></div></div>` : daily.phase === 'question' ? `<div class="scene-lens"><div class="scene-lens__counter"><span>${String(daily.step + 1).padStart(2, '0')}</span><small>/ ${String(content.lenses.length).padStart(2, '0')}</small></div><span class="section-code">${strings.scene.angleCode} ${String(daily.step + 1).padStart(2, '0')}</span><h2>${escapeHtml(lens.label)}</h2><p class="scene-lens__reading">${escapeHtml(lens.reading)}</p><p class="play-prompt">${escapeHtml(lens.prompt)}</p><div class="play-choices play-choices--scene">${lens.options.map((option, index) => `<button type="button" data-daily-answer="${index}" aria-pressed="${daily.answer === String(index)}"${daily.answer === String(index) ? ' data-selected' : ''}><span>${index + 1}</span><strong>${escapeHtml(option)}</strong><i aria-hidden="true">${daily.answer === String(index) ? '●' : '○'}</i></button>`).join('')}</div><div class="play-actions"><span>${strings.scene.noPreferred}</span><button class="dialogue-next" type="button" data-action="lock-daily-answer"${daily.answer === null ? ' disabled' : ''}>${strings.scene.reviewAngle} <i aria-hidden="true">→</i></button></div></div>` : renderDailyRuling(result, daily.step === content.lenses.length - 1)}
         </div>
         <div class="scene-character">${character ? `<img src="${character}" alt="" aria-hidden="true">` : ''}</div>
       </section>
@@ -860,8 +891,8 @@ const renderDailyPlay = () => {
   if (state.daily.phase === 'reveal') requestAnimationFrame(() => {
     const result = state.daily.results.at(-1)
     const target = document.querySelector('.daily-ruling')
-    if (result?.outcome === 'hit') feedback.cue.success(target)
-    else if (result?.outcome === 'miss') feedback.cue.wrong(target)
+    if (result?.outcome === 'hit') feedback.cue.success(target, { stamp: copy().play.hit })
+    else if (result?.outcome === 'miss') feedback.cue.wrong(target, { stamp: copy().play.review })
     else feedback.cue.clue(target, { stamp: copy().scene.reviewed, count: 7 })
   })
 }
@@ -885,10 +916,11 @@ const renderDailyComplete = () => {
         <h1 id="daily-complete-title">${neutral ? strings.completion.dailySceneTitle : strings.completion.dailyTitle}</h1>
         <p>${neutral ? strings.completion.dailySceneBody : strings.completion.dailyBody}</p>
         <div class="mode-complete__stats"><article><small>${neutral ? strings.completion.reviewedAngles : strings.completion.hits}</small><strong>${neutral ? `${state.daily.results.length} / 6` : `${hits} / ${state.daily.results.length}`}</strong></article><article><small>${strings.completion.dailyCase}</small><strong>${escapeHtml(strings.daily.labels[dailyCase.mode])}</strong></article><article><small>${strings.common.xpEarned}</small><strong>${state.daily.summary?.awardedXp || 0} XP</strong></article></div>
+        ${state.storageAvailable ? '' : `<p class="daily-inline-error" role="status">${strings.passport.sessionOnly}</p>`}
         <div class="mode-complete__actions"><button class="secondary-game-button" type="button" data-action="start-daily">${strings.completion.reread}</button><button class="case-cta" type="button" data-action="exit-daily"><span>${strings.completion.lobby}</span><i aria-hidden="true">→</i></button></div>
       </section>
     </main>`
-  requestAnimationFrame(() => feedback.cue.streak(document.querySelector('.mode-complete__seal'), Math.max(1, state.profile.streak)))
+  requestAnimationFrame(() => feedback.cue.streak(document.querySelector('.mode-complete__seal'), Math.max(1, state.profile.streak), { stamp: `${state.profile.streak} ${strings.stats.day}` }))
 }
 
 const renderComplete = () => {
@@ -903,6 +935,8 @@ const renderComplete = () => {
       : [[strings.completion.hits, `${summary.hits || 0} / ${mode.items.length}`], [strings.completion.clues, `${mode.items.length}`], [strings.completion.mode, modeTitle(mode)]]
   const title = strings.completion[`${mode.id}Title`]
   const body = strings.completion[`${mode.id}Body`]
+  const misses = mode.id === 'drill' ? state.results.filter((result) => !result.hit).length : 0
+  const nextMode = scopedModeList().find((candidate) => !completedToday().includes(candidate.id))
   app.innerHTML = `
     <main class="mode-complete" data-mode="${mode.id}">
       <img class="mode-complete__backdrop" src="${artUrl(`backgrounds/${mode.background}`)}" alt="" aria-hidden="true"><div class="mode-complete__veil" aria-hidden="true"></div>
@@ -912,10 +946,12 @@ const renderComplete = () => {
         <h1 id="complete-title">${title}</h1>
         <p>${body}</p>
         <div class="mode-complete__stats">${details.map(([label, value]) => `<article><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></article>`).join('')}<article><small>${strings.common.xpEarned}</small><strong>${state.earnedXp} XP</strong></article></div>
+        ${state.storageAvailable ? '' : `<p class="daily-inline-error" role="status">${strings.passport.sessionOnly}</p>`}
+        ${misses || nextMode ? `<div class="mode-complete__practice">${misses ? `<button class="secondary-game-button" type="button" data-action="retry-misses">${interpolate(strings.completion.retryMisses, { count: misses })}</button>` : ''}${nextMode ? `<button class="secondary-game-button" type="button" data-action="next-mode" data-next-mode="${nextMode.id}">${interpolate(strings.completion.nextMode, { mode: modeTitle(nextMode) })} →</button>` : ''}</div>` : ''}
         <div class="mode-complete__actions"><button class="secondary-game-button" type="button" data-action="replay">${strings.completion.replay}</button><button class="case-cta" type="button" data-action="select"><span>${strings.completion.choose}</span><i aria-hidden="true">→</i></button></div>
       </section>
     </main>`
-  requestAnimationFrame(() => feedback.cue.streak(document.querySelector('.mode-complete__seal'), Math.max(1, completedToday().length)))
+  requestAnimationFrame(() => feedback.cue.streak(document.querySelector('.mode-complete__seal'), Math.max(1, completedToday().length), { stamp: `${completedToday().length} / ${modeIds.length}` }))
 }
 
 const renderPassport = () => {
@@ -926,7 +962,7 @@ const renderPassport = () => {
     <section class="drawer-rank"><span class="drawer-rank__seal">${rank()}</span><div><small>${strings.stats.rank}</small><strong>${interpolate(strings.stats.level, { level: rank() })} · ${state.profile.xp} XP</strong><div><i style="width:${Math.round(xpInRank() / 120 * 100)}%"></i></div><span>${interpolate(strings.stats.toNext, { xp: 120 - xpInRank() })}</span></div></section>
     <section class="drawer-stats"><div><span>${strings.stats.streak}</span><strong>${state.profile.streak} ${strings.stats.day}</strong></div><div><span>${strings.stats.sessions}</span><strong>${state.profile.completedSessions.length}</strong></div><div><span>${strings.stats.clues}</span><strong>${state.profile.clues}</strong></div></section>
     <section class="drawer-structures"><span class="section-code">${strings.passport.modeCount}</span><div>${modeList().map((mode) => `<span>${escapeHtml(modeTitle(mode))} · ${state.profile.modeCompletions[mode.id] || 0}</span>`).join('')}</div></section>
-    <section class="drawer-privacy"><strong>${strings.passport.localTitle}</strong><p>${strings.passport.localBody}</p></section>
+    <section class="drawer-privacy"><strong>${strings.passport.localTitle}</strong><p>${state.storageAvailable ? strings.passport.localBody : strings.passport.sessionOnly}</p></section>
     <footer><button type="button" class="danger-link" data-action="reset-profile">${strings.passport.delete}</button></footer>
   </aside></div>`
 }
@@ -956,7 +992,14 @@ const renderAudioSettings = () => {
 
 const renderModal = () => state.modal === 'passport' ? renderPassport() : state.modal === 'providers' ? renderProviders() : state.modal === 'audio' ? renderAudioSettings() : ''
 
+let renderedView = null
+let renderedModal = null
+let modalReturnFocus = null
+
 const render = () => {
+  const focusToken = captureFocusToken()
+  const view = [state.screen, state.selectedMode, state.phase, state.step, state.daily.phase, state.daily.step].join(':')
+  if (state.modal && state.modal !== renderedModal) modalReturnFocus = focusToken
   applyLocaleMeta()
   if (state.screen === 'select') renderSelector()
   else if (state.screen === 'brief') renderBrief()
@@ -966,14 +1009,29 @@ const render = () => {
   } else if (state.screen === 'daily') renderDailyPlay()
   else if (state.screen === 'daily-complete') renderDailyComplete()
   else renderComplete()
-  if (state.modal) requestAnimationFrame(() => app.querySelector('[role="dialog"] button')?.focus())
+  world.instance?.setVisible(state.screen === 'select')
+  if (state.modal) {
+    if (state.modal === renderedModal) restoreFocusToken(focusToken)
+    if (!app.querySelector('[role="dialog"]')?.contains(document.activeElement)) app.querySelector('[role="dialog"] button')?.focus()
+  } else if (renderedModal) {
+    restoreFocusToken(modalReturnFocus)
+    modalReturnFocus = null
+  } else if (renderedView && view !== renderedView) {
+    const heading = app.querySelector('.play-prompt, .play-copy, .play-ruling h2, .scene-workbench h2, h1')
+    heading?.setAttribute('tabindex', '-1')
+    heading?.focus({ preventScroll: true })
+  } else {
+    restoreFocusToken(focusToken)
+  }
+  renderedView = view
+  renderedModal = state.modal
 }
 
 const captureFocusToken = () => {
   const active = document.activeElement
   if (!(active instanceof HTMLElement) || !app.contains(active)) return null
   if (active.id) return { id: active.id }
-  for (const attribute of ['data-domain', 'data-mode', 'data-locale', 'data-action']) {
+  for (const attribute of ['data-domain', 'data-mode', 'data-locale', 'data-action', 'data-answer', 'data-daily-answer', 'data-position', 'data-commitment']) {
     const value = active.getAttribute(attribute)
     if (value === null) continue
     const matches = [...app.querySelectorAll(`[${attribute}]`)].filter((element) => element.getAttribute(attribute) === value)
@@ -982,13 +1040,11 @@ const captureFocusToken = () => {
   return null
 }
 
-const renderPreservingFocus = () => {
-  const token = captureFocusToken()
-  render()
+const restoreFocusToken = (token) => {
   if (!token) return
-  if (token.id) { document.getElementById(token.id)?.focus(); return }
+  if (token.id) { document.getElementById(token.id)?.focus({ preventScroll: true }); return }
   const matches = [...app.querySelectorAll(`[${token.attribute}]`)].filter((element) => element.getAttribute(token.attribute) === token.value)
-  matches[Math.max(0, token.index)]?.focus()
+  matches[Math.max(0, token.index)]?.focus({ preventScroll: true })
 }
 
 const loadDailyCase = async () => {
@@ -996,7 +1052,7 @@ const loadDailyCase = async () => {
   state.daily.requestId = requestId
   state.daily.status = 'loading'
   state.daily.error = null
-  if (state.screen === 'select') renderPreservingFocus()
+  if (state.screen === 'select') render()
 
   const controller = new AbortController()
   const timeout = window.setTimeout(() => controller.abort(), 2200)
@@ -1020,7 +1076,7 @@ const loadDailyCase = async () => {
     state.daily.error = error?.name === 'AbortError' ? 'DAILY_TIMEOUT' : 'DAILY_UNAVAILABLE'
   } finally {
     window.clearTimeout(timeout)
-    if (state.daily.requestId === requestId && state.screen === 'select') renderPreservingFocus()
+    if (state.daily.requestId === requestId && state.screen === 'select') render()
   }
 }
 
@@ -1043,6 +1099,16 @@ const startDaily = () => {
   feedback.sound.paper()
 }
 
+const updateChoiceSelection = (attribute, value) => {
+  app.querySelectorAll(`[${attribute}]`).forEach((button) => {
+    const selected = button.getAttribute(attribute) === value
+    button.toggleAttribute('data-selected', selected)
+    button.setAttribute('aria-pressed', String(selected))
+    const marker = button.querySelector('i')
+    if (marker) marker.textContent = selected ? '●' : '○'
+  })
+}
+
 const chooseDailyAnswer = (value) => {
   if (state.screen !== 'daily' || state.daily.phase !== 'question' || state.daily.submitting) return
   const envelope = state.daily.envelope
@@ -1053,7 +1119,7 @@ const chooseDailyAnswer = (value) => {
   if (!valid) return
   state.daily.answer = value
   state.daily.error = null
-  app.querySelectorAll('[data-daily-answer]').forEach((button) => button.toggleAttribute('data-selected', button.dataset.dailyAnswer === value))
+  updateChoiceSelection('data-daily-answer', value)
   app.querySelector('[data-action="lock-daily-answer"]')?.removeAttribute('disabled')
   feedback.sound.paper()
 }
@@ -1101,12 +1167,15 @@ const lockDailyAnswer = async () => {
   daily.error = null
   render()
 
+  const controller = new AbortController()
+  const timeout = window.setTimeout(() => controller.abort(), 10_000)
   try {
     const response = await fetch(answerEndpoint, {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ contentId: envelope.contentId, itemId: item.id, answer, date: envelope.date }),
+      signal: controller.signal,
     })
     if (!response.ok) {
       const requestError = new Error('RULING_UNAVAILABLE')
@@ -1134,6 +1203,8 @@ const lockDailyAnswer = async () => {
     }
     render()
     announce(error?.code === 'CONTENT_CONFLICT' ? copy().daily.expiredAnnounce : copy().daily.errorAnnounce)
+  } finally {
+    window.clearTimeout(timeout)
   }
 }
 
@@ -1228,6 +1299,7 @@ const chooseDomain = (domain) => {
   if (!domainIds.includes(domain)) return
   state.domain = domain
   state.selectedMode = null
+  state.practiceItemIds = null
   state.results = []
   try { localStorage.setItem(domainKey, domain) } catch { /* Keep the in-memory preference. */ }
   syncViewUrl()
@@ -1245,6 +1317,7 @@ const chooseDomain = (domain) => {
 const chooseMode = (modeId) => {
   if (!scopedGameModes()[modeId]) return
   state.selectedMode = modeId
+  state.practiceItemIds = null
   state.screen = 'brief'
   state.modal = null
   world.setActiveMode(modeId)
@@ -1253,9 +1326,10 @@ const chooseMode = (modeId) => {
   feedback.sound.paper()
 }
 
-const startMode = () => {
+const startMode = ({ itemIds = null } = {}) => {
+  state.practiceItemIds = itemIds
   const mode = currentMode()
-  if (!mode) return
+  if (!mode || (mode.id !== 'scene' && !mode.items.length)) return
   state.screen = 'play'
   state.step = 0
   state.answer = null
@@ -1277,7 +1351,7 @@ const chooseAnswer = (value) => {
   const validPhase = state.selectedMode === 'scene' ? state.phase === 'lens' : state.phase === 'question'
   if (!validPhase) return
   state.answer = value
-  app.querySelectorAll('[data-answer]').forEach((button) => button.toggleAttribute('data-selected', button.dataset.answer === value))
+  updateChoiceSelection('data-answer', value)
   app.querySelector('[data-action="lock-answer"], [data-action="lock-lens"]')?.removeAttribute('disabled')
   feedback.sound.paper()
 }
@@ -1351,14 +1425,14 @@ app.addEventListener('click', (event) => {
   const position = event.target.closest('[data-position]')
   if (position) {
     state.scenePosition = Number(position.dataset.position)
-    app.querySelectorAll('[data-position]').forEach((button) => button.toggleAttribute('data-selected', button === position))
+    updateChoiceSelection('data-position', position.dataset.position)
     app.querySelector('[data-action="submit-camera"]')?.toggleAttribute('disabled', !state.sceneBlindspot.trim())
     feedback.sound.paper(); return
   }
   const commitment = event.target.closest('[data-commitment]')
   if (commitment) {
     state.sceneCommitment = Number(commitment.dataset.commitment)
-    app.querySelectorAll('[data-commitment]').forEach((button) => button.toggleAttribute('data-selected', button === commitment))
+    updateChoiceSelection('data-commitment', commitment.dataset.commitment)
     app.querySelector('[data-action="pressure-test"]')?.toggleAttribute('disabled', !state.sceneDecisionReason.trim())
     feedback.sound.paper(); return
   }
@@ -1422,6 +1496,11 @@ app.addEventListener('click', (event) => {
   else if (action === 'revise-commitment') { state.phase = 'commitment'; state.sceneCommitment = null; state.sceneDecisionReason = ''; render() }
   else if (action === 'hold-commitment') { state.earnedXp += 15; finishMode() }
   else if (action === 'replay') startMode()
+  else if (action === 'retry-misses') {
+    const itemIds = state.results.filter((result) => !result.hit).map((result) => result.id)
+    if (state.selectedMode === 'drill' && itemIds.length) startMode({ itemIds })
+  }
+  else if (action === 'next-mode') chooseMode(button.dataset.nextMode)
   else if (action === 'passport') { state.modal = 'passport'; render() }
   else if (action === 'providers') { state.modal = 'providers'; render() }
   else if (action === 'audio-settings') { state.modal = 'audio'; render() }
@@ -1438,7 +1517,13 @@ app.addEventListener('click', (event) => {
     writeProfile(); render()
   }
   else if (action === 'reset-profile') {
-    localStorage.removeItem(passportKey); localStorage.removeItem(legacyPassportKey)
+    try {
+      localStorage.removeItem(passportKey); localStorage.removeItem(legacyPassportKey)
+    } catch {
+      // Do not claim deletion when the browser cannot remove its stored record.
+      showToast(app.querySelector('[role="dialog"]'), copy().passport.deleteFailed)
+      return
+    }
     state.profile = emptyProfile(); feedback.setMuted(false); music.setEnabled(true); music.setVolume(state.profile.musicVolume)
     state.modal = null; render()
   }

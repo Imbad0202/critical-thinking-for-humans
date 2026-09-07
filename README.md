@@ -1,12 +1,27 @@
 # critical-thinking-for-humans
 
-[![Version](https://img.shields.io/badge/version-v1.5.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.5.0)
+[![Version](https://img.shields.io/badge/version-v1.6.0-blue)](https://github.com/Imbad0202/critical-thinking-for-humans/releases/tag/v1.6.0)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Sponsor](https://img.shields.io/badge/sponsor-Buy%20Me%20a%20Coffee-orange?logo=buy-me-a-coffee)](https://buymeacoffee.com/crucify020v)
 
-**Last Updated:** 2026-07-25
+**Last Updated:** 2026-09-06
 
 A gym for your critical thinking. The AI is the coach; you do the work.
+
+**Play on Fable 5.1 or GPT-6-Astra.** Load the skill or portable manual, select
+your model in its host, and say:
+
+```text
+直接開始，drill，職場溝通，standard，direct，三輪挑戰。用繁體中文。
+```
+
+Quick start preserves your settings and skips repeat setup. `只玩一輪` sets a
+short session; `換個情境再試` gives the last completed target a fresh case. `提示`,
+`卡住了`, and `今天到這裡` work alongside the English controls. The coach stops
+for your answer on both models. See the [model and play guide](docs/MODEL_GUIDE.md)
+for host-specific entry paths. The [paired evaluation index](docs/evals/README.md)
+keeps the baseline and each regression candidate's actual replies and failures
+separately. These finite tests do not establish equivalent model performance.
 
 ## Three ways to play
 
@@ -76,18 +91,21 @@ the skill pauses local Passport recording, says why, and never falls back to an
 unsafe direct write. The claude.ai and portable editions have no on-disk
 Passport and do not need Node.js.
 
-## What's new in v1.5.0
+## What's new in v1.6.0
 
-This release promotes source credibility to the fourteenth canonical reasoning
-structure and adds credibility-specific generation and behavior gates. Scene
-grows from ten to twelve fallacy lenses with motte-and-bailey and gambler's
-fallacy, including reverse guards for legitimate narrowing, dependence,
-parameter learning, future-block probability, and regression to the mean; it
-also makes complete steelman-before-correction ordering explicit. The local
-Passport writer now serializes concurrent checkpoints and fails closed on unsafe
-paths or a missing Node.js 22+ runtime. The seven Daily source cases also remove
-option-length answer cues. No Passport schema or manipulation-taxonomy bump.
-Full details in [CHANGELOG.md](CHANGELOG.md).
+Three mechanics borrowed from the July 2026 *AI in Business Education*
+supplement. Drill and detective gain a keyed reject-the-framing move: items
+and layers where the material affirmatively defeats what the question
+presupposes, so the correct answer is to challenge the premise — with a
+reverse-guard pool against reflexive question-refusal. The Passport now
+tracks post-reveal updating: seeing a flaw and moving on it are recorded
+separately, a reasoned hold is a first-class outcome, and no update pressure
+is ever applied. Scene gains a third track, configure: design the
+information request and verification plan for a synthetic decision before
+any analysis appears, then a reverse-designed key scores which asks were
+load-bearing, which were noise, and what the plan missed. All additions ride
+the existing event types with additive optional fields — no schema version
+bump. Full details in [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
@@ -204,9 +222,9 @@ until the final layer's key is the case's truth. It sits between scene and
 expedition: it judges (the flaws are real, against a frame the case states up
 front), but the material is generated fresh each time rather than drawn from a
 verified pack. Say `detective` (or 查案 / 破案 / 偵探).
-(Detective generation is the most demanding work in the skill; recommended on an
-opus-class or stronger model. On weaker models it degrades to fewer layers or
-declines to start rather than shipping a broken case.)
+(Detective generation is the most demanding work in the skill. On every model,
+it must pass the dependency audit, fall back to fewer layers within the selected
+tier, or decline the case. See the [model guide](docs/MODEL_GUIDE.md).)
 
 ---
 
@@ -459,9 +477,10 @@ the same canonical sources, rewrites the multi-file and on-disk-passport languag
 into single-document language, and fails if any filesystem, router, or
 absent-mode wording survives. The canonical files are never modified.
 
-Two honest caveats live in the file's own header. It was written and tested only
-on Claude; it is designed to be model-neutral but is unverified elsewhere, so use
-a strong, current model. And two pieces of the full version are absent: the
+Two honest caveats live in the file's own header. Historical behavior evidence
+includes Claude and Codex/GPT sessions; it does not validate this revision on
+Fable 5.1 or GPT-6-Astra. Both use the shared coaching contract and bounded
+case-generation checks. And two pieces of the full version are absent: the
 **expedition** mode (it needs the verified pack library, which cannot fit in one
 pasted document) and the on-disk **passport** (a plain chat has no file, so
 progress is tracked in the conversation only). The three included modes are

@@ -131,7 +131,7 @@ const compileShader = (gl, type, source) => {
 const showFallback = (container) => {
   container.className = 'world-fallback'
   container.innerHTML = '<span class="fallback-orbit fallback-orbit--one"></span><span class="fallback-orbit fallback-orbit--two"></span><span class="fallback-core"></span>'
-  return { status: 'fallback', setActiveMode() {}, destroy() {} }
+  return { status: 'fallback', setActiveMode() {}, setVisible() {}, destroy() {} }
 }
 
 const createWebglWorld = (container) => {
@@ -144,7 +144,7 @@ const createWebglWorld = (container) => {
   const gl = canvas.getContext('webgl', {
     antialias: false,
     alpha: false,
-    powerPreference: 'high-performance',
+    powerPreference: 'low-power',
   })
 
   if (!gl) {
@@ -190,8 +190,10 @@ const createWebglWorld = (container) => {
   let targetPointer = [0, 0]
   let pointer = [0, 0]
   let frame = 0
+  let visible = true
   let startedAt = performance.now()
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  let reducedMotion = motionQuery.matches
 
   const resize = () => {
     const ratio = Math.min(window.devicePixelRatio || 1, 1.5)
@@ -207,10 +209,13 @@ const createWebglWorld = (container) => {
   }
 
   const handlePointer = (event) => {
+    if (reducedMotion || !visible) return
     targetPointer = [event.clientX / window.innerWidth - 0.5, 0.5 - event.clientY / window.innerHeight]
   }
 
   const render = (now) => {
+    frame = 0
+    if (!visible || document.hidden) return
     resize()
     pointer[0] += (targetPointer[0] - pointer[0]) * 0.025
     pointer[1] += (targetPointer[1] - pointer[1]) * 0.025
@@ -219,23 +224,47 @@ const createWebglWorld = (container) => {
     gl.uniform1f(uniforms.time, reducedMotion ? 0 : (now - startedAt) / 1000)
     gl.uniform3f(uniforms.active, active[0], active[1], active[2])
     gl.drawArrays(gl.TRIANGLES, 0, 3)
-    frame = requestAnimationFrame(render)
+    if (!reducedMotion) frame = requestAnimationFrame(render)
   }
 
-  window.addEventListener('resize', resize, { passive: true })
+  const requestRender = () => {
+    if (!frame && visible && !document.hidden) frame = requestAnimationFrame(render)
+  }
+  const syncVisibility = () => {
+    cancelAnimationFrame(frame)
+    frame = 0
+    requestRender()
+  }
+  const handleMotionChange = (event) => {
+    reducedMotion = event.matches
+    if (reducedMotion) { pointer = [0, 0]; targetPointer = [0, 0] }
+    syncVisibility()
+  }
+
+  window.addEventListener('resize', requestRender, { passive: true })
   window.addEventListener('pointermove', handlePointer, { passive: true })
-  frame = requestAnimationFrame(render)
+  document.addEventListener('visibilitychange', syncVisibility)
+  motionQuery.addEventListener('change', handleMotionChange)
+  requestRender()
 
   return {
     status: 'online',
     setActiveMode(mode) {
       active = palette[mode] || palette.detective
       startedAt = performance.now() - 250
+      requestRender()
+    },
+    setVisible(nextVisible) {
+      if (visible === Boolean(nextVisible)) return
+      visible = Boolean(nextVisible)
+      syncVisibility()
     },
     destroy() {
       cancelAnimationFrame(frame)
-      window.removeEventListener('resize', resize)
+      window.removeEventListener('resize', requestRender)
       window.removeEventListener('pointermove', handlePointer)
+      document.removeEventListener('visibilitychange', syncVisibility)
+      motionQuery.removeEventListener('change', handleMotionChange)
       gl.deleteBuffer(buffer)
       gl.deleteShader(vertexShader)
       gl.deleteShader(fragmentShader)

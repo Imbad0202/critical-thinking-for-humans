@@ -4547,6 +4547,20 @@ textarea {
   justify-content: center;
 }
 
+.mode-complete__practice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.mode-complete__practice button {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+}
+
 /* Entry routes and sound settings dialogs */
 
 .game-dialog--wide {
@@ -4801,6 +4815,8 @@ textarea {
 
 @media (max-width: 680px) {
   .gateway-topbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
     min-height: 4.5rem;
     padding: max(0.55rem, env(safe-area-inset-top, 0px)) max(0.65rem, env(safe-area-inset-right, 0px)) 0.55rem max(0.65rem, env(safe-area-inset-left, 0px));
   }
@@ -4810,9 +4826,7 @@ textarea {
   }
 
   .gateway-topbar .case-brand small,
-  .gateway-topbar .passport-compact strong,
-  .gateway-topbar .game-topbar__actions > .round-icon:nth-of-type(2),
-  .gateway-topbar .game-topbar__actions > .round-icon:nth-of-type(3) {
+  .gateway-topbar .passport-compact strong {
     display: none;
   }
 
@@ -4908,12 +4922,14 @@ textarea {
   }
 
   .mode-brief__actions,
+  .mode-complete__practice,
   .mode-complete__actions,
   .scene-pressure .play-actions {
     flex-direction: column;
   }
 
   .mode-brief__actions button,
+  .mode-complete__practice button,
   .mode-complete__actions button,
   .scene-pressure .play-actions button {
     width: 100%;
@@ -5660,7 +5676,7 @@ html[data-locale="zh-TW"] body {
   }
 
   .language-switch {
-    grid-template-columns: repeat(2, minmax(2.5rem, auto));
+    grid-template-columns: repeat(2, minmax(2.75rem, auto));
   }
 
   .language-switch button {

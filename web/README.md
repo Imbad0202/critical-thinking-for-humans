@@ -63,6 +63,13 @@ English it states that boundary and disables the Daily action rather than
 mixing Chinese case text into an English session. The four fixed demos remain
 fully bilingual.
 
+After a fixed Drill run, the completion page offers missed-question practice
+and a direct route to another mode not yet completed today. Full replay remains
+available. Missed-question practice revisits the same authored questions; it is
+not a fresh case or a new measure of reasoning ability. If browser storage is
+unavailable, play continues in the current tab and the completion page says the
+Passport could not be saved.
+
 ## Three entry points remain distinct
 
 | Entry | Runtime | Current scope |
@@ -70,6 +77,11 @@ fully bilingual.
 | CLI / plugin | Dynamic AI conversation | All four canonical modes, pack library, local Passport, free-form challenges |
 | Skill ZIP / chat | Dynamic AI conversation on a supported host | Four modes in the Claude.ai ZIP; platform-specific Passport behavior |
 | Web Casebook | Static browser content plus optional Daily API | Four fixed bilingual excerpts; no model call |
+
+For dynamic practice with Fable 5.1 or GPT-6-Astra, use the skill or portable
+manual following the [model guide](../docs/MODEL_GUIDE.md). Both share quick
+start, round budgets, and an audited remix command; those are chat-coaching
+controls, separate from this browser's fixed-question replay.
 
 A ChatGPT Plus, Claude Pro, Google AI Pro, or SuperGrok subscription generally
 does not provide inference credit to an independent website. The demo never

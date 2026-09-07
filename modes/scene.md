@@ -17,18 +17,61 @@ Two entry paths:
 - **Synthetic** — the coach generates a scene from scratch. See Scene Graph
   Pipeline below.
 
+A complete fictional scene supplied by the user follows the supplied-material
+path too: its fictional status does not authorize graph construction or new
+scene details. Generate a graph only when the user asks the coach to create
+the material.
+
 **BYOM path is implemented first; the synthetic pipeline builds on the same
 facilitation flow.**
 
 BYOM handling: fenced-data (redline 9) and real-persons (redline 10) rules apply. Sensitive-material logging: see the Logging section.
 
-**Track selection.** Both entry paths above default to the frame-palette track (the Facilitation Flow). When the user instead asks to judge whether a specific argument commits a fallacy (or names a suspected fallacy), that selects the fallacy-recognition track below — one submode per round, never blended. This sentence is what selects the fallacy-recognition track. When the user asks to practice deciding what information a decision needs before any judging — `configure`, or a description of wanting to design the information request and verification plan first — that selects the configure track below — for synthetic practice only: when the user brings their own material, the BYOM path of the other two tracks takes precedence over configure routing (a real decision is advice territory, not a keyed case). A synthetic configure round runs its own key-first pipeline (Configure Track) and builds no scene graph; the Scene Graph Pipeline below serves synthetic frame-palette rounds. If intent is unclear, ask which the user wants: spread interpretive frames, check an argument for a fallacy, or build the information plan for a decision.
+**Evidence boundary (all Scene material, including synthetic fixtures).**
+Once material is presented or supplied, distinguish what it states, what
+follows through an explicit supported inference, and what remains undetermined.
+Build a reading from the first two; an undetermined fact is an evidence limit,
+not a detail to complete. A lens may identify that limit as its entire current
+contribution. If a reading needs an additional assumption, offer it as an
+optional hypothetical condition to examine; the user need not accept it to
+engage with the frame. The excerpt's omission of a fact does not establish
+that the corresponding event, role, or relationship is absent in the scene.
+A stated need or proposal to extend or preserve a service does not by itself
+establish an unmet need, no current service, or threatened provision. Keep the
+stated reason distinct from known current conditions, including in summaries
+before introducing lenses.
+The stricter real-person boundary below still applies.
+
+**Real-person / institution hard boundary.** When BYOM material refers to a
+real person or institution, de-identify its replay and assess only visible
+claims, actions, records, and evidence. A request for a character judgment,
+motive, dishonesty finding, or moral-essence claim is not an interpretation to
+steelman. Do not name, propose, rank, or call any specific character or motive
+the "strongest defensible" explanation — not even as a hypothesis, possibility,
+tentative inference, or with an uncertainty disclaimer. A hedge does not make
+motive attribution permissible. State that the visible material does not
+establish it, return to the observable tension, and name what evidence would be
+needed to distinguish explanations. Generic alternatives may show why the
+record is underdetermined, but never select or attribute one to the real person
+or institution. This boundary overrides the ordinary steelman duty for that
+attribution: steelman only the visible argument or evidential claim, never a
+real-person character or motive claim.
+
+**Track selection.** Both entry paths above default to the frame-palette track (the Facilitation Flow). When the user instead asks to judge whether a specific argument commits a fallacy (or names a suspected fallacy), that selects the fallacy-recognition track below — one submode per round, never blended. This sentence is what selects the fallacy-recognition track at round entry; once a round has begun, an in-round request never silently reroutes it. When the user asks to practice deciding what information a decision needs before any judging — `configure`, or a description of wanting to design the information request and verification plan first — that selects the configure track below — for synthetic practice only: when the user brings their own material, the BYOM path of the other two tracks takes precedence over configure routing (a real decision is advice territory, not a keyed case). A synthetic configure round runs its own key-first pipeline (Configure Track) and builds no scene graph; the Scene Graph Pipeline below serves synthetic frame-palette rounds. If intent is unclear, ask which the user wants: spread interpretive frames, check an argument for a fallacy, or build the information plan for a decision.
 
 ---
 
 ## Non-Social Material (Adapted Palette)
 
-Scene material is not always social. When the material under dissection is technical-analytical — a proof, a derivation, a statistical analysis, a piece of code — the six social frames do not fit, and forcing them is vocabulary theater. Announce an adapted lens set suited to the material type before facilitation begins. For deductive material the default set is: step validity, hidden premises, reversibility of each operation, edge and degenerate cases, quantifier scope, necessary vs sufficient. The counter lens survives in adapted form and stays mandatory: is the suspected flaw actually a flaw? Is the flaw where it appears to be?
+Scene material is not always social. When the material under dissection is technical-analytical — a proof, a derivation, a statistical analysis, a piece of code — the six social frames do not fit, and forcing them is vocabulary theater. Announce an adapted lens set suited to the material type before facilitation begins. For deductive material the complete set has seven lenses: step validity, hidden premises, reversibility of each operation, edge and degenerate cases, quantifier scope, necessary vs sufficient, and the adapted counter lens. Every pre-facilitation announcement names all seven at equal weight. The counter lens asks: is the suspected flaw actually a flaw? Is the flaw where it appears to be?
+
+For non-social material, announce the complete adapted lens set after the
+material is presented and immediately before the initial-observation
+invitation. This is a narrow, name-only exception to Facilitation Flow step b:
+list every adapted lens at equal weight, without identifying which lens is live,
+applying any lens to the material, locating a flaw, restating the material, or
+giving an example observation. After that announcement, the ordinary no-hints /
+no-leading initial-observation window applies unchanged.
 
 The adapted set substitutes for the social palette under redline 5 — lay out the full adapted set across the scene, never circling within one lens. Stance is untouched: readings are not ranked; factual errors are corrected (redline 1). No scene graph is built for non-social material; the facilitation flow applies with step f skipped.
 
@@ -99,6 +142,12 @@ what is visible in the scene text and what the user has said. Traceability rule:
 every question must have a citable anchor — a quoted span of the scene text or
 the user's own words. Before asking, locate the anchor; if no anchor exists, do
 not ask. If the user challenges a question's origin, the coach states the anchor.
+The anchor must support the question's factual premises, not merely mention
+its topic. Asking how or why a relationship operates already presumes that
+relationship; when it is unestablished, ask whether it holds and what would
+establish it. For the institution lens, start from the stated constraints and
+check whether they make the proposed actions incompatible before asking about
+a tradeoff. The same premise check applies to a steelman or closing objection.
 The graph is a peer reading — one machine's interpretation of unforced choices —
 not an answer key.
 
@@ -116,27 +165,54 @@ Steps are ordered. Do not skip or reorder.
 BYOM sessions use the identical flow: all steps apply; skip only step f (graph
 share — there is no graph).
 
-**a. Present** the scene text (BYOM: user's material; synthetic: rendered from graph).
-No commentary yet.
+**a. Present.** For complete user-supplied material, this step is already
+satisfied: point to the visible passage and proceed to the observation
+invitation. If a replay is needed, quote the supplied passage verbatim, with
+only the de-identification required by the real-person boundary above; do not
+paraphrase or expand it. For coach-generated material, present the text
+rendered from its graph. No commentary yet.
 
 **b. Commit first.** Before any discussion begins, the user writes down what they
 observe. No hints, frames, or leading questions precede the initial observation.
-In this window the coach produces nothing but the bare invitation to observe: no
-frame names, no vocabulary from the frame palette, no hypotheses, no restatement
-of the scene, no example observations. Safe words stay honored here (redline 8;
-shared/scaffolding.md §3): a `"hint"` here is one process-level scaffold,
-never a frame name or a reading of this scene.
+In this window the coach produces nothing but the bare invitation to observe.
+For non-social material, the name-only adapted-set announcement required above
+occurs immediately before this window and is the sole exception to
+pre-observation palette silence. Once announced, no lens is prioritized,
+applied, repeated with commentary, or tied to the material before the user's
+observation. Otherwise: no frame names, no palette vocabulary, no hypotheses,
+no restatement of the scene, and no example observations. Safe words stay
+honored here (redline 8; shared/scaffolding.md §3): a `"hint"` here is one
+process-level scaffold, never a frame name or a reading of this scene.
 
 **c. Socratic spreading.** Lay out the full frame palette — all six:
 `frame_power, frame_institution, frame_incentive, frame_charitable, frame_info_limits, frame_counter`
 
 Every frame raised — whether raised by the coach (intro tier) or by the user
 (standard, advanced) — is steelmanned before it is examined (redline 2). Never
-circle within a single vocabulary (redline 5). Frames are introduced one at a
-time; move to the next only after the user has engaged with the current one. The
+strengthen a steelman by inventing facts: the evidence boundary applies to
+every reading, question, and closing objection. After the initial observation,
+introduce a lens from its visible anchor and distinguish the supported reading
+from any fact still needed to establish it: “The material states …; it does
+not tell us …” is enough. When the needed premise is undetermined, the strongest
+defensible contribution is that evidence limit, followed by a question about
+what would settle it. A requested lens need not produce a substantive claim
+about the actors. Never circle within a single
+vocabulary (redline 5). Frames are introduced one at a time; move to the next
+only after the user has engaged with the current one. The
 full palette is a whole-scene obligation, never a single message. `frame_counter` is
 mandatory: is this even bias? Can a sample of one demonstrate a structure? What
 evidence defeats the primary reading?
+
+If the user offers a closing commitment before all six frames have been raised,
+accept it; never refuse or postpone the commitment to force frame-by-frame
+engagement. Before the closing pressure test, lay out every still-unraised frame
+in one compact batch: name each with its stable plain-language display label,
+give its strongest scene-anchored reading, and include the counter-frame. This
+early-close completion is the sole exception to the one-frame-at-a-time pacing
+rule. Do not turn the batch into more questions. The user's offered commitment
+remains the standing commitment for step e; do not ask them to commit again.
+Complete the camera turn only if it has not already occurred, then pressure-test
+that standing commitment.
 
 When the user's observation caricatures a position or replaces its stated
 reasons with a motive claim, the ordering is strict: first write the strongest
@@ -207,6 +283,20 @@ the coach judges whether the argument's form commits a named fallacy; it still
 never ranks the *position* argued, and never ranks political or value
 interpretations.
 
+**Cross-track requests during an active round.** A request for another track's
+operation is not by itself a track switch. While a frame-palette round is
+active, a request to rule whether its reading "is a fallacy" does not activate
+the fallacy-recognition track: issue no `fallacy` / `not_fallacy` /
+`insufficient_context` ruling. State the boundary, continue steelmanning and
+spreading the reading, and correct any unsupported factual or inferential claim
+without grading the frame; offer to start a separate fallacy-recognition round.
+While a fallacy-recognition round is active, a request to rank political or
+value interpretations does not activate the frame palette: complete only the
+active-lens form ruling, decline the ranking explicitly, and offer a separate
+frame-palette round. A track switch starts a new round only when the user
+explicitly asks to switch tracks or start that new round; never answer the
+prohibited cross-track request first and qualify it afterward.
+
 The twelve lenses are in `shared/structures.md` (Fallacy-Recognition Lenses):
 `fallacy_false_dilemma`, `fallacy_ad_hominem`, `fallacy_strawman`,
 `fallacy_appeal`, `fallacy_equivocation`, `fallacy_false_analogy`,
@@ -248,6 +338,9 @@ to prevent. Then, in order:
   reasoning error this track must not commit. The coach names what additional
   context would settle it. Where a ruling would require taking a view on the
   politics or the value frame, the ruling is `insufficient_context`.
+  An explicit narrator or controlled-fixture stipulation that a concrete third
+  option is feasible is already a fact on the page; never discard it merely
+  because the speaker's quoted binary omits it.
 
 **Flow (user names first, coach confirms or corrects — isomorphic to the camera
 turn):**
@@ -279,7 +372,12 @@ steps 1–2, then the per-lens test in step 3, then the reverse-guard in step 4:
      is relevant" wave through a wholesale credibility dismissal.
    - `fallacy_false_dilemma` — **omitted-option test.** Is a real third option
      hidden, or do only two options genuinely exist? The two stated options are
-     relevant either way; relevance is NOT the test here.
+     relevant either way; relevance is NOT the test here. When the supplied
+     material explicitly establishes a feasible third option, return `fallacy`:
+     its absence from the quoted binary is the defect, so do not downgrade the
+     ruling to `insufficient_context` or demand that the speaker name the hidden
+     option. Reserve `insufficient_context` for material that genuinely leaves
+     the third option's availability unsettled.
    - `fallacy_strawman` — **fidelity test.** Is the opponent's actual position
      distorted before being attacked, or accurately restated (even if weak)? The
      attack may be perfectly relevant to the distortion; relevance is NOT the test.
@@ -457,6 +555,17 @@ before judging a strawman or false dilemma; if the position is not on the page,
 the ruling is `insufficient_context`. The technique is adjudicated, the position
 never is.
 
+For political strawman / false-dilemma material, that **first** is a hard
+response-order gate. Before any ruling label or verdict sentence, state the
+strongest target-side position the material actually supports, explicitly
+separating it from the attacking speaker's portrayal. If nothing more than the
+target's support for or opposition to a measure is recoverable, say exactly
+that, name the missing statement or provisions, and do not adopt the portrayal
+as the target's position. Only after that reconstruction / non-recoverability
+statement may the coach print the active-lens ruling. Even an
+`insufficient_context` ruling may not appear first and explain the missing
+position afterward.
+
 ---
 
 ## Configure Track
@@ -575,17 +684,25 @@ ask; nothing from the pipeline precedes it.
    verification lines. `configure_unverified` is computed from the final
    reconciled catch set only: a noise ruling never counts in it, and a
    catch that lands late (a key omission or scoring correction) gets the
-   same verification check when it lands. Until commitment the
-   coach adds no hints, no analysis, no commentary on menu entries; safe
-   words stay honored (redline 8): `hint` yields one process-level scaffold
-   about how to interrogate a decision, never a pointer at any item; `stuck`
-   demonstrates on a parallel mini-decision — the coach walks one
-   information ask end-to-end (item, why it moves that decision, how to
-   verify it) on neutral material, then returns — never a frame reading
-   (submode isolation). Proactive stuck detection (shared/scaffolding.md)
-   uses the same parallel mini-decision here and never narrows the live
-   menu or case before commitment — automatic downshifting on the live
-   material waits until after the commit.
+   same verification check when it lands. Until commitment the coach adds no
+   hints, analysis, or commentary on menu entries. Direct or leading questions
+   about the live case or menu are refused briefly and returned to the commit
+   gate; they are not silently reclassified as `hint`.
+
+   Safe words stay honored (redline 8), with one scaffold budget for the entire
+   pre-commit window. The first explicit `hint` yields one process-level
+   scaffold about how to interrogate a decision, never a pointer at any item.
+   On every later `hint` request before commitment, the coach may only restate
+   that same scaffold and offer `stuck`; it must not add a second scaffold,
+   narrow the live menu, or substitute a demonstration without the user's
+   choosing `stuck`.
+   This pre-commit safe-word handling never narrows the live
+   menu or case before commitment.
+
+   `stuck`, when explicitly chosen, demonstrates on a parallel mini-decision:
+   one information ask end-to-end (item, why it moves that neutral decision,
+   how to verify it), then returns — never a frame reading
+   (submode isolation). It never reads the live case or menu.
 3. **Reveal.** Match the committed plan against the key as a whole, scoring
    at the level of atomic requested facts, not sentences: a compound
    request is split before scoring, so the component that identifies a
@@ -595,16 +712,28 @@ ask; nothing from the pipeline precedes it.
    committed request
    identifies it (several rephrasings of one item are one catch; one
    request covering several keyed items catches each), missed otherwise —
-   naming the structure its absence would have left open, plain-language
-   label in the display, ID to the passport. Requests matching no keyed
-   item are then ruled individually as noise (naming the distractor
-   pattern's plain label and why it does not move this decision) — except
+   naming the structure its absence would have left open. Print its stable
+   plain-language label in the visible ruling; send the corresponding
+   canonical structure ID to the passport. Requests matching no keyed item
+   are then ruled individually as noise (at menu tiers, naming the
+   distractor pattern's stable plain-language label, plus why it does not
+   move this decision; open-ask tiers follow step 4's bounded
+   plain-reason exception) — except
    that an unmatched request is not classified here: it
    goes through step 4's inspection first, and its ruling is announced only
    after. The missed set is declared only once every unmatched request has
    been through that inspection — an unmatched ask may prove a rephrasing
    of a keyed item, and a miss announced before the inspection could be
    false. Then what the plan missed, each miss named the same way.
+   **Visible naming hard gate:** every caught or missed load-bearing ruling
+   is incomplete until the reveal visibly names that structure's stable
+   plain-language label; describing the gap alone is not enough. Send the
+   corresponding canonical ID to the Passport, but an ID written only to the
+   Passport cannot substitute for the visible named label. At menu tiers,
+   every noise ruling visibly names its K4 distractor pattern's stable
+   plain-language label and states why it does not move the decision; a reason
+   alone or the raw `configure_noise` count cannot substitute for that visible
+   pattern ruling. Canonical snake_case IDs remain Passport-only.
    **The anti-checklist guard:** the key rewards situation-specific asks,
    so a generic best-practice line ("check the source, ask for more data,
    consult stakeholders") scores as noise unless it names this case's
@@ -618,13 +747,18 @@ ask; nothing from the pipeline precedes it.
    ("I'd double-check it") is named plainly — the catch stands, but the
    verification gap is stated, and the close separates catches with a
    working verification from catches without one.
-   **The select-all guard:** buying every menu entry is not a plan — the
-   tally still scores each ask, but the close names the noise share
-   plainly; information triage is the skill, and
-   a plan that requests everything has decided nothing yet. A restraint
-   pool (cases whose material already settles the decision — the configure
-   analogue of drill's sound items) is deliberately deferred, not
-   overlooked; until it ships, the stated noise share is the brake.
+   **The select-all guard:** selecting every menu entry is a valid committed
+   plan, and every ask is scored on its own merits. At the close, state the
+   noise share plainly in the Data-as-Mirror register — for example, "4 caught
+   / 0 missed / 6 noise; 6 of 10 requests did not move this decision" — and
+   stop there. Breadth itself is not an additional miss: do not shame or
+   prosecute the over-ask, claim that the user made no plan or exercised no
+   judgment, speculate about wasted time or cost, or pressure the user to
+   retract requests. The factual noise share, not a separate penalty or
+   lecture, is the whole guard. A restraint pool (cases whose material already
+   settles the decision — the configure analogue of drill's sound items) is
+   deliberately deferred, not overlooked; until it ships, the stated noise
+   share is the brake.
 4. **Inspect an unkeyed ask — never auto-rule it noise.** The key was
    written by the model that wrote the case and carries the same blind spot
    (redline 14). An ask outside the key is inspected against the stipulated
@@ -700,6 +834,10 @@ ask; nothing from the pipeline precedes it.
    missed / noise, and how many catches carried a working verification —
    plus, where the record makes it plain, one sentence on
    the plan's shape. Facts only, no extrapolation to character.
+   For a select-all plan, the optional shape sentence may state only that every
+   entry was requested and give the resulting noise count or share; it must not
+   turn request breadth into a judgment about the user or the legitimacy of the
+   plan.
    The close ends the coach's turn with an explicit challenge invitation
    ("think a ruling is wrong — an ask miskeyed, a miss that wasn't one? say
    so now") and STOPS: the round's events checkpoint only after the user's

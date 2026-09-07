@@ -72,10 +72,10 @@ sed -E \
   -e 's/in the mode files/in the mode sections/g' \
   -e 's/^Mode files own the specific knobs\./Mode sections own the specific knobs./' \
   -e 's/^The mode files carry the window-specific scaffold content\./The mode sections carry the window-specific scaffold content./' \
-  -e 's/pending events from the passport buffer \(events already written at a checkpoint/what you have been tracking this session (there is no saved file in this edition/' \
-  -e 's/^stay on disk; use "delete passport" to remove those\)\./to remove; "delete passport" clears your running sense of the session)./' \
+  -e 's/pending events from the passport buffer \(events already written at a checkpoint/pending events for the current round (completed rounds remain in the session/' \
+  -e 's/^stay on disk; use "delete passport" to remove those\)\./tally; use "delete passport" to clear that tally)./' \
   -e 's/^The passport lives on the user.s machine; its relevant content enters the model context when used\. When a passport section is loaded, all of its content is in scope; the user may flag specific entries for exclusion\. Viewing, deletion, and pause-recording are always available\.$/In this single-file edition there is no saved passport; you keep a light running sense of the session in the conversation only. The user may flag anything for exclusion. Showing it (a summary from memory), clearing it, and pausing it are always available./' \
-  -e 's/everything buffered since the last checkpoint write\. Events from already-completed items are on disk and stay; remove them with "delete passport"\./everything you have been tracking this session. There is no saved file in this edition; "delete passport" clears your running sense of the session./' \
+  -e 's/everything buffered since the last checkpoint write\. Events from already-completed items are on disk and stay; remove them with "delete passport"\./everything pending for the current round. Completed rounds remain in the session tally; "delete passport" clears that tally./' \
   -e 's/This applies to user-supplied material, BYOM text, passport content read from disk, and any file the user attaches\./This applies to user-supplied material and BYOM text./' \
   -e 's/in a mode file,/in a mode section,/' \
   -e 's/ Expedition mode sits outside the three tiers and owns its own step-size knob \(modes\/expedition\.md\)\.//' \

@@ -7,15 +7,13 @@ import { fileURLToPath } from 'node:url'
 import {
   validatePrivateRecord,
   validatePrivateRecordAgainstCase,
-  validatePublicCase,
 } from '../server/daily-schema.mjs'
-import { createBlobPrivateProvider } from '../server/content-provider.mjs'
+import { createBlobPrivateProvider, createStaticPublicProvider } from '../server/content-provider.mjs'
+import { isDateKey } from '../server/daily-date.mjs'
 
 const WEB_ROOT = fileURLToPath(new URL('../', import.meta.url))
 const PRIVATE_DIR = join(WEB_ROOT, '.private', 'daily')
-const PUBLIC_CASE_DIR = join(WEB_ROOT, 'content', 'daily', 'cases')
 const MAX_RECORD_BYTES = 1_000_000
-const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 
 class OperatorError extends Error {
   constructor(message) {
@@ -65,8 +63,8 @@ function parseArgs(argv) {
       options.publish = true
     } else if (argument === '--date') {
       const date = argv[index + 1]
-      if (!date || !DATE_PATTERN.test(date)) {
-        throw new OperatorError('--date requires YYYY-MM-DD.')
+      if (!isDateKey(date)) {
+        throw new OperatorError('--date requires a valid YYYY-MM-DD calendar date.')
       }
       if (options.date) throw new OperatorError('--date may only be provided once.')
       options.date = date
@@ -136,35 +134,13 @@ async function selectedPrivateFiles(date) {
   return selected
 }
 
-async function loadPublicCases() {
-  let entries
-  try {
-    entries = await readdir(PUBLIC_CASE_DIR, { withFileTypes: true })
-  } catch {
-    throw new OperatorError('Committed public daily cases could not be read.')
-  }
-
-  const cases = new Map()
-  for (const entry of entries.filter((item) => item.isFile() && item.name.endsWith('.json'))) {
-    const dailyCase = await readJson(join(PUBLIC_CASE_DIR, entry.name), 'A committed public case')
-    try {
-      validatePublicCase(dailyCase)
-    } catch {
-      throw new OperatorError('A committed public daily case failed schema validation.')
-    }
-    if (cases.has(dailyCase.id)) throw new OperatorError('Committed public daily case IDs are not unique.')
-    cases.set(dailyCase.id, dailyCase)
-  }
-  return cases
-}
-
 function validationFailure(date, error) {
   const path = typeof error?.path === 'string' ? ` at ${error.path}` : ''
   return new OperatorError(`Private record ${date} failed schema validation${path}.`)
 }
 
 async function validateInputs(files) {
-  const publicCases = await loadPublicCases()
+  const staticProvider = createStaticPublicProvider()
   const records = []
 
   for (const path of files) {
@@ -177,10 +153,10 @@ async function validateInputs(files) {
         throw new OperatorError(`Private record ${fileDate} has a mismatched publishDate.`)
       }
 
-      publicCase = record.case ?? publicCases.get(record.contentId)
-      if (!publicCase) {
+      publicCase = record.case ?? (await staticProvider.getDaily(fileDate)).case
+      if (!record.case && publicCase.id !== record.contentId) {
         throw new OperatorError(
-          `Private record ${fileDate} has no matching committed public case; embed its public case bundle.`,
+          `Private record ${fileDate} does not match that date's public rotation; embed its public case bundle.`,
         )
       }
       validatePrivateRecordAgainstCase(record, publicCase)
@@ -215,7 +191,7 @@ function canonicalJson(value) {
 async function readExisting(blob, pathname, options) {
   let result
   try {
-    result = await blob.get(pathname, options)
+    result = await blob.get(pathname, { ...options, useCache: false })
   } catch {
     throw new OperatorError('Vercel Blob could not check an existing scheduled record.')
   }

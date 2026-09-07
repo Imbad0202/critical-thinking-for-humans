@@ -62,16 +62,32 @@ export async function readJsonBody(request, { maxBytes = 4096 } = {}) {
     throw new RequestBodyError('PAYLOAD_TOO_LARGE', 413)
   }
 
-  let text
+  let text = ''
+  let reader
   try {
-    text = await request.text()
-  } catch {
+    reader = request.body?.getReader()
+    if (!reader) throw new RequestBodyError('INVALID_BODY')
+    const decoder = new TextDecoder()
+    let bytesRead = 0
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      bytesRead += value.byteLength
+      if (bytesRead > maxBytes) {
+        // Stop reading at the limit even when Content-Length is absent or false.
+        await reader.cancel().catch(() => {})
+        throw new RequestBodyError('PAYLOAD_TOO_LARGE', 413)
+      }
+      text += decoder.decode(value, { stream: true })
+    }
+    text += decoder.decode()
+  } catch (error) {
+    if (error instanceof RequestBodyError) throw error
     throw new RequestBodyError('INVALID_BODY')
+  } finally {
+    reader?.releaseLock()
   }
 
-  if (new TextEncoder().encode(text).byteLength > maxBytes) {
-    throw new RequestBodyError('PAYLOAD_TOO_LARGE', 413)
-  }
   if (!text.trim()) throw new RequestBodyError('INVALID_BODY')
 
   try {

@@ -175,6 +175,8 @@ with sync_playwright() as playwright:
         assert page.locator('[data-result]').count() == 0
         page.locator('[data-action="next-lens"]').click()
     page.locator('[data-position="0"]').click()
+    assert page.locator('.play-progress').get_attribute('aria-label') == '進度 6 / 6'
+    assert page.locator('[data-position="0"]').get_attribute('aria-pressed') == 'true'
     assert page.locator('[data-action="submit-camera"]').is_disabled()
     page.locator('#scene-blindspot').fill('可能低估公共安全消息的時效。')
     page.locator('[data-action="submit-camera"]').click()

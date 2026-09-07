@@ -128,6 +128,7 @@ const zhTW = {
     sceneDetails: [['看過的角度', '6 / 6'], ['檢查反面證據', '完成'], ['做出決定', '完成']],
     expeditionDetails: [['校準命中', '{hits} / {total}'], ['完成預測', '{total}'], ['資料來源', 'CASP14']],
     hits: '答對題數', clues: '練過的推論', mode: '練習模式', replay: '再玩一次', choose: '選另一個模式',
+    retryMisses: '重練本輪 {count} 題錯題', retryCode: '錯題重練', nextMode: '接著試試：{mode}',
     dailySceneTitle: '六個角度都看過了；這裡沒有偷藏標準立場。', dailyTitle: '今日案件已完成。',
     dailySceneBody: '你完成的是一輪觀察，不是價值立場測驗。明天會換一宗案件；四種固定示範仍可不限次練習。',
     dailyBody: '伺服器只回傳這次需要的解析。這七題也出現在公開離線示範中，因此只適合展示流程，不是防作弊題庫。每日案件依台北日期更新。',
@@ -136,6 +137,8 @@ const zhTW = {
   passport: {
     code: '本機練習紀錄', title: '調查員護照', modeCount: '四種模式完成次數', localTitle: '只記在這台裝置',
     localBody: '保存 XP、完成日期、模式與推理類型；情境模式的自由文字不會寫入 localStorage。清除瀏覽器資料會一併刪除。',
+    sessionOnly: '瀏覽器目前無法儲存護照。本輪成績與設定仍在這個分頁，關閉或重新整理後可能遺失。',
+    deleteFailed: '瀏覽器目前無法刪除護照。請稍後重試，或從瀏覽器設定清除此網站的資料。',
     delete: '刪除本機護照',
   },
   routes: {
@@ -275,6 +278,7 @@ const en = {
     sceneDetails: [['Angles reviewed', '6 / 6'], ['Counter-evidence', 'Complete'], ['Decision made', 'Complete']],
     expeditionDetails: [['Calibrated calls', '{hits} / {total}'], ['Forecasts made', '{total}'], ['Source pack', 'CASP14']],
     hits: 'Correct answers', clues: 'Patterns practised', mode: 'Practice mode', replay: 'Play again', choose: 'Choose another mode',
+    retryMisses: 'Retry missed questions ({count})', retryCode: 'Missed-question practice', nextMode: 'Try next: {mode}',
     dailySceneTitle: 'Six angles reviewed, with no hidden preferred position.', dailyTitle: 'Today’s case is closed.',
     dailySceneBody: 'You completed an observation route, not a values test. A new case arrives tomorrow; the four fixed demos remain replayable.',
     dailyBody: 'The server returned only the explanation needed for this attempt. These seven fixtures also appear in the public offline demo, so they demonstrate the flow rather than anti-cheat integrity. Daily cases follow the Taipei date.',
@@ -283,6 +287,8 @@ const en = {
   passport: {
     code: 'Local practice record', title: 'Investigator Passport', modeCount: 'Completions by mode', localTitle: 'Stored only on this device',
     localBody: 'Stores XP, completion dates, modes, and reasoning patterns. Free text from Scene is never written to localStorage. Clearing browser data removes this record.',
+    sessionOnly: 'Your browser cannot save the Passport right now. Results and settings remain in this tab and may be lost when you close or reload it.',
+    deleteFailed: 'Your browser could not delete the Passport. Try again later, or clear this site’s data in your browser settings.',
     delete: 'Delete local Passport',
   },
   routes: {
