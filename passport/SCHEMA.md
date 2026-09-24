@@ -316,7 +316,7 @@ Per-event carriers:
   states. A move the scene never gave a real opening for is `not_elicited`.
   Consistency: `prompted|independent` accompany a `true` boolean;
   `not_elicited` only a `false` one. Configure rounds carry no elicitation
-  surface in v1 — the map's keys are frame-round moves; a
+  surface — the map's keys are frame-round moves; a
   committed-after-scaffold marker for the configure commit gate is deferred
   deliberately, not overlooked.
 - `expedition_process` — optional `disciplines_prompted` (array): discipline
@@ -391,13 +391,13 @@ Per-event carriers:
   states the two together rather than reporting one act as two
   independent facts.
 - a configure round (modes/scene.md, Configure Track) — deliberately carries
-  none of these fields in v1, `commitment_shift` included (its close is a
+  none of these fields, `commitment_shift` included (its close is a
   tally, not a pressure-tested commitment). Its reveal IS a keyed
   correction — drill's anchor — so a post-reveal carrier for the
   plan-restatement act is a natural future extension, deferred rather than
   overlooked.
-- `expedition_process` — deliberately carries none of these fields: #48
-  scoped the dimension to the modes where a reveal corrects the user's own
+- `expedition_process` — deliberately carries none of these fields: the
+  dimension is scoped to the modes where a reveal corrects the user's own
   move mid-session. Wiring expedition's forecaster loop (predict → reveal →
   compare) into it is future work, recorded here so the omission reads as a
   decision, not an accident.
