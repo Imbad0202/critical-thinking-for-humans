@@ -63,11 +63,39 @@ def open_gateway(page: Page, locale: str) -> None:
     assert page.locator(".mode-choice-card").count() == 4
 
 
+def assert_steady_under_edge_hover(page: Page, selector: str) -> None:
+    # If the lift leaves a resting pointer behind, :hover flips every frame and
+    # Playwright never sees the button as stable enough to click.
+    target = page.locator(selector)
+    page.mouse.move(0, 0)
+    target.scroll_into_view_if_needed()
+    box = target.bounding_box()
+    assert box, f"{selector} is not rendered"
+    bottom = box["y"] + box["height"]
+    for offset in (-1, 1):
+        page.mouse.move(box["x"] + box["width"] / 2, bottom + offset)
+        tops = target.evaluate(
+            """async (el) => {
+              const tops = [];
+              for (let frame = 0; frame < 4; frame += 1) {
+                await new Promise((resolve) => requestAnimationFrame(resolve));
+                tops.push(el.getBoundingClientRect().top);
+              }
+              return tops;
+            }"""
+        )
+        assert len(set(tops)) == 1, (
+            f"{selector} moves under a pointer {offset:+d}px from its bottom edge: {tops}"
+        )
+
+
 def complete_drill(page: Page, answers=("A", "B", "A"), verify_profile=True) -> None:
     page.locator('.mode-choice-card[data-mode="drill"]').click()
     page.wait_for_selector('.mode-brief[data-mode="drill"]')
+    assert_steady_under_edge_hover(page, '[data-action="start-mode"]')
     page.locator('[data-action="start-mode"]').click()
     page.wait_for_selector('.mode-play[data-mode="drill"]')
+    assert_steady_under_edge_hover(page, '[data-action="inspect"]')
 
     for index, answer in enumerate(answers):
         page.locator('[data-action="inspect"]').click()
