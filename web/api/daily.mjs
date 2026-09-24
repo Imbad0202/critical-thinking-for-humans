@@ -10,17 +10,33 @@ import {
   methodNotAllowed,
   publicDailyCacheHeaders,
 } from '../server/http.mjs'
+import {
+  createFixedWindowRateLimiter,
+  requestRateLimitKey,
+} from '../server/rate-limit.mjs'
 
 const defaultStaticProvider = createStaticPublicProvider()
 const defaultPrivateProvider = createPrivateProviderResolver()
+const defaultRateLimiter = createFixedWindowRateLimiter()
 
 export function createDailyHandler({
   clock = () => new Date(),
   staticProvider = defaultStaticProvider,
   resolvePrivateProvider = defaultPrivateProvider,
+  rateLimiter = defaultRateLimiter,
 } = {}) {
   return async function dailyHandler(request) {
     if (request.method !== 'GET') return methodNotAllowed(['GET'])
+
+    const rate = rateLimiter.consume(requestRateLimitKey(request))
+    if (!rate.allowed) {
+      return errorResponse('RATE_LIMITED', '請稍候再試。', {
+        status: 429,
+        retryAfter: rate.retryAfter,
+        headers: rate.headers,
+      })
+    }
+
     const now = clock()
     const date = taipeiDateKey(now)
 
