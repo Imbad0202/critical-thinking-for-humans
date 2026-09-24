@@ -1358,7 +1358,7 @@ CHECKS = [
     ("SKILL.md", "detective-soft-switchable",
      "Detective is soft-switchable like drill and scene"),
     ("SKILL.md", "model-neutral-compatibility",
-     "Fable 5.1 and GPT-6-Astra use the same coaching contract"),
+     "Every model uses the same coaching contract"),
     ("passport/SCHEMA.md", "detective-event", "detective_process"),
     ("passport/SCHEMA.md", "detective-event-fields", "unregistered_flaws_found"),
     ("platforms/claude-ai/passport/SCHEMA.md", "claude-ai-detective-line",
