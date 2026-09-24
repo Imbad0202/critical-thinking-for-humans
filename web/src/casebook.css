@@ -707,8 +707,21 @@ textarea {
 
 .case-cta:hover,
 .dialogue-next:hover {
+  position: relative;
   transform: translateY(-2px);
   filter: brightness(1.06);
+}
+
+/* The lift moves the hit area 2px up, so a pointer on the bottom edge would
+   flip :hover every frame. While hovered, reach back down: insets count from
+   the button's padding box (1px border, plus the 2px lift at the bottom).
+   Hover-only on purpose; a permanent extension flips :hover just below the
+   edge instead. */
+.case-cta:hover::after,
+.dialogue-next:hover::after {
+  position: absolute;
+  inset: -1px -1px -3px;
+  content: "";
 }
 
 .detective-portrait {
