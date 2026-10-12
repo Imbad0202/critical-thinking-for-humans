@@ -174,7 +174,11 @@ User flow in SKILL.md.
 
 The CLI edition keeps an append-only event log with per-event timestamps. This
 edition compresses that into tallies plus a bounded miss list: miss-rate
-weighting per structure survives; fine-grained history does not. If the user
+weighting per structure survives; fine-grained history does not.
+Recency in drill step (b) reads only the dates the block carries
+(`recent_misses` and `last_session`); where a structure has no date there, miss
+rate alone applies. A cross-field rep reads a miss's field from its `tally`
+split when one exists, else treats the field as unrecorded. If the user
 asks for history the block cannot carry, say so plainly rather than
 reconstructing it.
 

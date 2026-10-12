@@ -56,6 +56,22 @@ These optional commands change the session's length or next case, not its stance
   expedition, offer another verified pack or a disclosed revisit instead of
   inventing a pack. If the current round is still open, keep it open and tell
   the user remix is available after close; `enough for today` still works now.
+- **Cross-field rep (a returning-session offer, never imposed)**: when the
+  record shows a drill miss from an earlier session, the returning-user
+  confirm may add one optional offer: one drill item on a structure the record
+  shows missed, set in a field other than the one it was missed in. Do not name
+  the structure in the offer or before the item; recognizing which structure
+  applies is the move being practised, so say only that the item comes from
+  earlier misses. Pick the structure by drill step (b). For the field, use one
+  the user names, or under `no preference` choose one that differs from the
+  recorded field of that miss (from the current profile domain when the field
+  is unrecorded), and run drill's domain-fit gate on it. The item runs the full
+  drill pipeline at the saved tier under its tier's announcement rules and logs
+  normally, its `domain` naming the new field. No `profile_set` event is
+  written; later items return to the saved profile. Declining, ignoring the
+  offer, or starting something else settles it for the session. Never offer it
+  on the fast path, and never attach a timer, streak, deadline, or "due"
+  language to it.
 
 A completed-round count uses each actual round once under its mode's completion
 rule. Derive the count from those rounds, not by adding prior summaries to later

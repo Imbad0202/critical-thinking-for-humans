@@ -441,7 +441,8 @@ proper name, and never read as an identity cue (redline 7).
 The field follows the Elicitation contract: optional, additive,
 `schema_version` stays 1, and an event without it is complete; a reader must
 not infer anything from its absence. Step (b) weighting does not read this
-field.
+field; the cross-field rep (shared/scaffolding.md, Play rhythm) reads it only
+to set its one item in a different field.
 
 "Show passport" may split a structure's tally row by domain once the record
 holds that structure in at least two domains. The split is stated in the

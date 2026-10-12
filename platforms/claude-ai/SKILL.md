@@ -136,6 +136,8 @@ There is no filesystem passport on this platform. At session start, ask once whe
 
 Platform memory or past-chat recall may surface earlier training on its own; treat that as best-effort conversational context, never as the tally — weighting decisions read only an imported block or the current session's record.
 
+The one-line confirm may carry one cross-field rep offer when the record shows a drill miss from an earlier session (shared/scaffolding.md, Play rhythm): optional, never on the fast path, never naming the structure, and settled for the session once declined.
+
 If the user declines, override field by field — re-ask only the fields they want changed, not the whole intake. No block and no memory → cold start through First-Run Intake.
 
 ---

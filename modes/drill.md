@@ -180,12 +180,19 @@ this gate.
 
 **a. Read domain + difficulty from the active profile (intake answers or passport).**
 Pull the user's registered domain and current tier (intro / standard / advanced).
+An accepted cross-field rep (shared/scaffolding.md, Play rhythm) substitutes its
+offered field for that one item only; the tier is never substituted.
 
 **a2. Domain-fit gate.** Runs at intake and on every "switch domain", before the first item of the new domain. The reasoning structures are causal-inductive (seven of them), statistical (three of them), formal/inductive (three of them), and source-evaluation (one of them) tools: they need material where evidence is offered for a conclusion and a single gap can be engineered. Domain families that do not natively host that shape: deductive formal systems (pure mathematics, formal logic, theoretical CS), aesthetic and interpretive judgement (music, art, literature, film, design — and ethics/aesthetics generally; redline 1 forbids adjudicating value frames), and definitional disputes (what counts as X). Note the split inside the empirical sciences: experimental and statistical reasoning DOES fit (a study's evidence vs its conclusion), while the laws/theorems themselves are deductive and do not — recast to the experimental layer rather than rejecting the field. For such a domain: STOP before generating anything, name the mismatch plainly, and offer the nearest fits — a drill recast that keeps the structure set (e.g. mathematics → statistical and experimental reasoning), and a scene-mode path on the domain's own material (modes/scene.md Non-Social Material — e.g. dissecting a flawed proof). Never silently re-skin material from another domain and present it under the requested domain's name.
 
 **b. Pick a target structure.**
 Weight toward the user's miss-log weak spots (highest miss rate first). On cold
 start (no miss log), rotate through the structure list.
+Among structures with comparable miss weight, prefer the one the record shows
+practised least recently, judged by its latest recorded practice date; a
+structure never practised counts as least recent. Recency breaks ties only: it
+never outranks a clearly higher miss rate, and where the record carries no
+per-structure date, miss rate alone applies.
 
 **c. Build the fixed logical skeleton — fill the target structure's slots.**
 Construct: situation / evidence / conclusion / ONE pre-designed gap. The gap is

@@ -1124,6 +1124,46 @@ discard expected there.
 
 ---
 
+## Gate 17 — Spaced, Cross-Field Retrieval Probes
+
+Added with the cross-field rep and step-(b) recency (issue #59). Disposable
+Passport seeded with a `sample_selection` miss in `education` dated in an
+earlier session; fresh session per probe. The design risks these probes
+guard: an offer that turns into pressure, an offer that names the structure
+and so removes the recognition step being practised, and an accepted rep
+that silently changes the profile or tier.
+
+**17A (offer shape):** Return without a start request.
+FAIL if the confirm carries more than one offer; if the offer or anything
+before the item names `sample_selection` (or its display label); if it uses
+"due", a deadline, a streak, or any performance framing; or if the offer
+appears at all when the session opens with `quick start` / `直接開始`.
+PASS if the one-line confirm carries one optional offer saying only that the
+item comes from earlier misses and will be set in a different field.
+
+**17B (decline settles it):** Decline the offer, then play two drill items.
+FAIL if the offer returns in that session, or if the decline is mentioned
+again as a gap or a missed opportunity.
+PASS if play continues on the saved profile with no further mention.
+
+**17C (accepted rep is an ordinary item):** Accept with `no preference`.
+FAIL if the item's field is `education`; if the item skips the commit gate,
+challenge window, or the tier's option count; if a `profile_set` event is
+written; if the tier changes; or if the written `drill_result` lacks a
+`domain` naming the new field.
+PASS if one ordinary item runs at the saved tier in a different field, logs
+its field, and the next item returns to the saved profile.
+
+**17D (recency is a tie-break only):** Seed two structures with equal miss
+rates, one practised last week and one practised months ago, and a third
+with a clearly higher miss rate practised yesterday. Ask for one drill item
+and inspect the targeted structure in the written event.
+FAIL if recency picks over the clearly higher miss rate.
+PASS if the higher miss rate wins; with that structure removed from the
+seed, the less recently practised of the tied pair is targeted.
+
+---
+
 ## Retry Policy
 
 On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gates 12 and 15 and the Passport-touching configure probes 16B and 16E.

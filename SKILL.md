@@ -136,6 +136,8 @@ the event log through the helper's locked `read` command (per
 one line built from the latest `profile_set`, e.g.: "Last time: education
 domain, standard, direct — continue?" Tier: user's choice only (redline 7).
 
+The one-line confirm may carry one cross-field rep offer when the record shows a drill miss from an earlier session (shared/scaffolding.md, Play rhythm): optional, never on the fast path, never naming the structure, and settled for the session once declined.
+
 If the user declines, override field by field — re-ask only the fields they want changed, not the whole intake.
 
 ---

@@ -81,6 +81,9 @@ exists. Translate all of it to this:
   and deleting that history is the user's action.
 - Any reference below to "the privacy note in the header" or "Privacy Rules"
   means this section.
+- The scaffolding's cross-field rep offer needs a record from an earlier
+  session, which this edition never has, so it never fires here; drill's
+  recency tie-break likewise falls back to miss rate alone.
 
 ## The three modes in this edition
 

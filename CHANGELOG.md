@@ -5,6 +5,15 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
 
 ## [Unreleased]
 
+- **Spaced, cross-field retrieval (#59).** Drill step (b) breaks ties
+  between equally weak structures by recency (least recently practised
+  first), never over a clearly higher miss rate. A returning session's
+  one-line confirm may offer one cross-field rep: an item on a structure the
+  record shows missed earlier, set in a different field, without naming the
+  structure (recognizing it is the practised move). Optional, never on the
+  fast path, settled once declined, no profile write, tier unchanged. claude.ai
+  reads only the dates its block carries. Gate 17 probes it.
+
 - **Practice domain on the record (#58).** `drill_result` and
   `detective_process` carry an optional `domain`: the field the item or case
   was wrapped in (the user's own words, or the coach's short label under
