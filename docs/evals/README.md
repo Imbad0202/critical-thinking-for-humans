@@ -16,6 +16,7 @@ and 2:
 | **1.5** | **This directory** | **Keyed answers are reproducible across independent models (stability, not correctness); one release-scoped adversarial run is recorded; a human anchor for correctness is specified but unrun** | **Cross-model + behavioral-sample + human-anchor protocol** |
 | 2 | `docs/GATE-checklist.md` | A human, in a fresh session, sees the skill uphold rules | Behavioral |
 | 3 | Real-world usage | Edge cases no controlled probe anticipates | Strongest |
+| — | Protocol 4 below (no run yet) | Whether **learners** change on held-out, delayed, different-domain probes | The only protocol aimed at the learner rather than the coach |
 
 Layer 1.5 exists because of one specific gap. drill keys an answer and rules
 the user right or wrong against it, but that key is written and audited by **one
@@ -138,6 +139,19 @@ verbatim excerpt. Minimum coverage:
 Traditional-Chinese sessions across drill / scene / detective: record trigger
 hits, where labels stay English vs localize correctly, and any degradation.
 
+### 4. Learner outcome (`learner-outcome-TEMPLATE.md` — no run yet)
+
+Every protocol above measures the coach. This one measures the learner: a
+cohort practises, and frozen probes run before, right after, and at least two
+weeks after practice. Its design constraints are fixed in the template: probe
+content never overlaps practice content (an overlapping pre/post gain can be a
+learned item format), at least one probe is delayed, and probes are separated
+by context distance — practised domain, unpractised domain, and an everyday
+decision that does not announce it is a reasoning test. Untrained-structure
+and sound-argument probes set the retest floor and catch over-flagging. Probe
+keys must first pass protocol 1b. Without a comparison arm a run is
+descriptive only, and no run licenses a general improvement claim.
+
 ## Result file naming
 
 `<protocol>-<YYYY-MM-DD>-<model-set>.md`, e.g.
@@ -181,6 +195,10 @@ attest Claude Code, claude.ai, or the portable build; build and archive gates
 are separate. Neither run is a human-validity anchor.
 
 **Protocol 3 (localization):** no run yet.
+
+**Protocol 4 (learner outcome):** no run yet. It is the only protocol aimed at
+whether learners change; until it has a result file, nothing here speaks to
+learning or transfer.
 
 Until a protocol-1b result file exists, the README makes no empirical
 effectiveness or correctness claim and should not be read as if it did.

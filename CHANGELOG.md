@@ -5,6 +5,14 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
 
 ## [Unreleased]
 
+- **Learner-outcome protocol (#62).** `docs/evals/learner-outcome-TEMPLATE.md`
+  adds protocol 4, the first protocol aimed at the learner rather than the
+  coach: frozen probes with no content overlap with practice, a delayed
+  timepoint, near / different-domain / unannounced everyday-decision probes,
+  untrained-structure and sound-argument floors, protocol-1b-checked keys, and
+  a comparison arm. It is linked from the evals index and the GATE layer
+  table; no run exists and no effectiveness claim follows from it.
+
 - Tighten correction proofs, fixed-window outcome handling, ranked-group
   inference, conditional-rate distractor audits, localized dissection starts
   and evidence-based learner notes. The r7 revision also binds coach claims

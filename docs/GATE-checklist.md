@@ -14,6 +14,10 @@ Manual probes run by the release manager in live sessions before any release is 
 | 2 | **This file** | The running skill upholds rules in live sessions | Behavioral |
 | 3 | Real-world usage | Edge cases no controlled probe anticipates | Strongest |
 
+None of the three layers measures whether learners improve. That question has
+its own protocol, `docs/evals/learner-outcome-TEMPLATE.md` (protocol 4, no run
+yet); a green gate run is never evidence of learning.
+
 **Lint-green (layer 1) does not mean execution-green (layer 2).** Mistaking the
 two is the precise failure mode this file exists to prevent.
 

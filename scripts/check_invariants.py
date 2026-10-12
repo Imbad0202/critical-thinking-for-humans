@@ -368,6 +368,21 @@ CHECKS = [
      "not legal advice"),
     ("README.md", "safest-place",
      "the cheapest place in the world to lose face"),
+    # --- #62: learner-outcome protocol keeps its no-claim posture ---
+    ("docs/evals/learner-outcome-TEMPLATE.md", "learner-outcome-no-claim-until-run",
+     "Until a result file for this protocol exists, the README makes no claim that the\n"
+     "skill improves reasoning or transfers"),
+    ("docs/evals/learner-outcome-TEMPLATE.md", "learner-outcome-no-content-overlap",
+     "**No content overlap.**", "Design constraints (non-negotiable)"),
+    ("docs/evals/learner-outcome-TEMPLATE.md", "learner-outcome-delay",
+     "**Delay.** At least one probe runs two or more weeks",
+     "Design constraints (non-negotiable)"),
+    ("docs/evals/learner-outcome-TEMPLATE.md", "learner-outcome-keys-anchored",
+     "Probe keys\n  must pass a human validity anchor (protocol 1b) before use"),
+    ("docs/evals/README.md", "evals-protocol4-status",
+     "**Protocol 4 (learner outcome):** no run yet.", "Status"),
+    ("docs/GATE-checklist.md", "gate-layers-not-learning",
+     "a green gate run is never evidence of learning."),
     # --- review round 1: full distractor/frame coverage ---
     ("shared/structures.md", "distractor-true-but-irrelevant", "true_but_irrelevant"),
     ("shared/structures.md", "distractor-opposite-180", "opposite_180"),
