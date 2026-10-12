@@ -131,7 +131,7 @@ const zhTW = {
     retryMisses: '重練本輪 {count} 題錯題', retryCode: '錯題重練', nextMode: '接著試試：{mode}',
     dailySceneTitle: '六個角度都看過了；這裡沒有偷藏標準立場。', dailyTitle: '今日案件已完成。',
     dailySceneBody: '你完成的是一輪觀察，不是價值立場測驗。明天會換一宗案件；四種固定示範仍可不限次練習。',
-    dailyBody: '伺服器只回傳這次需要的解析。這七題也出現在公開離線示範中，因此只適合展示流程，不是防作弊題庫。每日案件依台北日期更新。',
+    dailyBody: '伺服器只回傳這次需要的解析。輪替中的前七題與公開離線示範相同，只用來展示流程；另外七題來源可信度案件的答案只存在私有儲存。每日案件依台北日期更新。',
     reviewedAngles: '看過的角度', dailyCase: '今日模式', reread: '重新閱讀', lobby: '回案件大廳',
   },
   passport: {
@@ -281,7 +281,7 @@ const en = {
     retryMisses: 'Retry missed questions ({count})', retryCode: 'Missed-question practice', nextMode: 'Try next: {mode}',
     dailySceneTitle: 'Six angles reviewed, with no hidden preferred position.', dailyTitle: 'Today’s case is closed.',
     dailySceneBody: 'You completed an observation route, not a values test. A new case arrives tomorrow; the four fixed demos remain replayable.',
-    dailyBody: 'The server returned only the explanation needed for this attempt. These seven fixtures also appear in the public offline demo, so they demonstrate the flow rather than anti-cheat integrity. Daily cases follow the Taipei date.',
+    dailyBody: 'The server returned only the explanation needed for this attempt. Seven cases in the rotation mirror the public offline demo and only demonstrate the flow; the other seven, a source-credibility family, keep their answers in private storage. Daily cases follow the Taipei date.',
     reviewedAngles: 'Angles reviewed', dailyCase: 'Today’s mode', reread: 'Read again', lobby: 'Back to case lobby',
   },
   passport: {

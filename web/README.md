@@ -79,7 +79,7 @@ Passport could not be saved.
 | Web Casebook | Static browser content plus optional Daily API | Four fixed bilingual excerpts; no model call |
 
 For dynamic practice with Fable 5.1 or GPT-6-Astra, use the skill or portable
-manual following the [model guide](../docs/MODEL_GUIDE.md). Both share quick
+manual (see the [root README](../README.md#three-ways-to-play)). Both share quick
 start, round budgets, and an audited remix command; those are chat-coaching
 controls, separate from this browser's fixed-question replay.
 

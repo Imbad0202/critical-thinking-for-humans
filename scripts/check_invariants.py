@@ -368,6 +368,20 @@ CHECKS = [
      "not legal advice"),
     ("README.md", "safest-place",
      "the cheapest place in the world to lose face"),
+    # --- #57: transfer is stated as a hypothesis everywhere it is stated ---
+    ("README.md", "readme-no-transfer-promise",
+     "this is a place to\npractice the move, not a promise that it transfers."),
+    ("README.md", "readme-far-transfer-contested",
+     "remains contested for the far transfer this tool is reaching",
+     "Theory Grounding"),
+    ("README.md", "readme-primary-studies-untested",
+     "None of these studies tested this tool.", "Theory Grounding"),
+    ("shared/structures.md", "structures-transfer-is-hypothesis",
+     "design's transfer hypothesis, not an established mechanism"),
+    ("shared/manipulation-taxonomy.md", "inoculation-transfer-is-hypothesis",
+     "It is a hypothesis about transfer, not a guarantee"),
+    ("docs/ARCHITECTURE.md", "architecture-naming-is-a-bet",
+     "Naming is the design's bet on transfer, not a proven"),
     # --- review round 1: full distractor/frame coverage ---
     ("shared/structures.md", "distractor-true-but-irrelevant", "true_but_irrelevant"),
     ("shared/structures.md", "distractor-opposite-180", "opposite_180"),
@@ -1568,6 +1582,17 @@ FORBIDDEN = [
     # framing patterns.
     ("shared/structures.md", "no-stale-eight-distractors",
      "eight wrong-answer patterns"),
+    # #57: transfer must not be restated as settled mechanism, and the
+    # never-committed model guide must not be linked again.
+    ("shared/structures.md", "no-transfer-mechanism-claim",
+     "transfer mechanism:"),
+    ("shared/manipulation-taxonomy.md", "no-inoculation-far-better-claim",
+     "far better than example memorization"),
+    ("docs/ARCHITECTURE.md", "no-naming-makes-transfer-claim",
+     "makes the practice transfer"),
+    ("README.md", "no-dead-model-guide-link", "docs/MODEL_GUIDE.md"),
+    ("docs/ARCHITECTURE.md", "no-dead-model-guide-link-architecture",
+     "(MODEL_GUIDE.md)"),
 ]
 
 

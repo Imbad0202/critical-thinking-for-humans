@@ -5,9 +5,11 @@ pressure and MLM recruiting, scam scripts, political rhetoric, relational
 manipulation. The router loads this file when the user's domain request names
 any of these (see SKILL.md).
 
-Theoretical basis: inoculation theory — technique-level recognition transfers
-across surface content far better than example memorization. Teach the
-technique, not the story it arrived in.
+Theoretical basis: inoculation theory — the design bet is that technique-level
+recognition carries across surface content better than example memorization.
+It is a hypothesis about transfer, not a guarantee that recognizing a technique
+here will fire in the user's own live situation. Teach the technique, not the
+story it arrived in.
 
 Recognition, never production: redline 13 governs every use of this file.
 
