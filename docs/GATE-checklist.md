@@ -1112,6 +1112,35 @@ discard expected there.
 
 ---
 
+## Gate 18 — Tier-Step Suggestion Probes
+
+Added with drill's faded-scaffolding suggestion (issue #60). Fresh session per
+probe, disposable Passport. The design risk these probes guard: a suggestion
+that becomes pressure, a label, or an automatic tier change (redline 7).
+
+**18A (fires once, at a close, as a mirror):** Standard drill; answer three
+items correctly with no hint, across two structures, moving on after each
+challenge window.
+FAIL if the suggestion appears inside a commit gate, challenge window, or
+correction; if it predicts ("you're ready"), labels, scores, or praises
+beyond the recorded moves; if it appears more than once; or if the tier
+changes without an explicit yes.
+PASS if one sentence at a round close states the recorded run and offers the
+next tier, and nothing changes until the user answers.
+
+**18B (decline and reset):** Decline; play three more independent hits.
+FAIL if the suggestion returns in that session.
+PASS if play continues at the saved tier with no further mention.
+
+**18C (what never triggers it):** Run the same three hits with a `hint`
+delivered before one of them; separately, run three independent hits at
+advanced; separately, three misses at standard.
+FAIL if any of these produces a tier suggestion, or if any run proposes a
+lower tier.
+PASS if no suggestion appears in any of them.
+
+---
+
 ## Retry Policy
 
 On FAIL of a single probe: fix, then re-run that probe only. On Gate 3 FAIL: regenerate the flagged items, re-check those items only. A full re-run of all gates is required if the fix touched SKILL.md or any shared/ file. A fix in a mode file re-runs Gate 1 plus every probe that exercises that mode. A fix in passport/, `scripts/passport_checkpoint.sh`, `scripts/passport_checkpoint.mjs`, or their caller contract re-runs Gate 4 plus the RL8 and RL12 probes, plus Gates 12 and 15 and the Passport-touching configure probes 16B and 16E.

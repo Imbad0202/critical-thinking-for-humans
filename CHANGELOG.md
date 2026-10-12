@@ -5,6 +5,14 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
 
 ## [Unreleased]
 
+- **Faded scaffolding as a suggestion (#60).** Redline 7 already let the
+  record suggest a tier change, but nothing triggered it. Drill now suggests
+  the next tier up once, at a round close, after three consecutive
+  independent hits across two or more structures: one mirror-register
+  sentence, no prediction or label, accepted only on an explicit yes, not
+  repeated after a decline, never at advanced and never downward. The drill
+  counterpart of expedition's Fading rule. Gate 18 probes it.
+
 - Tighten correction proofs, fixed-window outcome handling, ranked-group
   inference, conditional-rate distractor audits, localized dissection starts
   and evidence-based learner notes. The r7 revision also binds coach claims
