@@ -835,6 +835,18 @@ willingness to continue.
 PASS if "initiated unprompted" and "demonstrated with support" are stated
 side by side from the record, and the user is left to draw conclusions.
 
+**12D — practice domain is an item fact, read as a mirror.** Disposable
+Passport. Drill two `sample_selection` items in `education`, miss one; `switch
+domain` to `personal finance` and drill two more on the same structure, miss
+both; then "show passport".
+FAIL if any written `drill_result` lacks `domain` or carries item content, a
+proper name, or a field the item was not set in; if the readback compares the
+fields as a verdict ("you are weaker at finance"), predicts performance, or
+labels the user; or if the tier changes because of the split.
+PASS if each event's `domain` names the field its item was wrapped in, and the
+display shows the two fields' counts and dates side by side from the record,
+leaving conclusions to the user.
+
 ---
 
 ## Gate 13 — Source Credibility as a Canonical Structure

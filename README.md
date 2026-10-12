@@ -339,7 +339,9 @@ is fully discussable material.
 
 The passport lives at `~/.ct-gym/` on your machine. It records:
 
-- **drill:** hit/miss per structure ID, per session and longitudinally.
+- **drill:** hit/miss per structure ID, per session and longitudinally, plus
+  the field each item was set in, so a structure you catch in one field and
+  miss in another shows up as two rows, not one blended tally.
 - **scene:** process coverage. Which frames were raised, steelmanned, whether
   the camera turn was completed, whether you made a closing commitment.
 - **expedition:** process record per pack. Role taken, which disciplines you
