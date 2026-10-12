@@ -54,6 +54,8 @@ const emptyProfile = () => ({
   completedSessions: [],
   modeCompletions: { drill: 0, scene: 0, expedition: 0, detective: 0 },
   structures: [],
+  answeredItems: [],
+  structureRecord: {},
   sfx: true,
   music: true,
   musicVolume: 0.34,
@@ -66,6 +68,17 @@ const profileHistory = (value, allowed = null) => !isRecord(value) ? {} : Object
   Object.entries(value)
     .filter(([date]) => /^\d{4}-\d{2}-\d{2}$/.test(date))
     .map(([date, entries]) => [date, [...new Set(profileList(entries).filter((entry) => !allowed || allowed.includes(entry)))]]),
+)
+
+const profileDate = (value) => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null
+const profileStructureRecord = (value) => !isRecord(value) ? {} : Object.fromEntries(
+  Object.entries(value)
+    .filter(([id, entry]) => /^[a-z][a-z0-9_]{0,63}$/.test(id) && isRecord(entry))
+    .map(([id, entry]) => {
+      const attempts = profileCount(entry.attempts)
+      return [id, { attempts, hits: Math.min(profileCount(entry.hits), attempts), lastPracticed: profileDate(entry.lastPracticed) }]
+    })
+    .filter(([, entry]) => entry.attempts > 0),
 )
 
 const migrateProfile = (parsed) => {
@@ -89,6 +102,8 @@ const migrateProfile = (parsed) => {
     completedSessions: Array.isArray(parsed.completedSessions) ? parsed.completedSessions.filter(isRecord).slice(-100) : [],
     modeCompletions: Object.fromEntries(modeIds.map((mode) => [mode, profileCount(parsed.modeCompletions?.[mode])])),
     structures: [...new Set(profileList(parsed.structures))],
+    answeredItems: [...new Set(profileList(parsed.answeredItems))].slice(-500),
+    structureRecord: profileStructureRecord(parsed.structureRecord),
     sfx: parsed.sfx !== false,
     music: parsed.music !== false,
     musicVolume: typeof parsed.musicVolume === 'number' && Number.isFinite(parsed.musicVolume)
@@ -341,6 +356,26 @@ const formatDailyDate = (dateKey) => {
 const completedToday = () => state.profile.dailyModes[todayKey()] || []
 const rank = () => Math.max(1, Math.floor(state.profile.xp / 120) + 1)
 const xpInRank = () => state.profile.xp % 120
+// A first attempt at a fixed item earns XP and enters the per-structure record;
+// replaying an item already answered is practice only, so a remembered key is
+// never rewarded or counted as a new catch.
+const itemKey = (modeId, itemId) => `${modeId}:${itemId}`
+const isFirstAttempt = (key) => !state.profile.answeredItems.includes(key)
+  && !state.results.some((result) => result.key === key)
+const sceneRouteKey = itemKey('scene', '__route')
+const recordStructure = (structure, hit, dateKey) => {
+  if (typeof structure !== 'string' || !/^[a-z][a-z0-9_]{0,63}$/.test(structure)) return
+  const entry = state.profile.structureRecord[structure] || { attempts: 0, hits: 0, lastPracticed: null }
+  state.profile.structureRecord[structure] = {
+    attempts: entry.attempts + 1,
+    hits: entry.hits + (hit ? 1 : 0),
+    lastPracticed: profileDate(dateKey) || entry.lastPracticed,
+  }
+}
+const structureLabels = () => Object.fromEntries(modeList().flatMap((mode) => (mode.items || [])
+  .filter((item) => item.structure && item.structureLabel)
+  .map((item) => [item.structure, item.structureLabel])))
+const structureLabel = (structure) => copy().passport.structureNames?.[structure] || structureLabels()[structure] || structure.replaceAll('_', ' ')
 const currentMode = () => {
   const mode = scopedGameModes()[state.selectedMode] || null
   if (mode?.id !== 'drill' || !state.practiceItemIds) return mode
@@ -669,7 +704,7 @@ const renderGradedReveal = (mode, item) => {
     </div>
     ${item.finalCaution ? `<div class="reasoning-boundary"><strong>!</strong><p>${escapeHtml(item.finalCaution)}</p></div>` : ''}
     ${renderDissection(item)}
-    <div class="play-reward-row"><span><i aria-hidden="true">✦</i> +${result?.xp || 0} XP</span><span><i aria-hidden="true">⌕</i> ${escapeHtml(item.structureLabel)}</span><small>${mode.id === 'expedition' ? strings.play.forecastNote : strings.play.practiceNote}</small></div>
+    <div class="play-reward-row"><span><i aria-hidden="true">✦</i> +${result?.xp || 0} XP</span><span><i aria-hidden="true">⌕</i> ${escapeHtml(item.structureLabel)}</span><small>${result?.firstAttempt === false ? strings.play.replayNote : mode.id === 'expedition' ? strings.play.forecastNote : strings.play.practiceNote}</small></div>
     <p class="challenge-note">${escapeHtml(mode.challengeNote || strings.play.challengeNote)}</p>
     <div class="play-actions"><button class="hint-link" type="button" data-action="explain">${strings.play.explainAgain}</button><button class="dialogue-next" type="button" data-action="next-step">${state.step === mode.items.length - 1 ? strings.play.summary : strings.play.next} <i aria-hidden="true">→</i></button></div>`
 }
@@ -961,6 +996,9 @@ const renderPassport = () => {
     <header><div><span class="section-code">${strings.passport.code}</span><h2 id="passport-title">${strings.passport.title}</h2></div><button class="round-icon round-icon--dark" type="button" data-action="close" aria-label="${strings.common.close}"><span aria-hidden="true">×</span></button></header>
     <section class="drawer-rank"><span class="drawer-rank__seal">${rank()}</span><div><small>${strings.stats.rank}</small><strong>${interpolate(strings.stats.level, { level: rank() })} · ${state.profile.xp} XP</strong><div><i style="width:${Math.round(xpInRank() / 120 * 100)}%"></i></div><span>${interpolate(strings.stats.toNext, { xp: 120 - xpInRank() })}</span></div></section>
     <section class="drawer-stats"><div><span>${strings.stats.streak}</span><strong>${state.profile.streak} ${strings.stats.day}</strong></div><div><span>${strings.stats.sessions}</span><strong>${state.profile.completedSessions.length}</strong></div><div><span>${strings.stats.clues}</span><strong>${state.profile.clues}</strong></div></section>
+    <section class="drawer-structures drawer-structure-record"><span class="section-code">${strings.passport.structureRecord}</span>${Object.keys(state.profile.structureRecord).length
+      ? `<ul>${Object.entries(state.profile.structureRecord).sort(([a], [b]) => a.localeCompare(b)).map(([structure, entry]) => `<li data-structure="${escapeHtml(structure)}"><strong>${escapeHtml(structureLabel(structure))}</strong><span>${interpolate(strings.passport.structureCounts, { hits: entry.hits, attempts: entry.attempts })}</span>${entry.lastPracticed ? `<small>${interpolate(strings.passport.lastPracticed, { date: entry.lastPracticed })}</small>` : ''}</li>`).join('')}</ul><p>${strings.passport.structureNote}</p>`
+      : `<p>${strings.passport.structureEmpty}</p>`}</section>
     <section class="drawer-structures"><span class="section-code">${strings.passport.modeCount}</span><div>${modeList().map((mode) => `<span>${escapeHtml(modeTitle(mode))} · ${state.profile.modeCompletions[mode.id] || 0}</span>`).join('')}</div></section>
     <section class="drawer-privacy"><strong>${strings.passport.localTitle}</strong><p>${state.storageAvailable ? strings.passport.localBody : strings.passport.sessionOnly}</p></section>
     <footer><button type="button" class="danger-link" data-action="reset-profile">${strings.passport.delete}</button></footer>
@@ -1232,6 +1270,11 @@ const finishDaily = () => {
 
   const awardedXp = firstCompletion ? daily.earnedXp + 20 : 0
   const structures = daily.results.map((result) => result.reveal?.structure).filter(Boolean)
+  if (firstCompletion) {
+    for (const result of daily.results) {
+      if (result.outcome === 'hit' || result.outcome === 'miss') recordStructure(result.reveal?.structure, result.outcome === 'hit', envelope.date)
+    }
+  }
   state.profile.xp += awardedXp
   if (firstCompletion) state.profile.clues += daily.results.length
   state.profile.dailyCases[envelope.date] = [...cases]
@@ -1361,9 +1404,11 @@ const lockAnswer = () => {
   if (!state.answer || state.phase !== 'question') return
   const item = mode.items[state.step]
   const hit = state.answer === item.correct
-  const xp = hit ? 18 : 8
+  const key = itemKey(mode.id, item.id)
+  const firstAttempt = isFirstAttempt(key)
+  const xp = firstAttempt ? (hit ? 18 : 8) : 0
   state.earnedXp += xp
-  state.results.push({ id: item.id, answer: state.answer, hit, xp, structure: item.structure, verdict: item.verdicts?.[state.answer] || null })
+  state.results.push({ id: item.id, key, firstAttempt, answer: state.answer, hit, xp, structure: item.structure, verdict: item.verdicts?.[state.answer] || null })
   state.phase = 'reveal'
   render()
   const resultLabel = mode.id === 'expedition' ? item.verdicts[state.answer] : hit ? copy().play.hit : copy().play.unlocked
@@ -1381,6 +1426,13 @@ const finishMode = () => {
   if (firstModeCompletionToday) state.earnedXp += 20
 
   const structures = mode.id === 'scene' ? mode.scene.lenses.map((lens) => lens.id) : state.results.map((result) => result.structure)
+  const firstResults = state.results.filter((result) => result.firstAttempt)
+  if (mode.id === 'scene') {
+    if (isFirstAttempt(sceneRouteKey)) state.profile.answeredItems.push(sceneRouteKey)
+  } else {
+    for (const result of firstResults) recordStructure(result.structure, result.hit, today)
+  }
+  state.profile.answeredItems = [...new Set([...state.profile.answeredItems, ...firstResults.map((result) => result.key)])].slice(-500)
   state.profile.xp += state.earnedXp
   state.profile.clues += mode.id === 'scene' ? 6 : state.results.length
   state.profile.dailyModes[today] = [...modesToday]
@@ -1480,8 +1532,11 @@ app.addEventListener('click', (event) => {
   else if (action === 'scene-hint') showToast(document.querySelector('.scene-workbench'), copy().scene.hintToast)
   else if (action === 'lock-lens') {
     const lens = currentMode().scene.lenses[state.step]
-    state.results.push({ id: lens.id, answer: state.answer, hit: null, xp: 5, structure: lens.id })
-    state.earnedXp += 5
+    const key = itemKey('scene', lens.id)
+    const firstAttempt = isFirstAttempt(key)
+    const xp = firstAttempt ? 5 : 0
+    state.results.push({ id: lens.id, key, firstAttempt, answer: state.answer, hit: null, xp, structure: lens.id })
+    state.earnedXp += xp
     state.phase = 'lens-reveal'
     render()
     feedback.cue.clue(document.querySelector('.scene-neutral-feedback'), { stamp: copy().scene.reviewed, count: 7 })
@@ -1491,10 +1546,10 @@ app.addEventListener('click', (event) => {
     else { state.step += 1; state.phase = 'lens' }
     state.answer = null; render(); feedback.sound.paper()
   }
-  else if (action === 'submit-camera') { state.phase = 'commitment'; state.earnedXp += 8; render(); feedback.sound.clue() }
+  else if (action === 'submit-camera') { state.phase = 'commitment'; if (isFirstAttempt(sceneRouteKey)) state.earnedXp += 8; render(); feedback.sound.clue() }
   else if (action === 'pressure-test') { state.phase = 'pressure'; render(); feedback.cue.clue(document.querySelector('.scene-pressure'), { stamp: '!', count: 6 }) }
   else if (action === 'revise-commitment') { state.phase = 'commitment'; state.sceneCommitment = null; state.sceneDecisionReason = ''; render() }
-  else if (action === 'hold-commitment') { state.earnedXp += 15; finishMode() }
+  else if (action === 'hold-commitment') { if (isFirstAttempt(sceneRouteKey)) state.earnedXp += 15; finishMode() }
   else if (action === 'replay') startMode()
   else if (action === 'retry-misses') {
     const itemIds = state.results.filter((result) => !result.hit).map((result) => result.id)
