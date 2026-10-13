@@ -25,6 +25,16 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
   a comparison arm. It is linked from the evals index and the GATE layer
   table; no run exists and no effectiveness claim follows from it.
 
+- **Web Casebook: no reward for a remembered key (#61).** Replaying a fixed
+  item already answered (full replay or missed-question practice) earns no XP
+  and the reveal says so; Scene's per-lens, camera and hold XP likewise pay
+  once. The local Passport gains a per-structure record of first attempts
+  (fixed graded items and first Daily completions): attempts, catches and
+  last-practiced date, shown in the drawer as counts only. Storage stays
+  `casebook.v3`; older records load unchanged. Pre-item structure briefings
+  are kept: three-option Web drill matches the Skill's intro tier, which
+  pre-teaches the structure by design.
+
 - Tighten correction proofs, fixed-window outcome handling, ranked-group
   inference, conditional-rate distractor audits, localized dissection starts
   and evidence-based learner notes. The r7 revision also binds coach claims
