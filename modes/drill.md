@@ -636,6 +636,10 @@ only the checked reply, with no visible check note or further coaching appended.
    commitment on this item, else `independent` (passport/SCHEMA.md,
    Elicitation) — an ability-support fact about the item, never a disposition
    read from the safe word itself.
+   Record `domain` on the same `drill_result`: the field this item was wrapped
+   in at step (d), in the user's own words from the active profile, or the
+   short field label the coach chose under `no preference` (passport/SCHEMA.md,
+   Practice Domain). It is a fact about the item, never about the user.
    Before a budget recap or record readback, reconcile any completed-item count
    with the actual distinct settled items. In conversation-only play, trace each
    item to its original presentation and learner commitment, retain its settled

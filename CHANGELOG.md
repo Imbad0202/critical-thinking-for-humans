@@ -35,6 +35,14 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
   are kept: three-option Web drill matches the Skill's intro tier, which
   pre-teaches the structure by design.
 
+- **Practice domain on the record (#58).** `drill_result` and
+  `detective_process` carry an optional `domain`: the field the item or case
+  was wrapped in (the user's own words, or the coach's short label under
+  `no preference`). `show passport` may split a structure's row by field once
+  it has been practised in two or more, stated as counts and dates only. The
+  claude.ai block gains an optional bracketed per-field split. Additive;
+  `schema_version` stays 1; weighting is unchanged. Gate 12D probes it.
+
 - Tighten correction proofs, fixed-window outcome handling, ranked-group
   inference, conditional-rate distractor audits, localized dissection starts
   and evidence-based learner notes. The r7 revision also binds coach claims

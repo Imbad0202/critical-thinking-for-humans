@@ -526,3 +526,6 @@ Where the record makes it plain, the optional `corrections_carried` /
 `corrections_repeated` counters ride along (passport/SCHEMA.md, Post-Reveal
 Updating): reveals that traveled into the next layer versus dead framings
 re-run after their correction. Absent when no transition made it observable.
+The optional `domain` records the field the case was set in (passport/SCHEMA.md,
+Practice Domain), so a structure caught in one field and missed in another
+stays visible as two records rather than one merged tally.
