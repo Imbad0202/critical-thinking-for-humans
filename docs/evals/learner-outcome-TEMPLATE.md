@@ -59,7 +59,7 @@ across timepoints so no participant sees a probe twice.
 |------|-----------|--------|--------------------------------|----------|------------------|
 | P-near | practised | the participant's practice domain | yes | multiple choice | near transfer |
 | P-far-domain | practised | a domain the participant never practised | yes | multiple choice | knowledge-domain distance |
-| P-recognize | practised | unpractised | **no** — embedded in an everyday decision (a message to answer, a purchase, a forwarded claim) with an open prompt such as "anything you'd check before deciding?" | free response, scored for whether the structure's concern is raised unprompted | the *recognize-that-it-applies* step, where most transfer failures occur |
+| P-recognize | practised | unpractised | **no** — embedded in an everyday decision (a message to answer, a purchase, a forwarded claim) with an open prompt such as "anything you'd check before deciding?" | free response, scored for whether the structure's concern is raised unprompted | unprompted recognition, kept apart from application: P-far-domain announces the task and P-recognize does not, so the gap between them shows which step fails in this tool (van Peppen et al. 2022 found recognition and recall prompts did not help, pointing to application) |
 | P-untrained | **never** practised | unpractised | yes | multiple choice | test familiarity and retest gain, the baseline for the rows above |
 | P-sound | none — the argument holds | unpractised | yes | multiple choice incl. "no offered objection bites" | over-flagging: a practice effect that only makes people cry "flaw" is not improvement |
 

@@ -391,18 +391,22 @@ for; the meta-analytic picture on teaching critical thinking is a positive but
 moderate, highly heterogeneous effect (Abrami et al.), not a settled result the
 tool can borrow as its own.
 The transfer design leans on a few primary studies, each for a narrower claim
-than "this transfers": training on examples plus an abstracted principle
-improved everyday statistical reasoning (Fong, Krantz & Nisbett, 1986, *Cognitive
-Psychology*); many learners fail at *recognizing* that a learned principle
-applies, even when they can recall and apply it once cued (van Peppen et al.,
-2022, *Journal of Cognitive Psychology*), which is why items above intro do not
-name their structure before you answer; a single debiasing game reduced confirmation bias in
-a later, unannounced field decision (Sellier, Scopelliti & Morewedge, 2019,
-*Psychological Science*), the closest analogue to detective. Transfer distance is
-read along Barnett & Ceci's dimensions (2002, *Psychological Bulletin*): a drill
-in your own field is near transfer by design. College-level critical-thinking
-gains are real but accrue over years, not sessions (Huber & Kuncel, 2016,
-*Review of Educational Research*). None of these studies tested this tool.
+than "this transfers": brief training on the law of large numbers, by stated
+rule or by worked examples, improved statistical reasoning about everyday
+problems, including in domains the training never used (Fong, Krantz &
+Nisbett, 1986, *Cognitive Psychology*); after instruction and practice produced
+near transfer but little far transfer, prompting students to recognize or
+recall the relevant principle did not help, which points to applying it to a
+new task as the bottleneck (van Peppen et al., 2022, *Journal of Cognitive
+Psychology*); a one-shot debiasing training made graduate students 29% less
+likely to choose a hypothesis-confirming solution in a later, unannounced
+business case (Sellier, Scopelliti & Morewedge, 2019, *Psychological Science*),
+the closest analogue to detective. Transfer distance is read along Barnett &
+Ceci's dimensions (2002, *Psychological Bulletin*): a drill in your own field
+is near transfer by design. Critical-thinking skills grow over a normal college
+experience, while curriculum-wide programs to boost them show no reliable added
+long-term gain (Huber & Kuncel, 2016, *Review of Educational Research*).
+None of these studies tested this tool.
 Item engineering draws on the long-established *form* of critical-reasoning
 assessment (the assumption / strengthen / weaken / inference question types
 common to standardized reasoning tests generally) as a structural reference,
