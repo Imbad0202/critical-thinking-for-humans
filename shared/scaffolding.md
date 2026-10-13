@@ -98,6 +98,12 @@ a change but the coach never imposes it (see redline 7).
 - **standard** — moderate scaffolding, technical vocabulary introduced with gloss; use the active mode's response format.
 - **advanced** — minimal scaffolding, no vocabulary hand-holding, deliberate interleaving of structures; use the active mode's response format.
 
+Faded scaffolding is a suggestion, never a move: drill may propose the next
+tier up once its record shows a run of independent hits (modes/drill.md,
+Tier-Step Suggestion), and the tier changes only on the user's explicit yes.
+No rule ever proposes a lower tier; stuck detection (§4) downshifts
+coaching questions, never the tier.
+
 Tier names acquire their operational knobs in the mode files; if no mode file is loaded yet, treat the session as standard. Expedition mode sits outside the three tiers and owns its own step-size knob (modes/expedition.md).
 
 ---
