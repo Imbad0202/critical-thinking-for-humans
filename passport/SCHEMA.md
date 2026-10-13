@@ -103,7 +103,8 @@ appear only in `summary`), `item_type`
 appears in `shared/structures.md` and is excluded from per-structure miss-log
 weighting the way `manipulation_spot` technique IDs are. Optional elicitation
 carrier `elicitation` — see Elicitation. Optional post-reveal carrier
-`post_reveal` (miss events only) — see Post-Reveal Updating. For a sound item,
+`post_reveal` (miss events only) — see Post-Reveal Updating. Optional
+`domain` — see Practice Domain. For a sound item,
 `hit` is true when the user correctly judged the argument sound and false when
 the user asserted a flaw that was not there; the false case is the over-flagging
 signal the longitudinal mirror surfaces (the symmetric complement of the
@@ -271,6 +272,7 @@ drill's per-structure record so practice coverage is unified across modes),
 `summary` (short context label — no raw user text). Optional elicitation
 carrier `structures_hit_prompted` — see Elicitation. Optional
 `corrections_carried` / `corrections_repeated` — see Post-Reveal Updating.
+Optional `domain` — see Practice Domain.
 
 ```
 {"schema_version":1,"ts":"2026-06-13T10:00:00Z","type":"detective_process","layers_solved":3,"layers_total":4,"eggs_found":2,"eggs_total":5,"false_positives":1,"unregistered_flaws_found":0,"structures_hit":["proxy_mismatch","base_rate_neglect","alternative_cause"],"summary":"investment-memo case, cracked to L3"}
@@ -420,9 +422,47 @@ envelope-level default needs no per-field ratification).
 
 ---
 
+## Practice Domain
+
+Seeing a structure in one field and seeing it in another are different
+records. Drill and detective wrap every item or case in a field, so the same
+structure can be practised near home or far from it. Without the field on the
+record, a user who switches domain gets one merged tally, and the mirror
+cannot show "caught here, missed there".
+
+`drill_result` and `detective_process` may therefore carry an optional
+`domain` (string): the field the item or case was actually wrapped in. When the
+active `profile_set.domain` names that field, copy the user's own words for
+it; when the coach chose the field under `no preference`, record the short
+field label it used ("public health", "retail pricing"). The field is a fact
+about the item, never about the user: it is never item content, never a
+proper name, and never read as an identity cue (redline 7).
+
+The field follows the Elicitation contract: optional, additive,
+`schema_version` stays 1, and an event without it is complete; a reader must
+not infer anything from its absence. Step (b) weighting does not read this
+field.
+
+"Show passport" may split a structure's tally row by domain once the record
+holds that structure in at least two domains. The split is stated in the
+Data-as-Mirror register (shared/scaffolding.md §5c): counts and dates per
+domain, read aloud from the record — no comparison verdict, no prediction, and
+no claim about the user's ability in any field. Events without the field are
+counted in the merged row only.
+
+```
+{"schema_version":1,"ts":"2026-06-11T08:41:00Z","type":"drill_result","structure":"sample_selection","item_type":"weaken","hit":true,"domain":"education","summary":"caught completer-only survey"}
+{"schema_version":1,"ts":"2026-06-18T19:05:00Z","type":"drill_result","structure":"sample_selection","item_type":"weaken","hit":false,"domain":"personal finance","summary":"missed survivorship in a fund-return claim"}
+```
+
+---
+
 ## Privacy Rules
 
 Summaries hold structure tags and short summaries, never raw user text.
+
+`domain` (Practice Domain) repeats a field label the user already gave in
+`profile_set`, or a short coach-chosen field label; it adds no item content.
 
 Exception: `commitment.position` is the user's own authored position statement,
 recorded deliberately at the closing pressure test; it may contain first-person

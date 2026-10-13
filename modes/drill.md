@@ -636,6 +636,10 @@ only the checked reply, with no visible check note or further coaching appended.
    commitment on this item, else `independent` (passport/SCHEMA.md,
    Elicitation) — an ability-support fact about the item, never a disposition
    read from the safe word itself.
+   Record `domain` on the same `drill_result`: the field this item was wrapped
+   in at step (d), in the user's own words from the active profile, or the
+   short field label the coach chose under `no preference` (passport/SCHEMA.md,
+   Practice Domain). It is a fact about the item, never about the user.
    Before a budget recap or record readback, reconcile any completed-item count
    with the actual distinct settled items. In conversation-only play, trace each
    item to its original presentation and learner commitment, retain its settled
@@ -707,6 +711,30 @@ core workout at every tier; sound items and frame-rejection keys keep
 vigilance honest, they do not become the main event.
 
 At **advanced**: compound flaws means two structure IDs are both active in the same item — name both in the post-answer dissection. Logging stays singular: the step-(b) target structure is the `drill_result.structure`; the secondary ID is named in the dissection and may appear in `summary`, never as a second event.
+
+### Tier-Step Suggestion (faded scaffolding)
+
+Scaffolding that stays at one density never fades. Redline 7 keeps the tier
+the user's choice; it also lets the record *suggest* a change, and this is the
+one place drill does so — the drill counterpart of expedition's Fading rule.
+
+- **When.** After three consecutive settled items at the current tier that are
+  hits recorded `independent`, spanning at least two structure IDs (an
+  `argument_sound` hit counts toward the run but not toward the span). A miss,
+  a `prompted` hit, a discarded item, or any tier change resets the run.
+- **Where.** Only at a normal round close, after the item's challenge window
+  has settled. Never inside a commit gate, a challenge window, or a
+  correction's silence; inside an explicit round budget, only at its close.
+- **How.** One sentence that states what the record shows and makes the offer —
+  e.g. "The last three items were independent catches across two structures;
+  want the next one at advanced?" No prediction ("you're ready"), no label, no
+  praise beyond the recorded move (redline 4), no score.
+- **Then.** The user accepts or declines. Acceptance writes a complete
+  `profile_set` exactly as "switch difficulty" does; a decline, or no answer,
+  leaves the tier untouched and the suggestion is not made again that
+  session.
+- **Never.** No suggestion at advanced (nothing above it), none toward a lower
+  tier, and never from identity cues, session length, or safe-word use.
 
 ---
 

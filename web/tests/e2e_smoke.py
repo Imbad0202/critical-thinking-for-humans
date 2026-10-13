@@ -147,15 +147,29 @@ def run_static_smoke(browser, errors: list[str], responses: list[tuple[str, int]
     page.locator('[data-action="inspect"]').click()
     page.locator('[data-answer="A"]').click()
     page.locator('[data-action="lock-answer"]').click()
+    page.wait_for_selector('.play-ruling[data-result="hit"]')
+    assert "不加 XP" in page.locator('.play-reward-row small').inner_text()
+    assert page.locator('.play-reward-row span').first.inner_text().strip().endswith("+0 XP")
     page.locator('[data-action="next-step"]').click()
     page.wait_for_selector('.mode-complete__report')
     assert page.locator('[data-action="retry-misses"]').count() == 0
     profile = page.evaluate(f"JSON.parse(localStorage.getItem('{PASSPORT_KEY}'))")
-    assert profile['xp'] == 82, profile  # 64 for the initial run; no second daily bonus.
+    # 64 for the initial run; a replayed item earns no XP and no second daily bonus.
+    assert profile['xp'] == 64, profile
+    # Only first attempts enter the per-structure record; the replayed hit does not.
+    assert profile['structureRecord']['proxy_mismatch']['attempts'] == 1, profile
+    assert profile['structureRecord']['proxy_mismatch']['hits'] == 0, profile
+    assert profile['structureRecord']['base_rate_neglect'] == {
+        'attempts': 1, 'hits': 1, 'lastPracticed': profile['lastCompleted']}, profile
+    assert 'drill:measurement-gap' in profile['answeredItems'], profile
     page.locator('[data-action="replay"]').click()
     assert page.locator('.play-progress i').count() == 3
     page.locator('[data-action="exit-play"]').click()
     page.locator('[data-action="select"]').last.click()
+    page.locator('[data-action="passport"]').first.click()
+    page.wait_for_selector('.drawer-structure-record li[data-structure="proxy_mismatch"]')
+    assert page.locator('.drawer-structure-record li').count() == 3
+    page.keyboard.press("Escape")
     complete_drill(page, verify_profile=False)
     page.locator('[data-action="next-mode"]').click()
     page.wait_for_selector('.mode-brief[data-mode="scene"]')

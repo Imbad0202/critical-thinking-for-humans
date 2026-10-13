@@ -2214,6 +2214,36 @@ textarea {
   font-size: 0.875rem;
 }
 
+.drawer-structure-record ul {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.75rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.drawer-structure-record li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  align-items: baseline;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid rgba(85, 183, 166, 0.25);
+  border-radius: 0.5rem;
+  background: rgba(85, 183, 166, 0.07);
+}
+
+.drawer-structure-record li strong {
+  color: #a9d5ca;
+  font-size: 0.875rem;
+}
+
+.drawer-structure-record li span,
+.drawer-structure-record li small {
+  color: #879b92;
+  font-size: 0.75rem;
+}
+
 .drawer-privacy p,
 .truth-card p,
 .connection-grid p,

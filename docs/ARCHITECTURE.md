@@ -30,7 +30,8 @@ file wins.
 Every session loads the same floor first, then routes. Only one mode is active
 at a time; a soft-switch deactivates the prior stance without erasing the
 transcript. The shared scaffolding also owns quick start, round budgets, remix,
-and the human-turn boundary for both target models (see [model guide](MODEL_GUIDE.md)).
+and the human-turn boundary for both target models (see `SKILL.md`, Model
+compatibility).
 
 ```mermaid
 flowchart TD
@@ -121,9 +122,11 @@ flowchart TD
     Source --> R1["source_credibility"]
 ```
 
-Each structure is a transferable shape: once you can see `sample_selection` as a
-shape, you catch it in a journal, a news story, or a contract. Naming is what
-makes the practice transfer. `source_credibility` judges the evidential weight
+Each structure is meant as a transferable shape: the design hypothesis is that
+once you can see `sample_selection` as a shape, you can catch it in a journal, a
+news story, or a contract. Naming is the design's bet on transfer, not a proven
+mechanism; the evidence supports near transfer far better than far transfer
+(README, Theory Grounding). `source_credibility` judges the evidential weight
 warranted by a source or observation report from documented features; it never
 infers truth or falsity from origin alone. The cross-mode `clarify`,
 `check_basis`, and `license_conclusion` operations are procedures for applying

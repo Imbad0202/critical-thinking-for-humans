@@ -2,8 +2,11 @@
 
 This file is the shared muscle list for critical-thinking-for-humans. Drill mode teaches
 these IDs; scene mode re-invokes them by name. That vocabulary reunion is the
-transfer mechanism: the same label applied under the commit-gate pressure of a
-drill reappears when the user steps back and reads a live scenario.
+design's transfer hypothesis, not an established mechanism: the same label
+applied under the commit-gate pressure of a drill reappears when the user steps
+back and reads a live scenario. Labeling a structure has partial support for
+near transfer; whether it carries to unfamiliar fields and everyday decisions
+is the open question the field has not settled.
 
 Canonical IDs are snake_case English and never localized; the display layer translates them into the user's language. User-facing text — item-type announcements, pre-teaches, dissections, frame discussions — uses a stable plain-language label in the user's language; raw snake_case IDs appear only in passport events, never as display vocabulary.
 

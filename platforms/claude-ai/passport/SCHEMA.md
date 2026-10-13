@@ -29,7 +29,7 @@ an imported passport block or the current session's tally.
 ```
 CT-GYM-PASSPORT v1
 profile: domain=education; difficulty=intro; feedback=cushioned
-tally: necessary_assumption 0/1 | alternative_cause 1/1 | sample_selection 0/1
+tally: necessary_assumption 0/1 | alternative_cause 1/1 | sample_selection 2/6 [education 2/4; personal finance 0/2]
 recent_misses: 2026-06-12 necessary_assumption took an extreme condition as necessary | 2026-06-12 sample_selection (as hasty_generalization) dropout exclusion not checked
 discards: sample_selection 1
 unprompted: steelman commitment small_case_probe
@@ -44,7 +44,16 @@ last_session: 2026-06-12
 - One line per field. `profile` is required; every other line may be absent.
 - `tally` holds `hits/attempts` per canonical structure ID (or manipulation
   technique ID — `shared/manipulation-taxonomy.md`), only for structures
-  attempted at least once.
+  attempted at least once. An entry may append a per-domain split in brackets —
+  `[field hits/attempts; field hits/attempts]` — once that structure has been
+  practised in at least two fields (the CLI edition's optional `domain`
+  field). The field is the one the
+  item was wrapped in: the user's own words from `profile`, or the short field
+  label the coach chose under `no preference`. It is a fact about items, never
+  about the user; the split is read aloud as counts per field — no comparison
+  verdict, no prediction. A block without brackets is complete; parse an
+  unreadable split leniently by keeping the merged count. Item weighting does
+  not read the split.
 - `recent_misses` keeps the most recent 10, oldest dropped; entries are
   structure tags and short summaries, never raw user text. An entry may append
   `(as <id>)` after its structure tag — the pattern, structure, or technique
@@ -112,7 +121,8 @@ last_session: 2026-06-12
   completes.
 - `detective` — one entry per completed detective case: `layers_solved/layers_total
   eggs_found/eggs_total false_positives unregistered_flaws_found structures_hit`
-  (IDs from shared/structures.md); absent until one is completed.
+  (IDs from shared/structures.md), optionally followed by `@field` for the field
+  the case was set in; absent until one is completed.
 - All values above are sample data illustrating the format — regenerate from the
   live tally, never copy them.
 
@@ -135,7 +145,8 @@ User flow in SKILL.md.
 
 ## Checkpoint Protocol
 
-- **End of item:** fold the result into `tally` (and `recent_misses` on a miss).
+- **End of item:** fold the result into `tally` (and `recent_misses` on a miss),
+  keeping the field it was wrapped in so a per-domain split can be printed.
 - **Post-reveal act:** fold `post_reveal`, `commitment_shift`, and
   carried/repeated transitions into the `updating` line's per-state counts at
   the same checkpoint that folds their parent record.

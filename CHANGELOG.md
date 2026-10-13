@@ -5,6 +5,52 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
 
 ## [Unreleased]
 
+- **Transfer stated as a hypothesis everywhere (#57).** `shared/structures.md`,
+  `shared/manipulation-taxonomy.md` and `docs/ARCHITECTURE.md` no longer state
+  naming or inoculation as a settled transfer mechanism; they now match the
+  README's hedge, and invariant entries hold the hedge in every carrier.
+  Theory Grounding cites the primary transfer studies the design leans on
+  (Fong et al. 1986; Barnett & Ceci 2002; van Peppen et al. 2022; Sellier et
+  al. 2019; Huber & Kuncel 2016), each for its narrow claim. Dead links to the
+  never-committed model guide, paired-run result files and repository review
+  are repointed or marked as not committed. The expedition description
+  matches the actual pack set, and the Daily completion note is now true for
+  both case families.
+
+- **Learner-outcome protocol (#62).** `docs/evals/learner-outcome-TEMPLATE.md`
+  adds protocol 4, the first protocol aimed at the learner rather than the
+  coach: frozen probes with no content overlap with practice, a delayed
+  timepoint, near / different-domain / unannounced everyday-decision probes,
+  untrained-structure and sound-argument floors, protocol-1b-checked keys, and
+  a comparison arm. It is linked from the evals index and the GATE layer
+  table; no run exists and no effectiveness claim follows from it.
+
+- **Web Casebook: no reward for a remembered key (#61).** Replaying a fixed
+  item already answered (full replay or missed-question practice) earns no XP
+  and the reveal says so; Scene's per-lens, camera and hold XP likewise pay
+  once. The local Passport gains a per-structure record of first attempts
+  (fixed graded items and first Daily completions): attempts, catches and
+  last-practiced date, shown in the drawer as counts only. Storage stays
+  `casebook.v3`; older records load unchanged. Pre-item structure briefings
+  are kept: three-option Web drill matches the Skill's intro tier, which
+  pre-teaches the structure by design.
+
+- **Practice domain on the record (#58).** `drill_result` and
+  `detective_process` carry an optional `domain`: the field the item or case
+  was wrapped in (the user's own words, or the coach's short label under
+  `no preference`). `show passport` may split a structure's row by field once
+  it has been practised in two or more, stated as counts and dates only. The
+  claude.ai block gains an optional bracketed per-field split. Additive;
+  `schema_version` stays 1; weighting is unchanged. Gate 12D probes it.
+
+- **Faded scaffolding as a suggestion (#60).** Redline 7 already let the
+  record suggest a tier change, but nothing triggered it. Drill now suggests
+  the next tier up once, at a round close, after three consecutive
+  independent hits across two or more structures: one mirror-register
+  sentence, no prediction or label, accepted only on an explicit yes, not
+  repeated after a decline, never at advanced and never downward. The drill
+  counterpart of expedition's Fading rule. Gate 18 probes it.
+
 - Tighten correction proofs, fixed-window outcome handling, ranked-group
   inference, conditional-rate distractor audits, localized dissection starts
   and evidence-based learner notes. The r7 revision also binds coach claims
@@ -31,25 +77,25 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
   baseline and subsequent versioned regressions on exact Fable 5.1 and
   GPT-6-Astra models in English and Traditional Chinese. Each candidate keeps
   its own manual, prompts, hashes, actual replies, failures and reviewer
-  limitations; results are not pooled across artifacts. The [r11 full rerun](docs/evals/paired-2026-09-06-r11/RESULTS.md)
+  limitations; results are not pooled across artifacts. The r11 full rerun (results file not committed)
   completed 24 primary conversations and 127 primary replies plus one retained
   partial reply: 58 PASS, one FAIL, one INCONCLUSIVE, four additional substantive
   errors and one specification finding. All quota errors and repairs remain.
-  The [r12 full rerun](docs/evals/paired-2026-09-06-r12/RESULTS.md) completed
+  The r12 full rerun (results file not committed) completed
   24 conversations and 130 replies: 60 primary PASS with ten additional
   substantive errors. Actual repairs and the discarded item remain in its evidence.
-  The [r13 full rerun](docs/evals/paired-2026-09-06-r13/RESULTS.md) completed
+  The r13 full rerun (results file not committed) completed
   24 conversations and 125 replies: 60 primary PASS with four additional
   substantive errors. All 149 commands finished; the original driver exited.
-  The [r14 full rerun](docs/evals/paired-2026-09-06-r14/RESULTS.md) completed
+  The r14 full rerun (results file not committed) completed
   24 conversations and 126 replies: 60 primary PASS with three additional
   substantive errors. Both actual explanation repairs remain; all 150 commands
   finished and the original driver exited.
-  The [r15 full rerun](docs/evals/paired-2026-09-06-r15/RESULTS.md) completed
+  The r15 full rerun (results file not committed) completed
   24 conversations and 126 replies: 59 primary PASS, one FAIL and five additional
   substantive errors. Actual repairs and all initial failures remain; all 150
   commands finished and the original driver exited.
-  The [r16 candidate](docs/evals/paired-2026-09-06-r16/RESULTS.md) separates
+  The r16 candidate (results file not committed) separates
   conditional probability direction, obligation from actual category membership,
   and descriptive comparisons from causal contributions. Advanced earned facts
   omit usage cues, and final language checks separately remove internal narration
@@ -60,7 +106,7 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
   conversations: 44 PASS, one FAIL, 15 INCONCLUSIVE and one additional script
   regression. Eight Fable usage-credit errors left nine partial sessions; all
   117 commands are terminal and the original driver exited.
-  The [r17 candidate](docs/evals/paired-2026-09-06-r17/RESULTS.md) checks the
+  The r17 candidate (results file not committed) checks the
   assembled advanced handoff for usage bridges and scans final language by
   sentence, list entry and table cell. Its local checks pass (83 tests in
   47.46s, all 743 invariants and 34 ZIP members); the frozen candidate has zero
@@ -102,7 +148,7 @@ land under `## [Unreleased]`; release headings follow `## [X.Y.Z] - YYYY-MM-DD`,
   items, and reject malformed answer fields. Enforce streaming body limits and
   reuse the dated public provider in uploads, including uncached race checks.
   Tag builds now require browser smoke on the exact tagged commit as well.
-  Regression tests cover these failures; see the [repository review](docs/REPO_REVIEW_2026-09-06.md).
+  Regression tests cover these failures; the repository review itself is not committed.
 
 ## [1.6.0] - 2026-08-01
 

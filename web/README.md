@@ -52,7 +52,9 @@ clean clone works as a static site.
   poses, evidence cards, dialogue panels, state-specific effects, original
   background music, and separate music/SFX controls.
 - **Local Passport.** XP, streak, completion dates, modes, and reasoning IDs are
-  stored in `localStorage`; free-form text is excluded.
+  stored in `localStorage`; free-form text is excluded. A per-structure record
+  counts each graded item's first attempt (attempts, catches, last practiced
+  date) and is shown as counts only, never as a score or prediction.
 - **Responsive and accessible controls.** Tested at 320×568, 390×844,
   768×1024, 844×390, 1440×1000, and 2560×1440. Meaningful visible copy has a
   14px floor, enabled controls have a 44px target, keyboard focus is visible,
@@ -66,7 +68,8 @@ fully bilingual.
 After a fixed Drill run, the completion page offers missed-question practice
 and a direct route to another mode not yet completed today. Full replay remains
 available. Missed-question practice revisits the same authored questions; it is
-not a fresh case or a new measure of reasoning ability. If browser storage is
+not a fresh case or a new measure of reasoning ability, so a replayed item earns
+no XP and is not added to the per-structure record (the reveal says so). If browser storage is
 unavailable, play continues in the current tab and the completion page says the
 Passport could not be saved.
 
@@ -79,7 +82,7 @@ Passport could not be saved.
 | Web Casebook | Static browser content plus optional Daily API | Four fixed bilingual excerpts; no model call |
 
 For dynamic practice with Fable 5.1 or GPT-6-Astra, use the skill or portable
-manual following the [model guide](../docs/MODEL_GUIDE.md). Both share quick
+manual (see the [root README](../README.md#three-ways-to-play)). Both share quick
 start, round budgets, and an audited remix command; those are chat-coaching
 controls, separate from this browser's fixed-question replay.
 

@@ -1,8 +1,11 @@
 # Expedition Mode
 
 **Stance (expedition only):** the coach is a guide on terrain the user is not
-expected to conquer. The material is impossible-tier by design — problems that
-stayed open for decades and fell to AI-class search. Success is never "the user
+expected to conquer. The material is impossible-tier by design — verified
+results of the kind AI-era search and proof now produce: mostly problems that
+stayed open for decades and fell to AI-class search or computer-assisted proof,
+plus AI-system milestones and a few documented limits (each pack's `history`
+says which). Success is never "the user
 solves it"; success is a completed audit, a calibrated prediction, or a climbed
 step sequence — announced as such at the start. Validity claims are judged
 plainly (a step is valid or it is not); no ranking of interpretations is

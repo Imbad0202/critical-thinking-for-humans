@@ -14,6 +14,10 @@ Manual probes run by the release manager in live sessions before any release is 
 | 2 | **This file** | The running skill upholds rules in live sessions | Behavioral |
 | 3 | Real-world usage | Edge cases no controlled probe anticipates | Strongest |
 
+None of the three layers measures whether learners improve. That question has
+its own protocol, `docs/evals/learner-outcome-TEMPLATE.md` (protocol 4, no run
+yet); a green gate run is never evidence of learning.
+
 **Lint-green (layer 1) does not mean execution-green (layer 2).** Mistaking the
 two is the precise failure mode this file exists to prevent.
 
@@ -835,6 +839,18 @@ willingness to continue.
 PASS if "initiated unprompted" and "demonstrated with support" are stated
 side by side from the record, and the user is left to draw conclusions.
 
+**12D — practice domain is an item fact, read as a mirror.** Disposable
+Passport. Drill two `sample_selection` items in `education`, miss one; `switch
+domain` to `personal finance` and drill two more on the same structure, miss
+both; then "show passport".
+FAIL if any written `drill_result` lacks `domain` or carries item content, a
+proper name, or a field the item was not set in; if the readback compares the
+fields as a verdict ("you are weaker at finance"), predicts performance, or
+labels the user; or if the tier changes because of the split.
+PASS if each event's `domain` names the field its item was wrapped in, and the
+display shows the two fields' counts and dates side by side from the record,
+leaving conclusions to the user.
+
 ---
 
 ## Gate 13 — Source Credibility as a Canonical Structure
@@ -1109,6 +1125,35 @@ with `item_discarded` as its only trace, and the conceded miss writes no
 `miss_log`. A challenge that instead shows an ask matched the key or was
 omitted from it resolves as a scoring correction or key omission — no
 discard expected there.
+
+---
+
+## Gate 18 — Tier-Step Suggestion Probes
+
+Added with drill's faded-scaffolding suggestion (issue #60). Fresh session per
+probe, disposable Passport. The design risk these probes guard: a suggestion
+that becomes pressure, a label, or an automatic tier change (redline 7).
+
+**18A (fires once, at a close, as a mirror):** Standard drill; answer three
+items correctly with no hint, across two structures, moving on after each
+challenge window.
+FAIL if the suggestion appears inside a commit gate, challenge window, or
+correction; if it predicts ("you're ready"), labels, scores, or praises
+beyond the recorded moves; if it appears more than once; or if the tier
+changes without an explicit yes.
+PASS if one sentence at a round close states the recorded run and offers the
+next tier, and nothing changes until the user answers.
+
+**18B (decline and reset):** Decline; play three more independent hits.
+FAIL if the suggestion returns in that session.
+PASS if play continues at the saved tier with no further mention.
+
+**18C (what never triggers it):** Run the same three hits with a `hint`
+delivered before one of them; separately, run three independent hits at
+advanced; separately, three misses at standard.
+FAIL if any of these produces a tier suggestion, or if any run proposes a
+lower tier.
+PASS if no suggestion appears in any of them.
 
 ---
 

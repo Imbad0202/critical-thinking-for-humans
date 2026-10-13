@@ -30,6 +30,18 @@
 
 *(From `drill_result` events. Keyed by canonical ID; display text translates to user's language.)*
 
+### By domain (only for structures practised in two or more fields)
+
+| Structure ID       | Domain           | Attempts | Hits | Misses | Last practiced |
+|--------------------|------------------|----------|------|--------|----------------|
+| `sample_selection` | education        | 4        | 2    | 2      | 2026-06-11     |
+| `sample_selection` | personal finance | 2        | 0    | 2      | 2026-06-18     |
+
+*(From the optional `domain` field — passport/SCHEMA.md, Practice Domain.
+Events without it count in the merged row above only. Counts and dates per
+field, read from the record: no comparison verdict, no prediction, no claim
+about ability in any field.)*
+
 ---
 
 ## Recent Patterns

@@ -18,10 +18,14 @@ your model in its host, and say:
 Quick start preserves your settings and skips repeat setup. `只玩一輪` sets a
 short session; `換個情境再試` gives the last completed target a fresh case. `提示`,
 `卡住了`, and `今天到這裡` work alongside the English controls. The coach stops
-for your answer on both models. See the [model and play guide](docs/MODEL_GUIDE.md)
-for host-specific entry paths. The [paired evaluation index](docs/evals/README.md)
-keeps the baseline and each regression candidate's actual replies and failures
-separately. These finite tests do not establish equivalent model performance.
+for your answer on both models. See [Three ways to play](#three-ways-to-play) and
+the [portable edition](#portable-single-file-edition-any-model) for host-specific
+entry paths, and `SKILL.md` (Model compatibility) for the shared coaching
+contract. The paired Fable 5.1 / GPT-6-Astra runs summarized in the CHANGELOG
+are not committed to this repository; the committed
+[evaluation index](docs/evals/README.md) holds the key-agreement and
+behavior-probe reports. These finite tests do not establish equivalent model
+performance.
 
 ## Three ways to play
 
@@ -204,8 +208,10 @@ pre-assembled. One track
 runs at a time; frames are never ranked, but a fallacy in the form of an argument
 is named plainly.
 
-**expedition.** Guide stance. Problems that stayed open for decades and fell
-to AI-class search, run only from curated packs with verified solutions, never
+**expedition.** Guide stance. Verified results of the kind AI-era search and
+proof now produce, mostly problems that stayed open for decades and fell to
+AI-class search or computer-assisted proof, plus AI-system milestones and a few
+documented limits. Packs run only from curated, verified sources, never
 improvised. You are not expected to solve them; you audit, climb, or forecast,
 and what you train is the human-executable translation of machine advantages:
 decomposition, representation shifts, small-case probes, pre-committed kill
@@ -224,7 +230,7 @@ front), but the material is generated fresh each time rather than drawn from a
 verified pack. Say `detective` (or 查案 / 破案 / 偵探).
 (Detective generation is the most demanding work in the skill. On every model,
 it must pass the dependency audit, fall back to fewer layers within the selected
-tier, or decline the case. See the [model guide](docs/MODEL_GUIDE.md).)
+tier, or decline the case. See `modes/detective.md`, Weak-model defenses.)
 
 ---
 
@@ -339,7 +345,9 @@ is fully discussable material.
 
 The passport lives at `~/.ct-gym/` on your machine. It records:
 
-- **drill:** hit/miss per structure ID, per session and longitudinally.
+- **drill:** hit/miss per structure ID, per session and longitudinally, plus
+  the field each item was set in, so a structure you catch in one field and
+  miss in another shows up as two rows, not one blended tally.
 - **scene:** process coverage. Which frames were raised, steelmanned, whether
   the camera turn was completed, whether you made a closing commitment.
 - **expedition:** process record per pack. Role taken, which disciplines you
@@ -382,6 +390,23 @@ literature) and remains contested for the far transfer this tool is reaching
 for; the meta-analytic picture on teaching critical thinking is a positive but
 moderate, highly heterogeneous effect (Abrami et al.), not a settled result the
 tool can borrow as its own.
+The transfer design leans on a few primary studies, each for a narrower claim
+than "this transfers": brief training on the law of large numbers, by stated
+rule or by worked examples, improved statistical reasoning about everyday
+problems, including in domains the training never used (Fong, Krantz &
+Nisbett, 1986, *Cognitive Psychology*); after instruction and practice produced
+near transfer but little far transfer, prompting students to recognize or
+recall the relevant principle did not help, which points to applying it to a
+new task as the bottleneck (van Peppen et al., 2022, *Journal of Cognitive
+Psychology*); a one-shot debiasing training made graduate students 29% less
+likely to choose a hypothesis-confirming solution in a later, unannounced
+business case (Sellier, Scopelliti & Morewedge, 2019, *Psychological Science*),
+the closest analogue to detective. Transfer distance is read along Barnett &
+Ceci's dimensions (2002, *Psychological Bulletin*): a drill in your own field
+is near transfer by design. Critical-thinking skills grow over a normal college
+experience, while curriculum-wide programs to boost them show no reliable added
+long-term gain (Huber & Kuncel, 2016, *Review of Educational Research*).
+None of these studies tested this tool.
 Item engineering draws on the long-established *form* of critical-reasoning
 assessment (the assumption / strengthen / weaken / inference question types
 common to standardized reasoning tests generally) as a structural reference,
